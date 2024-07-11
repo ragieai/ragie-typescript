@@ -15,3 +15,6 @@ targets:
     ragie:
         target: typescript
         source: local
+        publish:
+            npm:
+                token: $npm_token
