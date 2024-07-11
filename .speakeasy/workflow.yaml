@@ -1,0 +1,17 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    local:
+        inputs:
+            - location: http://localhost:8000/openapi.json
+        registry:
+            location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/local
+    ragie.ai_spec:
+        inputs:
+            - location: https://api.ragie.ai/openapi.json
+        registry:
+            location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/ragie-ai-spec
+targets:
+    ragie:
+        target: typescript
+        source: local
