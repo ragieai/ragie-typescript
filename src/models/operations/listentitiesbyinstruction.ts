@@ -3,7 +3,6 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
-import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type ListEntitiesByInstructionRequest = {
@@ -16,10 +15,6 @@ export type ListEntitiesByInstructionRequest = {
      * The number of items per page (must be greater than 0 and less than or equal to 100)
      */
     pageSize?: number | undefined;
-};
-
-export type ListEntitiesByInstructionResponse = {
-    result: components.EntityListResponse;
 };
 
 /** @internal */
@@ -76,52 +71,4 @@ export namespace ListEntitiesByInstructionRequest$ {
     export const outboundSchema = ListEntitiesByInstructionRequest$outboundSchema;
     /** @deprecated use `ListEntitiesByInstructionRequest$Outbound` instead. */
     export type Outbound = ListEntitiesByInstructionRequest$Outbound;
-}
-
-/** @internal */
-export const ListEntitiesByInstructionResponse$inboundSchema: z.ZodType<
-    ListEntitiesByInstructionResponse,
-    z.ZodTypeDef,
-    unknown
-> = z
-    .object({
-        Result: components.EntityListResponse$inboundSchema,
-    })
-    .transform((v) => {
-        return remap$(v, {
-            Result: "result",
-        });
-    });
-
-/** @internal */
-export type ListEntitiesByInstructionResponse$Outbound = {
-    Result: components.EntityListResponse$Outbound;
-};
-
-/** @internal */
-export const ListEntitiesByInstructionResponse$outboundSchema: z.ZodType<
-    ListEntitiesByInstructionResponse$Outbound,
-    z.ZodTypeDef,
-    ListEntitiesByInstructionResponse
-> = z
-    .object({
-        result: components.EntityListResponse$outboundSchema,
-    })
-    .transform((v) => {
-        return remap$(v, {
-            result: "Result",
-        });
-    });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEntitiesByInstructionResponse$ {
-    /** @deprecated use `ListEntitiesByInstructionResponse$inboundSchema` instead. */
-    export const inboundSchema = ListEntitiesByInstructionResponse$inboundSchema;
-    /** @deprecated use `ListEntitiesByInstructionResponse$outboundSchema` instead. */
-    export const outboundSchema = ListEntitiesByInstructionResponse$outboundSchema;
-    /** @deprecated use `ListEntitiesByInstructionResponse$Outbound` instead. */
-    export type Outbound = ListEntitiesByInstructionResponse$Outbound;
 }

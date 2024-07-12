@@ -333,40 +333,6 @@ run();
 ```
 <!-- End Authentication [security] -->
 
-<!-- Start Pagination [pagination] -->
-## Pagination
-
-Some of the endpoints in this SDK support pagination. To use pagination, you
-make your SDK calls as usual, but the returned response object will also be an
-async iterable that can be consumed using the [`for await...of`][for-await-of]
-syntax.
-
-[for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
-
-Here's an example of one such pagination call:
-
-```typescript
-import { Ragie } from "ragie";
-
-const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-    const result = await ragie.entities.listByInstruction({
-        instructionId: "<value>",
-    });
-
-    for await (const page of result) {
-        // handle page
-    }
-}
-
-run();
-
-```
-<!-- End Pagination [pagination] -->
-
 <!-- Start Retries [retries] -->
 ## Retries
 

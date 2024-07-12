@@ -123,9 +123,8 @@ async function run() {
     instructionId: "<value>",
   });
 
-  for await (const page of result) {
-    // handle page
-  }
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -143,7 +142,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListEntitiesByInstructionResponse](../../models/operations/listentitiesbyinstructionresponse.md)\>**
+**Promise\<[components.EntityListResponse](../../models/components/entitylistresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |

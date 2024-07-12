@@ -15,8 +15,6 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
-import { createPageIterator, PageIterator, Paginator } from "../types/operations.js";
-import jp from "jsonpath";
 
 export class Entities extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -210,7 +208,7 @@ export class Entities extends ClientSDK {
     async listByInstruction(
         request: operations.ListEntitiesByInstructionRequest,
         options?: RequestOptions
-    ): Promise<PageIterator<operations.ListEntitiesByInstructionResponse>> {
+    ): Promise<components.EntityListResponse> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -279,36 +277,14 @@ export class Entities extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$, raw$] = await this.matcher<operations.ListEntitiesByInstructionResponse>()
-            .json(200, operations.ListEntitiesByInstructionResponse$inboundSchema, {
-                key: "Result",
-            })
+        const [result$] = await this.matcher<components.EntityListResponse>()
+            .json(200, components.EntityListResponse$inboundSchema)
             .json(401, errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
-        const nextFunc = (
-            responseData: unknown
-        ): Paginator<operations.ListEntitiesByInstructionResponse> => {
-            const nextCursor = jp.value(responseData, "$.pagination.next_cursor");
-
-            if (nextCursor == null) {
-                return () => null;
-            }
-
-            return () =>
-                this.listByInstruction(
-                    {
-                        ...input$,
-                        cursor: nextCursor,
-                    },
-                    options
-                );
-        };
-
-        const page$ = { ...result$, next: nextFunc(raw$) };
-        return { ...page$, ...createPageIterator(page$) };
+        return result$;
     }
 
     /**
