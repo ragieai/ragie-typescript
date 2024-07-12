@@ -22,25 +22,25 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add ragie
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add ragie
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add ragie
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add ragie zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -366,6 +366,74 @@ run();
 
 ```
 <!-- End Pagination [pagination] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+    auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+    const result = await ragie.documents.list(
+        {},
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+    auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+    const result = await ragie.documents.list({});
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

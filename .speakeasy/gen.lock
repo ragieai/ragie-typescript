@@ -3,15 +3,19 @@ id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
   docChecksum: c83c17628f81d9bdf19c07bc7d62cb34
   docVersion: 1.0.0
-  speakeasyVersion: 1.332.0
-  generationVersion: 2.366.1
-  releaseVersion: 0.2.2
-  configChecksum: 46cc4ad10f6f3663847054937d2b82d0
+  speakeasyVersion: 1.334.0
+  generationVersion: 2.369.0
+  releaseVersion: 0.3.0
+  configChecksum: cb555be366b88cb9db122779e4242721
+  repoURL: https://github.com/ragieai/speakeasy.git
+  installationURL: https://github.com/ragieai/speakeasy
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
     core: 3.11.6
+    defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -21,6 +25,7 @@ features:
     nullables: 0.1.0
     pagination: 2.82.4
     responseFormat: 0.2.3
+    retries: 2.83.0
     sdkHooks: 0.1.0
     unions: 2.85.5
 generatedFiles:
@@ -153,6 +158,7 @@ generatedFiles:
   - docs/models/operations/listentitiesbyinstructionresponse.md
   - docs/models/operations/listentitiesbydocumentrequest.md
   - docs/sdks/ragie/README.md
+  - docs/lib/utils/retryconfig.md
   - docs/sdks/documents/README.md
   - docs/sdks/retrievals/README.md
   - docs/sdks/entities/README.md

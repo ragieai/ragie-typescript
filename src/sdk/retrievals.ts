@@ -95,6 +95,8 @@ export class Retrievals extends ClientSDK {
         const response = await this.do$(request$, {
             context,
             errorCodes: ["401", "422", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
         });
 
         const responseFields$ = {
