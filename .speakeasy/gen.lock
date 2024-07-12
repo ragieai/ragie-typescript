@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: c83c17628f81d9bdf19c07bc7d62cb34
+  docChecksum: b6c4e551bc4f66b0f5b7bdc7e73584b0
   docVersion: 1.0.0
   speakeasyVersion: 1.334.0
   generationVersion: 2.369.0
-  releaseVersion: 0.3.0
-  configChecksum: cb555be366b88cb9db122779e4242721
+  releaseVersion: 0.4.0
+  configChecksum: eac6ad6bfe02bb6ca4a04bffc05c4a2b
   repoURL: https://github.com/ragieai/speakeasy.git
   installationURL: https://github.com/ragieai/speakeasy
   published: true
@@ -23,7 +23,6 @@ features:
     globalServerURLs: 2.82.4
     nameOverrides: 2.81.2
     nullables: 0.1.0
-    pagination: 2.82.4
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
@@ -155,7 +154,6 @@ generatedFiles:
   - docs/models/operations/getdocumentsummaryrequest.md
   - docs/models/operations/updateinstructionrequest.md
   - docs/models/operations/listentitiesbyinstructionrequest.md
-  - docs/models/operations/listentitiesbyinstructionresponse.md
   - docs/models/operations/listentitiesbydocumentrequest.md
   - docs/sdks/ragie/README.md
   - docs/lib/utils/retryconfig.md
