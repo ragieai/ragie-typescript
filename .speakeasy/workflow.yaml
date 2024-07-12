@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     local:
         inputs:
-            - location: http://localhost:8000/openapi.json
+            - location: https://7tzpsf3b-8000.use.devtunnels.ms/openapi.json
         registry:
             location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/local
     ragie.ai_spec:
