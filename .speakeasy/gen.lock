@@ -5,10 +5,10 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.335.0
   generationVersion: 2.370.2
-  releaseVersion: 0.4.1
-  configChecksum: 0cbc4594b3d303122a2b177370103172
-  repoURL: https://github.com/ragieai/speakeasy.git
-  installationURL: https://github.com/ragieai/speakeasy
+  releaseVersion: 0.4.2
+  configChecksum: 1bfff8586df518c79dcddf7934365ca4
+  repoURL: https://github.com/ragieai/SDKs.git
+  installationURL: https://github.com/ragieai/SDKs
   published: true
 features:
   typescript:
