@@ -4,6 +4,7 @@
 
 import { SDKHooks } from "../hooks/hooks.js";
 import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { dlv } from "../lib/dlv.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
@@ -16,6 +17,7 @@ import * as components from "../models/components/index.js";
 import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
 import { isBlobLike } from "../types/blobs.js";
+import { createPageIterator, PageIterator, Paginator } from "../types/operations.js";
 import * as z from "zod";
 
 export class Documents extends ClientSDK {
@@ -52,9 +54,9 @@ export class Documents extends ClientSDK {
      * List all documents sorted by created_at in descending order. Results are paginated with a max limit of 100. When more documents are available, a `cursor` will be provided. Use the `cursor` parameter to retrieve the subsequent page.
      */
     async list(
-        request: operations.ListDocumentsRequest,
+        request?: operations.ListDocumentsRequest | undefined,
         options?: RequestOptions
-    ): Promise<components.DocumentListResponse> {
+    ): Promise<PageIterator<operations.ListDocumentsResponse>> {
         const input$ = typeof request === "undefined" ? {} : request;
 
         const payload$ = schemas$.parse(
@@ -115,14 +117,32 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentListResponse>()
-            .json(200, components.DocumentListResponse$inboundSchema)
+        const [result$, raw$] = await this.matcher<operations.ListDocumentsResponse>()
+            .json(200, operations.ListDocumentsResponse$inboundSchema, { key: "Result" })
             .json([401, 404], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
-        return result$;
+        const nextFunc = (responseData: unknown): Paginator<operations.ListDocumentsResponse> => {
+            const nextCursor = dlv(responseData, "pagination.next_cursor");
+
+            if (nextCursor == null) {
+                return () => null;
+            }
+
+            return () =>
+                this.list(
+                    {
+                        ...input$,
+                        cursor: nextCursor,
+                    },
+                    options
+                );
+        };
+
+        const page$ = { ...result$, next: nextFunc(raw$) };
+        return { ...page$, ...createPageIterator(page$) };
     }
 
     /**

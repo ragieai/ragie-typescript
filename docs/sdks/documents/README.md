@@ -29,8 +29,9 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.list({});
 
-  // Handle the result
-  console.log(result)
+  for await (const page of result) {
+    // handle page
+  }
 }
 
 run();
@@ -48,7 +49,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentListResponse](../../models/components/documentlistresponse.md)\>**
+**Promise\<[operations.ListDocumentsResponse](../../models/operations/listdocumentsresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |

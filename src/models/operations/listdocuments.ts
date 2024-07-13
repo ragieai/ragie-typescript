@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type ListDocumentsRequest = {
@@ -14,6 +15,10 @@ export type ListDocumentsRequest = {
      * The number of items per page (must be greater than 0 and less than or equal to 100)
      */
     pageSize?: number | undefined;
+};
+
+export type ListDocumentsResponse = {
+    result: components.DocumentListResponse;
 };
 
 /** @internal */
@@ -65,4 +70,52 @@ export namespace ListDocumentsRequest$ {
     export const outboundSchema = ListDocumentsRequest$outboundSchema;
     /** @deprecated use `ListDocumentsRequest$Outbound` instead. */
     export type Outbound = ListDocumentsRequest$Outbound;
+}
+
+/** @internal */
+export const ListDocumentsResponse$inboundSchema: z.ZodType<
+    ListDocumentsResponse,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        Result: components.DocumentListResponse$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            Result: "result",
+        });
+    });
+
+/** @internal */
+export type ListDocumentsResponse$Outbound = {
+    Result: components.DocumentListResponse$Outbound;
+};
+
+/** @internal */
+export const ListDocumentsResponse$outboundSchema: z.ZodType<
+    ListDocumentsResponse$Outbound,
+    z.ZodTypeDef,
+    ListDocumentsResponse
+> = z
+    .object({
+        result: components.DocumentListResponse$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            result: "Result",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListDocumentsResponse$ {
+    /** @deprecated use `ListDocumentsResponse$inboundSchema` instead. */
+    export const inboundSchema = ListDocumentsResponse$inboundSchema;
+    /** @deprecated use `ListDocumentsResponse$outboundSchema` instead. */
+    export const outboundSchema = ListDocumentsResponse$outboundSchema;
+    /** @deprecated use `ListDocumentsResponse$Outbound` instead. */
+    export type Outbound = ListDocumentsResponse$Outbound;
 }

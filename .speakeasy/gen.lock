@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: b6c4e551bc4f66b0f5b7bdc7e73584b0
+  docChecksum: b9b639017fe61bd8f148f63e0dacef09
   docVersion: 1.0.0
-  speakeasyVersion: 1.334.0
-  generationVersion: 2.369.0
-  releaseVersion: 0.4.0
-  configChecksum: eac6ad6bfe02bb6ca4a04bffc05c4a2b
+  speakeasyVersion: 1.335.0
+  generationVersion: 2.370.2
+  releaseVersion: 0.4.1
+  configChecksum: 0cbc4594b3d303122a2b177370103172
   repoURL: https://github.com/ragieai/speakeasy.git
   installationURL: https://github.com/ragieai/speakeasy
   published: true
@@ -23,6 +23,7 @@ features:
     globalServerURLs: 2.82.4
     nameOverrides: 2.81.2
     nullables: 0.1.0
+    pagination: 2.82.5
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
@@ -40,6 +41,7 @@ generatedFiles:
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
@@ -58,6 +60,16 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
+  - src/models/operations/listdocuments.ts
+  - src/models/operations/getdocument.ts
+  - src/models/operations/deletedocument.ts
+  - src/models/operations/updatedocumentfile.ts
+  - src/models/operations/updatedocumentraw.ts
+  - src/models/operations/patchdocumentmetadata.ts
+  - src/models/operations/getdocumentsummary.ts
+  - src/models/operations/updateinstruction.ts
+  - src/models/operations/listentitiesbyinstruction.ts
+  - src/models/operations/listentitiesbydocument.ts
   - src/models/components/documentlistresponse.ts
   - src/models/components/documentgetresponse.ts
   - src/models/components/pagination.ts
@@ -83,19 +95,20 @@ generatedFiles:
   - src/models/components/security.ts
   - src/models/errors/errormessage.ts
   - src/models/errors/httpvalidationerror.ts
-  - src/models/operations/listdocuments.ts
-  - src/models/operations/getdocument.ts
-  - src/models/operations/deletedocument.ts
-  - src/models/operations/updatedocumentfile.ts
-  - src/models/operations/updatedocumentraw.ts
-  - src/models/operations/patchdocumentmetadata.ts
-  - src/models/operations/getdocumentsummary.ts
-  - src/models/operations/updateinstruction.ts
-  - src/models/operations/listentitiesbyinstruction.ts
-  - src/models/operations/listentitiesbydocument.ts
   - src/models/errors/index.ts
-  - src/models/components/index.ts
   - src/models/operations/index.ts
+  - src/models/components/index.ts
+  - docs/models/operations/listdocumentsrequest.md
+  - docs/models/operations/listdocumentsresponse.md
+  - docs/models/operations/getdocumentrequest.md
+  - docs/models/operations/deletedocumentrequest.md
+  - docs/models/operations/updatedocumentfilerequest.md
+  - docs/models/operations/updatedocumentrawrequest.md
+  - docs/models/operations/patchdocumentmetadatarequest.md
+  - docs/models/operations/getdocumentsummaryrequest.md
+  - docs/models/operations/updateinstructionrequest.md
+  - docs/models/operations/listentitiesbyinstructionrequest.md
+  - docs/models/operations/listentitiesbydocumentrequest.md
   - docs/models/components/documentlistresponse.md
   - docs/models/components/metadata.md
   - docs/models/components/documentgetresponse.md
@@ -145,16 +158,6 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/errors/errormessage.md
   - docs/models/errors/httpvalidationerror.md
-  - docs/models/operations/listdocumentsrequest.md
-  - docs/models/operations/getdocumentrequest.md
-  - docs/models/operations/deletedocumentrequest.md
-  - docs/models/operations/updatedocumentfilerequest.md
-  - docs/models/operations/updatedocumentrawrequest.md
-  - docs/models/operations/patchdocumentmetadatarequest.md
-  - docs/models/operations/getdocumentsummaryrequest.md
-  - docs/models/operations/updateinstructionrequest.md
-  - docs/models/operations/listentitiesbyinstructionrequest.md
-  - docs/models/operations/listentitiesbydocumentrequest.md
   - docs/sdks/ragie/README.md
   - docs/lib/utils/retryconfig.md
   - docs/sdks/documents/README.md

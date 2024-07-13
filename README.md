@@ -68,8 +68,9 @@ const ragie = new Ragie({
 async function run() {
     const result = await ragie.documents.list({});
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();
@@ -189,8 +190,9 @@ async function run() {
         }
     }
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();
@@ -220,8 +222,9 @@ const ragie = new Ragie({
 async function run() {
     const result = await ragie.documents.list({});
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();
@@ -244,8 +247,9 @@ const ragie = new Ragie({
 async function run() {
     const result = await ragie.documents.list({});
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();
@@ -324,8 +328,9 @@ const ragie = new Ragie({
 async function run() {
     const result = await ragie.documents.list({});
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();
@@ -363,8 +368,9 @@ async function run() {
         }
     );
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();
@@ -392,14 +398,117 @@ const ragie = new Ragie({
 async function run() {
     const result = await ragie.documents.list({});
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+    auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+    const result = await ragie.documents.list(
+        {},
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
+
+    for await (const page of result) {
+        // handle page
+    }
+}
+
+run();
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+    auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+    const result = await ragie.documents.list({});
+
+    for await (const page of result) {
+        // handle page
+    }
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you
+make your SDK calls as usual, but the returned response object will also be an
+async iterable that can be consumed using the [`for await...of`][for-await-of]
+syntax.
+
+[for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
+
+Here's an example of one such pagination call:
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+    auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+    const result = await ragie.documents.list({});
+
+    for await (const page of result) {
+        // handle page
+    }
+}
+
+run();
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

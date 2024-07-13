@@ -1,12 +1,11 @@
-speakeasyVersion: 1.334.0
+speakeasyVersion: 1.335.0
 sources:
     local:
         sourceNamespace: local
-        sourceRevisionDigest: sha256:9a26d2e743b5e73ee35689c916c3ac5822187bc5140e9dff35062d1b760e6fa9
-        sourceBlobDigest: sha256:5e2ce87c2333b183aa4cbf81ed8d8a80eb5ee16539640bb4d3b214d3e4ea1e6a
+        sourceRevisionDigest: sha256:2d54d9d5854df261212a99c1b91d4a2b856c6210f89204ddd65f0cbf007f03eb
+        sourceBlobDigest: sha256:7a528e49d41ecc97dabfda05ab8c5ea54783c4c2f85d43f90b3fa15dd50b6d72
         tags:
             - latest
-            - main
     ragie.ai_spec:
         sourceNamespace: ragie-ai-spec
         sourceRevisionDigest: sha256:dd91875a6b06096263c757354ee26a74ae8bab2da51c9d698502e0dd13550686
@@ -17,9 +16,9 @@ targets:
     ragie:
         source: local
         sourceNamespace: local
-        sourceRevisionDigest: sha256:9a26d2e743b5e73ee35689c916c3ac5822187bc5140e9dff35062d1b760e6fa9
-        sourceBlobDigest: sha256:5e2ce87c2333b183aa4cbf81ed8d8a80eb5ee16539640bb4d3b214d3e4ea1e6a
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:2d54d9d5854df261212a99c1b91d4a2b856c6210f89204ddd65f0cbf007f03eb
+        sourceBlobDigest: sha256:7a528e49d41ecc97dabfda05ab8c5ea54783c4c2f85d43f90b3fa15dd50b6d72
+        outLocation: /Users/mattkauffman/dev/ragie/ragie-typescript
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

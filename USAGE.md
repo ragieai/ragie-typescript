@@ -9,8 +9,9 @@ const ragie = new Ragie({
 async function run() {
     const result = await ragie.documents.list({});
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // handle page
+    }
 }
 
 run();

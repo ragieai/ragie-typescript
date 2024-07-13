@@ -15,7 +15,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.4.0
+  version: 0.4.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -35,7 +35,7 @@ typescript:
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
-  methodArguments: require-security-and-request
+  methodArguments: infer-optional-args
   moduleFormat: commonjs
   outputModelSuffix: output
   packageName: ragie
