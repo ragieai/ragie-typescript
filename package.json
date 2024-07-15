@@ -1,12 +1,12 @@
 {
   "name": "ragie",
-  "version": "0.4.2",
+  "version": "0.6.3",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ragieai/SDKs.git"
+    "url": "https://github.com/ragieai/speakeasy.git"
   },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",

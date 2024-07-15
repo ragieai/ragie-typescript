@@ -43,7 +43,7 @@ run();
 
 ### Response
 
-**Promise\<[components.RetrieveResponse](../../models/components/retrieveresponse.md)\>**
+**Promise\<[components.Retrieval](../../models/components/retrieval.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |

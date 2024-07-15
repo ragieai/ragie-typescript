@@ -96,7 +96,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentCreateResponse](../../models/components/documentcreateresponse.md)\>**
+**Promise\<[components.Document](../../models/components/document.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -142,7 +142,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentCreateResponse](../../models/components/documentcreateresponse.md)\>**
+**Promise\<[components.Document](../../models/components/document.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -188,7 +188,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentGetResponse](../../models/components/documentgetresponse.md)\>**
+**Promise\<[components.Document](../../models/components/document.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -234,7 +234,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.DocumentDelete](../../models/components/documentdelete.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -284,7 +284,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentFileUpdateResponse](../../models/components/documentfileupdateresponse.md)\>**
+**Promise\<[components.DocumentFileUpdate](../../models/components/documentfileupdate.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -309,7 +309,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.updateRaw({
     documentId: "<value>",
-    documentRawUpdate: {
+    documentRawUpdateRequest: {
     data:     {},
     },
   });
@@ -333,7 +333,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentFileUpdateResponse](../../models/components/documentfileupdateresponse.md)\>**
+**Promise\<[components.DocumentRawUpdate](../../models/components/documentrawupdate.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -358,7 +358,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.patchMetadata({
     documentId: "<value>",
-    documentMetadataUpdate: {
+    documentMetadataUpdateRequest: {
       metadata: {
         "classified": "null (setting null deletes key from metadata)",
         "editors":   [
@@ -390,7 +390,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentMetadataUpdateResponse](../../models/components/documentmetadataupdateresponse.md)\>**
+**Promise\<[components.DocumentMetadataUpdate](../../models/components/documentmetadataupdate.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -436,7 +436,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentSummaryResponse](../../models/components/documentsummaryresponse.md)\>**
+**Promise\<[components.DocumentSummary](../../models/components/documentsummary.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |

@@ -1,4 +1,4 @@
-# DocumentRawUpdateData
+# DocumentRawUpdateRequestData
 
 Document data in a text or JSON format.
 

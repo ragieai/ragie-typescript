@@ -5,53 +5,49 @@
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as z from "zod";
 
-export type DocumentCreateResponseMetadata = string | number | boolean | Array<string>;
+export type Metadata = string | number | boolean | Array<string>;
 
-export type DocumentCreateResponse = {
+export type Document = {
     id: string;
     createdAt: Date;
     updatedAt: Date;
     status: string;
     name: string;
     metadata: { [k: string]: string | number | boolean | Array<string> };
+    chunkCount?: number | undefined;
+    externalId?: string | null | undefined;
 };
 
 /** @internal */
-export const DocumentCreateResponseMetadata$inboundSchema: z.ZodType<
-    DocumentCreateResponseMetadata,
-    z.ZodTypeDef,
-    unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+export const Metadata$inboundSchema: z.ZodType<Metadata, z.ZodTypeDef, unknown> = z.union([
+    z.string(),
+    z.number().int(),
+    z.boolean(),
+    z.array(z.string()),
+]);
 
 /** @internal */
-export type DocumentCreateResponseMetadata$Outbound = string | number | boolean | Array<string>;
+export type Metadata$Outbound = string | number | boolean | Array<string>;
 
 /** @internal */
-export const DocumentCreateResponseMetadata$outboundSchema: z.ZodType<
-    DocumentCreateResponseMetadata$Outbound,
-    z.ZodTypeDef,
-    DocumentCreateResponseMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+export const Metadata$outboundSchema: z.ZodType<Metadata$Outbound, z.ZodTypeDef, Metadata> =
+    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DocumentCreateResponseMetadata$ {
-    /** @deprecated use `DocumentCreateResponseMetadata$inboundSchema` instead. */
-    export const inboundSchema = DocumentCreateResponseMetadata$inboundSchema;
-    /** @deprecated use `DocumentCreateResponseMetadata$outboundSchema` instead. */
-    export const outboundSchema = DocumentCreateResponseMetadata$outboundSchema;
-    /** @deprecated use `DocumentCreateResponseMetadata$Outbound` instead. */
-    export type Outbound = DocumentCreateResponseMetadata$Outbound;
+export namespace Metadata$ {
+    /** @deprecated use `Metadata$inboundSchema` instead. */
+    export const inboundSchema = Metadata$inboundSchema;
+    /** @deprecated use `Metadata$outboundSchema` instead. */
+    export const outboundSchema = Metadata$outboundSchema;
+    /** @deprecated use `Metadata$Outbound` instead. */
+    export type Outbound = Metadata$Outbound;
 }
 
 /** @internal */
-export const DocumentCreateResponse$inboundSchema: z.ZodType<
-    DocumentCreateResponse,
-    z.ZodTypeDef,
-    unknown
-> = z
+export const Document$inboundSchema: z.ZodType<Document, z.ZodTypeDef, unknown> = z
     .object({
         id: z.string(),
         created_at: z
@@ -67,30 +63,32 @@ export const DocumentCreateResponse$inboundSchema: z.ZodType<
         metadata: z.record(
             z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())])
         ),
+        chunk_count: z.number().int().optional(),
+        external_id: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {
             created_at: "createdAt",
             updated_at: "updatedAt",
+            chunk_count: "chunkCount",
+            external_id: "externalId",
         });
     });
 
 /** @internal */
-export type DocumentCreateResponse$Outbound = {
+export type Document$Outbound = {
     id: string;
     created_at: string;
     updated_at: string;
     status: string;
     name: string;
     metadata: { [k: string]: string | number | boolean | Array<string> };
+    chunk_count?: number | undefined;
+    external_id?: string | null | undefined;
 };
 
 /** @internal */
-export const DocumentCreateResponse$outboundSchema: z.ZodType<
-    DocumentCreateResponse$Outbound,
-    z.ZodTypeDef,
-    DocumentCreateResponse
-> = z
+export const Document$outboundSchema: z.ZodType<Document$Outbound, z.ZodTypeDef, Document> = z
     .object({
         id: z.string(),
         createdAt: z.date().transform((v) => v.toISOString()),
@@ -100,11 +98,15 @@ export const DocumentCreateResponse$outboundSchema: z.ZodType<
         metadata: z.record(
             z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())])
         ),
+        chunkCount: z.number().int().optional(),
+        externalId: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {
             createdAt: "created_at",
             updatedAt: "updated_at",
+            chunkCount: "chunk_count",
+            externalId: "external_id",
         });
     });
 
@@ -112,11 +114,11 @@ export const DocumentCreateResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DocumentCreateResponse$ {
-    /** @deprecated use `DocumentCreateResponse$inboundSchema` instead. */
-    export const inboundSchema = DocumentCreateResponse$inboundSchema;
-    /** @deprecated use `DocumentCreateResponse$outboundSchema` instead. */
-    export const outboundSchema = DocumentCreateResponse$outboundSchema;
-    /** @deprecated use `DocumentCreateResponse$Outbound` instead. */
-    export type Outbound = DocumentCreateResponse$Outbound;
+export namespace Document$ {
+    /** @deprecated use `Document$inboundSchema` instead. */
+    export const inboundSchema = Document$inboundSchema;
+    /** @deprecated use `Document$outboundSchema` instead. */
+    export const outboundSchema = Document$outboundSchema;
+    /** @deprecated use `Document$Outbound` instead. */
+    export type Outbound = Document$Outbound;
 }

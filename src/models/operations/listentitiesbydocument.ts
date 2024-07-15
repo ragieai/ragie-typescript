@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type ListEntitiesByDocumentRequest = {
@@ -15,6 +16,10 @@ export type ListEntitiesByDocumentRequest = {
      * The number of items per page (must be greater than 0 and less than or equal to 100)
      */
     pageSize?: number | undefined;
+};
+
+export type ListEntitiesByDocumentResponse = {
+    result: components.EntityList;
 };
 
 /** @internal */
@@ -71,4 +76,52 @@ export namespace ListEntitiesByDocumentRequest$ {
     export const outboundSchema = ListEntitiesByDocumentRequest$outboundSchema;
     /** @deprecated use `ListEntitiesByDocumentRequest$Outbound` instead. */
     export type Outbound = ListEntitiesByDocumentRequest$Outbound;
+}
+
+/** @internal */
+export const ListEntitiesByDocumentResponse$inboundSchema: z.ZodType<
+    ListEntitiesByDocumentResponse,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        Result: components.EntityList$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            Result: "result",
+        });
+    });
+
+/** @internal */
+export type ListEntitiesByDocumentResponse$Outbound = {
+    Result: components.EntityList$Outbound;
+};
+
+/** @internal */
+export const ListEntitiesByDocumentResponse$outboundSchema: z.ZodType<
+    ListEntitiesByDocumentResponse$Outbound,
+    z.ZodTypeDef,
+    ListEntitiesByDocumentResponse
+> = z
+    .object({
+        result: components.EntityList$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            result: "Result",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListEntitiesByDocumentResponse$ {
+    /** @deprecated use `ListEntitiesByDocumentResponse$inboundSchema` instead. */
+    export const inboundSchema = ListEntitiesByDocumentResponse$inboundSchema;
+    /** @deprecated use `ListEntitiesByDocumentResponse$outboundSchema` instead. */
+    export const outboundSchema = ListEntitiesByDocumentResponse$outboundSchema;
+    /** @deprecated use `ListEntitiesByDocumentResponse$Outbound` instead. */
+    export type Outbound = ListEntitiesByDocumentResponse$Outbound;
 }

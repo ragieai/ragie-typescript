@@ -7,7 +7,7 @@ import * as z from "zod";
 
 export type DocumentMetadata = {};
 
-export type ScoredChunkResponse = {
+export type ScoredChunk = {
     text: string;
     score: number;
     documentId: string;
@@ -42,11 +42,7 @@ export namespace DocumentMetadata$ {
 }
 
 /** @internal */
-export const ScoredChunkResponse$inboundSchema: z.ZodType<
-    ScoredChunkResponse,
-    z.ZodTypeDef,
-    unknown
-> = z
+export const ScoredChunk$inboundSchema: z.ZodType<ScoredChunk, z.ZodTypeDef, unknown> = z
     .object({
         text: z.string(),
         score: z.number(),
@@ -61,7 +57,7 @@ export const ScoredChunkResponse$inboundSchema: z.ZodType<
     });
 
 /** @internal */
-export type ScoredChunkResponse$Outbound = {
+export type ScoredChunk$Outbound = {
     text: string;
     score: number;
     document_id: string;
@@ -69,10 +65,10 @@ export type ScoredChunkResponse$Outbound = {
 };
 
 /** @internal */
-export const ScoredChunkResponse$outboundSchema: z.ZodType<
-    ScoredChunkResponse$Outbound,
+export const ScoredChunk$outboundSchema: z.ZodType<
+    ScoredChunk$Outbound,
     z.ZodTypeDef,
-    ScoredChunkResponse
+    ScoredChunk
 > = z
     .object({
         text: z.string(),
@@ -91,11 +87,11 @@ export const ScoredChunkResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ScoredChunkResponse$ {
-    /** @deprecated use `ScoredChunkResponse$inboundSchema` instead. */
-    export const inboundSchema = ScoredChunkResponse$inboundSchema;
-    /** @deprecated use `ScoredChunkResponse$outboundSchema` instead. */
-    export const outboundSchema = ScoredChunkResponse$outboundSchema;
-    /** @deprecated use `ScoredChunkResponse$Outbound` instead. */
-    export type Outbound = ScoredChunkResponse$Outbound;
+export namespace ScoredChunk$ {
+    /** @deprecated use `ScoredChunk$inboundSchema` instead. */
+    export const inboundSchema = ScoredChunk$inboundSchema;
+    /** @deprecated use `ScoredChunk$outboundSchema` instead. */
+    export const outboundSchema = ScoredChunk$outboundSchema;
+    /** @deprecated use `ScoredChunk$Outbound` instead. */
+    export type Outbound = ScoredChunk$Outbound;
 }

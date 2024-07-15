@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise\<[components.InstructionCreateResponse](../../models/components/instructioncreateresponse.md)\>**
+**Promise\<[components.Instruction](../../models/components/instruction.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -96,7 +96,7 @@ run();
 
 ### Response
 
-**Promise\<[components.InstructionUpdateResponse](../../models/components/instructionupdateresponse.md)\>**
+**Promise\<[components.Instruction](../../models/components/instruction.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -123,8 +123,9 @@ async function run() {
     instructionId: "<value>",
   });
 
-  // Handle the result
-  console.log(result)
+  for await (const page of result) {
+    // handle page
+  }
 }
 
 run();
@@ -142,7 +143,7 @@ run();
 
 ### Response
 
-**Promise\<[components.EntityListResponse](../../models/components/entitylistresponse.md)\>**
+**Promise\<[operations.ListEntitiesByInstructionResponse](../../models/operations/listentitiesbyinstructionresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -169,8 +170,9 @@ async function run() {
     documentId: "<value>",
   });
 
-  // Handle the result
-  console.log(result)
+  for await (const page of result) {
+    // handle page
+  }
 }
 
 run();
@@ -188,7 +190,7 @@ run();
 
 ### Response
 
-**Promise\<[components.EntityListResponse](../../models/components/entitylistresponse.md)\>**
+**Promise\<[operations.ListEntitiesByDocumentResponse](../../models/operations/listentitiesbydocumentresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |

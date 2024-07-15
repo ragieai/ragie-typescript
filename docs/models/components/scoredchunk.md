@@ -1,4 +1,4 @@
-# ScoredChunkResponse
+# ScoredChunk
 
 
 ## Fields

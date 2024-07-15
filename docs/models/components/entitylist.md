@@ -1,4 +1,4 @@
-# EntityListResponse
+# EntityList
 
 
 ## Fields

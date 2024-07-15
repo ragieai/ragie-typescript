@@ -8,14 +8,6 @@
 </div>
 
 
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
-
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
@@ -209,7 +201,7 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `http://localhost:8000` | None |
+| 0 | `https://api.ragie.ai` | None |
 
 ```typescript
 import { Ragie } from "ragie";
@@ -240,7 +232,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    serverURL: "http://localhost:8000",
+    serverURL: "https://api.ragie.ai",
     auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 

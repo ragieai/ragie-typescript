@@ -8,7 +8,7 @@ export type DocumentMetadataUpdateMetadata = string | number | boolean | Array<s
 
 export type DocumentMetadataUpdate = {
     /**
-     * The metadata to update on the document. Performs a partial update of the document's metadata. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. Keys set to `null` are deleted. 1000 total values are allowed, inclusive of existing metadata. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `__ragie__document_version_id`, `__ragie__chunk_size_chars`, `__ragie__chunk_overlap_chars`.
+     * The full document metadata inclusive of the update.
      */
     metadata: { [k: string]: string | number | boolean | Array<string> };
 };

@@ -4,6 +4,7 @@
 
 import { SDKHooks } from "../hooks/hooks.js";
 import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { dlv } from "../lib/dlv.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
@@ -15,6 +16,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
+import { createPageIterator, PageIterator, Paginator } from "../types/operations.js";
 
 export class Entities extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -52,7 +54,7 @@ export class Entities extends ClientSDK {
     async createInstruction(
         request: components.InstructionCreateRequest,
         options?: RequestOptions
-    ): Promise<components.InstructionCreateResponse> {
+    ): Promise<components.Instruction> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -111,8 +113,8 @@ export class Entities extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.InstructionCreateResponse>()
-            .json(200, components.InstructionCreateResponse$inboundSchema)
+        const [result$] = await this.matcher<components.Instruction>()
+            .json(200, components.Instruction$inboundSchema)
             .json(401, errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -127,7 +129,7 @@ export class Entities extends ClientSDK {
     async updateInstruction(
         request: operations.UpdateInstructionRequest,
         options?: RequestOptions
-    ): Promise<components.InstructionUpdateResponse> {
+    ): Promise<components.Instruction> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -192,8 +194,8 @@ export class Entities extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.InstructionUpdateResponse>()
-            .json(200, components.InstructionUpdateResponse$inboundSchema)
+        const [result$] = await this.matcher<components.Instruction>()
+            .json(200, components.Instruction$inboundSchema)
             .json(401, errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -208,7 +210,7 @@ export class Entities extends ClientSDK {
     async listByInstruction(
         request: operations.ListEntitiesByInstructionRequest,
         options?: RequestOptions
-    ): Promise<components.EntityListResponse> {
+    ): Promise<PageIterator<operations.ListEntitiesByInstructionResponse>> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -277,14 +279,36 @@ export class Entities extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.EntityListResponse>()
-            .json(200, components.EntityListResponse$inboundSchema)
+        const [result$, raw$] = await this.matcher<operations.ListEntitiesByInstructionResponse>()
+            .json(200, operations.ListEntitiesByInstructionResponse$inboundSchema, {
+                key: "Result",
+            })
             .json(401, errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
-        return result$;
+        const nextFunc = (
+            responseData: unknown
+        ): Paginator<operations.ListEntitiesByInstructionResponse> => {
+            const nextCursor = dlv(responseData, "pagination.next_cursor");
+
+            if (nextCursor == null) {
+                return () => null;
+            }
+
+            return () =>
+                this.listByInstruction(
+                    {
+                        ...input$,
+                        cursor: nextCursor,
+                    },
+                    options
+                );
+        };
+
+        const page$ = { ...result$, next: nextFunc(raw$) };
+        return { ...page$, ...createPageIterator(page$) };
     }
 
     /**
@@ -293,7 +317,7 @@ export class Entities extends ClientSDK {
     async listByDocument(
         request: operations.ListEntitiesByDocumentRequest,
         options?: RequestOptions
-    ): Promise<components.EntityListResponse> {
+    ): Promise<PageIterator<operations.ListEntitiesByDocumentResponse>> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -360,13 +384,33 @@ export class Entities extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.EntityListResponse>()
-            .json(200, components.EntityListResponse$inboundSchema)
+        const [result$, raw$] = await this.matcher<operations.ListEntitiesByDocumentResponse>()
+            .json(200, operations.ListEntitiesByDocumentResponse$inboundSchema, { key: "Result" })
             .json(401, errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
-        return result$;
+        const nextFunc = (
+            responseData: unknown
+        ): Paginator<operations.ListEntitiesByDocumentResponse> => {
+            const nextCursor = dlv(responseData, "pagination.next_cursor");
+
+            if (nextCursor == null) {
+                return () => null;
+            }
+
+            return () =>
+                this.listByDocument(
+                    {
+                        ...input$,
+                        cursor: nextCursor,
+                    },
+                    options
+                );
+        };
+
+        const page$ = { ...result$, next: nextFunc(raw$) };
+        return { ...page$, ...createPageIterator(page$) };
     }
 }
