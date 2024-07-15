@@ -18,19 +18,19 @@ import * as z from "zod";
 
 export type DocumentList = {
     pagination: Pagination;
-    documents?: Array<Document> | null | undefined;
+    documents: Array<Document>;
 };
 
 /** @internal */
 export const DocumentList$inboundSchema: z.ZodType<DocumentList, z.ZodTypeDef, unknown> = z.object({
     pagination: Pagination$inboundSchema,
-    documents: z.nullable(z.array(Document$inboundSchema)).optional(),
+    documents: z.array(Document$inboundSchema),
 });
 
 /** @internal */
 export type DocumentList$Outbound = {
     pagination: Pagination$Outbound;
-    documents?: Array<Document$Outbound> | null | undefined;
+    documents: Array<Document$Outbound>;
 };
 
 /** @internal */
@@ -40,7 +40,7 @@ export const DocumentList$outboundSchema: z.ZodType<
     DocumentList
 > = z.object({
     pagination: Pagination$outboundSchema,
-    documents: z.nullable(z.array(Document$outboundSchema)).optional(),
+    documents: z.array(Document$outboundSchema),
 });
 
 /**

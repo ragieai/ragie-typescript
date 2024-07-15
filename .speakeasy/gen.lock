@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 8bcb0c0154c9330108ff6f53fc03baad
+  docChecksum: 321030afee0a55cd32befcb1527f6184
   docVersion: 1.0.0
-  speakeasyVersion: 1.335.1
-  generationVersion: 2.372.1
-  releaseVersion: 0.6.1
-  configChecksum: 42cc5d8370aede06cd94f33f1c2ec537
+  speakeasyVersion: 1.335.2
+  generationVersion: 2.372.3
+  releaseVersion: 0.6.3
+  configChecksum: 595f08c504cd8ffd0243ee8b0d9bc644
   repoURL: https://github.com/ragieai/speakeasy.git
   installationURL: https://github.com/ragieai/speakeasy
   published: true

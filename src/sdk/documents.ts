@@ -69,6 +69,7 @@ export class Documents extends ClientSDK {
 
         const query$ = encodeFormQuery$({
             cursor: payload$.cursor,
+            filter: payload$.filter,
             page_size: payload$.page_size,
         });
 
