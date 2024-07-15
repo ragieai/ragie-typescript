@@ -1,4 +1,4 @@
-# DocumentSummaryResponse
+# DocumentSummary
 
 
 ## Fields

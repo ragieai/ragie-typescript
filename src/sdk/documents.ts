@@ -18,7 +18,6 @@ import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
 import { isBlobLike } from "../types/blobs.js";
 import { createPageIterator, PageIterator, Paginator } from "../types/operations.js";
-import * as z from "zod";
 
 export class Documents extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -151,7 +150,7 @@ export class Documents extends ClientSDK {
     async create(
         request: components.BodyCreateDocument,
         options?: RequestOptions
-    ): Promise<components.DocumentCreateResponse> {
+    ): Promise<components.Document> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -228,8 +227,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentCreateResponse>()
-            .json(201, components.DocumentCreateResponse$inboundSchema)
+        const [result$] = await this.matcher<components.Document>()
+            .json(201, components.Document$inboundSchema)
             .json([400, 401], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -247,7 +246,7 @@ export class Documents extends ClientSDK {
     async createRaw(
         request: components.DocumentCreateRaw,
         options?: RequestOptions
-    ): Promise<components.DocumentCreateResponse> {
+    ): Promise<components.Document> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -306,8 +305,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentCreateResponse>()
-            .json(201, components.DocumentCreateResponse$inboundSchema)
+        const [result$] = await this.matcher<components.Document>()
+            .json(201, components.Document$inboundSchema)
             .json([400, 401], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -322,7 +321,7 @@ export class Documents extends ClientSDK {
     async get(
         request: operations.GetDocumentRequest,
         options?: RequestOptions
-    ): Promise<components.DocumentGetResponse> {
+    ): Promise<components.Document> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -386,8 +385,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentGetResponse>()
-            .json(200, components.DocumentGetResponse$inboundSchema)
+        const [result$] = await this.matcher<components.Document>()
+            .json(200, components.Document$inboundSchema)
             .json([401, 404], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -402,7 +401,7 @@ export class Documents extends ClientSDK {
     async delete(
         request: operations.DeleteDocumentRequest,
         options?: RequestOptions
-    ): Promise<any> {
+    ): Promise<components.DocumentDelete> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -466,8 +465,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<any>()
-            .json(200, z.any())
+        const [result$] = await this.matcher<components.DocumentDelete>()
+            .json(200, components.DocumentDelete$inboundSchema)
             .json([401, 404], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -482,7 +481,7 @@ export class Documents extends ClientSDK {
     async updateFile(
         request: operations.UpdateDocumentFileRequest,
         options?: RequestOptions
-    ): Promise<components.DocumentFileUpdateResponse> {
+    ): Promise<components.DocumentFileUpdate> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -561,8 +560,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentFileUpdateResponse>()
-            .json(200, components.DocumentFileUpdateResponse$inboundSchema)
+        const [result$] = await this.matcher<components.DocumentFileUpdate>()
+            .json(200, components.DocumentFileUpdate$inboundSchema)
             .json([401, 404], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -577,7 +576,7 @@ export class Documents extends ClientSDK {
     async updateRaw(
         request: operations.UpdateDocumentRawRequest,
         options?: RequestOptions
-    ): Promise<components.DocumentFileUpdateResponse> {
+    ): Promise<components.DocumentRawUpdate> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -585,7 +584,7 @@ export class Documents extends ClientSDK {
             (value$) => operations.UpdateDocumentRawRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = encodeJSON$("body", payload$.DocumentRawUpdate, { explode: true });
+        const body$ = encodeJSON$("body", payload$.DocumentRawUpdateRequest, { explode: true });
 
         const pathParams$ = {
             document_id: encodeSimple$("document_id", payload$.document_id, {
@@ -642,8 +641,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentFileUpdateResponse>()
-            .json(200, components.DocumentFileUpdateResponse$inboundSchema)
+        const [result$] = await this.matcher<components.DocumentRawUpdate>()
+            .json(200, components.DocumentRawUpdate$inboundSchema)
             .json([401, 404], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -658,7 +657,7 @@ export class Documents extends ClientSDK {
     async patchMetadata(
         request: operations.PatchDocumentMetadataRequest,
         options?: RequestOptions
-    ): Promise<components.DocumentMetadataUpdateResponse> {
+    ): Promise<components.DocumentMetadataUpdate> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -666,7 +665,9 @@ export class Documents extends ClientSDK {
             (value$) => operations.PatchDocumentMetadataRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = encodeJSON$("body", payload$.DocumentMetadataUpdate, { explode: true });
+        const body$ = encodeJSON$("body", payload$.DocumentMetadataUpdateRequest, {
+            explode: true,
+        });
 
         const pathParams$ = {
             document_id: encodeSimple$("document_id", payload$.document_id, {
@@ -723,8 +724,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentMetadataUpdateResponse>()
-            .json(200, components.DocumentMetadataUpdateResponse$inboundSchema)
+        const [result$] = await this.matcher<components.DocumentMetadataUpdate>()
+            .json(200, components.DocumentMetadataUpdate$inboundSchema)
             .json([401, 404], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
@@ -742,7 +743,7 @@ export class Documents extends ClientSDK {
     async getSummary(
         request: operations.GetDocumentSummaryRequest,
         options?: RequestOptions
-    ): Promise<components.DocumentSummaryResponse> {
+    ): Promise<components.DocumentSummary> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -806,8 +807,8 @@ export class Documents extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.DocumentSummaryResponse>()
-            .json(200, components.DocumentSummaryResponse$inboundSchema)
+        const [result$] = await this.matcher<components.DocumentSummary>()
+            .json(200, components.DocumentSummary$inboundSchema)
             .json([401, 404], errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])

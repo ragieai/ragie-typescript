@@ -44,7 +44,7 @@ export class Retrievals extends ClientSDK {
     async retrieve(
         request: components.RetrieveRequest,
         options?: RequestOptions
-    ): Promise<components.RetrieveResponse> {
+    ): Promise<components.Retrieval> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -103,8 +103,8 @@ export class Retrievals extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.RetrieveResponse>()
-            .json(200, components.RetrieveResponse$inboundSchema)
+        const [result$] = await this.matcher<components.Retrieval>()
+            .json(200, components.Retrieval$inboundSchema)
             .json(401, errors.ErrorMessage$inboundSchema, { err: true })
             .json(422, errors.HTTPValidationError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])

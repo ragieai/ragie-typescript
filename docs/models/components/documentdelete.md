@@ -1,4 +1,4 @@
-# DocumentFileUpdateResponse
+# DocumentDelete
 
 
 ## Fields

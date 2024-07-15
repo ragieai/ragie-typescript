@@ -1,4 +1,4 @@
-# DocumentCreateResponseMetadata
+# DocumentMetadataUpdateRequestMetadata
 
 
 ## Supported Types

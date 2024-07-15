@@ -18,7 +18,7 @@ export type ListDocumentsRequest = {
 };
 
 export type ListDocumentsResponse = {
-    result: components.DocumentListResponse;
+    result: components.DocumentList;
 };
 
 /** @internal */
@@ -79,7 +79,7 @@ export const ListDocumentsResponse$inboundSchema: z.ZodType<
     unknown
 > = z
     .object({
-        Result: components.DocumentListResponse$inboundSchema,
+        Result: components.DocumentList$inboundSchema,
     })
     .transform((v) => {
         return remap$(v, {
@@ -89,7 +89,7 @@ export const ListDocumentsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListDocumentsResponse$Outbound = {
-    Result: components.DocumentListResponse$Outbound;
+    Result: components.DocumentList$Outbound;
 };
 
 /** @internal */
@@ -99,7 +99,7 @@ export const ListDocumentsResponse$outboundSchema: z.ZodType<
     ListDocumentsResponse
 > = z
     .object({
-        result: components.DocumentListResponse$outboundSchema,
+        result: components.DocumentList$outboundSchema,
     })
     .transform((v) => {
         return remap$(v, {

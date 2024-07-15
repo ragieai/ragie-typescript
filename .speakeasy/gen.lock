@@ -1,14 +1,14 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: b9b639017fe61bd8f148f63e0dacef09
+  docChecksum: 8bcb0c0154c9330108ff6f53fc03baad
   docVersion: 1.0.0
-  speakeasyVersion: 1.335.0
-  generationVersion: 2.370.2
-  releaseVersion: 0.4.2
-  configChecksum: 1bfff8586df518c79dcddf7934365ca4
-  repoURL: https://github.com/ragieai/SDKs.git
-  installationURL: https://github.com/ragieai/SDKs
+  speakeasyVersion: 1.335.1
+  generationVersion: 2.372.1
+  releaseVersion: 0.6.1
+  configChecksum: 42cc5d8370aede06cd94f33f1c2ec537
+  repoURL: https://github.com/ragieai/speakeasy.git
+  installationURL: https://github.com/ragieai/speakeasy
   published: true
 features:
   typescript:
@@ -70,27 +70,27 @@ generatedFiles:
   - src/models/operations/updateinstruction.ts
   - src/models/operations/listentitiesbyinstruction.ts
   - src/models/operations/listentitiesbydocument.ts
-  - src/models/components/documentlistresponse.ts
-  - src/models/components/documentgetresponse.ts
+  - src/models/components/documentlist.ts
+  - src/models/components/document.ts
   - src/models/components/pagination.ts
   - src/models/components/validationerror.ts
-  - src/models/components/documentcreateresponse.ts
   - src/models/components/bodycreatedocument.ts
   - src/models/components/documentcreateraw.ts
-  - src/models/components/documentfileupdateresponse.ts
+  - src/models/components/documentdelete.ts
+  - src/models/components/documentfileupdate.ts
   - src/models/components/bodyupdatedocumentfile.ts
   - src/models/components/documentrawupdate.ts
-  - src/models/components/documentmetadataupdateresponse.ts
+  - src/models/components/documentrawupdaterequest.ts
   - src/models/components/documentmetadataupdate.ts
-  - src/models/components/documentsummaryresponse.ts
-  - src/models/components/retrieveresponse.ts
-  - src/models/components/scoredchunkresponse.ts
+  - src/models/components/documentmetadataupdaterequest.ts
+  - src/models/components/documentsummary.ts
+  - src/models/components/retrieval.ts
+  - src/models/components/scoredchunk.ts
   - src/models/components/retrieverequest.ts
-  - src/models/components/instructioncreateresponse.ts
+  - src/models/components/instruction.ts
   - src/models/components/instructioncreaterequest.ts
-  - src/models/components/instructionupdateresponse.ts
   - src/models/components/instructionupdaterequest.ts
-  - src/models/components/entitylistresponse.ts
+  - src/models/components/entitylist.ts
   - src/models/components/entity.ts
   - src/models/components/security.ts
   - src/models/errors/errormessage.ts
@@ -108,15 +108,15 @@ generatedFiles:
   - docs/models/operations/getdocumentsummaryrequest.md
   - docs/models/operations/updateinstructionrequest.md
   - docs/models/operations/listentitiesbyinstructionrequest.md
+  - docs/models/operations/listentitiesbyinstructionresponse.md
   - docs/models/operations/listentitiesbydocumentrequest.md
-  - docs/models/components/documentlistresponse.md
+  - docs/models/operations/listentitiesbydocumentresponse.md
+  - docs/models/components/documentlist.md
   - docs/models/components/metadata.md
-  - docs/models/components/documentgetresponse.md
+  - docs/models/components/document.md
   - docs/models/components/pagination.md
   - docs/models/components/loc.md
   - docs/models/components/validationerror.md
-  - docs/models/components/documentcreateresponsemetadata.md
-  - docs/models/components/documentcreateresponse.md
   - docs/models/components/mode.md
   - docs/models/components/bodycreatedocumentmetadata.md
   - docs/models/components/filet.md
@@ -125,34 +125,33 @@ generatedFiles:
   - docs/models/components/two.md
   - docs/models/components/data.md
   - docs/models/components/documentcreateraw.md
-  - docs/models/components/documentfileupdateresponse.md
+  - docs/models/components/documentdelete.md
+  - docs/models/components/documentfileupdate.md
   - docs/models/components/bodyupdatedocumentfilemode.md
   - docs/models/components/bodyupdatedocumentfilefile.md
   - docs/models/components/bodyupdatedocumentfile.md
-  - docs/models/components/data2.md
-  - docs/models/components/documentrawupdatedata.md
   - docs/models/components/documentrawupdate.md
-  - docs/models/components/documentmetadataupdateresponsemetadata.md
-  - docs/models/components/documentmetadataupdateresponse.md
+  - docs/models/components/data2.md
+  - docs/models/components/documentrawupdaterequestdata.md
+  - docs/models/components/documentrawupdaterequest.md
   - docs/models/components/documentmetadataupdatemetadata.md
   - docs/models/components/documentmetadataupdate.md
-  - docs/models/components/documentsummaryresponse.md
-  - docs/models/components/retrieveresponse.md
+  - docs/models/components/documentmetadataupdaterequestmetadata.md
+  - docs/models/components/documentmetadataupdaterequest.md
+  - docs/models/components/documentsummary.md
+  - docs/models/components/retrieval.md
   - docs/models/components/documentmetadata.md
-  - docs/models/components/scoredchunkresponse.md
+  - docs/models/components/scoredchunk.md
   - docs/models/components/filter.md
   - docs/models/components/retrieverequest.md
-  - docs/models/components/instructioncreateresponsescope.md
-  - docs/models/components/instructioncreateresponseentityschema.md
-  - docs/models/components/instructioncreateresponse.md
+  - docs/models/components/instructionscope.md
+  - docs/models/components/instructionentityschema.md
+  - docs/models/components/instruction.md
   - docs/models/components/scope.md
   - docs/models/components/entityschema.md
   - docs/models/components/instructioncreaterequest.md
-  - docs/models/components/instructionupdateresponsescope.md
-  - docs/models/components/instructionupdateresponseentityschema.md
-  - docs/models/components/instructionupdateresponse.md
   - docs/models/components/instructionupdaterequest.md
-  - docs/models/components/entitylistresponse.md
+  - docs/models/components/entitylist.md
   - docs/models/components/entitydata.md
   - docs/models/components/entity.md
   - docs/models/components/security.md

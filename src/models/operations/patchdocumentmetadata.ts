@@ -8,7 +8,7 @@ import * as z from "zod";
 
 export type PatchDocumentMetadataRequest = {
     documentId: string;
-    documentMetadataUpdate: components.DocumentMetadataUpdate;
+    documentMetadataUpdateRequest: components.DocumentMetadataUpdateRequest;
 };
 
 /** @internal */
@@ -19,19 +19,19 @@ export const PatchDocumentMetadataRequest$inboundSchema: z.ZodType<
 > = z
     .object({
         document_id: z.string(),
-        DocumentMetadataUpdate: components.DocumentMetadataUpdate$inboundSchema,
+        DocumentMetadataUpdateRequest: components.DocumentMetadataUpdateRequest$inboundSchema,
     })
     .transform((v) => {
         return remap$(v, {
             document_id: "documentId",
-            DocumentMetadataUpdate: "documentMetadataUpdate",
+            DocumentMetadataUpdateRequest: "documentMetadataUpdateRequest",
         });
     });
 
 /** @internal */
 export type PatchDocumentMetadataRequest$Outbound = {
     document_id: string;
-    DocumentMetadataUpdate: components.DocumentMetadataUpdate$Outbound;
+    DocumentMetadataUpdateRequest: components.DocumentMetadataUpdateRequest$Outbound;
 };
 
 /** @internal */
@@ -42,12 +42,12 @@ export const PatchDocumentMetadataRequest$outboundSchema: z.ZodType<
 > = z
     .object({
         documentId: z.string(),
-        documentMetadataUpdate: components.DocumentMetadataUpdate$outboundSchema,
+        documentMetadataUpdateRequest: components.DocumentMetadataUpdateRequest$outboundSchema,
     })
     .transform((v) => {
         return remap$(v, {
             documentId: "document_id",
-            documentMetadataUpdate: "DocumentMetadataUpdate",
+            documentMetadataUpdateRequest: "DocumentMetadataUpdateRequest",
         });
     });
 
