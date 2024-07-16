@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 321030afee0a55cd32befcb1527f6184
+  docChecksum: 5f95f123bbad6a5c36344ead4d1694b2
   docVersion: 1.0.0
   speakeasyVersion: 1.335.2
   generationVersion: 2.372.3
-  releaseVersion: 0.6.4
-  configChecksum: 3d6c0b4a474a739ea6f3c9358d5955aa
+  releaseVersion: 0.6.5
+  configChecksum: 146dfc4d3706501a5c95722a96e414dd
   repoURL: https://github.com/ragieai/SDKs.git
   installationURL: https://github.com/ragieai/SDKs
   published: true

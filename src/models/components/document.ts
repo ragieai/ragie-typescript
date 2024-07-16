@@ -14,7 +14,7 @@ export type Document = {
     status: string;
     name: string;
     metadata: { [k: string]: string | number | boolean | Array<string> };
-    chunkCount?: number | undefined;
+    chunkCount?: number | null | undefined;
     externalId?: string | null | undefined;
 };
 
@@ -63,7 +63,7 @@ export const Document$inboundSchema: z.ZodType<Document, z.ZodTypeDef, unknown> 
         metadata: z.record(
             z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())])
         ),
-        chunk_count: z.number().int().optional(),
+        chunk_count: z.nullable(z.number().int()).optional(),
         external_id: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
@@ -83,7 +83,7 @@ export type Document$Outbound = {
     status: string;
     name: string;
     metadata: { [k: string]: string | number | boolean | Array<string> };
-    chunk_count?: number | undefined;
+    chunk_count?: number | null | undefined;
     external_id?: string | null | undefined;
 };
 
@@ -98,7 +98,7 @@ export const Document$outboundSchema: z.ZodType<Document$Outbound, z.ZodTypeDef,
         metadata: z.record(
             z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())])
         ),
-        chunkCount: z.number().int().optional(),
+        chunkCount: z.nullable(z.number().int()).optional(),
         externalId: z.nullable(z.string()).optional(),
     })
     .transform((v) => {

@@ -8,18 +8,17 @@ sources:
             - latest
     ragie.ai_spec:
         sourceNamespace: ragie-ai-spec
-        sourceRevisionDigest: sha256:0aca7a697eb674a57d023728176c37f7a14de53fbf5efb5c0d345fdcce7b6edd
-        sourceBlobDigest: sha256:86920156b0e1b646dc92247ae92b24f83343ecf6e1235cd1d4b07420b4dc8a36
+        sourceRevisionDigest: sha256:e34cde347e49b021127f0ae51997c11cc0a234a7ee04929013b8b660e45dfc78
+        sourceBlobDigest: sha256:7659a9f1213d33f9b82d5d46a361161e349267e92ed5fc873949b3f5f7c6e04c
         tags:
             - latest
-            - main
 targets:
     ragie:
         source: ragie.ai_spec
         sourceNamespace: ragie-ai-spec
-        sourceRevisionDigest: sha256:0aca7a697eb674a57d023728176c37f7a14de53fbf5efb5c0d345fdcce7b6edd
-        sourceBlobDigest: sha256:86920156b0e1b646dc92247ae92b24f83343ecf6e1235cd1d4b07420b4dc8a36
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:e34cde347e49b021127f0ae51997c11cc0a234a7ee04929013b8b660e45dfc78
+        sourceBlobDigest: sha256:7659a9f1213d33f9b82d5d46a361161e349267e92ed5fc873949b3f5f7c6e04c
+        outLocation: /Users/mattkauffman/dev/ragie/ragie-typescript
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
