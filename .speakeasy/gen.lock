@@ -3,10 +3,10 @@ id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
   docChecksum: 5f95f123bbad6a5c36344ead4d1694b2
   docVersion: 1.0.0
-  speakeasyVersion: 1.335.2
-  generationVersion: 2.372.3
-  releaseVersion: 0.6.5
-  configChecksum: 146dfc4d3706501a5c95722a96e414dd
+  speakeasyVersion: 1.337.1
+  generationVersion: 2.373.2
+  releaseVersion: 0.6.6
+  configChecksum: 3641dfdb86a1feb2a80863ea8a39a039
   repoURL: https://github.com/ragieai/SDKs.git
   installationURL: https://github.com/ragieai/SDKs
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.6
+    core: 3.11.7
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     globalSecurity: 2.82.9
@@ -170,3 +170,4 @@ generatedFiles:
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - CONTRIBUTING.md
