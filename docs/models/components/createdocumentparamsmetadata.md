@@ -1,4 +1,4 @@
-# DocumentMetadataUpdateRequestMetadata
+# CreateDocumentParamsMetadata
 
 
 ## Supported Types

@@ -58,7 +58,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -91,6 +93,7 @@ run();
 
 ### [entities](docs/sdks/entities/README.md)
 
+* [listInstructions](docs/sdks/entities/README.md#listinstructions) - List Instructions
 * [createInstruction](docs/sdks/entities/README.md#createinstruction) - Create Instruction
 * [updateInstruction](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
 * [listByInstruction](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
@@ -158,7 +161,9 @@ const ragie = new Ragie({
 async function run() {
     let result;
     try {
-        result = await ragie.documents.list({});
+        result = await ragie.documents.list({
+            filter: '{"department":{"$in":["sales","marketing"]}}',
+        });
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -201,7 +206,7 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `https://api.ragie.ai` | None |
+| 0 | `http://localhost:8000` | None |
 
 ```typescript
 import { Ragie } from "ragie";
@@ -212,7 +217,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -232,12 +239,14 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    serverURL: "https://api.ragie.ai",
+    serverURL: "http://localhost:8000",
     auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -318,7 +327,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -345,7 +356,9 @@ const ragie = new Ragie({
 
 async function run() {
     const result = await ragie.documents.list(
-        {},
+        {
+            filter: '{"department":{"$in":["sales","marketing"]}}',
+        },
         {
             retries: {
                 strategy: "backoff",
@@ -388,7 +401,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -415,7 +430,9 @@ const ragie = new Ragie({
 
 async function run() {
     const result = await ragie.documents.list(
-        {},
+        {
+            filter: '{"department":{"$in":["sales","marketing"]}}',
+        },
         {
             retries: {
                 strategy: "backoff",
@@ -458,7 +475,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -490,7 +509,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page

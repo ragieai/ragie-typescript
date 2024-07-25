@@ -1,6 +1,6 @@
 {
   "name": "ragie",
-  "version": "0.6.4",
+  "version": "0.6.21",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,

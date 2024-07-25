@@ -1,4 +1,4 @@
-# InstructionUpdateRequest
+# UpdateInstructionParams
 
 
 ## Fields

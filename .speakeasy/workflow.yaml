@@ -14,7 +14,7 @@ sources:
 targets:
     ragie:
         target: typescript
-        source: ragie.ai_spec
+        source: local
         publish:
             npm:
                 token: $npm_token
