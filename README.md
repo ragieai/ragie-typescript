@@ -206,7 +206,7 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `http://localhost:8000` | None |
+| 0 | `https://api.ragie.ai` | None |
 
 ```typescript
 import { Ragie } from "ragie";
@@ -239,7 +239,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    serverURL: "http://localhost:8000",
+    serverURL: "https://api.ragie.ai",
     auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
