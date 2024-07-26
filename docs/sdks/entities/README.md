@@ -3,10 +3,53 @@
 
 ### Available Operations
 
+* [listInstructions](#listinstructions) - List Instructions
 * [createInstruction](#createinstruction) - Create Instruction
 * [updateInstruction](#updateinstruction) - Update Instruction
 * [listByInstruction](#listbyinstruction) - Get Instruction Extracted Entities
 * [listByDocument](#listbydocument) - Get Document Extracted Entities
+
+## listInstructions
+
+List all instructions.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.entities.listInstructions();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+
+### Response
+
+**Promise\<[components.Instruction[]](../../models/.md)\>**
+### Errors
+
+| Error Object        | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| errors.ErrorMessage | 401                 | application/json    |
+| errors.SDKError     | 4xx-5xx             | */*                 |
 
 ## createInstruction
 
@@ -23,9 +66,78 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.createInstruction({
-    name: "<value>",
-    prompt: "<value>",
-    entitySchema: {},
+    name: "Find all pizzas",
+    active: true,
+    scope: "chunk",
+    prompt: "Find all pizzas described in the text.",
+    entitySchema: {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "enum": [
+            "small",
+            "medium",
+            "large",
+          ],
+          "type": "string",
+        },
+        "crust": {
+          "enum": [
+            "thin",
+            "thick",
+            "stuffed",
+          ],
+          "type": "string",
+        },
+        "sauce": {
+          "enum": [
+            "tomato",
+            "alfredo",
+            "pesto",
+          ],
+          "type": "string",
+        },
+        "cheese": {
+          "enum": [
+            "mozzarella",
+            "cheddar",
+            "parmesan",
+            "vegan",
+          ],
+          "type": "string",
+        },
+        "toppings": {
+          "items": {
+            "enum": [
+              "pepperoni",
+              "mushrooms",
+              "onions",
+              "sausage",
+              "bacon",
+              "extra cheese",
+              "black olives",
+              "green peppers",
+              "pineapple",
+              "spinach",
+            ],
+            "type": "string",
+          },
+          "type": "array",
+          "uniqueItems": true,
+        },
+        "extraInstructions": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "size",
+        "crust",
+        "sauce",
+        "cheese",
+      ],
+      "title": "Pizza",
+      "type": "object",
+    },
   });
 
   // Handle the result
@@ -39,7 +151,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.InstructionCreateRequest](../../models/components/instructioncreaterequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [components.CreateInstructionParams](../../models/components/createinstructionparams.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -71,9 +183,9 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.updateInstruction({
-    instructionId: "<value>",
-    instructionUpdateRequest: {
-      active: false,
+    instructionId: "<INSTRUCTION_ID>",
+    updateInstructionParams: {
+      active: true,
     },
   });
 
@@ -120,7 +232,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.listByInstruction({
-    instructionId: "<value>",
+    instructionId: "<INSTRUCTION_ID>",
   });
 
   for await (const page of result) {
@@ -167,7 +279,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.listByDocument({
-    documentId: "<value>",
+    documentId: "<DOCUMENT_ID>",
   });
 
   for await (const page of result) {

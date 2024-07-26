@@ -27,7 +27,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.list({});
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+  });
 
   for await (const page of result) {
     // handle page
@@ -88,7 +90,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.BodyCreateDocument](../../models/components/bodycreatedocument.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [components.CreateDocumentParams](../../models/components/createdocumentparams.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -134,7 +136,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.DocumentCreateRaw](../../models/components/documentcreateraw.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [components.CreateDocumentRawParams](../../models/components/createdocumentrawparams.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -166,7 +168,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.get({
-    documentId: "<value>",
+    documentId: "<DOCUMENT_ID>",
   });
 
   // Handle the result
@@ -212,7 +214,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.delete({
-    documentId: "<value>",
+    documentId: "<DOCUMENT_ID>",
   });
 
   // Handle the result
@@ -259,8 +261,8 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.updateFile({
-    documentId: "<value>",
-    bodyUpdateDocumentFile: {
+    documentId: "<DOCUMENT_ID>",
+    updateDocumentFileParams: {
       file: await openAsBlob("./sample-file"),
     },
   });
@@ -308,8 +310,8 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.updateRaw({
-    documentId: "<value>",
-    documentRawUpdateRequest: {
+    documentId: "<DOCUMENT_ID>",
+    updateDocumentRawParams: {
     data:     {},
     },
   });
@@ -357,8 +359,8 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.patchMetadata({
-    documentId: "<value>",
-    documentMetadataUpdateRequest: {
+    documentId: "<DOCUMENT_ID>",
+    patchDocumentMetadataParams: {
       metadata: {
         "classified": "null (setting null deletes key from metadata)",
         "editors":   [
@@ -414,7 +416,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.getSummary({
-    documentId: "<value>",
+    documentId: "<DOCUMENT_ID>",
   });
 
   // Handle the result

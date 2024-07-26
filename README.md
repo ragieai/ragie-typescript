@@ -58,7 +58,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -91,6 +93,7 @@ run();
 
 ### [entities](docs/sdks/entities/README.md)
 
+* [listInstructions](docs/sdks/entities/README.md#listinstructions) - List Instructions
 * [createInstruction](docs/sdks/entities/README.md#createinstruction) - Create Instruction
 * [updateInstruction](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
 * [listByInstruction](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
@@ -158,7 +161,9 @@ const ragie = new Ragie({
 async function run() {
     let result;
     try {
-        result = await ragie.documents.list({});
+        result = await ragie.documents.list({
+            filter: '{"department":{"$in":["sales","marketing"]}}',
+        });
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -212,7 +217,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -237,7 +244,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -318,7 +327,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -345,7 +356,9 @@ const ragie = new Ragie({
 
 async function run() {
     const result = await ragie.documents.list(
-        {},
+        {
+            filter: '{"department":{"$in":["sales","marketing"]}}',
+        },
         {
             retries: {
                 strategy: "backoff",
@@ -388,7 +401,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -415,7 +430,9 @@ const ragie = new Ragie({
 
 async function run() {
     const result = await ragie.documents.list(
-        {},
+        {
+            filter: '{"department":{"$in":["sales","marketing"]}}',
+        },
         {
             retries: {
                 strategy: "backoff",
@@ -458,7 +475,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -490,7 +509,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list({
+        filter: '{"department":{"$in":["sales","marketing"]}}',
+    });
 
     for await (const page of result) {
         // handle page
@@ -506,11 +527,9 @@ run();
 
 # Development
 
-## Maturity
+## Versioning
 
-This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
-to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
-looking for the latest version.
+This SDK follows [semantic versioning](https://semver.org/).
 
 ## Contributions
 
