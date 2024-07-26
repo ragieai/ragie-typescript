@@ -15,7 +15,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.6.6
+  version: 0.9.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -34,7 +34,7 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  maxMethodParams: 0
+  maxMethodParams: 4
   methodArguments: infer-optional-args
   moduleFormat: commonjs
   outputModelSuffix: output

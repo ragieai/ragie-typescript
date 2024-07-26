@@ -7,7 +7,11 @@ const ragie = new Ragie({
 });
 
 async function run() {
-    const result = await ragie.documents.list({});
+    const result = await ragie.documents.list(
+        "<value>",
+        10,
+        '{"department":{"$in":["sales","marketing"]}}'
+    );
 
     for await (const page of result) {
         // handle page

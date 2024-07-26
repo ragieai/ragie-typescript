@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 5f95f123bbad6a5c36344ead4d1694b2
+  docChecksum: a876b4f232bef5e688118e87942d15c5
   docVersion: 1.0.0
-  speakeasyVersion: 1.337.1
-  generationVersion: 2.373.2
-  releaseVersion: 0.6.6
-  configChecksum: 3641dfdb86a1feb2a80863ea8a39a039
+  speakeasyVersion: 1.346.1
+  generationVersion: 2.379.5
+  releaseVersion: 0.9.0
+  configChecksum: 726f07f9d5b34730acf0a15405d2f06a
   repoURL: https://github.com/ragieai/SDKs.git
   installationURL: https://github.com/ragieai/SDKs
   published: true
@@ -14,20 +14,21 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.7
+    core: 3.11.10
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
+    flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     nameOverrides: 2.81.2
     nullables: 0.1.0
-    pagination: 2.82.5
+    pagination: 2.82.6
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.5
+    unions: 2.85.6
 generatedFiles:
   - src/sdk/documents.ts
   - src/sdk/retrievals.ts
@@ -74,22 +75,22 @@ generatedFiles:
   - src/models/components/document.ts
   - src/models/components/pagination.ts
   - src/models/components/validationerror.ts
-  - src/models/components/bodycreatedocument.ts
-  - src/models/components/documentcreateraw.ts
+  - src/models/components/createdocumentparams.ts
+  - src/models/components/createdocumentrawparams.ts
   - src/models/components/documentdelete.ts
   - src/models/components/documentfileupdate.ts
-  - src/models/components/bodyupdatedocumentfile.ts
+  - src/models/components/updatedocumentfileparams.ts
   - src/models/components/documentrawupdate.ts
-  - src/models/components/documentrawupdaterequest.ts
+  - src/models/components/updatedocumentrawparams.ts
   - src/models/components/documentmetadataupdate.ts
-  - src/models/components/documentmetadataupdaterequest.ts
+  - src/models/components/patchdocumentmetadataparams.ts
   - src/models/components/documentsummary.ts
   - src/models/components/retrieval.ts
   - src/models/components/scoredchunk.ts
-  - src/models/components/retrieverequest.ts
+  - src/models/components/retrieveparams.ts
   - src/models/components/instruction.ts
-  - src/models/components/instructioncreaterequest.ts
-  - src/models/components/instructionupdaterequest.ts
+  - src/models/components/createinstructionparams.ts
+  - src/models/components/updateinstructionparams.ts
   - src/models/components/entitylist.ts
   - src/models/components/entity.ts
   - src/models/components/security.ts
@@ -118,41 +119,36 @@ generatedFiles:
   - docs/models/components/loc.md
   - docs/models/components/validationerror.md
   - docs/models/components/mode.md
-  - docs/models/components/bodycreatedocumentmetadata.md
+  - docs/models/components/createdocumentparamsmetadata.md
   - docs/models/components/filet.md
-  - docs/models/components/bodycreatedocument.md
-  - docs/models/components/documentcreaterawmetadata.md
+  - docs/models/components/createdocumentparams.md
+  - docs/models/components/createdocumentrawparamsmetadata.md
   - docs/models/components/two.md
   - docs/models/components/data.md
-  - docs/models/components/documentcreateraw.md
+  - docs/models/components/createdocumentrawparams.md
   - docs/models/components/documentdelete.md
   - docs/models/components/documentfileupdate.md
-  - docs/models/components/bodyupdatedocumentfilemode.md
-  - docs/models/components/bodyupdatedocumentfilefile.md
-  - docs/models/components/bodyupdatedocumentfile.md
+  - docs/models/components/updatedocumentfileparamsmode.md
+  - docs/models/components/updatedocumentfileparamsfile.md
+  - docs/models/components/updatedocumentfileparams.md
   - docs/models/components/documentrawupdate.md
   - docs/models/components/data2.md
-  - docs/models/components/documentrawupdaterequestdata.md
-  - docs/models/components/documentrawupdaterequest.md
+  - docs/models/components/updatedocumentrawparamsdata.md
+  - docs/models/components/updatedocumentrawparams.md
   - docs/models/components/documentmetadataupdatemetadata.md
   - docs/models/components/documentmetadataupdate.md
-  - docs/models/components/documentmetadataupdaterequestmetadata.md
-  - docs/models/components/documentmetadataupdaterequest.md
+  - docs/models/components/patchdocumentmetadataparamsmetadata.md
+  - docs/models/components/patchdocumentmetadataparams.md
   - docs/models/components/documentsummary.md
   - docs/models/components/retrieval.md
-  - docs/models/components/documentmetadata.md
   - docs/models/components/scoredchunk.md
-  - docs/models/components/filter.md
-  - docs/models/components/retrieverequest.md
-  - docs/models/components/instructionscope.md
-  - docs/models/components/instructionentityschema.md
-  - docs/models/components/instruction.md
+  - docs/models/components/retrieveparams.md
   - docs/models/components/scope.md
-  - docs/models/components/entityschema.md
-  - docs/models/components/instructioncreaterequest.md
-  - docs/models/components/instructionupdaterequest.md
+  - docs/models/components/instruction.md
+  - docs/models/components/createinstructionparamsscope.md
+  - docs/models/components/createinstructionparams.md
+  - docs/models/components/updateinstructionparams.md
   - docs/models/components/entitylist.md
-  - docs/models/components/entitydata.md
   - docs/models/components/entity.md
   - docs/models/components/security.md
   - docs/models/errors/errormessage.md
