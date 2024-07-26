@@ -6,6 +6,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import * as z from "zod";
 
 export type RetrieveParams = {
+    /**
+     * The query to search with when retrieving document chunks.
+     */
     query: string;
     /**
      * The maximum number of chunks to return. Defaults to 8.

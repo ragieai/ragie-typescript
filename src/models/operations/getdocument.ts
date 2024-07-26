@@ -6,6 +6,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import * as z from "zod";
 
 export type GetDocumentRequest = {
+    /**
+     * The id of the document.
+     */
     documentId: string;
 };
 

@@ -66,10 +66,77 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.createInstruction({
-    name: "<value>",
-    prompt: "<value>",
+    name: "Find all pizzas",
+    active: true,
+    scope: "chunk",
+    prompt: "Find all pizzas described in the text.",
     entitySchema: {
-      "key": "<value>",
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "enum": [
+            "small",
+            "medium",
+            "large",
+          ],
+          "type": "string",
+        },
+        "crust": {
+          "enum": [
+            "thin",
+            "thick",
+            "stuffed",
+          ],
+          "type": "string",
+        },
+        "sauce": {
+          "enum": [
+            "tomato",
+            "alfredo",
+            "pesto",
+          ],
+          "type": "string",
+        },
+        "cheese": {
+          "enum": [
+            "mozzarella",
+            "cheddar",
+            "parmesan",
+            "vegan",
+          ],
+          "type": "string",
+        },
+        "toppings": {
+          "items": {
+            "enum": [
+              "pepperoni",
+              "mushrooms",
+              "onions",
+              "sausage",
+              "bacon",
+              "extra cheese",
+              "black olives",
+              "green peppers",
+              "pineapple",
+              "spinach",
+            ],
+            "type": "string",
+          },
+          "type": "array",
+          "uniqueItems": true,
+        },
+        "extraInstructions": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "size",
+        "crust",
+        "sauce",
+        "cheese",
+      ],
+      "title": "Pizza",
+      "type": "object",
     },
   });
 
@@ -115,8 +182,11 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.entities.updateInstruction("<value>", {
-    active: false,
+  const result = await ragie.entities.updateInstruction({
+    instructionId: "<INSTRUCTION_ID>",
+    updateInstructionParams: {
+      active: true,
+    },
   });
 
   // Handle the result
@@ -130,8 +200,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `instructionId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `updateInstructionParams`                                                                                                                                                      | [components.UpdateInstructionParams](../../models/components/updateinstructionparams.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `request`                                                                                                                                                                      | [operations.UpdateInstructionRequest](../../models/operations/updateinstructionrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -162,7 +231,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.entities.listByInstruction("<value>", "<value>", 10);
+  const result = await ragie.entities.listByInstruction({
+    instructionId: "<INSTRUCTION_ID>",
+  });
 
   for await (const page of result) {
     // handle page
@@ -176,9 +247,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `instructionId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `cursor`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An opaque cursor for pagination                                                                                                                                                |
-| `pageSize`                                                                                                                                                                     | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The number of items per page (must be greater than 0 and less than or equal to 100)                                                                                            |
+| `request`                                                                                                                                                                      | [operations.ListEntitiesByInstructionRequest](../../models/operations/listentitiesbyinstructionrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -209,7 +278,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.entities.listByDocument("<value>", "<value>", 10);
+  const result = await ragie.entities.listByDocument({
+    documentId: "<DOCUMENT_ID>",
+  });
 
   for await (const page of result) {
     // handle page
@@ -223,9 +294,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `documentId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `cursor`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An opaque cursor for pagination                                                                                                                                                |
-| `pageSize`                                                                                                                                                                     | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The number of items per page (must be greater than 0 and less than or equal to 100)                                                                                            |
+| `request`                                                                                                                                                                      | [operations.ListEntitiesByDocumentRequest](../../models/operations/listentitiesbydocumentrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

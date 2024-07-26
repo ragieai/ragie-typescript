@@ -191,14 +191,10 @@ export class Entities extends ClientSDK {
      * Update Instruction
      */
     async updateInstruction(
-        instructionId: string,
-        updateInstructionParams: components.UpdateInstructionParams,
+        request: operations.UpdateInstructionRequest,
         options?: RequestOptions
     ): Promise<components.Instruction> {
-        const input$: operations.UpdateInstructionRequest = {
-            instructionId: instructionId,
-            updateInstructionParams: updateInstructionParams,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -276,16 +272,10 @@ export class Entities extends ClientSDK {
      * Get Instruction Extracted Entities
      */
     async listByInstruction(
-        instructionId: string,
-        cursor?: string | null | undefined,
-        pageSize?: number | undefined,
+        request: operations.ListEntitiesByInstructionRequest,
         options?: RequestOptions
     ): Promise<PageIterator<operations.ListEntitiesByInstructionResponse>> {
-        const input$: operations.ListEntitiesByInstructionRequest = {
-            instructionId: instructionId,
-            cursor: cursor,
-            pageSize: pageSize,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -371,7 +361,14 @@ export class Entities extends ClientSDK {
                 return () => null;
             }
 
-            return () => this.listByInstruction(instructionId, nextCursor, pageSize, options);
+            return () =>
+                this.listByInstruction(
+                    {
+                        ...input$,
+                        cursor: nextCursor,
+                    },
+                    options
+                );
         };
 
         const page$ = { ...result$, next: nextFunc(raw$) };
@@ -382,16 +379,10 @@ export class Entities extends ClientSDK {
      * Get Document Extracted Entities
      */
     async listByDocument(
-        documentId: string,
-        cursor?: string | null | undefined,
-        pageSize?: number | undefined,
+        request: operations.ListEntitiesByDocumentRequest,
         options?: RequestOptions
     ): Promise<PageIterator<operations.ListEntitiesByDocumentResponse>> {
-        const input$: operations.ListEntitiesByDocumentRequest = {
-            documentId: documentId,
-            cursor: cursor,
-            pageSize: pageSize,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -473,7 +464,14 @@ export class Entities extends ClientSDK {
                 return () => null;
             }
 
-            return () => this.listByDocument(documentId, nextCursor, pageSize, options);
+            return () =>
+                this.listByDocument(
+                    {
+                        ...input$,
+                        cursor: nextCursor,
+                    },
+                    options
+                );
         };
 
         const page$ = { ...result$, next: nextFunc(raw$) };

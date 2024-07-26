@@ -7,6 +7,9 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type ListEntitiesByInstructionRequest = {
+    /**
+     * The ID of the instruction.
+     */
     instructionId: string;
     /**
      * An opaque cursor for pagination

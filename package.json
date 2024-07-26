@@ -1,12 +1,12 @@
 {
   "name": "ragie",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ragieai/Ragie-TypeScript.git"
+    "url": "https://github.com/ragieai/SDKs.git"
   },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",

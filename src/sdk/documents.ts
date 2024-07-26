@@ -53,16 +53,10 @@ export class Documents extends ClientSDK {
      * List all documents sorted by created_at in descending order. Results are paginated with a max limit of 100. When more documents are available, a `cursor` will be provided. Use the `cursor` parameter to retrieve the subsequent page.
      */
     async list(
-        cursor?: string | null | undefined,
-        pageSize?: number | undefined,
-        filter?: string | null | undefined,
+        request?: operations.ListDocumentsRequest | undefined,
         options?: RequestOptions
     ): Promise<PageIterator<operations.ListDocumentsResponse>> {
-        const input$: operations.ListDocumentsRequest = {
-            cursor: cursor,
-            pageSize: pageSize,
-            filter: filter,
-        };
+        const input$ = typeof request === "undefined" ? {} : request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -137,7 +131,14 @@ export class Documents extends ClientSDK {
                 return () => null;
             }
 
-            return () => this.list(nextCursor, pageSize, filter, options);
+            return () =>
+                this.list(
+                    {
+                        ...input$,
+                        cursor: nextCursor,
+                    },
+                    options
+                );
         };
 
         const page$ = { ...result$, next: nextFunc(raw$) };
@@ -318,10 +319,11 @@ export class Documents extends ClientSDK {
     /**
      * Get Document
      */
-    async get(documentId: string, options?: RequestOptions): Promise<components.Document> {
-        const input$: operations.GetDocumentRequest = {
-            documentId: documentId,
-        };
+    async get(
+        request: operations.GetDocumentRequest,
+        options?: RequestOptions
+    ): Promise<components.Document> {
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -397,10 +399,11 @@ export class Documents extends ClientSDK {
     /**
      * Delete Document
      */
-    async delete(documentId: string, options?: RequestOptions): Promise<components.DocumentDelete> {
-        const input$: operations.DeleteDocumentRequest = {
-            documentId: documentId,
-        };
+    async delete(
+        request: operations.DeleteDocumentRequest,
+        options?: RequestOptions
+    ): Promise<components.DocumentDelete> {
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -477,14 +480,10 @@ export class Documents extends ClientSDK {
      * Update Document File
      */
     async updateFile(
-        documentId: string,
-        updateDocumentFileParams: components.UpdateDocumentFileParams,
+        request: operations.UpdateDocumentFileRequest,
         options?: RequestOptions
     ): Promise<components.DocumentFileUpdate> {
-        const input$: operations.UpdateDocumentFileRequest = {
-            documentId: documentId,
-            updateDocumentFileParams: updateDocumentFileParams,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -576,14 +575,10 @@ export class Documents extends ClientSDK {
      * Update Document Raw
      */
     async updateRaw(
-        documentId: string,
-        updateDocumentRawParams: components.UpdateDocumentRawParams,
+        request: operations.UpdateDocumentRawRequest,
         options?: RequestOptions
     ): Promise<components.DocumentRawUpdate> {
-        const input$: operations.UpdateDocumentRawRequest = {
-            documentId: documentId,
-            updateDocumentRawParams: updateDocumentRawParams,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -661,14 +656,10 @@ export class Documents extends ClientSDK {
      * Patch Document Metadata
      */
     async patchMetadata(
-        documentId: string,
-        patchDocumentMetadataParams: components.PatchDocumentMetadataParams,
+        request: operations.PatchDocumentMetadataRequest,
         options?: RequestOptions
     ): Promise<components.DocumentMetadataUpdate> {
-        const input$: operations.PatchDocumentMetadataRequest = {
-            documentId: documentId,
-            patchDocumentMetadataParams: patchDocumentMetadataParams,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -749,12 +740,10 @@ export class Documents extends ClientSDK {
      * Get a LLM generated summary of the document. The summary is created when the document is first created or updated. Documents of types ['xlsx', 'csv', 'json'] are not supported for summarization. This feature is in beta and may change in the future.
      */
     async getSummary(
-        documentId: string,
+        request: operations.GetDocumentSummaryRequest,
         options?: RequestOptions
     ): Promise<components.DocumentSummary> {
-        const input$: operations.GetDocumentSummaryRequest = {
-            documentId: documentId,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,

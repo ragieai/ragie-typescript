@@ -7,6 +7,9 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type PatchDocumentMetadataRequest = {
+    /**
+     * The id of the document.
+     */
     documentId: string;
     patchDocumentMetadataParams: components.PatchDocumentMetadataParams;
 };

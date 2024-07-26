@@ -2,8 +2,8 @@ speakeasyVersion: 1.346.1
 sources:
     local:
         sourceNamespace: local
-        sourceRevisionDigest: sha256:53b30e21977ddd2c108943a336d3d673472511a68d74b68fdd680e961378a536
-        sourceBlobDigest: sha256:6678a39ed7e61568e61076585c4eb906c203efce1827a80b0731621eca75a82e
+        sourceRevisionDigest: sha256:2a24058a1165507629ac601dcf654236367d325400cd8bf25d71635266b164dc
+        sourceBlobDigest: sha256:94d9bc45794caabdeb08dc4d73ad5f18fabe58538f46bf2b80cc9f872fa9cc1a
         tags:
             - latest
     ragie.ai_spec:
@@ -14,10 +14,10 @@ sources:
             - latest
 targets:
     ragie:
-        source: ragie.ai_spec
-        sourceNamespace: ragie-ai-spec
-        sourceRevisionDigest: sha256:4f4773fafad7706ab4b453d48217f839aed19308952036469aa318724710d9e9
-        sourceBlobDigest: sha256:bb8e907c1ecb4d9a5f8cf47019070388f806a111c09c37d4d17a7dd2df25cd66
+        source: local
+        sourceNamespace: local
+        sourceRevisionDigest: sha256:2a24058a1165507629ac601dcf654236367d325400cd8bf25d71635266b164dc
+        sourceBlobDigest: sha256:94d9bc45794caabdeb08dc4d73ad5f18fabe58538f46bf2b80cc9f872fa9cc1a
         outLocation: /Users/mattkauffman/dev/ragie/ragie-typescript
 workflow:
     workflowVersion: 1.0.0
@@ -36,7 +36,7 @@ workflow:
     targets:
         ragie:
             target: typescript
-            source: ragie.ai_spec
+            source: local
             publish:
                 npm:
                     token: $npm_token

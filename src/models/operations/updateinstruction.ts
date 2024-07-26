@@ -7,6 +7,9 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type UpdateInstructionRequest = {
+    /**
+     * The ID of the instruction.
+     */
     instructionId: string;
     updateInstructionParams: components.UpdateInstructionParams;
 };

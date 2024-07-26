@@ -20,15 +20,20 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.retrievals.retrieve({
-    query: "<value>",
+    query: "What is the best pizza place in SF?",
+    topK: 8,
     filter: {
-      "department": {
-        "$in": [
-          "sales",
-          "marketing",
-        ],
+      "0": {
+        "department": {
+          "$in": [
+            "sales",
+            "marketing",
+          ],
+        },
       },
     },
+    rerank: true,
+    maxChunksPerDocument: 3,
   });
 
   // Handle the result

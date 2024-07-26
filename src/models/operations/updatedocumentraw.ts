@@ -7,6 +7,9 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type UpdateDocumentRawRequest = {
+    /**
+     * The id of the document.
+     */
     documentId: string;
     updateDocumentRawParams: components.UpdateDocumentRawParams;
 };
