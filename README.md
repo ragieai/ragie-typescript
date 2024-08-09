@@ -80,6 +80,7 @@ run();
 * [list](docs/sdks/documents/README.md#list) - List Documents
 * [create](docs/sdks/documents/README.md#create) - Create Document
 * [createRaw](docs/sdks/documents/README.md#createraw) - Create Document Raw
+* [createDocumentFromUrl](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
 * [get](docs/sdks/documents/README.md#get) - Get Document
 * [delete](docs/sdks/documents/README.md#delete) - Delete Document
 * [updateFile](docs/sdks/documents/README.md#updatefile) - Update Document File

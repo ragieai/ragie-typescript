@@ -138,6 +138,7 @@ async function run() {
       "title": "Pizza",
       "type": "object",
     },
+    filter: {},
   });
 
   // Handle the result
