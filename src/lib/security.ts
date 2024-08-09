@@ -180,3 +180,13 @@ export function resolveGlobalSecurity(
         },
     ]);
 }
+
+export async function extractSecurity<T extends string | Record<string, unknown>>(
+    sec: T | (() => Promise<T>) | undefined
+): Promise<T | undefined> {
+    if (sec == null) {
+        return;
+    }
+
+    return typeof sec === "function" ? sec() : sec;
+}
