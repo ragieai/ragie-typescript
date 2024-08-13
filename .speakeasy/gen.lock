@@ -1,23 +1,24 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: c2d5f467a0c867e718f39403f328d58f
+  docChecksum: 2ac0bff46bb24c68933544dce1449c91
   docVersion: 1.0.0
-  speakeasyVersion: 1.346.2
-  generationVersion: 2.379.5
-  releaseVersion: 0.9.0
-  configChecksum: 6b0d5a57d12f1cb676b529328efc5479
+  speakeasyVersion: 1.363.1
+  generationVersion: 2.396.0
+  releaseVersion: 0.10.0
+  configChecksum: 02e09abef944a5dd0d362784d8bb125f
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.5
-    core: 3.11.10
+    constsAndDefaults: 0.1.7
+    core: 3.13.1
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
-    globalSecurity: 2.82.9
+    envVarSecurityUsage: 0.1.1
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -27,17 +28,35 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.6
+    unions: 2.85.7
 generatedFiles:
+  - src/funcs/documentsList.ts
+  - src/funcs/documentsCreate.ts
+  - src/funcs/documentsCreateRaw.ts
+  - src/funcs/documentsCreateDocumentFromUrl.ts
+  - src/funcs/documentsGet.ts
+  - src/funcs/documentsDelete.ts
+  - src/funcs/documentsUpdateFile.ts
+  - src/funcs/documentsUpdateRaw.ts
+  - src/funcs/documentsPatchMetadata.ts
+  - src/funcs/documentsGetSummary.ts
+  - src/funcs/retrievalsRetrieve.ts
+  - src/funcs/entitiesListInstructions.ts
+  - src/funcs/entitiesCreateInstruction.ts
+  - src/funcs/entitiesUpdateInstruction.ts
+  - src/funcs/entitiesListByInstruction.ts
+  - src/funcs/entitiesListByDocument.ts
   - src/sdk/documents.ts
   - src/sdk/retrievals.ts
   - src/sdk/entities.ts
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
+  - FUNCTIONS.md
   - RUNTIMES.md
   - jsr.json
   - package.json
+  - src/core.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
@@ -45,6 +64,8 @@ generatedFiles:
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -52,10 +73,13 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/models/errors/httpclienterrors.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
+  - src/types/constdatetime.ts
   - src/types/enums.ts
+  - src/types/fp.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
@@ -76,6 +100,7 @@ generatedFiles:
   - src/models/components/validationerror.ts
   - src/models/components/createdocumentparams.ts
   - src/models/components/createdocumentrawparams.ts
+  - src/models/components/createdocumentfromurlparams.ts
   - src/models/components/documentdelete.ts
   - src/models/components/documentfileupdate.ts
   - src/models/components/updatedocumentfileparams.ts
@@ -125,6 +150,9 @@ generatedFiles:
   - docs/models/components/two.md
   - docs/models/components/data.md
   - docs/models/components/createdocumentrawparams.md
+  - docs/models/components/createdocumentfromurlparamsmetadata.md
+  - docs/models/components/createdocumentfromurlparamsmode.md
+  - docs/models/components/createdocumentfromurlparams.md
   - docs/models/components/documentdelete.md
   - docs/models/components/documentfileupdate.md
   - docs/models/components/updatedocumentfileparamsmode.md
@@ -143,8 +171,10 @@ generatedFiles:
   - docs/models/components/scoredchunk.md
   - docs/models/components/retrieveparams.md
   - docs/models/components/scope.md
+  - docs/models/components/filter.md
   - docs/models/components/instruction.md
   - docs/models/components/createinstructionparamsscope.md
+  - docs/models/components/createinstructionparamsfilter.md
   - docs/models/components/createinstructionparams.md
   - docs/models/components/updateinstructionparams.md
   - docs/models/components/entitylist.md

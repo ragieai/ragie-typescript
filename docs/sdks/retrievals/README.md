@@ -43,6 +43,52 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { retrievalsRetrieve } from "ragie/funcs/retrievalsRetrieve.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await retrievalsRetrieve(ragie, {
+    query: "What is the best pizza place in SF?",
+    topK: 8,
+    filter: {
+      "0": {
+        "department": {
+          "$in": [
+            "sales",
+            "marketing",
+          ],
+        },
+      },
+    },
+    rerank: true,
+    maxChunksPerDocument: 3,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |

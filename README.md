@@ -80,6 +80,7 @@ run();
 * [list](docs/sdks/documents/README.md#list) - List Documents
 * [create](docs/sdks/documents/README.md#create) - Create Document
 * [createRaw](docs/sdks/documents/README.md#createraw) - Create Document Raw
+* [createDocumentFromUrl](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
 * [get](docs/sdks/documents/README.md#get) - Get Document
 * [delete](docs/sdks/documents/README.md#delete) - Delete Document
 * [updateFile](docs/sdks/documents/README.md#updatefile) - Update Document File
@@ -522,6 +523,57 @@ run();
 
 ```
 <!-- End Pagination [pagination] -->
+
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [documentsCreateDocumentFromUrl](docs/sdks/documents/README.md#createdocumentfromurl)
+- [documentsCreateRaw](docs/sdks/documents/README.md#createraw)
+- [documentsCreate](docs/sdks/documents/README.md#create)
+- [documentsDelete](docs/sdks/documents/README.md#delete)
+- [documentsGetSummary](docs/sdks/documents/README.md#getsummary)
+- [documentsGet](docs/sdks/documents/README.md#get)
+- [documentsList](docs/sdks/documents/README.md#list)
+- [documentsPatchMetadata](docs/sdks/documents/README.md#patchmetadata)
+- [documentsUpdateFile](docs/sdks/documents/README.md#updatefile)
+- [documentsUpdateRaw](docs/sdks/documents/README.md#updateraw)
+- [entitiesCreateInstruction](docs/sdks/entities/README.md#createinstruction)
+- [entitiesListByDocument](docs/sdks/entities/README.md#listbydocument)
+- [entitiesListByInstruction](docs/sdks/entities/README.md#listbyinstruction)
+- [entitiesListInstructions](docs/sdks/entities/README.md#listinstructions)
+- [entitiesUpdateInstruction](docs/sdks/entities/README.md#updateinstruction)
+- [retrievalsRetrieve](docs/sdks/retrievals/README.md#retrieve)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+To log HTTP requests and responses, you can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { Ragie } from "ragie";
+
+const sdk = new Ragie({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

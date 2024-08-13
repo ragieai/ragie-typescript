@@ -32,6 +32,37 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesListInstructions } from "ragie/funcs/entitiesListInstructions.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesListInstructions(ragie);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -138,7 +169,113 @@ async function run() {
       "title": "Pizza",
       "type": "object",
     },
+    filter: {},
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesCreateInstruction } from "ragie/funcs/entitiesCreateInstruction.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesCreateInstruction(ragie, {
+    name: "Find all pizzas",
+    active: true,
+    scope: "document",
+    prompt: "Find all pizzas described in the text.",
+    entitySchema: {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "enum": [
+            "small",
+            "medium",
+            "large",
+          ],
+          "type": "string",
+        },
+        "crust": {
+          "enum": [
+            "thin",
+            "thick",
+            "stuffed",
+          ],
+          "type": "string",
+        },
+        "sauce": {
+          "enum": [
+            "tomato",
+            "alfredo",
+            "pesto",
+          ],
+          "type": "string",
+        },
+        "cheese": {
+          "enum": [
+            "mozzarella",
+            "cheddar",
+            "parmesan",
+            "vegan",
+          ],
+          "type": "string",
+        },
+        "toppings": {
+          "items": {
+            "enum": [
+              "pepperoni",
+              "mushrooms",
+              "onions",
+              "sausage",
+              "bacon",
+              "extra cheese",
+              "black olives",
+              "green peppers",
+              "pineapple",
+              "spinach",
+            ],
+            "type": "string",
+          },
+          "type": "array",
+          "uniqueItems": true,
+        },
+        "extraInstructions": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "size",
+        "crust",
+        "sauce",
+        "cheese",
+      ],
+      "title": "Pizza",
+      "type": "object",
+    },
+    filter: {},
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -196,6 +333,42 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesUpdateInstruction } from "ragie/funcs/entitiesUpdateInstruction.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesUpdateInstruction(ragie, {
+    instructionId: "<INSTRUCTION_ID>",
+    updateInstructionParams: {
+      active: true,
+    },
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -243,6 +416,40 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesListByInstruction } from "ragie/funcs/entitiesListByInstruction.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesListByInstruction(ragie, {
+    instructionId: "<INSTRUCTION_ID>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  for await (const page of result) {
+    // handle page
+  }
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -281,6 +488,40 @@ async function run() {
   const result = await ragie.entities.listByDocument({
     documentId: "<DOCUMENT_ID>",
   });
+
+  for await (const page of result) {
+    // handle page
+  }
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesListByDocument } from "ragie/funcs/entitiesListByDocument.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesListByDocument(ragie, {
+    documentId: "<DOCUMENT_ID>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   for await (const page of result) {
     // handle page
