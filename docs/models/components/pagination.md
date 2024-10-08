@@ -1,5 +1,12 @@
 # Pagination
 
+## Example Usage
+
+```typescript
+import { Pagination } from "ragie/models/components";
+
+let value: Pagination = {};
+```
 
 ## Fields
 

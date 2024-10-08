@@ -5,27 +5,30 @@
 import * as z from "zod";
 
 export type DocumentDelete = {
-    status: string;
+  status: string;
 };
 
 /** @internal */
-export const DocumentDelete$inboundSchema: z.ZodType<DocumentDelete, z.ZodTypeDef, unknown> =
-    z.object({
-        status: z.string(),
-    });
+export const DocumentDelete$inboundSchema: z.ZodType<
+  DocumentDelete,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  status: z.string(),
+});
 
 /** @internal */
 export type DocumentDelete$Outbound = {
-    status: string;
+  status: string;
 };
 
 /** @internal */
 export const DocumentDelete$outboundSchema: z.ZodType<
-    DocumentDelete$Outbound,
-    z.ZodTypeDef,
-    DocumentDelete
+  DocumentDelete$Outbound,
+  z.ZodTypeDef,
+  DocumentDelete
 > = z.object({
-    status: z.string(),
+  status: z.string(),
 });
 
 /**
@@ -33,10 +36,10 @@ export const DocumentDelete$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace DocumentDelete$ {
-    /** @deprecated use `DocumentDelete$inboundSchema` instead. */
-    export const inboundSchema = DocumentDelete$inboundSchema;
-    /** @deprecated use `DocumentDelete$outboundSchema` instead. */
-    export const outboundSchema = DocumentDelete$outboundSchema;
-    /** @deprecated use `DocumentDelete$Outbound` instead. */
-    export type Outbound = DocumentDelete$Outbound;
+  /** @deprecated use `DocumentDelete$inboundSchema` instead. */
+  export const inboundSchema = DocumentDelete$inboundSchema;
+  /** @deprecated use `DocumentDelete$outboundSchema` instead. */
+  export const outboundSchema = DocumentDelete$outboundSchema;
+  /** @deprecated use `DocumentDelete$Outbound` instead. */
+  export type Outbound = DocumentDelete$Outbound;
 }

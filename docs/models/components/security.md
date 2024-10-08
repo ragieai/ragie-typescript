@@ -1,5 +1,14 @@
 # Security
 
+## Example Usage
+
+```typescript
+import { Security } from "ragie/models/components";
+
+let value: Security = {
+  auth: "<value>",
+};
+```
 
 ## Fields
 

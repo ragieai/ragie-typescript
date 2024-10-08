@@ -1,5 +1,17 @@
 # UpdateInstructionRequest
 
+## Example Usage
+
+```typescript
+import { UpdateInstructionRequest } from "ragie/models/operations";
+
+let value: UpdateInstructionRequest = {
+  instructionId: "<INSTRUCTION_ID>",
+  updateInstructionParams: {
+    active: true,
+  },
+};
+```
 
 ## Fields
 

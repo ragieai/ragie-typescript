@@ -1,5 +1,14 @@
 # GetDocumentSummaryRequest
 
+## Example Usage
+
+```typescript
+import { GetDocumentSummaryRequest } from "ragie/models/operations";
+
+let value: GetDocumentSummaryRequest = {
+  documentId: "<DOCUMENT_ID>",
+};
+```
 
 ## Fields
 

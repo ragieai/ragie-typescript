@@ -1,5 +1,22 @@
 # DocumentMetadataUpdate
 
+## Example Usage
+
+```typescript
+import { DocumentMetadataUpdate } from "ragie/models/components";
+
+let value: DocumentMetadataUpdate = {
+  metadata: {
+    "editors": [
+      "Alice",
+      "Bob",
+    ],
+    "title": "declassified report",
+    "unchanged_key": "unchanged_value",
+    "updated_at": 1714491736216,
+  },
+};
+```
 
 ## Fields
 

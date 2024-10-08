@@ -1,5 +1,14 @@
 # DocumentFileUpdate
 
+## Example Usage
+
+```typescript
+import { DocumentFileUpdate } from "ragie/models/components";
+
+let value: DocumentFileUpdate = {
+  status: "<value>",
+};
+```
 
 ## Fields
 

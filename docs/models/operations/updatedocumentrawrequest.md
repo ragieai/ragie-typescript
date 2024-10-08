@@ -1,5 +1,17 @@
 # UpdateDocumentRawRequest
 
+## Example Usage
+
+```typescript
+import { UpdateDocumentRawRequest } from "ragie/models/operations";
+
+let value: UpdateDocumentRawRequest = {
+  documentId: "<DOCUMENT_ID>",
+  updateDocumentRawParams: {
+    data: {},
+  },
+};
+```
 
 ## Fields
 

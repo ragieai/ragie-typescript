@@ -1,5 +1,12 @@
 # UpdateDocumentFileRequest
 
+## Example Usage
+
+```typescript
+import { UpdateDocumentFileRequest } from "ragie/models/operations";
+
+// No examples available for this model
+```
 
 ## Fields
 

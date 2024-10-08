@@ -8,12 +8,12 @@ Document data in a text or JSON format.
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "<value>";
 ```
 
 ### `components.Two`
 
 ```typescript
-const value: components.Two = /* values here */
+const value: components.Two = {};
 ```
 

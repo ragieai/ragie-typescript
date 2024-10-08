@@ -1,5 +1,14 @@
 # ListEntitiesByDocumentRequest
 
+## Example Usage
+
+```typescript
+import { ListEntitiesByDocumentRequest } from "ragie/models/operations";
+
+let value: ListEntitiesByDocumentRequest = {
+  documentId: "<DOCUMENT_ID>",
+};
+```
 
 ## Fields
 

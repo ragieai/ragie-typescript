@@ -1,5 +1,18 @@
 # ValidationError
 
+## Example Usage
+
+```typescript
+import { ValidationError } from "ragie/models/components";
+
+let value: ValidationError = {
+  loc: [
+    616934,
+  ],
+  msg: "<value>",
+  type: "<value>",
+};
+```
 
 ## Fields
 

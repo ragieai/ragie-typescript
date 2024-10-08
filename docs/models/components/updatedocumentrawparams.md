@@ -1,5 +1,14 @@
 # UpdateDocumentRawParams
 
+## Example Usage
+
+```typescript
+import { UpdateDocumentRawParams } from "ragie/models/components";
+
+let value: UpdateDocumentRawParams = {
+  data: {},
+};
+```
 
 ## Fields
 
