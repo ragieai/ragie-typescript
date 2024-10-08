@@ -1,5 +1,15 @@
 # DocumentSummary
 
+## Example Usage
+
+```typescript
+import { DocumentSummary } from "ragie/models/components";
+
+let value: DocumentSummary = {
+  documentId: "<id>",
+  summary: "<value>",
+};
+```
 
 ## Fields
 

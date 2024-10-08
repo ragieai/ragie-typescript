@@ -1,6 +1,8 @@
 # Entities
 (*entities*)
 
+## Overview
+
 ### Available Operations
 
 * [listInstructions](#listinstructions) - List Instructions
@@ -26,7 +28,37 @@ async function run() {
   const result = await ragie.entities.listInstructions();
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesListInstructions } from "ragie/funcs/entitiesListInstructions.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesListInstructions(ragie);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -40,16 +72,16 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.Instruction[]](../../models/.md)\>**
+
 ### Errors
 
-| Error Object        | Status Code         | Content Type        |
+| Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | errors.ErrorMessage | 401                 | application/json    |
-| errors.SDKError     | 4xx-5xx             | */*                 |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## createInstruction
 
@@ -138,10 +170,117 @@ async function run() {
       "title": "Pizza",
       "type": "object",
     },
+    filter: {},
+    partition: "<value>",
   });
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesCreateInstruction } from "ragie/funcs/entitiesCreateInstruction.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesCreateInstruction(ragie, {
+    name: "Find all pizzas",
+    active: true,
+    scope: "chunk",
+    prompt: "Find all pizzas described in the text.",
+    entitySchema: {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "enum": [
+            "small",
+            "medium",
+            "large",
+          ],
+          "type": "string",
+        },
+        "crust": {
+          "enum": [
+            "thin",
+            "thick",
+            "stuffed",
+          ],
+          "type": "string",
+        },
+        "sauce": {
+          "enum": [
+            "tomato",
+            "alfredo",
+            "pesto",
+          ],
+          "type": "string",
+        },
+        "cheese": {
+          "enum": [
+            "mozzarella",
+            "cheddar",
+            "parmesan",
+            "vegan",
+          ],
+          "type": "string",
+        },
+        "toppings": {
+          "items": {
+            "enum": [
+              "pepperoni",
+              "mushrooms",
+              "onions",
+              "sausage",
+              "bacon",
+              "extra cheese",
+              "black olives",
+              "green peppers",
+              "pineapple",
+              "spinach",
+            ],
+            "type": "string",
+          },
+          "type": "array",
+          "uniqueItems": true,
+        },
+        "extraInstructions": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "size",
+        "crust",
+        "sauce",
+        "cheese",
+      ],
+      "title": "Pizza",
+      "type": "object",
+    },
+    filter: {},
+    partition: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -156,17 +295,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.Instruction](../../models/components/instruction.md)\>**
+
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
+| Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.ErrorMessage        | 401                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateInstruction
 
@@ -190,7 +329,42 @@ async function run() {
   });
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesUpdateInstruction } from "ragie/funcs/entitiesUpdateInstruction.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesUpdateInstruction(ragie, {
+    instructionId: "<INSTRUCTION_ID>",
+    updateInstructionParams: {
+      active: true,
+    },
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -205,17 +379,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.Instruction](../../models/components/instruction.md)\>**
+
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
+| Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.ErrorMessage        | 401                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listByInstruction
 
@@ -236,7 +410,42 @@ async function run() {
   });
 
   for await (const page of result) {
-    // handle page
+    // Handle the page
+    console.log(page);
+  }
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesListByInstruction } from "ragie/funcs/entitiesListByInstruction.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesListByInstruction(ragie, {
+    instructionId: "<INSTRUCTION_ID>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
   }
 }
 
@@ -252,17 +461,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ListEntitiesByInstructionResponse](../../models/operations/listentitiesbyinstructionresponse.md)\>**
+
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
+| Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.ErrorMessage        | 401                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listByDocument
 
@@ -283,7 +492,42 @@ async function run() {
   });
 
   for await (const page of result) {
-    // handle page
+    // Handle the page
+    console.log(page);
+  }
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { entitiesListByDocument } from "ragie/funcs/entitiesListByDocument.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await entitiesListByDocument(ragie, {
+    documentId: "<DOCUMENT_ID>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
   }
 }
 
@@ -299,14 +543,14 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ListEntitiesByDocumentResponse](../../models/operations/listentitiesbydocumentresponse.md)\>**
+
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
+| Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.ErrorMessage        | 401                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

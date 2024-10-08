@@ -1,6 +1,8 @@
 # Retrievals
 (*retrievals*)
 
+## Overview
+
 ### Available Operations
 
 * [retrieve](#retrieve) - Retrieve
@@ -23,21 +25,64 @@ async function run() {
     query: "What is the best pizza place in SF?",
     topK: 8,
     filter: {
-      "0": {
-        "department": {
-          "$in": [
-            "sales",
-            "marketing",
-          ],
-        },
+      "department": {
+        "$in": [
+          "sales",
+          "marketing",
+        ],
       },
     },
     rerank: true,
-    maxChunksPerDocument: 3,
+    maxChunksPerDocument: 0,
+    partition: "<value>",
   });
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { retrievalsRetrieve } from "ragie/funcs/retrievalsRetrieve.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await retrievalsRetrieve(ragie, {
+    query: "What is the best pizza place in SF?",
+    topK: 8,
+    filter: {
+      "department": {
+        "$in": [
+          "sales",
+          "marketing",
+        ],
+      },
+    },
+    rerank: true,
+    maxChunksPerDocument: 0,
+    partition: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -52,14 +97,14 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.Retrieval](../../models/components/retrieval.md)\>**
+
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
+| Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.ErrorMessage        | 401                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

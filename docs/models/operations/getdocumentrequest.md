@@ -1,5 +1,14 @@
 # GetDocumentRequest
 
+## Example Usage
+
+```typescript
+import { GetDocumentRequest } from "ragie/models/operations";
+
+let value: GetDocumentRequest = {
+  documentId: "<DOCUMENT_ID>",
+};
+```
 
 ## Fields
 

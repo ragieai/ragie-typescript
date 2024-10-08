@@ -8,8 +8,34 @@
 </div>
 
 
+<!-- Start Summary [summary] -->
+## Summary
+
+
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Pagination](#pagination)
+* [File uploads](#file-uploads)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -51,20 +77,20 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -75,21 +101,21 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
 ### [documents](docs/sdks/documents/README.md)
 
-* [list](docs/sdks/documents/README.md#list) - List Documents
 * [create](docs/sdks/documents/README.md#create) - Create Document
+* [list](docs/sdks/documents/README.md#list) - List Documents
 * [createRaw](docs/sdks/documents/README.md#createraw) - Create Document Raw
+* [createDocumentFromUrl](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
 * [get](docs/sdks/documents/README.md#get) - Get Document
 * [delete](docs/sdks/documents/README.md#delete) - Delete Document
 * [updateFile](docs/sdks/documents/README.md#updatefile) - Update Document File
 * [updateRaw](docs/sdks/documents/README.md#updateraw) - Update Document Raw
 * [patchMetadata](docs/sdks/documents/README.md#patchmetadata) - Patch Document Metadata
 * [getSummary](docs/sdks/documents/README.md#getsummary) - Get Document Summary
-
-### [retrievals](docs/sdks/retrievals/README.md)
-
-* [retrieve](docs/sdks/retrievals/README.md#retrieve) - Retrieve
 
 ### [entities](docs/sdks/entities/README.md)
 
@@ -98,6 +124,13 @@ run();
 * [updateInstruction](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
 * [listByInstruction](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 * [listByDocument](docs/sdks/entities/README.md#listbydocument) - Get Document Extracted Entities
+
+
+### [retrievals](docs/sdks/retrievals/README.md)
+
+* [retrieve](docs/sdks/retrievals/README.md#retrieve) - Retrieve
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start File uploads [file-upload] -->
@@ -119,16 +152,16 @@ import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.create({
-        file: await openAsBlob("./sample-file"),
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -139,62 +172,79 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
 
-| Error Object               | Status Code                | Content Type               |
+If a HTTP request fails, an operation my also throw an error from the `models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `create` method may throw the following errors:
+
+| Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401,404                    | application/json           |
+| errors.ErrorMessage        | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
-
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
-
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
-import { SDKValidationError } from "ragie/models/errors";
+import {
+  ErrorMessage,
+  HTTPValidationError,
+  SDKValidationError,
+} from "ragie/models/errors";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    let result;
-    try {
-        result = await ragie.documents.list({
-            filter: '{"department":{"$in":["sales","marketing"]}}',
-        });
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            case err instanceof errors.ErrorMessage: {
-                console.error(err); // handle exception
-                return;
-            }
-            case err instanceof errors.HTTPValidationError: {
-                console.error(err); // handle exception
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
-    }
+  let result;
+  try {
+    result = await ragie.documents.create({
+      file: await openAsBlob("example.file"),
+    });
 
-    for await (const page of result) {
-        // handle page
+    // Handle the result
+    console.log(result);
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof ErrorMessage): {
+        // Handle err.data$: ErrorMessageData
+        console.error(err);
+        return;
+      }
+      case (err instanceof HTTPValidationError): {
+        // Handle err.data$: HTTPValidationErrorData
+        console.error(err);
+        return;
+      }
+      default: {
+        throw err;
+      }
     }
+  }
 }
 
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -209,21 +259,21 @@ You can override the default server globally by passing a server index to the `s
 | 0 | `https://api.ragie.ai` | None |
 
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    serverIdx: 0,
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  serverIdx: 0,
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -236,21 +286,21 @@ run();
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    serverURL: "https://api.ragie.ai",
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  serverURL: "https://api.ragie.ai",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -320,20 +370,20 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `auth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -348,34 +398,31 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list(
-        {
-            filter: '{"department":{"$in":["sales","marketing"]}}',
-        },
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
-            },
-        }
-    );
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -384,30 +431,30 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+    retryConnectionErrors: false,
+  },
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -422,34 +469,31 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list(
-        {
-            filter: '{"department":{"$in":["sales","marketing"]}}',
-        },
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
-            },
-        }
-    );
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -458,36 +502,71 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+    retryConnectionErrors: false,
+  },
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [`documentsCreate`](docs/sdks/documents/README.md#create) - Create Document
+- [`documentsCreateDocumentFromUrl`](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
+- [`documentsCreateRaw`](docs/sdks/documents/README.md#createraw) - Create Document Raw
+- [`documentsDelete`](docs/sdks/documents/README.md#delete) - Delete Document
+- [`documentsGet`](docs/sdks/documents/README.md#get) - Get Document
+- [`documentsGetSummary`](docs/sdks/documents/README.md#getsummary) - Get Document Summary
+- [`documentsList`](docs/sdks/documents/README.md#list) - List Documents
+- [`documentsPatchMetadata`](docs/sdks/documents/README.md#patchmetadata) - Patch Document Metadata
+- [`documentsUpdateFile`](docs/sdks/documents/README.md#updatefile) - Update Document File
+- [`documentsUpdateRaw`](docs/sdks/documents/README.md#updateraw) - Update Document Raw
+- [`entitiesCreateInstruction`](docs/sdks/entities/README.md#createinstruction) - Create Instruction
+- [`entitiesListByDocument`](docs/sdks/entities/README.md#listbydocument) - Get Document Extracted Entities
+- [`entitiesListByInstruction`](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
+- [`entitiesListInstructions`](docs/sdks/entities/README.md#listinstructions) - List Instructions
+- [`entitiesUpdateInstruction`](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
+- [`retrievalsRetrieve`](docs/sdks/retrievals/README.md#retrieve) - Retrieve
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
 
 <!-- Start Pagination [pagination] -->
 ## Pagination
@@ -505,23 +584,41 @@ Here's an example of one such pagination call:
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
 
 ```
 <!-- End Pagination [pagination] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { Ragie } from "ragie";
+
+const sdk = new Ragie({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

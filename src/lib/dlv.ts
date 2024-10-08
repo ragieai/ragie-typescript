@@ -38,16 +38,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * dlv(object, "foo.bar.baz", "Hello, default value!")
  */
 export function dlv<T = any>(
-    obj: any,
-    key: string | string[],
-    def?: T,
-    p?: number,
-    undef?: never
+  obj: any,
+  key: string | string[],
+  def?: T,
+  p?: number,
+  undef?: never,
 ): T | undefined {
-    key = Array.isArray(key) ? key : key.split(".");
-    for (p = 0; p < key.length; p++) {
-        const k = key[p];
-        obj = k != null && obj ? obj[k] : undef;
-    }
-    return obj === undef ? def : obj;
+  key = Array.isArray(key) ? key : key.split(".");
+  for (p = 0; p < key.length; p++) {
+    const k = key[p];
+    obj = k != null && obj ? obj[k] : undef;
+  }
+  return obj === undef ? def : obj;
 }

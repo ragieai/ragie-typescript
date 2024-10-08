@@ -1,5 +1,14 @@
 # UpdateInstructionParams
 
+## Example Usage
+
+```typescript
+import { UpdateInstructionParams } from "ragie/models/components";
+
+let value: UpdateInstructionParams = {
+  active: true,
+};
+```
 
 ## Fields
 

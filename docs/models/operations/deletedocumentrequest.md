@@ -1,5 +1,14 @@
 # DeleteDocumentRequest
 
+## Example Usage
+
+```typescript
+import { DeleteDocumentRequest } from "ragie/models/operations";
+
+let value: DeleteDocumentRequest = {
+  documentId: "<DOCUMENT_ID>",
+};
+```
 
 ## Fields
 

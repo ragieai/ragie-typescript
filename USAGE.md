@@ -1,19 +1,19 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-    auth: "<YOUR_BEARER_TOKEN_HERE>",
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await ragie.documents.list({
-        filter: '{"department":{"$in":["sales","marketing"]}}',
-    });
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
+  });
 
-    for await (const page of result) {
-        // handle page
-    }
+  // Handle the result
+  console.log(result);
 }
 
 run();

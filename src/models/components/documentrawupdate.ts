@@ -5,27 +5,30 @@
 import * as z from "zod";
 
 export type DocumentRawUpdate = {
-    status: string;
+  status: string;
 };
 
 /** @internal */
-export const DocumentRawUpdate$inboundSchema: z.ZodType<DocumentRawUpdate, z.ZodTypeDef, unknown> =
-    z.object({
-        status: z.string(),
-    });
+export const DocumentRawUpdate$inboundSchema: z.ZodType<
+  DocumentRawUpdate,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  status: z.string(),
+});
 
 /** @internal */
 export type DocumentRawUpdate$Outbound = {
-    status: string;
+  status: string;
 };
 
 /** @internal */
 export const DocumentRawUpdate$outboundSchema: z.ZodType<
-    DocumentRawUpdate$Outbound,
-    z.ZodTypeDef,
-    DocumentRawUpdate
+  DocumentRawUpdate$Outbound,
+  z.ZodTypeDef,
+  DocumentRawUpdate
 > = z.object({
-    status: z.string(),
+  status: z.string(),
 });
 
 /**
@@ -33,10 +36,10 @@ export const DocumentRawUpdate$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace DocumentRawUpdate$ {
-    /** @deprecated use `DocumentRawUpdate$inboundSchema` instead. */
-    export const inboundSchema = DocumentRawUpdate$inboundSchema;
-    /** @deprecated use `DocumentRawUpdate$outboundSchema` instead. */
-    export const outboundSchema = DocumentRawUpdate$outboundSchema;
-    /** @deprecated use `DocumentRawUpdate$Outbound` instead. */
-    export type Outbound = DocumentRawUpdate$Outbound;
+  /** @deprecated use `DocumentRawUpdate$inboundSchema` instead. */
+  export const inboundSchema = DocumentRawUpdate$inboundSchema;
+  /** @deprecated use `DocumentRawUpdate$outboundSchema` instead. */
+  export const outboundSchema = DocumentRawUpdate$outboundSchema;
+  /** @deprecated use `DocumentRawUpdate$Outbound` instead. */
+  export type Outbound = DocumentRawUpdate$Outbound;
 }

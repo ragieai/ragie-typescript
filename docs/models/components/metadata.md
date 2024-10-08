@@ -6,24 +6,26 @@
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "<value>";
 ```
 
 ### `number`
 
 ```typescript
-const value: number = /* values here */
+const value: number = 6818.20;
 ```
 
 ### `boolean`
 
 ```typescript
-const value: boolean = /* values here */
+const value: boolean = false;
 ```
 
 ### `string[]`
 
 ```typescript
-const value: string[] = /* values here */
+const value: string[] = [
+  "<value>",
+];
 ```
 

@@ -1,5 +1,14 @@
 # ListEntitiesByInstructionRequest
 
+## Example Usage
+
+```typescript
+import { ListEntitiesByInstructionRequest } from "ragie/models/operations";
+
+let value: ListEntitiesByInstructionRequest = {
+  instructionId: "<INSTRUCTION_ID>",
+};
+```
 
 ## Fields
 

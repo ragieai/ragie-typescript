@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type DocumentFileUpdate = {
-    status: string;
+  status: string;
 };
 
 /** @internal */
 export const DocumentFileUpdate$inboundSchema: z.ZodType<
-    DocumentFileUpdate,
-    z.ZodTypeDef,
-    unknown
+  DocumentFileUpdate,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    status: z.string(),
+  status: z.string(),
 });
 
 /** @internal */
 export type DocumentFileUpdate$Outbound = {
-    status: string;
+  status: string;
 };
 
 /** @internal */
 export const DocumentFileUpdate$outboundSchema: z.ZodType<
-    DocumentFileUpdate$Outbound,
-    z.ZodTypeDef,
-    DocumentFileUpdate
+  DocumentFileUpdate$Outbound,
+  z.ZodTypeDef,
+  DocumentFileUpdate
 > = z.object({
-    status: z.string(),
+  status: z.string(),
 });
 
 /**
@@ -36,10 +36,10 @@ export const DocumentFileUpdate$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace DocumentFileUpdate$ {
-    /** @deprecated use `DocumentFileUpdate$inboundSchema` instead. */
-    export const inboundSchema = DocumentFileUpdate$inboundSchema;
-    /** @deprecated use `DocumentFileUpdate$outboundSchema` instead. */
-    export const outboundSchema = DocumentFileUpdate$outboundSchema;
-    /** @deprecated use `DocumentFileUpdate$Outbound` instead. */
-    export type Outbound = DocumentFileUpdate$Outbound;
+  /** @deprecated use `DocumentFileUpdate$inboundSchema` instead. */
+  export const inboundSchema = DocumentFileUpdate$inboundSchema;
+  /** @deprecated use `DocumentFileUpdate$outboundSchema` instead. */
+  export const outboundSchema = DocumentFileUpdate$outboundSchema;
+  /** @deprecated use `DocumentFileUpdate$Outbound` instead. */
+  export type Outbound = DocumentFileUpdate$Outbound;
 }

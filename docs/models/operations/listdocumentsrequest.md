@@ -1,5 +1,14 @@
 # ListDocumentsRequest
 
+## Example Usage
+
+```typescript
+import { ListDocumentsRequest } from "ragie/models/operations";
+
+let value: ListDocumentsRequest = {
+  filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+};
+```
 
 ## Fields
 

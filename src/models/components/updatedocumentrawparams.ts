@@ -12,39 +12,44 @@ export type Data2 = {};
 export type UpdateDocumentRawParamsData = Data2 | string;
 
 export type UpdateDocumentRawParams = {
-    /**
-     * Document data in a text or JSON format.
-     */
-    data: Data2 | string;
+  /**
+   * Document data in a text or JSON format.
+   */
+  data: Data2 | string;
 };
 
 /** @internal */
-export const Data2$inboundSchema: z.ZodType<Data2, z.ZodTypeDef, unknown> = z.object({});
+export const Data2$inboundSchema: z.ZodType<Data2, z.ZodTypeDef, unknown> = z
+  .object({});
 
 /** @internal */
 export type Data2$Outbound = {};
 
 /** @internal */
-export const Data2$outboundSchema: z.ZodType<Data2$Outbound, z.ZodTypeDef, Data2> = z.object({});
+export const Data2$outboundSchema: z.ZodType<
+  Data2$Outbound,
+  z.ZodTypeDef,
+  Data2
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Data2$ {
-    /** @deprecated use `Data2$inboundSchema` instead. */
-    export const inboundSchema = Data2$inboundSchema;
-    /** @deprecated use `Data2$outboundSchema` instead. */
-    export const outboundSchema = Data2$outboundSchema;
-    /** @deprecated use `Data2$Outbound` instead. */
-    export type Outbound = Data2$Outbound;
+  /** @deprecated use `Data2$inboundSchema` instead. */
+  export const inboundSchema = Data2$inboundSchema;
+  /** @deprecated use `Data2$outboundSchema` instead. */
+  export const outboundSchema = Data2$outboundSchema;
+  /** @deprecated use `Data2$Outbound` instead. */
+  export type Outbound = Data2$Outbound;
 }
 
 /** @internal */
 export const UpdateDocumentRawParamsData$inboundSchema: z.ZodType<
-    UpdateDocumentRawParamsData,
-    z.ZodTypeDef,
-    unknown
+  UpdateDocumentRawParamsData,
+  z.ZodTypeDef,
+  unknown
 > = z.union([z.lazy(() => Data2$inboundSchema), z.string()]);
 
 /** @internal */
@@ -52,9 +57,9 @@ export type UpdateDocumentRawParamsData$Outbound = Data2$Outbound | string;
 
 /** @internal */
 export const UpdateDocumentRawParamsData$outboundSchema: z.ZodType<
-    UpdateDocumentRawParamsData$Outbound,
-    z.ZodTypeDef,
-    UpdateDocumentRawParamsData
+  UpdateDocumentRawParamsData$Outbound,
+  z.ZodTypeDef,
+  UpdateDocumentRawParamsData
 > = z.union([z.lazy(() => Data2$outboundSchema), z.string()]);
 
 /**
@@ -62,35 +67,35 @@ export const UpdateDocumentRawParamsData$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace UpdateDocumentRawParamsData$ {
-    /** @deprecated use `UpdateDocumentRawParamsData$inboundSchema` instead. */
-    export const inboundSchema = UpdateDocumentRawParamsData$inboundSchema;
-    /** @deprecated use `UpdateDocumentRawParamsData$outboundSchema` instead. */
-    export const outboundSchema = UpdateDocumentRawParamsData$outboundSchema;
-    /** @deprecated use `UpdateDocumentRawParamsData$Outbound` instead. */
-    export type Outbound = UpdateDocumentRawParamsData$Outbound;
+  /** @deprecated use `UpdateDocumentRawParamsData$inboundSchema` instead. */
+  export const inboundSchema = UpdateDocumentRawParamsData$inboundSchema;
+  /** @deprecated use `UpdateDocumentRawParamsData$outboundSchema` instead. */
+  export const outboundSchema = UpdateDocumentRawParamsData$outboundSchema;
+  /** @deprecated use `UpdateDocumentRawParamsData$Outbound` instead. */
+  export type Outbound = UpdateDocumentRawParamsData$Outbound;
 }
 
 /** @internal */
 export const UpdateDocumentRawParams$inboundSchema: z.ZodType<
-    UpdateDocumentRawParams,
-    z.ZodTypeDef,
-    unknown
+  UpdateDocumentRawParams,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    data: z.union([z.lazy(() => Data2$inboundSchema), z.string()]),
+  data: z.union([z.lazy(() => Data2$inboundSchema), z.string()]),
 });
 
 /** @internal */
 export type UpdateDocumentRawParams$Outbound = {
-    data: Data2$Outbound | string;
+  data: Data2$Outbound | string;
 };
 
 /** @internal */
 export const UpdateDocumentRawParams$outboundSchema: z.ZodType<
-    UpdateDocumentRawParams$Outbound,
-    z.ZodTypeDef,
-    UpdateDocumentRawParams
+  UpdateDocumentRawParams$Outbound,
+  z.ZodTypeDef,
+  UpdateDocumentRawParams
 > = z.object({
-    data: z.union([z.lazy(() => Data2$outboundSchema), z.string()]),
+  data: z.union([z.lazy(() => Data2$outboundSchema), z.string()]),
 });
 
 /**
@@ -98,10 +103,10 @@ export const UpdateDocumentRawParams$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace UpdateDocumentRawParams$ {
-    /** @deprecated use `UpdateDocumentRawParams$inboundSchema` instead. */
-    export const inboundSchema = UpdateDocumentRawParams$inboundSchema;
-    /** @deprecated use `UpdateDocumentRawParams$outboundSchema` instead. */
-    export const outboundSchema = UpdateDocumentRawParams$outboundSchema;
-    /** @deprecated use `UpdateDocumentRawParams$Outbound` instead. */
-    export type Outbound = UpdateDocumentRawParams$Outbound;
+  /** @deprecated use `UpdateDocumentRawParams$inboundSchema` instead. */
+  export const inboundSchema = UpdateDocumentRawParams$inboundSchema;
+  /** @deprecated use `UpdateDocumentRawParams$outboundSchema` instead. */
+  export const outboundSchema = UpdateDocumentRawParams$outboundSchema;
+  /** @deprecated use `UpdateDocumentRawParams$Outbound` instead. */
+  export type Outbound = UpdateDocumentRawParams$Outbound;
 }

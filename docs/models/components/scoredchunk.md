@@ -1,5 +1,19 @@
 # ScoredChunk
 
+## Example Usage
+
+```typescript
+import { ScoredChunk } from "ragie/models/components";
+
+let value: ScoredChunk = {
+  text: "<value>",
+  score: 9560.84,
+  documentId: "<id>",
+  documentMetadata: {
+    "key": "<value>",
+  },
+};
+```
 
 ## Fields
 

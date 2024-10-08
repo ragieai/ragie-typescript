@@ -4,34 +4,38 @@
 
 import * as z from "zod";
 
-export type PatchDocumentMetadataParamsMetadata = string | number | boolean | Array<string>;
+export type PatchDocumentMetadataParamsMetadata =
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 export type PatchDocumentMetadataParams = {
-    /**
-     * The metadata to update on the document. Performs a partial update of the document's metadata. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. Keys set to `null` are deleted. 1000 total values are allowed, inclusive of existing metadata. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `__ragie__document_version_id`, `__ragie__chunk_size_chars`, `__ragie__chunk_overlap_chars`.
-     */
-    metadata: { [k: string]: string | number | boolean | Array<string> };
+  /**
+   * The metadata to update on the document. Performs a partial update of the document's metadata. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. Keys set to `null` are deleted. 1000 total values are allowed, inclusive of existing metadata. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `__ragie__document_version_id`, `__ragie__chunk_size_chars`, `__ragie__chunk_overlap_chars`, `__ragie__partition`.
+   */
+  metadata: { [k: string]: string | number | boolean | Array<string> };
 };
 
 /** @internal */
 export const PatchDocumentMetadataParamsMetadata$inboundSchema: z.ZodType<
-    PatchDocumentMetadataParamsMetadata,
-    z.ZodTypeDef,
-    unknown
+  PatchDocumentMetadataParamsMetadata,
+  z.ZodTypeDef,
+  unknown
 > = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
 
 /** @internal */
 export type PatchDocumentMetadataParamsMetadata$Outbound =
-    | string
-    | number
-    | boolean
-    | Array<string>;
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 /** @internal */
 export const PatchDocumentMetadataParamsMetadata$outboundSchema: z.ZodType<
-    PatchDocumentMetadataParamsMetadata$Outbound,
-    z.ZodTypeDef,
-    PatchDocumentMetadataParamsMetadata
+  PatchDocumentMetadataParamsMetadata$Outbound,
+  z.ZodTypeDef,
+  PatchDocumentMetadataParamsMetadata
 > = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
 
 /**
@@ -39,35 +43,41 @@ export const PatchDocumentMetadataParamsMetadata$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace PatchDocumentMetadataParamsMetadata$ {
-    /** @deprecated use `PatchDocumentMetadataParamsMetadata$inboundSchema` instead. */
-    export const inboundSchema = PatchDocumentMetadataParamsMetadata$inboundSchema;
-    /** @deprecated use `PatchDocumentMetadataParamsMetadata$outboundSchema` instead. */
-    export const outboundSchema = PatchDocumentMetadataParamsMetadata$outboundSchema;
-    /** @deprecated use `PatchDocumentMetadataParamsMetadata$Outbound` instead. */
-    export type Outbound = PatchDocumentMetadataParamsMetadata$Outbound;
+  /** @deprecated use `PatchDocumentMetadataParamsMetadata$inboundSchema` instead. */
+  export const inboundSchema =
+    PatchDocumentMetadataParamsMetadata$inboundSchema;
+  /** @deprecated use `PatchDocumentMetadataParamsMetadata$outboundSchema` instead. */
+  export const outboundSchema =
+    PatchDocumentMetadataParamsMetadata$outboundSchema;
+  /** @deprecated use `PatchDocumentMetadataParamsMetadata$Outbound` instead. */
+  export type Outbound = PatchDocumentMetadataParamsMetadata$Outbound;
 }
 
 /** @internal */
 export const PatchDocumentMetadataParams$inboundSchema: z.ZodType<
-    PatchDocumentMetadataParams,
-    z.ZodTypeDef,
-    unknown
+  PatchDocumentMetadataParams,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    metadata: z.record(z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())])),
+  metadata: z.record(
+    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+  ),
 });
 
 /** @internal */
 export type PatchDocumentMetadataParams$Outbound = {
-    metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | boolean | Array<string> };
 };
 
 /** @internal */
 export const PatchDocumentMetadataParams$outboundSchema: z.ZodType<
-    PatchDocumentMetadataParams$Outbound,
-    z.ZodTypeDef,
-    PatchDocumentMetadataParams
+  PatchDocumentMetadataParams$Outbound,
+  z.ZodTypeDef,
+  PatchDocumentMetadataParams
 > = z.object({
-    metadata: z.record(z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())])),
+  metadata: z.record(
+    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+  ),
 });
 
 /**
@@ -75,10 +85,10 @@ export const PatchDocumentMetadataParams$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace PatchDocumentMetadataParams$ {
-    /** @deprecated use `PatchDocumentMetadataParams$inboundSchema` instead. */
-    export const inboundSchema = PatchDocumentMetadataParams$inboundSchema;
-    /** @deprecated use `PatchDocumentMetadataParams$outboundSchema` instead. */
-    export const outboundSchema = PatchDocumentMetadataParams$outboundSchema;
-    /** @deprecated use `PatchDocumentMetadataParams$Outbound` instead. */
-    export type Outbound = PatchDocumentMetadataParams$Outbound;
+  /** @deprecated use `PatchDocumentMetadataParams$inboundSchema` instead. */
+  export const inboundSchema = PatchDocumentMetadataParams$inboundSchema;
+  /** @deprecated use `PatchDocumentMetadataParams$outboundSchema` instead. */
+  export const outboundSchema = PatchDocumentMetadataParams$outboundSchema;
+  /** @deprecated use `PatchDocumentMetadataParams$Outbound` instead. */
+  export type Outbound = PatchDocumentMetadataParams$Outbound;
 }
