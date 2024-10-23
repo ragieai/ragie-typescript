@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: af5e947f8ef234eb92faf756a1a97812
+  docChecksum: 4ef2e8762713172ed636f0602d14e8e7
   docVersion: 1.0.0
-  speakeasyVersion: 1.412.5
-  generationVersion: 2.436.3
-  releaseVersion: 1.1.0
-  configChecksum: 0c0157755c6b8585bafcd237a9f49615
+  speakeasyVersion: 1.420.0
+  generationVersion: 2.438.15
+  releaseVersion: 1.1.1
+  configChecksum: aa959d9cc3a53df9ba1e4d0bb715aa6d
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
