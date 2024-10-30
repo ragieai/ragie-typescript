@@ -11,6 +11,7 @@ let value: Retrieval = {
       text: "<value>",
       score: 5013.24,
       documentId: "<id>",
+      documentName: "<value>",
       documentMetadata: {
         "key": "<value>",
       },

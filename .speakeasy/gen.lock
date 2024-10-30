@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: af5e947f8ef234eb92faf756a1a97812
+  docChecksum: acc4c90fc4b614946193b46937ffde52
   docVersion: 1.0.0
-  speakeasyVersion: 1.412.5
-  generationVersion: 2.436.3
-  releaseVersion: 1.1.0
-  configChecksum: 0c0157755c6b8585bafcd237a9f49615
+  speakeasyVersion: 1.423.4
+  generationVersion: 2.445.1
+  releaseVersion: 1.2.0
+  configChecksum: 5cdec40dba7a9a30dd40756f34174040
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -32,6 +32,7 @@ features:
     sdkHooks: 0.1.0
     unions: 2.85.7
     uploadStreams: 0.1.0
+    webhooks: 1.0.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -57,6 +58,10 @@ generatedFiles:
   - docs/models/components/data2.md
   - docs/models/components/document.md
   - docs/models/components/documentdelete.md
+  - docs/models/components/documentdeletewebhook.md
+  - docs/models/components/documentdeletewebhookpayload.md
+  - docs/models/components/documentdeletewebhookpayloadmetadata.md
+  - docs/models/components/documentdeletewebhooktype.md
   - docs/models/components/documentfileupdate.md
   - docs/models/components/documentget.md
   - docs/models/components/documentgetmetadata.md
@@ -66,7 +71,15 @@ generatedFiles:
   - docs/models/components/documentmetadataupdatemetadata.md
   - docs/models/components/documentrawupdate.md
   - docs/models/components/documentsummary.md
+  - docs/models/components/documentupdatewebhook.md
+  - docs/models/components/documentupdatewebhookpayload.md
+  - docs/models/components/documentupdatewebhookpayloadmetadata.md
   - docs/models/components/entity.md
+  - docs/models/components/entityextractedwebhook.md
+  - docs/models/components/entityextractedwebhookpayload.md
+  - docs/models/components/entityextractedwebhookpayloaddata.md
+  - docs/models/components/entityextractedwebhookpayloaddocumentmetadata.md
+  - docs/models/components/entityextractedwebhooktype.md
   - docs/models/components/entitylist.md
   - docs/models/components/filet.md
   - docs/models/components/filter.md
@@ -74,6 +87,7 @@ generatedFiles:
   - docs/models/components/loc.md
   - docs/models/components/metadata.md
   - docs/models/components/mode.md
+  - docs/models/components/one.md
   - docs/models/components/pagination.md
   - docs/models/components/patchdocumentmetadataparams.md
   - docs/models/components/patchdocumentmetadataparamsmetadata.md
@@ -82,7 +96,10 @@ generatedFiles:
   - docs/models/components/scope.md
   - docs/models/components/scoredchunk.md
   - docs/models/components/security.md
+  - docs/models/components/status.md
+  - docs/models/components/status2.md
   - docs/models/components/two.md
+  - docs/models/components/type.md
   - docs/models/components/updatedocumentfileparams.md
   - docs/models/components/updatedocumentfileparamsfile.md
   - docs/models/components/updatedocumentfileparamsmode.md
@@ -105,6 +122,7 @@ generatedFiles:
   - docs/models/operations/updatedocumentfilerequest.md
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
+  - docs/models/webhooks/eventeventpostbody.md
   - docs/sdks/documents/README.md
   - docs/sdks/entities/README.md
   - docs/sdks/ragie/README.md
@@ -153,13 +171,19 @@ generatedFiles:
   - src/models/components/createinstructionparams.ts
   - src/models/components/document.ts
   - src/models/components/documentdelete.ts
+  - src/models/components/documentdeletewebhook.ts
+  - src/models/components/documentdeletewebhookpayload.ts
   - src/models/components/documentfileupdate.ts
   - src/models/components/documentget.ts
   - src/models/components/documentlist.ts
   - src/models/components/documentmetadataupdate.ts
   - src/models/components/documentrawupdate.ts
   - src/models/components/documentsummary.ts
+  - src/models/components/documentupdatewebhook.ts
+  - src/models/components/documentupdatewebhookpayload.ts
   - src/models/components/entity.ts
+  - src/models/components/entityextractedwebhook.ts
+  - src/models/components/entityextractedwebhookpayload.ts
   - src/models/components/entitylist.ts
   - src/models/components/index.ts
   - src/models/components/instruction.ts
@@ -190,6 +214,8 @@ generatedFiles:
   - src/models/operations/updatedocumentfile.ts
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
+  - src/models/webhooks/eventeventpost.ts
+  - src/models/webhooks/index.ts
   - src/sdk/documents.ts
   - src/sdk/entities.ts
   - src/sdk/index.ts
@@ -220,6 +246,7 @@ examples:
       parameters:
         query:
           filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}"
+        header: {}
       responses:
         "200":
           application/json: {"documents": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2022-03-24T06:20:14.879Z", "updated_at": "2024-09-10T04:30:13.188Z", "status": "<value>", "name": "<value>", "metadata": {}, "partition": "<value>"}, {"id": "766718d6-d461-42e0-aaee-1b9ddf121dc2", "created_at": "2022-11-08T21:35:05.868Z", "updated_at": "2024-05-06T10:10:32.094Z", "status": "<value>", "name": "<value>", "metadata": {"key": "<value>", "key1": "<value>"}, "partition": "<value>"}, {"id": "4fb451a7-0cfc-48fe-807f-bc60ab960d56", "created_at": "2022-05-09T15:43:49.850Z", "updated_at": "2024-10-31T06:20:54.910Z", "status": "<value>", "name": "<value>", "metadata": {"key": 370293, "key1": 212921, "key2": []}, "partition": "<value>"}]}
@@ -324,7 +351,7 @@ examples:
         application/json: {"query": "What is the best pizza place in SF?", "top_k": 8, "filter": {"department": {"$in": ["sales", "marketing"]}}, "rerank": true, "max_chunks_per_document": 0, "partition": "<value>"}
       responses:
         "200":
-          application/json: {"scored_chunks": [{"text": "<value>", "score": "9198.30", "document_id": "<id>", "document_metadata": {"key": "<value>"}}]}
+          application/json: {"scored_chunks": [{"text": "<value>", "score": "9198.30", "document_id": "<id>", "document_name": "<value>", "document_metadata": {"key": "<value>"}}]}
         "401":
           application/json: {"detail": "<value>"}
         "422": {}
