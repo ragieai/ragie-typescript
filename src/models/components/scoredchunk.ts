@@ -9,6 +9,7 @@ export type ScoredChunk = {
   text: string;
   score: number;
   documentId: string;
+  documentName: string;
   documentMetadata: { [k: string]: any };
 };
 
@@ -21,10 +22,12 @@ export const ScoredChunk$inboundSchema: z.ZodType<
   text: z.string(),
   score: z.number(),
   document_id: z.string(),
+  document_name: z.string(),
   document_metadata: z.record(z.any()),
 }).transform((v) => {
   return remap$(v, {
     "document_id": "documentId",
+    "document_name": "documentName",
     "document_metadata": "documentMetadata",
   });
 });
@@ -34,6 +37,7 @@ export type ScoredChunk$Outbound = {
   text: string;
   score: number;
   document_id: string;
+  document_name: string;
   document_metadata: { [k: string]: any };
 };
 
@@ -46,10 +50,12 @@ export const ScoredChunk$outboundSchema: z.ZodType<
   text: z.string(),
   score: z.number(),
   documentId: z.string(),
+  documentName: z.string(),
   documentMetadata: z.record(z.any()),
 }).transform((v) => {
   return remap$(v, {
     documentId: "document_id",
+    documentName: "document_name",
     documentMetadata: "document_metadata",
   });
 });

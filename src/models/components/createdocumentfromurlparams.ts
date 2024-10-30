@@ -44,7 +44,7 @@ export type CreateDocumentFromUrlParams = {
    */
   url: string;
   /**
-   * An optional partition identifier. Documents can be scoped to a partition. A partition is created any time a document is created or moved to a new partition.
+   * An optional partition identifier. Documents can be scoped to a partition. Partitions must be lowercase alphanumeric and may only include the special characters `_` and `-`.  A partition is created any time a document is created or moved to a new partition.
    */
   partition?: string | undefined;
 };

@@ -1,4 +1,4 @@
-speakeasyVersion: 1.412.5
+speakeasyVersion: 1.423.4
 sources:
     local:
         sourceNamespace: local
@@ -8,17 +8,16 @@ sources:
             - latest
     ragie.ai_spec:
         sourceNamespace: ragie-ai-spec
-        sourceRevisionDigest: sha256:405e428d71cc9ddfac9476f078b6336dac3b28e9b08cb8692335a5cb4fd5c429
-        sourceBlobDigest: sha256:87f705ed7c8cfa48e3ddea5c6a04f7aee88ef0dc9bd9d22998c4939774c0f789
+        sourceRevisionDigest: sha256:fb7f0f955e35b2fcb78dcbfe63f5b99fc75c90dd6ddbfd6a0df29d49b87f220e
+        sourceBlobDigest: sha256:ca6ce8b8407fe30eaec019fe8d08904e9195d3f898d58eb6c468559896fe2adb
         tags:
             - latest
-            - main
 targets:
     ragie:
         source: ragie.ai_spec
         sourceNamespace: ragie-ai-spec
-        sourceRevisionDigest: sha256:405e428d71cc9ddfac9476f078b6336dac3b28e9b08cb8692335a5cb4fd5c429
-        sourceBlobDigest: sha256:87f705ed7c8cfa48e3ddea5c6a04f7aee88ef0dc9bd9d22998c4939774c0f789
+        sourceRevisionDigest: sha256:fb7f0f955e35b2fcb78dcbfe63f5b99fc75c90dd6ddbfd6a0df29d49b87f220e
+        sourceBlobDigest: sha256:ca6ce8b8407fe30eaec019fe8d08904e9195d3f898d58eb6c468559896fe2adb
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
