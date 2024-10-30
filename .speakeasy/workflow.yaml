@@ -14,8 +14,11 @@ sources:
 targets:
     ragie:
         target: typescript
-        # source: local
         source: ragie.ai_spec
         publish:
             npm:
                 token: $npm_token
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/ragie-ai-spec-code-samples
+            blocking: false
