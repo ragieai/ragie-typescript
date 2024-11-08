@@ -3,6 +3,7 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
+import { Connections } from "./connections.js";
 import { Documents } from "./documents.js";
 import { Entities } from "./entities.js";
 import { Retrievals } from "./retrievals.js";
@@ -21,5 +22,10 @@ export class Ragie extends ClientSDK {
   private _entities?: Entities;
   get entities(): Entities {
     return (this._entities ??= new Entities(this._options));
+  }
+
+  private _connections?: Connections;
+  get connections(): Connections {
+    return (this._connections ??= new Connections(this._options));
   }
 }

@@ -8,7 +8,10 @@ import * as components from "../components/index.js";
 export type EventeventPostBody =
   | components.DocumentUpdateWebhook
   | components.DocumentDeleteWebhook
-  | components.EntityExtractedWebhook;
+  | components.EntityExtractedWebhook
+  | components.ConnectionSyncStartedWebhook
+  | components.ConnectionSyncProgressWebhook
+  | components.ConnectionSyncFinishedWebhook;
 
 /** @internal */
 export const EventeventPostBody$inboundSchema: z.ZodType<
@@ -19,13 +22,19 @@ export const EventeventPostBody$inboundSchema: z.ZodType<
   components.DocumentUpdateWebhook$inboundSchema,
   components.DocumentDeleteWebhook$inboundSchema,
   components.EntityExtractedWebhook$inboundSchema,
+  components.ConnectionSyncStartedWebhook$inboundSchema,
+  components.ConnectionSyncProgressWebhook$inboundSchema,
+  components.ConnectionSyncFinishedWebhook$inboundSchema,
 ]);
 
 /** @internal */
 export type EventeventPostBody$Outbound =
   | components.DocumentUpdateWebhook$Outbound
   | components.DocumentDeleteWebhook$Outbound
-  | components.EntityExtractedWebhook$Outbound;
+  | components.EntityExtractedWebhook$Outbound
+  | components.ConnectionSyncStartedWebhook$Outbound
+  | components.ConnectionSyncProgressWebhook$Outbound
+  | components.ConnectionSyncFinishedWebhook$Outbound;
 
 /** @internal */
 export const EventeventPostBody$outboundSchema: z.ZodType<
@@ -36,6 +45,9 @@ export const EventeventPostBody$outboundSchema: z.ZodType<
   components.DocumentUpdateWebhook$outboundSchema,
   components.DocumentDeleteWebhook$outboundSchema,
   components.EntityExtractedWebhook$outboundSchema,
+  components.ConnectionSyncStartedWebhook$outboundSchema,
+  components.ConnectionSyncProgressWebhook$outboundSchema,
+  components.ConnectionSyncFinishedWebhook$outboundSchema,
 ]);
 
 /**

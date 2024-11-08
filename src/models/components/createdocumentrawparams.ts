@@ -25,6 +25,10 @@ export type CreateDocumentRawParams = {
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
   /**
+   * An optional name for the document. If set, the document will have this name. Otherwise it will default to the current timestamp.
+   */
+  name?: string | undefined;
+  /**
    * Document data in a text or JSON format.
    */
   data: Two | string;
@@ -125,6 +129,7 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
+  name: z.string().optional(),
   data: z.union([z.lazy(() => Two$inboundSchema), z.string()]),
   partition: z.string().optional(),
 });
@@ -134,6 +139,7 @@ export type CreateDocumentRawParams$Outbound = {
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
+  name?: string | undefined;
   data: Two$Outbound | string;
   partition?: string | undefined;
 };
@@ -147,6 +153,7 @@ export const CreateDocumentRawParams$outboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
+  name: z.string().optional(),
   data: z.union([z.lazy(() => Two$outboundSchema), z.string()]),
   partition: z.string().optional(),
 });

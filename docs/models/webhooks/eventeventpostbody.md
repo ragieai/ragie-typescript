@@ -52,3 +52,58 @@ const value: components.EntityExtractedWebhook = {
 };
 ```
 
+### `components.ConnectionSyncStartedWebhook`
+
+```typescript
+const value: components.ConnectionSyncStartedWebhook = {
+  nonce: "<value>",
+  payload: {
+    connectionId: "<id>",
+    syncId: "<id>",
+    partition: "<value>",
+    connectionMetadata: {},
+    createCount: 637462,
+    updateContentCount: 811939,
+    updateMetadataCount: 479385,
+    deleteCount: 914864,
+  },
+};
+```
+
+### `components.ConnectionSyncProgressWebhook`
+
+```typescript
+const value: components.ConnectionSyncProgressWebhook = {
+  nonce: "<value>",
+  payload: {
+    connectionId: "<id>",
+    syncId: "<id>",
+    partition: "<value>",
+    connectionMetadata: {},
+    createCount: 49348,
+    createdCount: 292888,
+    updateContentCount: 715053,
+    updatedContentCount: 418109,
+    updateMetadataCount: 172951,
+    updatedMetadataCount: 107210,
+    deleteCount: 817339,
+    deletedCount: 473143,
+    erroredCount: 882284,
+  },
+};
+```
+
+### `components.ConnectionSyncFinishedWebhook`
+
+```typescript
+const value: components.ConnectionSyncFinishedWebhook = {
+  nonce: "<value>",
+  payload: {
+    connectionId: "<id>",
+    syncId: "<id>",
+    partition: "<value>",
+    connectionMetadata: {},
+  },
+};
+```
+

@@ -104,6 +104,14 @@ run();
 <details open>
 <summary>Available methods</summary>
 
+### [connections](docs/sdks/connections/README.md)
+
+* [list](docs/sdks/connections/README.md#list) - List Connections
+* [setConnectionEnabled](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
+* [updateConnection](docs/sdks/connections/README.md#updateconnection) - Update Connection
+* [getConnectionStats](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
+* [deleteConnection](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
+
 ### [documents](docs/sdks/documents/README.md)
 
 * [create](docs/sdks/documents/README.md#create) - Create Document
@@ -186,11 +194,11 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 
 In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `create` method may throw the following errors:
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401                   | application/json           |
-| errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type                 | Status Code | Content Type     |
+| -------------------------- | ----------- | ---------------- |
+| errors.ErrorMessage        | 400, 401    | application/json |
+| errors.HTTPValidationError | 422         | application/json |
+| errors.SDKError            | 4XX, 5XX    | \*/\*            |
 
 ```typescript
 import { openAsBlob } from "node:fs";
@@ -250,41 +258,9 @@ Validation errors can also occur when either method arguments or data returned f
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.ragie.ai` | None |
-
-```typescript
-import { openAsBlob } from "node:fs";
-import { Ragie } from "ragie";
-
-const ragie = new Ragie({
-  serverIdx: 0,
-  auth: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
@@ -364,9 +340,9 @@ const sdk = new Ragie({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name        | Type        | Scheme      |
-| ----------- | ----------- | ----------- |
-| `auth`      | http        | HTTP Bearer |
+| Name   | Type | Scheme      |
+| ------ | ---- | ----------- |
+| `auth` | http | HTTP Bearer |
 
 To authenticate with the API the `auth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
@@ -548,6 +524,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`connectionsDeleteConnection`](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
+- [`connectionsGetConnectionStats`](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
+- [`connectionsList`](docs/sdks/connections/README.md#list) - List Connections
+- [`connectionsSetConnectionEnabled`](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
+- [`connectionsUpdateConnection`](docs/sdks/connections/README.md#updateconnection) - Update Connection
 - [`documentsCreate`](docs/sdks/documents/README.md#create) - Create Document
 - [`documentsCreateDocumentFromUrl`](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
 - [`documentsCreateRaw`](docs/sdks/documents/README.md#createraw) - Create Document Raw
