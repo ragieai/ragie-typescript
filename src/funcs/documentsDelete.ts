@@ -70,12 +70,17 @@ export async function documentsDelete(
 
   const secConfig = await extractSecurity(client._options.auth);
   const securityInput = secConfig == null ? {} : { auth: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "DeleteDocument",
     oAuth2Scopes: [],
     securitySource: client._options.auth,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
@@ -93,9 +98,8 @@ export async function documentsDelete(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["401", "404", "422", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;

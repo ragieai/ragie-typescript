@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: acc4c90fc4b614946193b46937ffde52
+  docChecksum: fe3961f172253a55f30120e15b744532
   docVersion: 1.0.0
-  speakeasyVersion: 1.423.5
-  generationVersion: 2.445.1
-  releaseVersion: 1.2.1
-  configChecksum: 1ffc28571c7a7461fcbd67fe8b108b7c
+  speakeasyVersion: 1.436.0
+  generationVersion: 2.455.2
+  releaseVersion: 1.3.0
+  configChecksum: 235b677820ed5f75c41950a3a171b1e3
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,11 +14,11 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.2
+    core: 3.18.3
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
-    envVarSecurityUsage: 0.1.1
+    envVarSecurityUsage: 0.1.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -29,8 +29,8 @@ features:
     pagination: 2.82.7
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.1.0
-    unions: 2.85.7
+    sdkHooks: 0.2.0
+    unions: 2.85.8
     uploadStreams: 0.1.0
     webhooks: 1.0.0
 generatedFiles:
@@ -45,6 +45,24 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
+  - docs/models/components/connection.md
+  - docs/models/components/connectionbase.md
+  - docs/models/components/connectionbasemetadata.md
+  - docs/models/components/connectionlist.md
+  - docs/models/components/connectionmetadata.md
+  - docs/models/components/connectionmetadatametadata.md
+  - docs/models/components/connectionstats.md
+  - docs/models/components/connectionsyncfinishedwebhook.md
+  - docs/models/components/connectionsyncfinishedwebhookpayload.md
+  - docs/models/components/connectionsyncfinishedwebhookpayloadconnectionmetadata.md
+  - docs/models/components/connectionsyncfinishedwebhooktype.md
+  - docs/models/components/connectionsyncprogresswebhook.md
+  - docs/models/components/connectionsyncprogresswebhookpayload.md
+  - docs/models/components/connectionsyncprogresswebhookpayloadconnectionmetadata.md
+  - docs/models/components/connectionsyncprogresswebhooktype.md
+  - docs/models/components/connectionsyncstartedwebhook.md
+  - docs/models/components/connectionsyncstartedwebhookpayload.md
+  - docs/models/components/connectionsyncstartedwebhooktype.md
   - docs/models/components/createdocumentfromurlparams.md
   - docs/models/components/createdocumentfromurlparamsmetadata.md
   - docs/models/components/createdocumentfromurlparamsmode.md
@@ -56,6 +74,7 @@ generatedFiles:
   - docs/models/components/createinstructionparamsscope.md
   - docs/models/components/data.md
   - docs/models/components/data2.md
+  - docs/models/components/deleteconnectionpayload.md
   - docs/models/components/document.md
   - docs/models/components/documentdelete.md
   - docs/models/components/documentdeletewebhook.md
@@ -89,6 +108,7 @@ generatedFiles:
   - docs/models/components/mode.md
   - docs/models/components/one.md
   - docs/models/components/pagination.md
+  - docs/models/components/partitionstrategy.md
   - docs/models/components/patchdocumentmetadataparams.md
   - docs/models/components/patchdocumentmetadataparamsmetadata.md
   - docs/models/components/retrieval.md
@@ -96,6 +116,7 @@ generatedFiles:
   - docs/models/components/scope.md
   - docs/models/components/scoredchunk.md
   - docs/models/components/security.md
+  - docs/models/components/setconnectionenabledpayload.md
   - docs/models/components/status.md
   - docs/models/components/status2.md
   - docs/models/components/two.md
@@ -109,9 +130,13 @@ generatedFiles:
   - docs/models/components/validationerror.md
   - docs/models/errors/errormessage.md
   - docs/models/errors/httpvalidationerror.md
+  - docs/models/operations/deleteconnectionconnectionsconnectioniddeletepostrequest.md
   - docs/models/operations/deletedocumentrequest.md
+  - docs/models/operations/getconnectionstatsconnectionsconnectionidstatsgetrequest.md
   - docs/models/operations/getdocumentrequest.md
   - docs/models/operations/getdocumentsummaryrequest.md
+  - docs/models/operations/listconnectionsconnectionsgetrequest.md
+  - docs/models/operations/listconnectionsconnectionsgetresponse.md
   - docs/models/operations/listdocumentsrequest.md
   - docs/models/operations/listdocumentsresponse.md
   - docs/models/operations/listentitiesbydocumentrequest.md
@@ -119,10 +144,13 @@ generatedFiles:
   - docs/models/operations/listentitiesbyinstructionrequest.md
   - docs/models/operations/listentitiesbyinstructionresponse.md
   - docs/models/operations/patchdocumentmetadatarequest.md
+  - docs/models/operations/setconnectionenabledconnectionsconnectionidenabledputrequest.md
+  - docs/models/operations/updateconnectionconnectionsconnectionidputrequest.md
   - docs/models/operations/updatedocumentfilerequest.md
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
   - docs/models/webhooks/eventeventpostbody.md
+  - docs/sdks/connections/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/entities/README.md
   - docs/sdks/ragie/README.md
@@ -130,6 +158,11 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/connectionsDeleteConnection.ts
+  - src/funcs/connectionsGetConnectionStats.ts
+  - src/funcs/connectionsList.ts
+  - src/funcs/connectionsSetConnectionEnabled.ts
+  - src/funcs/connectionsUpdateConnection.ts
   - src/funcs/documentsCreate.ts
   - src/funcs/documentsCreateDocumentFromUrl.ts
   - src/funcs/documentsCreateRaw.ts
@@ -165,10 +198,21 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/models/components/connection.ts
+  - src/models/components/connectionbase.ts
+  - src/models/components/connectionlist.ts
+  - src/models/components/connectionstats.ts
+  - src/models/components/connectionsyncfinishedwebhook.ts
+  - src/models/components/connectionsyncfinishedwebhookpayload.ts
+  - src/models/components/connectionsyncprogresswebhook.ts
+  - src/models/components/connectionsyncprogresswebhookpayload.ts
+  - src/models/components/connectionsyncstartedwebhook.ts
+  - src/models/components/connectionsyncstartedwebhookpayload.ts
   - src/models/components/createdocumentfromurlparams.ts
   - src/models/components/createdocumentparams.ts
   - src/models/components/createdocumentrawparams.ts
   - src/models/components/createinstructionparams.ts
+  - src/models/components/deleteconnectionpayload.ts
   - src/models/components/document.ts
   - src/models/components/documentdelete.ts
   - src/models/components/documentdeletewebhook.ts
@@ -193,6 +237,7 @@ generatedFiles:
   - src/models/components/retrieveparams.ts
   - src/models/components/scoredchunk.ts
   - src/models/components/security.ts
+  - src/models/components/setconnectionenabledpayload.ts
   - src/models/components/updatedocumentfileparams.ts
   - src/models/components/updatedocumentrawparams.ts
   - src/models/components/updateinstructionparams.ts
@@ -203,19 +248,25 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/deleteconnectionconnectionsconnectioniddeletepost.ts
   - src/models/operations/deletedocument.ts
+  - src/models/operations/getconnectionstatsconnectionsconnectionidstatsget.ts
   - src/models/operations/getdocument.ts
   - src/models/operations/getdocumentsummary.ts
   - src/models/operations/index.ts
+  - src/models/operations/listconnectionsconnectionsget.ts
   - src/models/operations/listdocuments.ts
   - src/models/operations/listentitiesbydocument.ts
   - src/models/operations/listentitiesbyinstruction.ts
   - src/models/operations/patchdocumentmetadata.ts
+  - src/models/operations/setconnectionenabledconnectionsconnectionidenabledput.ts
+  - src/models/operations/updateconnectionconnectionsconnectionidput.ts
   - src/models/operations/updatedocumentfile.ts
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
   - src/models/webhooks/eventeventpost.ts
   - src/models/webhooks/index.ts
+  - src/sdk/connections.ts
   - src/sdk/documents.ts
   - src/sdk/entities.ts
   - src/sdk/index.ts
@@ -406,6 +457,64 @@ examples:
       responses:
         "200":
           application/json: {"entities": [{"id": "0acf0abf-c6b5-4e2a-9ea8-a13f725d0bb4", "created_at": "2024-05-24T20:59:27.681Z", "updated_at": "2022-12-13T21:49:21.883Z", "instruction_id": "92a05549-1b0f-45fb-8f85-0f20075f1108", "document_id": "104fc7ec-2190-4ecf-83d0-7049ae9e1af9", "data": {"key": "<value>", "key1": "<value>"}}]}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422": {}
+  list_connections_connections_get:
+    speakeasy-default-list-connections-connections-get:
+      responses:
+        "200":
+          application/json: {"connections": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2022-03-24T06:20:14.879Z", "updated_at": "2024-09-10T04:30:13.188Z", "type": "<value>", "name": "<value>", "enabled": true}, {"id": "766718d6-d461-42e0-aaee-1b9ddf121dc2", "created_at": "2022-11-08T21:35:05.868Z", "updated_at": "2024-05-06T10:10:32.094Z", "type": "<value>", "name": "<value>", "enabled": false}, {"id": "104fb451-a70c-4fc8-9fe0-7fbc60ab960d", "created_at": "2023-03-22T09:41:56.524Z", "updated_at": "2022-03-28T18:28:26.777Z", "type": "<value>", "name": "<value>", "enabled": true}]}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422": {}
+  set_connection_enabled_connections__connection_id__enabled_put:
+    speakeasy-default-set-connection-enabled-connections-connection-id-enabled-put:
+      parameters:
+        path:
+          connection_id: "bf0424b5-8be9-4a67-a8ca-6ab0e9e89780"
+      requestBody:
+        application/json: {"enabled": true}
+      responses:
+        "200":
+          application/json: {"id": "26fadfa1-29b4-490b-acfb-7e6429656623", "created_at": "2024-10-14T19:56:20.471Z", "updated_at": "2022-04-26T16:53:39.637Z", "type": "<value>", "name": "<value>", "enabled": false}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422": {}
+  update_connection_connections__connection_id__put:
+    speakeasy-default-update-connection-connections-connection-id-put:
+      parameters:
+        path:
+          connection_id: "60a91616-1376-4585-82c8-85b663abc0c8"
+      requestBody:
+        application/json: {"partition_strategy": "fast"}
+      responses:
+        "200":
+          application/json: {"id": "e8483df4-d337-4f04-a295-c0df4e3bbb65", "created_at": "2022-04-30T21:32:17.394Z", "updated_at": "2024-08-07T23:17:45.906Z", "type": "<value>", "name": "<value>", "enabled": true}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422": {}
+  get_connection_stats_connections__connection_id__stats_get:
+    speakeasy-default-get-connection-stats-connections-connection-id-stats-get:
+      parameters:
+        path:
+          connection_id: "1f4a1403-1d6d-4b6c-b869-7469eff2dd5e"
+      responses:
+        "200":
+          application/json: {"document_count": 687553}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422": {}
+  delete_connection_connections__connection_id__delete_post:
+    speakeasy-default-delete-connection-connections-connection-id-delete-post:
+      parameters:
+        path:
+          connection_id: "5922bdb9-d99a-4e03-8cb8-05fcacce856d"
+      requestBody:
+        application/json: {"keep_files": true}
+      responses:
+        "200":
+          application/json: {}
         "401":
           application/json: {"detail": "<value>"}
         "422": {}

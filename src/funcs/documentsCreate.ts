@@ -29,7 +29,7 @@ import { isReadableStream } from "../types/streams.js";
  * Create Document
  *
  * @remarks
- * On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [pending, partitioned, refined, extracted, chunked, indexed, summary_indexed, keyword_indexed, ready, failed]. The document is available for retreival once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in indexed state. However the summary will only be available once the state has changed to summary_indexed or ready.
+ * On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
  */
 export async function documentsCreate(
   client: RagieCore,
@@ -97,12 +97,17 @@ export async function documentsCreate(
 
   const secConfig = await extractSecurity(client._options.auth);
   const securityInput = secConfig == null ? {} : { auth: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "CreateDocument",
     oAuth2Scopes: [],
     securitySource: client._options.auth,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
@@ -120,9 +125,8 @@ export async function documentsCreate(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "422", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
