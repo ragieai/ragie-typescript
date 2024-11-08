@@ -15,7 +15,6 @@ let value: PatchDocumentMetadataRequest = {
         "Bob",
       ],
       "title": "declassified report",
-      "updated_at": 1714491736216,
     },
   },
 };
