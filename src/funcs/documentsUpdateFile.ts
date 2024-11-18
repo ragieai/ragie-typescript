@@ -99,6 +99,9 @@ export async function documentsUpdateFile(
   const context = {
     operationID: "UpdateDocumentFile",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

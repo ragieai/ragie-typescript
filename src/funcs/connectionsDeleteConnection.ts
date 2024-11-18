@@ -84,6 +84,9 @@ export async function connectionsDeleteConnection(
   const context = {
     operationID: "delete_connection_connections__connection_id__delete_post",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

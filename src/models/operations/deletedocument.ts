@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteDocumentRequest = {
   /**
@@ -54,4 +57,22 @@ export namespace DeleteDocumentRequest$ {
   export const outboundSchema = DeleteDocumentRequest$outboundSchema;
   /** @deprecated use `DeleteDocumentRequest$Outbound` instead. */
   export type Outbound = DeleteDocumentRequest$Outbound;
+}
+
+export function deleteDocumentRequestToJSON(
+  deleteDocumentRequest: DeleteDocumentRequest,
+): string {
+  return JSON.stringify(
+    DeleteDocumentRequest$outboundSchema.parse(deleteDocumentRequest),
+  );
+}
+
+export function deleteDocumentRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteDocumentRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteDocumentRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteDocumentRequest' from JSON`,
+  );
 }

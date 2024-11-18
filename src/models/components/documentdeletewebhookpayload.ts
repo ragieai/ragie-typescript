@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DocumentDeleteWebhookPayloadMetadata = {};
 
@@ -45,6 +48,27 @@ export namespace DocumentDeleteWebhookPayloadMetadata$ {
     DocumentDeleteWebhookPayloadMetadata$outboundSchema;
   /** @deprecated use `DocumentDeleteWebhookPayloadMetadata$Outbound` instead. */
   export type Outbound = DocumentDeleteWebhookPayloadMetadata$Outbound;
+}
+
+export function documentDeleteWebhookPayloadMetadataToJSON(
+  documentDeleteWebhookPayloadMetadata: DocumentDeleteWebhookPayloadMetadata,
+): string {
+  return JSON.stringify(
+    DocumentDeleteWebhookPayloadMetadata$outboundSchema.parse(
+      documentDeleteWebhookPayloadMetadata,
+    ),
+  );
+}
+
+export function documentDeleteWebhookPayloadMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentDeleteWebhookPayloadMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DocumentDeleteWebhookPayloadMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentDeleteWebhookPayloadMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -105,4 +129,24 @@ export namespace DocumentDeleteWebhookPayload$ {
   export const outboundSchema = DocumentDeleteWebhookPayload$outboundSchema;
   /** @deprecated use `DocumentDeleteWebhookPayload$Outbound` instead. */
   export type Outbound = DocumentDeleteWebhookPayload$Outbound;
+}
+
+export function documentDeleteWebhookPayloadToJSON(
+  documentDeleteWebhookPayload: DocumentDeleteWebhookPayload,
+): string {
+  return JSON.stringify(
+    DocumentDeleteWebhookPayload$outboundSchema.parse(
+      documentDeleteWebhookPayload,
+    ),
+  );
+}
+
+export function documentDeleteWebhookPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentDeleteWebhookPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentDeleteWebhookPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentDeleteWebhookPayload' from JSON`,
+  );
 }

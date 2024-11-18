@@ -86,6 +86,9 @@ export async function connectionsSetConnectionEnabled(
     operationID:
       "set_connection_enabled_connections__connection_id__enabled_put",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

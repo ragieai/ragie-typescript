@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Entity,
   Entity$inboundSchema,
@@ -58,4 +61,18 @@ export namespace EntityList$ {
   export const outboundSchema = EntityList$outboundSchema;
   /** @deprecated use `EntityList$Outbound` instead. */
   export type Outbound = EntityList$Outbound;
+}
+
+export function entityListToJSON(entityList: EntityList): string {
+  return JSON.stringify(EntityList$outboundSchema.parse(entityList));
+}
+
+export function entityListFromJSON(
+  jsonString: string,
+): SafeParseResult<EntityList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EntityList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EntityList' from JSON`,
+  );
 }

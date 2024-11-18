@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PatchDocumentMetadataRequest = {
   /**
@@ -63,4 +66,24 @@ export namespace PatchDocumentMetadataRequest$ {
   export const outboundSchema = PatchDocumentMetadataRequest$outboundSchema;
   /** @deprecated use `PatchDocumentMetadataRequest$Outbound` instead. */
   export type Outbound = PatchDocumentMetadataRequest$Outbound;
+}
+
+export function patchDocumentMetadataRequestToJSON(
+  patchDocumentMetadataRequest: PatchDocumentMetadataRequest,
+): string {
+  return JSON.stringify(
+    PatchDocumentMetadataRequest$outboundSchema.parse(
+      patchDocumentMetadataRequest,
+    ),
+  );
+}
+
+export function patchDocumentMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PatchDocumentMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PatchDocumentMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PatchDocumentMetadataRequest' from JSON`,
+  );
 }

@@ -86,6 +86,9 @@ export async function connectionsList(
   const context = {
     operationID: "list_connections_connections_get",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

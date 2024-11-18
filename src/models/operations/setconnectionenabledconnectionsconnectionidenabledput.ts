@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest = {
   connectionId: string;
@@ -67,4 +70,29 @@ export namespace SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$ {
   /** @deprecated use `SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$Outbound` instead. */
   export type Outbound =
     SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$Outbound;
+}
+
+export function setConnectionEnabledConnectionsConnectionIdEnabledPutRequestToJSON(
+  setConnectionEnabledConnectionsConnectionIdEnabledPutRequest:
+    SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest,
+): string {
+  return JSON.stringify(
+    SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$outboundSchema
+      .parse(setConnectionEnabledConnectionsConnectionIdEnabledPutRequest),
+  );
+}
+
+export function setConnectionEnabledConnectionsConnectionIdEnabledPutRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest' from JSON`,
+  );
 }

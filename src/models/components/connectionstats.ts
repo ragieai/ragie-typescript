@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionStats = {
   documentCount: number;
@@ -51,4 +54,20 @@ export namespace ConnectionStats$ {
   export const outboundSchema = ConnectionStats$outboundSchema;
   /** @deprecated use `ConnectionStats$Outbound` instead. */
   export type Outbound = ConnectionStats$Outbound;
+}
+
+export function connectionStatsToJSON(
+  connectionStats: ConnectionStats,
+): string {
+  return JSON.stringify(ConnectionStats$outboundSchema.parse(connectionStats));
+}
+
+export function connectionStatsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionStats, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionStats$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionStats' from JSON`,
+  );
 }

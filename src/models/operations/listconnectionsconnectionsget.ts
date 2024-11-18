@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListConnectionsConnectionsGetRequest = {
   /**
@@ -70,6 +73,27 @@ export namespace ListConnectionsConnectionsGetRequest$ {
   export type Outbound = ListConnectionsConnectionsGetRequest$Outbound;
 }
 
+export function listConnectionsConnectionsGetRequestToJSON(
+  listConnectionsConnectionsGetRequest: ListConnectionsConnectionsGetRequest,
+): string {
+  return JSON.stringify(
+    ListConnectionsConnectionsGetRequest$outboundSchema.parse(
+      listConnectionsConnectionsGetRequest,
+    ),
+  );
+}
+
+export function listConnectionsConnectionsGetRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListConnectionsConnectionsGetRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListConnectionsConnectionsGetRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListConnectionsConnectionsGetRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListConnectionsConnectionsGetResponse$inboundSchema: z.ZodType<
   ListConnectionsConnectionsGetResponse,
@@ -114,4 +138,25 @@ export namespace ListConnectionsConnectionsGetResponse$ {
     ListConnectionsConnectionsGetResponse$outboundSchema;
   /** @deprecated use `ListConnectionsConnectionsGetResponse$Outbound` instead. */
   export type Outbound = ListConnectionsConnectionsGetResponse$Outbound;
+}
+
+export function listConnectionsConnectionsGetResponseToJSON(
+  listConnectionsConnectionsGetResponse: ListConnectionsConnectionsGetResponse,
+): string {
+  return JSON.stringify(
+    ListConnectionsConnectionsGetResponse$outboundSchema.parse(
+      listConnectionsConnectionsGetResponse,
+    ),
+  );
+}
+
+export function listConnectionsConnectionsGetResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListConnectionsConnectionsGetResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListConnectionsConnectionsGetResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListConnectionsConnectionsGetResponse' from JSON`,
+  );
 }

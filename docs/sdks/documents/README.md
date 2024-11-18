@@ -193,8 +193,13 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.createRaw({
-    data: "<value>",
+    metadata: {
+      "key": [
+        "<value>",
+      ],
+    },
     partition: "<value>",
+    data: "<value>",
   });
 
   // Handle the result
@@ -220,8 +225,13 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsCreateRaw(ragie, {
-    data: "<value>",
+    metadata: {
+      "key": [
+        "<value>",
+      ],
+    },
     partition: "<value>",
+    data: "<value>",
   });
 
   if (!res.ok) {
@@ -273,8 +283,11 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.createDocumentFromUrl({
-    url: "https://scientific-plain.biz/",
+    metadata: {
+
+    },
     partition: "<value>",
+    url: "https://scientific-plain.biz/",
   });
 
   // Handle the result
@@ -300,8 +313,11 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsCreateDocumentFromUrl(ragie, {
-    url: "https://scientific-plain.biz/",
+    metadata: {
+  
+    },
     partition: "<value>",
+    url: "https://scientific-plain.biz/",
   });
 
   if (!res.ok) {

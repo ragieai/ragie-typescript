@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ScoredChunk = {
   text: string;
@@ -71,4 +74,18 @@ export namespace ScoredChunk$ {
   export const outboundSchema = ScoredChunk$outboundSchema;
   /** @deprecated use `ScoredChunk$Outbound` instead. */
   export type Outbound = ScoredChunk$Outbound;
+}
+
+export function scoredChunkToJSON(scoredChunk: ScoredChunk): string {
+  return JSON.stringify(ScoredChunk$outboundSchema.parse(scoredChunk));
+}
+
+export function scoredChunkFromJSON(
+  jsonString: string,
+): SafeParseResult<ScoredChunk, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ScoredChunk$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ScoredChunk' from JSON`,
+  );
 }

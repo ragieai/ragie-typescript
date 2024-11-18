@@ -83,6 +83,9 @@ export async function connectionsUpdateConnection(
   const context = {
     operationID: "update_connection_connections__connection_id__put",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

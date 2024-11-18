@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveParams = {
   /**
@@ -88,4 +91,18 @@ export namespace RetrieveParams$ {
   export const outboundSchema = RetrieveParams$outboundSchema;
   /** @deprecated use `RetrieveParams$Outbound` instead. */
   export type Outbound = RetrieveParams$Outbound;
+}
+
+export function retrieveParamsToJSON(retrieveParams: RetrieveParams): string {
+  return JSON.stringify(RetrieveParams$outboundSchema.parse(retrieveParams));
+}
+
+export function retrieveParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<RetrieveParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RetrieveParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RetrieveParams' from JSON`,
+  );
 }

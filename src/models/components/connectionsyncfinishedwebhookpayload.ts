@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionSyncFinishedWebhookPayloadConnectionMetadata = {};
 
@@ -48,6 +51,32 @@ export namespace ConnectionSyncFinishedWebhookPayloadConnectionMetadata$ {
   /** @deprecated use `ConnectionSyncFinishedWebhookPayloadConnectionMetadata$Outbound` instead. */
   export type Outbound =
     ConnectionSyncFinishedWebhookPayloadConnectionMetadata$Outbound;
+}
+
+export function connectionSyncFinishedWebhookPayloadConnectionMetadataToJSON(
+  connectionSyncFinishedWebhookPayloadConnectionMetadata:
+    ConnectionSyncFinishedWebhookPayloadConnectionMetadata,
+): string {
+  return JSON.stringify(
+    ConnectionSyncFinishedWebhookPayloadConnectionMetadata$outboundSchema.parse(
+      connectionSyncFinishedWebhookPayloadConnectionMetadata,
+    ),
+  );
+}
+
+export function connectionSyncFinishedWebhookPayloadConnectionMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ConnectionSyncFinishedWebhookPayloadConnectionMetadata,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectionSyncFinishedWebhookPayloadConnectionMetadata$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionSyncFinishedWebhookPayloadConnectionMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -112,4 +141,25 @@ export namespace ConnectionSyncFinishedWebhookPayload$ {
     ConnectionSyncFinishedWebhookPayload$outboundSchema;
   /** @deprecated use `ConnectionSyncFinishedWebhookPayload$Outbound` instead. */
   export type Outbound = ConnectionSyncFinishedWebhookPayload$Outbound;
+}
+
+export function connectionSyncFinishedWebhookPayloadToJSON(
+  connectionSyncFinishedWebhookPayload: ConnectionSyncFinishedWebhookPayload,
+): string {
+  return JSON.stringify(
+    ConnectionSyncFinishedWebhookPayload$outboundSchema.parse(
+      connectionSyncFinishedWebhookPayload,
+    ),
+  );
+}
+
+export function connectionSyncFinishedWebhookPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionSyncFinishedWebhookPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectionSyncFinishedWebhookPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionSyncFinishedWebhookPayload' from JSON`,
+  );
 }

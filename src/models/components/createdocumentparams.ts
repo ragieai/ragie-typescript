@@ -4,20 +4,25 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. Only applicable for rich documents such as word documents and PDFs. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`.
  */
-export const Mode = {
+export const CreateDocumentParamsMode = {
   HiRes: "hi_res",
   Fast: "fast",
 } as const;
 /**
  * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. Only applicable for rich documents such as word documents and PDFs. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`.
  */
-export type Mode = ClosedEnum<typeof Mode>;
+export type CreateDocumentParamsMode = ClosedEnum<
+  typeof CreateDocumentParamsMode
+>;
 
 export type Metadata = string | number | boolean | Array<string>;
 
@@ -48,7 +53,7 @@ export type CreateDocumentParams = {
   /**
    * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. Only applicable for rich documents such as word documents and PDFs. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`.
    */
-  mode?: Mode | undefined;
+  mode?: CreateDocumentParamsMode | undefined;
   /**
    * An optional partition identifier. Documents can be scoped to a partition. Partitions must be lowercase alphanumeric and may only include the special characters `_` and `-`.  A partition is created any time a document is created or moved to a new partition.
    */
@@ -56,23 +61,24 @@ export type CreateDocumentParams = {
 };
 
 /** @internal */
-export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
-  Mode,
-);
+export const CreateDocumentParamsMode$inboundSchema: z.ZodNativeEnum<
+  typeof CreateDocumentParamsMode
+> = z.nativeEnum(CreateDocumentParamsMode);
 
 /** @internal */
-export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> =
-  Mode$inboundSchema;
+export const CreateDocumentParamsMode$outboundSchema: z.ZodNativeEnum<
+  typeof CreateDocumentParamsMode
+> = CreateDocumentParamsMode$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Mode$ {
-  /** @deprecated use `Mode$inboundSchema` instead. */
-  export const inboundSchema = Mode$inboundSchema;
-  /** @deprecated use `Mode$outboundSchema` instead. */
-  export const outboundSchema = Mode$outboundSchema;
+export namespace CreateDocumentParamsMode$ {
+  /** @deprecated use `CreateDocumentParamsMode$inboundSchema` instead. */
+  export const inboundSchema = CreateDocumentParamsMode$inboundSchema;
+  /** @deprecated use `CreateDocumentParamsMode$outboundSchema` instead. */
+  export const outboundSchema = CreateDocumentParamsMode$outboundSchema;
 }
 
 /** @internal */
@@ -103,6 +109,20 @@ export namespace Metadata$ {
   export const outboundSchema = Metadata$outboundSchema;
   /** @deprecated use `Metadata$Outbound` instead. */
   export type Outbound = Metadata$Outbound;
+}
+
+export function metadataToJSON(metadata: Metadata): string {
+  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+}
+
+export function metadataFromJSON(
+  jsonString: string,
+): SafeParseResult<Metadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -151,6 +171,20 @@ export namespace FileT$ {
   export type Outbound = FileT$Outbound;
 }
 
+export function fileTToJSON(fileT: FileT): string {
+  return JSON.stringify(FileT$outboundSchema.parse(fileT));
+}
+
+export function fileTFromJSON(
+  jsonString: string,
+): SafeParseResult<FileT, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileT' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateDocumentParams$inboundSchema: z.ZodType<
   CreateDocumentParams,
@@ -162,7 +196,7 @@ export const CreateDocumentParams$inboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]),
   ).optional(),
-  mode: Mode$inboundSchema.default("fast"),
+  mode: CreateDocumentParamsMode$inboundSchema.default("fast"),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -192,7 +226,7 @@ export const CreateDocumentParams$outboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]),
   ).optional(),
-  mode: Mode$outboundSchema.default("fast"),
+  mode: CreateDocumentParamsMode$outboundSchema.default("fast"),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -211,4 +245,22 @@ export namespace CreateDocumentParams$ {
   export const outboundSchema = CreateDocumentParams$outboundSchema;
   /** @deprecated use `CreateDocumentParams$Outbound` instead. */
   export type Outbound = CreateDocumentParams$Outbound;
+}
+
+export function createDocumentParamsToJSON(
+  createDocumentParams: CreateDocumentParams,
+): string {
+  return JSON.stringify(
+    CreateDocumentParams$outboundSchema.parse(createDocumentParams),
+  );
+}
+
+export function createDocumentParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateDocumentParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateDocumentParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateDocumentParams' from JSON`,
+  );
 }

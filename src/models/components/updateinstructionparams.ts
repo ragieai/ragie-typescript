@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateInstructionParams = {
   /**
@@ -45,4 +48,22 @@ export namespace UpdateInstructionParams$ {
   export const outboundSchema = UpdateInstructionParams$outboundSchema;
   /** @deprecated use `UpdateInstructionParams$Outbound` instead. */
   export type Outbound = UpdateInstructionParams$Outbound;
+}
+
+export function updateInstructionParamsToJSON(
+  updateInstructionParams: UpdateInstructionParams,
+): string {
+  return JSON.stringify(
+    UpdateInstructionParams$outboundSchema.parse(updateInstructionParams),
+  );
+}
+
+export function updateInstructionParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateInstructionParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateInstructionParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateInstructionParams' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionMetadata = {};
 
@@ -46,6 +49,24 @@ export namespace ConnectionMetadata$ {
   export const outboundSchema = ConnectionMetadata$outboundSchema;
   /** @deprecated use `ConnectionMetadata$Outbound` instead. */
   export type Outbound = ConnectionMetadata$Outbound;
+}
+
+export function connectionMetadataToJSON(
+  connectionMetadata: ConnectionMetadata,
+): string {
+  return JSON.stringify(
+    ConnectionMetadata$outboundSchema.parse(connectionMetadata),
+  );
+}
+
+export function connectionMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -125,4 +146,25 @@ export namespace ConnectionSyncStartedWebhookPayload$ {
     ConnectionSyncStartedWebhookPayload$outboundSchema;
   /** @deprecated use `ConnectionSyncStartedWebhookPayload$Outbound` instead. */
   export type Outbound = ConnectionSyncStartedWebhookPayload$Outbound;
+}
+
+export function connectionSyncStartedWebhookPayloadToJSON(
+  connectionSyncStartedWebhookPayload: ConnectionSyncStartedWebhookPayload,
+): string {
+  return JSON.stringify(
+    ConnectionSyncStartedWebhookPayload$outboundSchema.parse(
+      connectionSyncStartedWebhookPayload,
+    ),
+  );
+}
+
+export function connectionSyncStartedWebhookPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionSyncStartedWebhookPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectionSyncStartedWebhookPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionSyncStartedWebhookPayload' from JSON`,
+  );
 }

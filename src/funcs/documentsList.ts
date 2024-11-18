@@ -90,6 +90,9 @@ export async function documentsList(
   const context = {
     operationID: "ListDocuments",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

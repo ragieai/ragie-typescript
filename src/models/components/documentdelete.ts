@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DocumentDelete = {
   status: string;
@@ -42,4 +45,18 @@ export namespace DocumentDelete$ {
   export const outboundSchema = DocumentDelete$outboundSchema;
   /** @deprecated use `DocumentDelete$Outbound` instead. */
   export type Outbound = DocumentDelete$Outbound;
+}
+
+export function documentDeleteToJSON(documentDelete: DocumentDelete): string {
+  return JSON.stringify(DocumentDelete$outboundSchema.parse(documentDelete));
+}
+
+export function documentDeleteFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentDelete, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentDelete$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentDelete' from JSON`,
+  );
 }

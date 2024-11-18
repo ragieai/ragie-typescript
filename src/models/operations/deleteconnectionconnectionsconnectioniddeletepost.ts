@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteConnectionConnectionsConnectionIdDeletePostRequest = {
   connectionId: string;
@@ -64,4 +67,29 @@ export namespace DeleteConnectionConnectionsConnectionIdDeletePostRequest$ {
   /** @deprecated use `DeleteConnectionConnectionsConnectionIdDeletePostRequest$Outbound` instead. */
   export type Outbound =
     DeleteConnectionConnectionsConnectionIdDeletePostRequest$Outbound;
+}
+
+export function deleteConnectionConnectionsConnectionIdDeletePostRequestToJSON(
+  deleteConnectionConnectionsConnectionIdDeletePostRequest:
+    DeleteConnectionConnectionsConnectionIdDeletePostRequest,
+): string {
+  return JSON.stringify(
+    DeleteConnectionConnectionsConnectionIdDeletePostRequest$outboundSchema
+      .parse(deleteConnectionConnectionsConnectionIdDeletePostRequest),
+  );
+}
+
+export function deleteConnectionConnectionsConnectionIdDeletePostRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  DeleteConnectionConnectionsConnectionIdDeletePostRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DeleteConnectionConnectionsConnectionIdDeletePostRequest$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'DeleteConnectionConnectionsConnectionIdDeletePostRequest' from JSON`,
+  );
 }

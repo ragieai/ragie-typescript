@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListEntitiesByDocumentRequest = {
   /**
@@ -77,6 +80,26 @@ export namespace ListEntitiesByDocumentRequest$ {
   export type Outbound = ListEntitiesByDocumentRequest$Outbound;
 }
 
+export function listEntitiesByDocumentRequestToJSON(
+  listEntitiesByDocumentRequest: ListEntitiesByDocumentRequest,
+): string {
+  return JSON.stringify(
+    ListEntitiesByDocumentRequest$outboundSchema.parse(
+      listEntitiesByDocumentRequest,
+    ),
+  );
+}
+
+export function listEntitiesByDocumentRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEntitiesByDocumentRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEntitiesByDocumentRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEntitiesByDocumentRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListEntitiesByDocumentResponse$inboundSchema: z.ZodType<
   ListEntitiesByDocumentResponse,
@@ -119,4 +142,24 @@ export namespace ListEntitiesByDocumentResponse$ {
   export const outboundSchema = ListEntitiesByDocumentResponse$outboundSchema;
   /** @deprecated use `ListEntitiesByDocumentResponse$Outbound` instead. */
   export type Outbound = ListEntitiesByDocumentResponse$Outbound;
+}
+
+export function listEntitiesByDocumentResponseToJSON(
+  listEntitiesByDocumentResponse: ListEntitiesByDocumentResponse,
+): string {
+  return JSON.stringify(
+    ListEntitiesByDocumentResponse$outboundSchema.parse(
+      listEntitiesByDocumentResponse,
+    ),
+  );
+}
+
+export function listEntitiesByDocumentResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEntitiesByDocumentResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEntitiesByDocumentResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEntitiesByDocumentResponse' from JSON`,
+  );
 }

@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectionSyncStartedWebhookPayload,
   ConnectionSyncStartedWebhookPayload$inboundSchema,
@@ -85,4 +88,24 @@ export namespace ConnectionSyncStartedWebhook$ {
   export const outboundSchema = ConnectionSyncStartedWebhook$outboundSchema;
   /** @deprecated use `ConnectionSyncStartedWebhook$Outbound` instead. */
   export type Outbound = ConnectionSyncStartedWebhook$Outbound;
+}
+
+export function connectionSyncStartedWebhookToJSON(
+  connectionSyncStartedWebhook: ConnectionSyncStartedWebhook,
+): string {
+  return JSON.stringify(
+    ConnectionSyncStartedWebhook$outboundSchema.parse(
+      connectionSyncStartedWebhook,
+    ),
+  );
+}
+
+export function connectionSyncStartedWebhookFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionSyncStartedWebhook, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionSyncStartedWebhook$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionSyncStartedWebhook' from JSON`,
+  );
 }

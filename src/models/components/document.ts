@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DocumentMetadata = string | number | boolean | Array<string>;
 
@@ -51,6 +54,24 @@ export namespace DocumentMetadata$ {
   export const outboundSchema = DocumentMetadata$outboundSchema;
   /** @deprecated use `DocumentMetadata$Outbound` instead. */
   export type Outbound = DocumentMetadata$Outbound;
+}
+
+export function documentMetadataToJSON(
+  documentMetadata: DocumentMetadata,
+): string {
+  return JSON.stringify(
+    DocumentMetadata$outboundSchema.parse(documentMetadata),
+  );
+}
+
+export function documentMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -129,4 +150,18 @@ export namespace Document$ {
   export const outboundSchema = Document$outboundSchema;
   /** @deprecated use `Document$Outbound` instead. */
   export type Outbound = Document$Outbound;
+}
+
+export function documentToJSON(document: Document): string {
+  return JSON.stringify(Document$outboundSchema.parse(document));
+}
+
+export function documentFromJSON(
+  jsonString: string,
+): SafeParseResult<Document, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Document$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Document' from JSON`,
+  );
 }

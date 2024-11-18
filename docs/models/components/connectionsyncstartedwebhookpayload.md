@@ -10,10 +10,10 @@ let value: ConnectionSyncStartedWebhookPayload = {
   syncId: "<id>",
   partition: "<value>",
   connectionMetadata: {},
-  createCount: 989410,
-  updateContentCount: 65304,
-  updateMetadataCount: 783235,
-  deleteCount: 288398,
+  createCount: 287051,
+  updateContentCount: 706575,
+  updateMetadataCount: 414857,
+  deleteCount: 360545,
 };
 ```
 

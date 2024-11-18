@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Entity = {
   id: string;
@@ -84,4 +87,18 @@ export namespace Entity$ {
   export const outboundSchema = Entity$outboundSchema;
   /** @deprecated use `Entity$Outbound` instead. */
   export type Outbound = Entity$Outbound;
+}
+
+export function entityToJSON(entity: Entity): string {
+  return JSON.stringify(Entity$outboundSchema.parse(entity));
+}
+
+export function entityFromJSON(
+  jsonString: string,
+): SafeParseResult<Entity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Entity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Entity' from JSON`,
+  );
 }

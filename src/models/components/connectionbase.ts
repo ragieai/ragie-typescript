@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const PartitionStrategy = {
   HiRes: "hi_res",
@@ -79,6 +82,24 @@ export namespace ConnectionBaseMetadata$ {
   export type Outbound = ConnectionBaseMetadata$Outbound;
 }
 
+export function connectionBaseMetadataToJSON(
+  connectionBaseMetadata: ConnectionBaseMetadata,
+): string {
+  return JSON.stringify(
+    ConnectionBaseMetadata$outboundSchema.parse(connectionBaseMetadata),
+  );
+}
+
+export function connectionBaseMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionBaseMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionBaseMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionBaseMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectionBase$inboundSchema: z.ZodType<
   ConnectionBase,
@@ -130,4 +151,18 @@ export namespace ConnectionBase$ {
   export const outboundSchema = ConnectionBase$outboundSchema;
   /** @deprecated use `ConnectionBase$Outbound` instead. */
   export type Outbound = ConnectionBase$Outbound;
+}
+
+export function connectionBaseToJSON(connectionBase: ConnectionBase): string {
+  return JSON.stringify(ConnectionBase$outboundSchema.parse(connectionBase));
+}
+
+export function connectionBaseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionBase, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionBase$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionBase' from JSON`,
+  );
 }

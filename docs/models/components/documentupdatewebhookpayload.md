@@ -7,7 +7,7 @@ import { DocumentUpdateWebhookPayload } from "ragie/models/components";
 
 let value: DocumentUpdateWebhookPayload = {
   documentId: "<id>",
-  status: "failed",
+  status: "ready",
   partition: "<value>",
   metadata: {},
   externalId: "<id>",

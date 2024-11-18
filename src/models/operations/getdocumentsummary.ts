@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetDocumentSummaryRequest = {
   /**
@@ -54,4 +57,22 @@ export namespace GetDocumentSummaryRequest$ {
   export const outboundSchema = GetDocumentSummaryRequest$outboundSchema;
   /** @deprecated use `GetDocumentSummaryRequest$Outbound` instead. */
   export type Outbound = GetDocumentSummaryRequest$Outbound;
+}
+
+export function getDocumentSummaryRequestToJSON(
+  getDocumentSummaryRequest: GetDocumentSummaryRequest,
+): string {
+  return JSON.stringify(
+    GetDocumentSummaryRequest$outboundSchema.parse(getDocumentSummaryRequest),
+  );
+}
+
+export function getDocumentSummaryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDocumentSummaryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDocumentSummaryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDocumentSummaryRequest' from JSON`,
+  );
 }

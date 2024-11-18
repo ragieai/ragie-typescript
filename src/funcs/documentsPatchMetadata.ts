@@ -79,6 +79,9 @@ export async function documentsPatchMetadata(
   const context = {
     operationID: "PatchDocumentMetadata",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

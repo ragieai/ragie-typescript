@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionMetadataMetadata = {};
 
@@ -47,6 +50,24 @@ export namespace ConnectionMetadataMetadata$ {
   export const outboundSchema = ConnectionMetadataMetadata$outboundSchema;
   /** @deprecated use `ConnectionMetadataMetadata$Outbound` instead. */
   export type Outbound = ConnectionMetadataMetadata$Outbound;
+}
+
+export function connectionMetadataMetadataToJSON(
+  connectionMetadataMetadata: ConnectionMetadataMetadata,
+): string {
+  return JSON.stringify(
+    ConnectionMetadataMetadata$outboundSchema.parse(connectionMetadataMetadata),
+  );
+}
+
+export function connectionMetadataMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionMetadataMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionMetadataMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionMetadataMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -121,4 +142,18 @@ export namespace Connection$ {
   export const outboundSchema = Connection$outboundSchema;
   /** @deprecated use `Connection$Outbound` instead. */
   export type Outbound = Connection$Outbound;
+}
+
+export function connectionToJSON(connection: Connection): string {
+  return JSON.stringify(Connection$outboundSchema.parse(connection));
+}
+
+export function connectionFromJSON(
+  jsonString: string,
+): SafeParseResult<Connection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Connection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Connection' from JSON`,
+  );
 }

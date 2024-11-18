@@ -78,6 +78,9 @@ export async function documentsUpdateRaw(
   const context = {
     operationID: "UpdateDocumentRaw",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

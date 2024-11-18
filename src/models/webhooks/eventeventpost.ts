@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EventeventPostBody =
   | components.DocumentUpdateWebhook
@@ -61,4 +64,22 @@ export namespace EventeventPostBody$ {
   export const outboundSchema = EventeventPostBody$outboundSchema;
   /** @deprecated use `EventeventPostBody$Outbound` instead. */
   export type Outbound = EventeventPostBody$Outbound;
+}
+
+export function eventeventPostBodyToJSON(
+  eventeventPostBody: EventeventPostBody,
+): string {
+  return JSON.stringify(
+    EventeventPostBody$outboundSchema.parse(eventeventPostBody),
+  );
+}
+
+export function eventeventPostBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<EventeventPostBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EventeventPostBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventeventPostBody' from JSON`,
+  );
 }

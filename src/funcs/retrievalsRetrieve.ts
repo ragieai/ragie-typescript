@@ -68,6 +68,9 @@ export async function retrievalsRetrieve(
   const context = {
     operationID: "Retrieve",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

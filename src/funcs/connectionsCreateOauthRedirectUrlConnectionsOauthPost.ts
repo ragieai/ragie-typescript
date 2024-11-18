@@ -3,7 +3,7 @@
  */
 
 import { RagieCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -20,22 +20,21 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get Document Summary
+ * Create Oauth Redirect Url
  *
  * @remarks
- * Get a LLM generated summary of the document. The summary is created when the document is first created or updated. Documents of types ['xls', 'xlsx', 'csv', 'json'] are not supported for summarization. Documents greater than 1M in token length are not supported. This feature is in beta and may change in the future.
+ * Creates a redirect url to redirect the user to when initializing an embedded connector.
  */
-export async function documentsGetSummary(
+export async function connectionsCreateOauthRedirectUrlConnectionsOauthPost(
   client: RagieCore,
-  request: operations.GetDocumentSummaryRequest,
+  request: components.OAuthUrlCreate,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.DocumentSummary,
+    components.OAuthUrlResponse,
     | errors.ErrorMessage
     | errors.HTTPValidationError
     | SDKError
@@ -49,25 +48,19 @@ export async function documentsGetSummary(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.GetDocumentSummaryRequest$outboundSchema.parse(value),
+    (value) => components.OAuthUrlCreate$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload, { explode: true });
 
-  const pathParams = {
-    document_id: encodeSimple("document_id", payload.document_id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-
-  const path = pathToFunc("/documents/{document_id}/summary")(pathParams);
+  const path = pathToFunc("/connections/oauth")();
 
   const headers = new Headers({
+    "Content-Type": "application/json",
     Accept: "application/json",
   });
 
@@ -76,7 +69,7 @@ export async function documentsGetSummary(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "GetDocumentSummary",
+    operationID: "create_oauth_redirect_url_connections_oauth_post",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -90,7 +83,7 @@ export async function documentsGetSummary(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     path: path,
     headers: headers,
     body: body,
@@ -103,7 +96,7 @@ export async function documentsGetSummary(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "404", "422", "4XX", "5XX"],
+    errorCodes: ["401", "422", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -117,7 +110,7 @@ export async function documentsGetSummary(
   };
 
   const [result] = await M.match<
-    components.DocumentSummary,
+    components.OAuthUrlResponse,
     | errors.ErrorMessage
     | errors.HTTPValidationError
     | SDKError
@@ -128,8 +121,8 @@ export async function documentsGetSummary(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.DocumentSummary$inboundSchema),
-    M.jsonErr([401, 404], errors.ErrorMessage$inboundSchema),
+    M.json(200, components.OAuthUrlResponse$inboundSchema),
+    M.jsonErr(401, errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

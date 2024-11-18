@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionSyncProgressWebhookPayloadConnectionMetadata = {};
 
@@ -57,6 +60,32 @@ export namespace ConnectionSyncProgressWebhookPayloadConnectionMetadata$ {
   /** @deprecated use `ConnectionSyncProgressWebhookPayloadConnectionMetadata$Outbound` instead. */
   export type Outbound =
     ConnectionSyncProgressWebhookPayloadConnectionMetadata$Outbound;
+}
+
+export function connectionSyncProgressWebhookPayloadConnectionMetadataToJSON(
+  connectionSyncProgressWebhookPayloadConnectionMetadata:
+    ConnectionSyncProgressWebhookPayloadConnectionMetadata,
+): string {
+  return JSON.stringify(
+    ConnectionSyncProgressWebhookPayloadConnectionMetadata$outboundSchema.parse(
+      connectionSyncProgressWebhookPayloadConnectionMetadata,
+    ),
+  );
+}
+
+export function connectionSyncProgressWebhookPayloadConnectionMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ConnectionSyncProgressWebhookPayloadConnectionMetadata,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectionSyncProgressWebhookPayloadConnectionMetadata$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionSyncProgressWebhookPayloadConnectionMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -166,4 +195,25 @@ export namespace ConnectionSyncProgressWebhookPayload$ {
     ConnectionSyncProgressWebhookPayload$outboundSchema;
   /** @deprecated use `ConnectionSyncProgressWebhookPayload$Outbound` instead. */
   export type Outbound = ConnectionSyncProgressWebhookPayload$Outbound;
+}
+
+export function connectionSyncProgressWebhookPayloadToJSON(
+  connectionSyncProgressWebhookPayload: ConnectionSyncProgressWebhookPayload,
+): string {
+  return JSON.stringify(
+    ConnectionSyncProgressWebhookPayload$outboundSchema.parse(
+      connectionSyncProgressWebhookPayload,
+    ),
+  );
+}
+
+export function connectionSyncProgressWebhookPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionSyncProgressWebhookPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectionSyncProgressWebhookPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionSyncProgressWebhookPayload' from JSON`,
+  );
 }
