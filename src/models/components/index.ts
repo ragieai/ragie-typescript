@@ -34,6 +34,8 @@ export * from "./entityextractedwebhook.js";
 export * from "./entityextractedwebhookpayload.js";
 export * from "./entitylist.js";
 export * from "./instruction.js";
+export * from "./oauthurlcreate.js";
+export * from "./oauthurlresponse.js";
 export * from "./pagination.js";
 export * from "./patchdocumentmetadataparams.js";
 export * from "./retrieval.js";

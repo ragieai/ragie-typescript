@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EntityExtractedWebhookPayload,
   EntityExtractedWebhookPayload$inboundSchema,
@@ -85,4 +88,22 @@ export namespace EntityExtractedWebhook$ {
   export const outboundSchema = EntityExtractedWebhook$outboundSchema;
   /** @deprecated use `EntityExtractedWebhook$Outbound` instead. */
   export type Outbound = EntityExtractedWebhook$Outbound;
+}
+
+export function entityExtractedWebhookToJSON(
+  entityExtractedWebhook: EntityExtractedWebhook,
+): string {
+  return JSON.stringify(
+    EntityExtractedWebhook$outboundSchema.parse(entityExtractedWebhook),
+  );
+}
+
+export function entityExtractedWebhookFromJSON(
+  jsonString: string,
+): SafeParseResult<EntityExtractedWebhook, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EntityExtractedWebhook$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EntityExtractedWebhook' from JSON`,
+  );
 }

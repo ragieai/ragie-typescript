@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetConnectionStatsConnectionsConnectionIdStatsGetRequest = {
   connectionId: string;
@@ -57,4 +60,29 @@ export namespace GetConnectionStatsConnectionsConnectionIdStatsGetRequest$ {
   /** @deprecated use `GetConnectionStatsConnectionsConnectionIdStatsGetRequest$Outbound` instead. */
   export type Outbound =
     GetConnectionStatsConnectionsConnectionIdStatsGetRequest$Outbound;
+}
+
+export function getConnectionStatsConnectionsConnectionIdStatsGetRequestToJSON(
+  getConnectionStatsConnectionsConnectionIdStatsGetRequest:
+    GetConnectionStatsConnectionsConnectionIdStatsGetRequest,
+): string {
+  return JSON.stringify(
+    GetConnectionStatsConnectionsConnectionIdStatsGetRequest$outboundSchema
+      .parse(getConnectionStatsConnectionsConnectionIdStatsGetRequest),
+  );
+}
+
+export function getConnectionStatsConnectionsConnectionIdStatsGetRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetConnectionStatsConnectionsConnectionIdStatsGetRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetConnectionStatsConnectionsConnectionIdStatsGetRequest$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectionStatsConnectionsConnectionIdStatsGetRequest' from JSON`,
+  );
 }

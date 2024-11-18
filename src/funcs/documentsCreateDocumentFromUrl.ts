@@ -69,6 +69,9 @@ export async function documentsCreateDocumentFromUrl(
   const context = {
     operationID: "CreateDocumentFromUrl",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

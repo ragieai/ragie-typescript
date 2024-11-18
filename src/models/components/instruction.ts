@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The scope of the instruction. Determines whether the instruction is applied to the entire document or to each chunk of the document. Options are `'document'` or `'chunk'`. Generally `'document'` should be used when analyzing the full document is desired, such as when generating a summary or determining sentiment, and `'chunk'` should be used when a fine grained search over a document is desired.
@@ -101,6 +104,20 @@ export namespace Filter$ {
   export type Outbound = Filter$Outbound;
 }
 
+export function filterToJSON(filter: Filter): string {
+  return JSON.stringify(Filter$outboundSchema.parse(filter));
+}
+
+export function filterFromJSON(
+  jsonString: string,
+): SafeParseResult<Filter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Filter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Filter' from JSON`,
+  );
+}
+
 /** @internal */
 export const Instruction$inboundSchema: z.ZodType<
   Instruction,
@@ -174,4 +191,18 @@ export namespace Instruction$ {
   export const outboundSchema = Instruction$outboundSchema;
   /** @deprecated use `Instruction$Outbound` instead. */
   export type Outbound = Instruction$Outbound;
+}
+
+export function instructionToJSON(instruction: Instruction): string {
+  return JSON.stringify(Instruction$outboundSchema.parse(instruction));
+}
+
+export function instructionFromJSON(
+  jsonString: string,
+): SafeParseResult<Instruction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Instruction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Instruction' from JSON`,
+  );
 }

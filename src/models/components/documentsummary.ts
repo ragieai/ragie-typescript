@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DocumentSummary = {
   documentId: string;
@@ -55,4 +58,20 @@ export namespace DocumentSummary$ {
   export const outboundSchema = DocumentSummary$outboundSchema;
   /** @deprecated use `DocumentSummary$Outbound` instead. */
   export type Outbound = DocumentSummary$Outbound;
+}
+
+export function documentSummaryToJSON(
+  documentSummary: DocumentSummary,
+): string {
+  return JSON.stringify(DocumentSummary$outboundSchema.parse(documentSummary));
+}
+
+export function documentSummaryFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentSummary, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentSummary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentSummary' from JSON`,
+  );
 }

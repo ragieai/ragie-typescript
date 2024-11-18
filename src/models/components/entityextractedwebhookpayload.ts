@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EntityExtractedWebhookPayloadDocumentMetadata = {};
 
@@ -54,6 +57,33 @@ export namespace EntityExtractedWebhookPayloadDocumentMetadata$ {
   export type Outbound = EntityExtractedWebhookPayloadDocumentMetadata$Outbound;
 }
 
+export function entityExtractedWebhookPayloadDocumentMetadataToJSON(
+  entityExtractedWebhookPayloadDocumentMetadata:
+    EntityExtractedWebhookPayloadDocumentMetadata,
+): string {
+  return JSON.stringify(
+    EntityExtractedWebhookPayloadDocumentMetadata$outboundSchema.parse(
+      entityExtractedWebhookPayloadDocumentMetadata,
+    ),
+  );
+}
+
+export function entityExtractedWebhookPayloadDocumentMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  EntityExtractedWebhookPayloadDocumentMetadata,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      EntityExtractedWebhookPayloadDocumentMetadata$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'EntityExtractedWebhookPayloadDocumentMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const EntityExtractedWebhookPayloadData$inboundSchema: z.ZodType<
   EntityExtractedWebhookPayloadData,
@@ -83,6 +113,26 @@ export namespace EntityExtractedWebhookPayloadData$ {
     EntityExtractedWebhookPayloadData$outboundSchema;
   /** @deprecated use `EntityExtractedWebhookPayloadData$Outbound` instead. */
   export type Outbound = EntityExtractedWebhookPayloadData$Outbound;
+}
+
+export function entityExtractedWebhookPayloadDataToJSON(
+  entityExtractedWebhookPayloadData: EntityExtractedWebhookPayloadData,
+): string {
+  return JSON.stringify(
+    EntityExtractedWebhookPayloadData$outboundSchema.parse(
+      entityExtractedWebhookPayloadData,
+    ),
+  );
+}
+
+export function entityExtractedWebhookPayloadDataFromJSON(
+  jsonString: string,
+): SafeParseResult<EntityExtractedWebhookPayloadData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EntityExtractedWebhookPayloadData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EntityExtractedWebhookPayloadData' from JSON`,
+  );
 }
 
 /** @internal */
@@ -162,4 +212,24 @@ export namespace EntityExtractedWebhookPayload$ {
   export const outboundSchema = EntityExtractedWebhookPayload$outboundSchema;
   /** @deprecated use `EntityExtractedWebhookPayload$Outbound` instead. */
   export type Outbound = EntityExtractedWebhookPayload$Outbound;
+}
+
+export function entityExtractedWebhookPayloadToJSON(
+  entityExtractedWebhookPayload: EntityExtractedWebhookPayload,
+): string {
+  return JSON.stringify(
+    EntityExtractedWebhookPayload$outboundSchema.parse(
+      entityExtractedWebhookPayload,
+    ),
+  );
+}
+
+export function entityExtractedWebhookPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<EntityExtractedWebhookPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EntityExtractedWebhookPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EntityExtractedWebhookPayload' from JSON`,
+  );
 }

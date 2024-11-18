@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ScoredChunk,
   ScoredChunk$inboundSchema,
@@ -57,4 +60,18 @@ export namespace Retrieval$ {
   export const outboundSchema = Retrieval$outboundSchema;
   /** @deprecated use `Retrieval$Outbound` instead. */
   export type Outbound = Retrieval$Outbound;
+}
+
+export function retrievalToJSON(retrieval: Retrieval): string {
+  return JSON.stringify(Retrieval$outboundSchema.parse(retrieval));
+}
+
+export function retrievalFromJSON(
+  jsonString: string,
+): SafeParseResult<Retrieval, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Retrieval$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Retrieval' from JSON`,
+  );
 }

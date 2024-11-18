@@ -71,6 +71,9 @@ export async function documentsCreateRaw(
   const context = {
     operationID: "CreateDocumentRaw",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

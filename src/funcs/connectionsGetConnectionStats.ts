@@ -81,6 +81,9 @@ export async function connectionsGetConnectionStats(
   const context = {
     operationID: "get_connection_stats_connections__connection_id__stats_get",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

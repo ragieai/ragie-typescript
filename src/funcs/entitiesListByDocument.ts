@@ -89,6 +89,9 @@ export async function entitiesListByDocument(
   const context = {
     operationID: "ListEntitiesByDocument",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

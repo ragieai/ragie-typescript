@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DocumentGetMetadata = string | number | boolean | Array<string>;
 
@@ -52,6 +55,24 @@ export namespace DocumentGetMetadata$ {
   export const outboundSchema = DocumentGetMetadata$outboundSchema;
   /** @deprecated use `DocumentGetMetadata$Outbound` instead. */
   export type Outbound = DocumentGetMetadata$Outbound;
+}
+
+export function documentGetMetadataToJSON(
+  documentGetMetadata: DocumentGetMetadata,
+): string {
+  return JSON.stringify(
+    DocumentGetMetadata$outboundSchema.parse(documentGetMetadata),
+  );
+}
+
+export function documentGetMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentGetMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentGetMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentGetMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -133,4 +154,18 @@ export namespace DocumentGet$ {
   export const outboundSchema = DocumentGet$outboundSchema;
   /** @deprecated use `DocumentGet$Outbound` instead. */
   export type Outbound = DocumentGet$Outbound;
+}
+
+export function documentGetToJSON(documentGet: DocumentGet): string {
+  return JSON.stringify(DocumentGet$outboundSchema.parse(documentGet));
+}
+
+export function documentGetFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentGet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentGet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentGet' from JSON`,
+  );
 }

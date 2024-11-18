@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The scope of the instruction. Determines whether the instruction is applied to the entire document or to each chunk of the document. Options are `'document'` or `'chunk'`. Generally `'document'` should be used when analyzing the full document is desired, such as when generating a summary or determining sentiment, and `'chunk'` should be used when a fine grained search over a document is desired.
@@ -104,6 +107,26 @@ export namespace CreateInstructionParamsFilter$ {
   export type Outbound = CreateInstructionParamsFilter$Outbound;
 }
 
+export function createInstructionParamsFilterToJSON(
+  createInstructionParamsFilter: CreateInstructionParamsFilter,
+): string {
+  return JSON.stringify(
+    CreateInstructionParamsFilter$outboundSchema.parse(
+      createInstructionParamsFilter,
+    ),
+  );
+}
+
+export function createInstructionParamsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateInstructionParamsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateInstructionParamsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateInstructionParamsFilter' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateInstructionParams$inboundSchema: z.ZodType<
   CreateInstructionParams,
@@ -164,4 +187,22 @@ export namespace CreateInstructionParams$ {
   export const outboundSchema = CreateInstructionParams$outboundSchema;
   /** @deprecated use `CreateInstructionParams$Outbound` instead. */
   export type Outbound = CreateInstructionParams$Outbound;
+}
+
+export function createInstructionParamsToJSON(
+  createInstructionParams: CreateInstructionParams,
+): string {
+  return JSON.stringify(
+    CreateInstructionParams$outboundSchema.parse(createInstructionParams),
+  );
+}
+
+export function createInstructionParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateInstructionParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateInstructionParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateInstructionParams' from JSON`,
+  );
 }

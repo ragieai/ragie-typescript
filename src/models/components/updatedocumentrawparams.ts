@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Data2 = {};
 
@@ -45,6 +48,20 @@ export namespace Data2$ {
   export type Outbound = Data2$Outbound;
 }
 
+export function data2ToJSON(data2: Data2): string {
+  return JSON.stringify(Data2$outboundSchema.parse(data2));
+}
+
+export function data2FromJSON(
+  jsonString: string,
+): SafeParseResult<Data2, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Data2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data2' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateDocumentRawParamsData$inboundSchema: z.ZodType<
   UpdateDocumentRawParamsData,
@@ -73,6 +90,26 @@ export namespace UpdateDocumentRawParamsData$ {
   export const outboundSchema = UpdateDocumentRawParamsData$outboundSchema;
   /** @deprecated use `UpdateDocumentRawParamsData$Outbound` instead. */
   export type Outbound = UpdateDocumentRawParamsData$Outbound;
+}
+
+export function updateDocumentRawParamsDataToJSON(
+  updateDocumentRawParamsData: UpdateDocumentRawParamsData,
+): string {
+  return JSON.stringify(
+    UpdateDocumentRawParamsData$outboundSchema.parse(
+      updateDocumentRawParamsData,
+    ),
+  );
+}
+
+export function updateDocumentRawParamsDataFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateDocumentRawParamsData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateDocumentRawParamsData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDocumentRawParamsData' from JSON`,
+  );
 }
 
 /** @internal */
@@ -109,4 +146,22 @@ export namespace UpdateDocumentRawParams$ {
   export const outboundSchema = UpdateDocumentRawParams$outboundSchema;
   /** @deprecated use `UpdateDocumentRawParams$Outbound` instead. */
   export type Outbound = UpdateDocumentRawParams$Outbound;
+}
+
+export function updateDocumentRawParamsToJSON(
+  updateDocumentRawParams: UpdateDocumentRawParams,
+): string {
+  return JSON.stringify(
+    UpdateDocumentRawParams$outboundSchema.parse(updateDocumentRawParams),
+  );
+}
+
+export function updateDocumentRawParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateDocumentRawParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateDocumentRawParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDocumentRawParams' from JSON`,
+  );
 }

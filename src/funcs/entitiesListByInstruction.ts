@@ -91,6 +91,9 @@ export async function entitiesListByInstruction(
   const context = {
     operationID: "ListEntitiesByInstruction",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig

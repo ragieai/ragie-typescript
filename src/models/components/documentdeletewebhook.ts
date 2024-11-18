@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DocumentDeleteWebhookPayload,
   DocumentDeleteWebhookPayload$inboundSchema,
@@ -85,4 +88,22 @@ export namespace DocumentDeleteWebhook$ {
   export const outboundSchema = DocumentDeleteWebhook$outboundSchema;
   /** @deprecated use `DocumentDeleteWebhook$Outbound` instead. */
   export type Outbound = DocumentDeleteWebhook$Outbound;
+}
+
+export function documentDeleteWebhookToJSON(
+  documentDeleteWebhook: DocumentDeleteWebhook,
+): string {
+  return JSON.stringify(
+    DocumentDeleteWebhook$outboundSchema.parse(documentDeleteWebhook),
+  );
+}
+
+export function documentDeleteWebhookFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentDeleteWebhook, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentDeleteWebhook$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentDeleteWebhook' from JSON`,
+  );
 }

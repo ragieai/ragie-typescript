@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Connection,
   Connection$inboundSchema,
@@ -58,4 +61,18 @@ export namespace ConnectionList$ {
   export const outboundSchema = ConnectionList$outboundSchema;
   /** @deprecated use `ConnectionList$Outbound` instead. */
   export type Outbound = ConnectionList$Outbound;
+}
+
+export function connectionListToJSON(connectionList: ConnectionList): string {
+  return JSON.stringify(ConnectionList$outboundSchema.parse(connectionList));
+}
+
+export function connectionListFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionList' from JSON`,
+  );
 }

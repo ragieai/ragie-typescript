@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DocumentMetadataUpdateMetadata =
   | string
@@ -51,6 +54,26 @@ export namespace DocumentMetadataUpdateMetadata$ {
   export type Outbound = DocumentMetadataUpdateMetadata$Outbound;
 }
 
+export function documentMetadataUpdateMetadataToJSON(
+  documentMetadataUpdateMetadata: DocumentMetadataUpdateMetadata,
+): string {
+  return JSON.stringify(
+    DocumentMetadataUpdateMetadata$outboundSchema.parse(
+      documentMetadataUpdateMetadata,
+    ),
+  );
+}
+
+export function documentMetadataUpdateMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentMetadataUpdateMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentMetadataUpdateMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentMetadataUpdateMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const DocumentMetadataUpdate$inboundSchema: z.ZodType<
   DocumentMetadataUpdate,
@@ -89,4 +112,22 @@ export namespace DocumentMetadataUpdate$ {
   export const outboundSchema = DocumentMetadataUpdate$outboundSchema;
   /** @deprecated use `DocumentMetadataUpdate$Outbound` instead. */
   export type Outbound = DocumentMetadataUpdate$Outbound;
+}
+
+export function documentMetadataUpdateToJSON(
+  documentMetadataUpdate: DocumentMetadataUpdate,
+): string {
+  return JSON.stringify(
+    DocumentMetadataUpdate$outboundSchema.parse(documentMetadataUpdate),
+  );
+}
+
+export function documentMetadataUpdateFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentMetadataUpdate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentMetadataUpdate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentMetadataUpdate' from JSON`,
+  );
 }

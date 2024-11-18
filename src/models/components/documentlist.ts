@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Document,
   Document$inboundSchema,
@@ -58,4 +61,18 @@ export namespace DocumentList$ {
   export const outboundSchema = DocumentList$outboundSchema;
   /** @deprecated use `DocumentList$Outbound` instead. */
   export type Outbound = DocumentList$Outbound;
+}
+
+export function documentListToJSON(documentList: DocumentList): string {
+  return JSON.stringify(DocumentList$outboundSchema.parse(documentList));
+}
+
+export function documentListFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentList' from JSON`,
+  );
 }

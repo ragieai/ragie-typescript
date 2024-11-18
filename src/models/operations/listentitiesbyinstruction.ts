@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListEntitiesByInstructionRequest = {
   /**
@@ -77,6 +80,26 @@ export namespace ListEntitiesByInstructionRequest$ {
   export type Outbound = ListEntitiesByInstructionRequest$Outbound;
 }
 
+export function listEntitiesByInstructionRequestToJSON(
+  listEntitiesByInstructionRequest: ListEntitiesByInstructionRequest,
+): string {
+  return JSON.stringify(
+    ListEntitiesByInstructionRequest$outboundSchema.parse(
+      listEntitiesByInstructionRequest,
+    ),
+  );
+}
+
+export function listEntitiesByInstructionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEntitiesByInstructionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEntitiesByInstructionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEntitiesByInstructionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListEntitiesByInstructionResponse$inboundSchema: z.ZodType<
   ListEntitiesByInstructionResponse,
@@ -120,4 +143,24 @@ export namespace ListEntitiesByInstructionResponse$ {
     ListEntitiesByInstructionResponse$outboundSchema;
   /** @deprecated use `ListEntitiesByInstructionResponse$Outbound` instead. */
   export type Outbound = ListEntitiesByInstructionResponse$Outbound;
+}
+
+export function listEntitiesByInstructionResponseToJSON(
+  listEntitiesByInstructionResponse: ListEntitiesByInstructionResponse,
+): string {
+  return JSON.stringify(
+    ListEntitiesByInstructionResponse$outboundSchema.parse(
+      listEntitiesByInstructionResponse,
+    ),
+  );
+}
+
+export function listEntitiesByInstructionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEntitiesByInstructionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEntitiesByInstructionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEntitiesByInstructionResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SetConnectionEnabledPayload = {
   enabled: boolean;
@@ -42,4 +45,24 @@ export namespace SetConnectionEnabledPayload$ {
   export const outboundSchema = SetConnectionEnabledPayload$outboundSchema;
   /** @deprecated use `SetConnectionEnabledPayload$Outbound` instead. */
   export type Outbound = SetConnectionEnabledPayload$Outbound;
+}
+
+export function setConnectionEnabledPayloadToJSON(
+  setConnectionEnabledPayload: SetConnectionEnabledPayload,
+): string {
+  return JSON.stringify(
+    SetConnectionEnabledPayload$outboundSchema.parse(
+      setConnectionEnabledPayload,
+    ),
+  );
+}
+
+export function setConnectionEnabledPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<SetConnectionEnabledPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SetConnectionEnabledPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SetConnectionEnabledPayload' from JSON`,
+  );
 }

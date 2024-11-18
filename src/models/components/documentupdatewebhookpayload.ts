@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const Status2 = {
   Failed: "failed",
@@ -93,6 +96,20 @@ export namespace Status$ {
   export type Outbound = Status$Outbound;
 }
 
+export function statusToJSON(status: Status): string {
+  return JSON.stringify(Status$outboundSchema.parse(status));
+}
+
+export function statusFromJSON(
+  jsonString: string,
+): SafeParseResult<Status, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Status$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Status' from JSON`,
+  );
+}
+
 /** @internal */
 export const DocumentUpdateWebhookPayloadMetadata$inboundSchema: z.ZodType<
   DocumentUpdateWebhookPayloadMetadata,
@@ -123,6 +140,27 @@ export namespace DocumentUpdateWebhookPayloadMetadata$ {
     DocumentUpdateWebhookPayloadMetadata$outboundSchema;
   /** @deprecated use `DocumentUpdateWebhookPayloadMetadata$Outbound` instead. */
   export type Outbound = DocumentUpdateWebhookPayloadMetadata$Outbound;
+}
+
+export function documentUpdateWebhookPayloadMetadataToJSON(
+  documentUpdateWebhookPayloadMetadata: DocumentUpdateWebhookPayloadMetadata,
+): string {
+  return JSON.stringify(
+    DocumentUpdateWebhookPayloadMetadata$outboundSchema.parse(
+      documentUpdateWebhookPayloadMetadata,
+    ),
+  );
+}
+
+export function documentUpdateWebhookPayloadMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentUpdateWebhookPayloadMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DocumentUpdateWebhookPayloadMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentUpdateWebhookPayloadMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -186,4 +224,24 @@ export namespace DocumentUpdateWebhookPayload$ {
   export const outboundSchema = DocumentUpdateWebhookPayload$outboundSchema;
   /** @deprecated use `DocumentUpdateWebhookPayload$Outbound` instead. */
   export type Outbound = DocumentUpdateWebhookPayload$Outbound;
+}
+
+export function documentUpdateWebhookPayloadToJSON(
+  documentUpdateWebhookPayload: DocumentUpdateWebhookPayload,
+): string {
+  return JSON.stringify(
+    DocumentUpdateWebhookPayload$outboundSchema.parse(
+      documentUpdateWebhookPayload,
+    ),
+  );
+}
+
+export function documentUpdateWebhookPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<DocumentUpdateWebhookPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DocumentUpdateWebhookPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DocumentUpdateWebhookPayload' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteConnectionPayload = {
   keepFiles: boolean;
@@ -51,4 +54,22 @@ export namespace DeleteConnectionPayload$ {
   export const outboundSchema = DeleteConnectionPayload$outboundSchema;
   /** @deprecated use `DeleteConnectionPayload$Outbound` instead. */
   export type Outbound = DeleteConnectionPayload$Outbound;
+}
+
+export function deleteConnectionPayloadToJSON(
+  deleteConnectionPayload: DeleteConnectionPayload,
+): string {
+  return JSON.stringify(
+    DeleteConnectionPayload$outboundSchema.parse(deleteConnectionPayload),
+  );
+}
+
+export function deleteConnectionPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteConnectionPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteConnectionPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteConnectionPayload' from JSON`,
+  );
 }

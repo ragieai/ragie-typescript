@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PatchDocumentMetadataParamsMetadata =
   | string
@@ -53,6 +56,27 @@ export namespace PatchDocumentMetadataParamsMetadata$ {
   export type Outbound = PatchDocumentMetadataParamsMetadata$Outbound;
 }
 
+export function patchDocumentMetadataParamsMetadataToJSON(
+  patchDocumentMetadataParamsMetadata: PatchDocumentMetadataParamsMetadata,
+): string {
+  return JSON.stringify(
+    PatchDocumentMetadataParamsMetadata$outboundSchema.parse(
+      patchDocumentMetadataParamsMetadata,
+    ),
+  );
+}
+
+export function patchDocumentMetadataParamsMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<PatchDocumentMetadataParamsMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PatchDocumentMetadataParamsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PatchDocumentMetadataParamsMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const PatchDocumentMetadataParams$inboundSchema: z.ZodType<
   PatchDocumentMetadataParams,
@@ -91,4 +115,24 @@ export namespace PatchDocumentMetadataParams$ {
   export const outboundSchema = PatchDocumentMetadataParams$outboundSchema;
   /** @deprecated use `PatchDocumentMetadataParams$Outbound` instead. */
   export type Outbound = PatchDocumentMetadataParams$Outbound;
+}
+
+export function patchDocumentMetadataParamsToJSON(
+  patchDocumentMetadataParams: PatchDocumentMetadataParams,
+): string {
+  return JSON.stringify(
+    PatchDocumentMetadataParams$outboundSchema.parse(
+      patchDocumentMetadataParams,
+    ),
+  );
+}
+
+export function patchDocumentMetadataParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<PatchDocumentMetadataParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PatchDocumentMetadataParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PatchDocumentMetadataParams' from JSON`,
+  );
 }

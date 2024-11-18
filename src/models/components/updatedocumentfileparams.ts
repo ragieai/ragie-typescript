@@ -3,8 +3,11 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. Only applicable for rich documents such as word documents and PDFs. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`.
@@ -110,6 +113,26 @@ export namespace UpdateDocumentFileParamsFile$ {
   export type Outbound = UpdateDocumentFileParamsFile$Outbound;
 }
 
+export function updateDocumentFileParamsFileToJSON(
+  updateDocumentFileParamsFile: UpdateDocumentFileParamsFile,
+): string {
+  return JSON.stringify(
+    UpdateDocumentFileParamsFile$outboundSchema.parse(
+      updateDocumentFileParamsFile,
+    ),
+  );
+}
+
+export function updateDocumentFileParamsFileFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateDocumentFileParamsFile, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateDocumentFileParamsFile$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDocumentFileParamsFile' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateDocumentFileParams$inboundSchema: z.ZodType<
   UpdateDocumentFileParams,
@@ -149,4 +172,22 @@ export namespace UpdateDocumentFileParams$ {
   export const outboundSchema = UpdateDocumentFileParams$outboundSchema;
   /** @deprecated use `UpdateDocumentFileParams$Outbound` instead. */
   export type Outbound = UpdateDocumentFileParams$Outbound;
+}
+
+export function updateDocumentFileParamsToJSON(
+  updateDocumentFileParams: UpdateDocumentFileParams,
+): string {
+  return JSON.stringify(
+    UpdateDocumentFileParams$outboundSchema.parse(updateDocumentFileParams),
+  );
+}
+
+export function updateDocumentFileParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateDocumentFileParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateDocumentFileParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDocumentFileParams' from JSON`,
+  );
 }

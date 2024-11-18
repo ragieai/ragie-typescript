@@ -75,6 +75,9 @@ export async function documentsDelete(
   const context = {
     operationID: "DeleteDocument",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.auth,
     retryConfig: options?.retries
       || client._options.retryConfig
