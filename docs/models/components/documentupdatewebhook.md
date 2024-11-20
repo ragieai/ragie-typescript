@@ -9,7 +9,7 @@ let value: DocumentUpdateWebhook = {
   nonce: "<value>",
   payload: {
     documentId: "<id>",
-    status: "failed",
+    status: "ready",
     partition: "<value>",
     metadata: {},
     externalId: "<id>",

@@ -34,7 +34,9 @@ export type CreateDocumentFromUrlParams = {
   /**
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`.
    */
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata?:
+    | { [k: string]: string | number | boolean | Array<string> }
+    | undefined;
   /**
    * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. Only applicable for rich documents such as word documents and PDFs. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`.
    */
@@ -140,7 +142,7 @@ export const CreateDocumentFromUrlParams$inboundSchema: z.ZodType<
   name: z.string().optional(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
-  ),
+  ).optional(),
   mode: CreateDocumentFromUrlParamsMode$inboundSchema.default("fast"),
   external_id: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
@@ -154,7 +156,9 @@ export const CreateDocumentFromUrlParams$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateDocumentFromUrlParams$Outbound = {
   name?: string | undefined;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata?:
+    | { [k: string]: string | number | boolean | Array<string> }
+    | undefined;
   mode: string;
   external_id?: string | null | undefined;
   partition?: string | undefined;
@@ -170,7 +174,7 @@ export const CreateDocumentFromUrlParams$outboundSchema: z.ZodType<
   name: z.string().optional(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
-  ),
+  ).optional(),
   mode: CreateDocumentFromUrlParamsMode$outboundSchema.default("fast"),
   externalId: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
