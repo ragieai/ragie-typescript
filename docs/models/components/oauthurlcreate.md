@@ -6,7 +6,7 @@
 import { OAuthUrlCreate } from "ragie/models/components";
 
 let value: OAuthUrlCreate = {
-  redirectUri: "https://probable-jungle.org/",
+  redirectUri: "https://incomparable-coil.name",
   sourceType: "<value>",
 };
 ```

@@ -6,7 +6,7 @@
 import { OAuthUrlResponse } from "ragie/models/components";
 
 let value: OAuthUrlResponse = {
-  url: "https://polished-wafer.org/",
+  url: "https://affectionate-captain.name/",
 };
 ```
 

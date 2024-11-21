@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 55d13ae2eb97a4b170381dbec716063c
+  docChecksum: cce9fce20ecfb7ee667f56b8330039c8
   docVersion: 1.0.0
-  speakeasyVersion: 1.441.0
-  generationVersion: 2.460.1
-  releaseVersion: 1.3.3
-  configChecksum: 232f0e9a7f057ce1f1363a0a94b9f8f7
+  speakeasyVersion: 1.441.1
+  generationVersion: 2.461.2
+  releaseVersion: 1.3.4
+  configChecksum: f211bf9d35d10de048c6ef76c78c7757
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.5
+    core: 3.18.6
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
