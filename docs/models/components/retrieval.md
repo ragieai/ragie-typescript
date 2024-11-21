@@ -9,7 +9,7 @@ let value: Retrieval = {
   scoredChunks: [
     {
       text: "<value>",
-      score: 6439.90,
+      score: 5013.24,
       documentId: "<id>",
       documentName: "<value>",
       documentMetadata: {

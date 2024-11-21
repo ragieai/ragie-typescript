@@ -29,7 +29,9 @@ export type CreateDocumentRawParams = {
   /**
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`.
    */
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata?:
+    | { [k: string]: string | number | boolean | Array<string> }
+    | undefined;
   /**
    * An optional identifier for the document. A common value might be an id in an external system or the URL where the source file may be found.
    */
@@ -183,7 +185,7 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
   name: z.string().optional(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
-  ),
+  ).optional(),
   external_id: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
   data: z.union([z.lazy(() => Two$inboundSchema), z.string()]),
@@ -196,7 +198,9 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateDocumentRawParams$Outbound = {
   name?: string | undefined;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata?:
+    | { [k: string]: string | number | boolean | Array<string> }
+    | undefined;
   external_id?: string | null | undefined;
   partition?: string | undefined;
   data: Two$Outbound | string;
@@ -211,7 +215,7 @@ export const CreateDocumentRawParams$outboundSchema: z.ZodType<
   name: z.string().optional(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
-  ),
+  ).optional(),
   externalId: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
   data: z.union([z.lazy(() => Two$outboundSchema), z.string()]),

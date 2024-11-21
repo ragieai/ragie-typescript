@@ -7,7 +7,7 @@ The scope of the instruction. Determines whether the instruction is applied to t
 ```typescript
 import { CreateInstructionParamsScope } from "ragie/models/components";
 
-let value: CreateInstructionParamsScope = "chunk";
+let value: CreateInstructionParamsScope = "document";
 ```
 
 ## Values
