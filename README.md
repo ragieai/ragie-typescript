@@ -107,7 +107,7 @@ run();
 ### [connections](docs/sdks/connections/README.md)
 
 * [list](docs/sdks/connections/README.md#list) - List Connections
-* [createOauthRedirectUrlConnectionsOauthPost](docs/sdks/connections/README.md#createoauthredirecturlconnectionsoauthpost) - Create Oauth Redirect Url
+* [createOAuthRedirectUrl](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 * [setConnectionEnabled](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
 * [updateConnection](docs/sdks/connections/README.md#updateconnection) - Update Connection
 * [getConnectionStats](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
@@ -525,7 +525,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`connectionsCreateOauthRedirectUrlConnectionsOauthPost`](docs/sdks/connections/README.md#createoauthredirecturlconnectionsoauthpost) - Create Oauth Redirect Url
+- [`connectionsCreateOAuthRedirectUrl`](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 - [`connectionsDeleteConnection`](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
 - [`connectionsGetConnectionStats`](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
 - [`connectionsList`](docs/sdks/connections/README.md#list) - List Connections

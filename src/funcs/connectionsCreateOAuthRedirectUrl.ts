@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Creates a redirect url to redirect the user to when initializing an embedded connector.
  */
-export async function connectionsCreateOauthRedirectUrlConnectionsOauthPost(
+export async function connectionsCreateOAuthRedirectUrl(
   client: RagieCore,
   request: components.OAuthUrlCreate,
   options?: RequestOptions,
