@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [list](#list) - List Connections
-* [createOauthRedirectUrlConnectionsOauthPost](#createoauthredirecturlconnectionsoauthpost) - Create Oauth Redirect Url
+* [createOAuthRedirectUrl](#createoauthredirecturl) - Create Oauth Redirect Url
 * [setConnectionEnabled](#setconnectionenabled) - Set Connection Enabled
 * [updateConnection](#updateconnection) - Update Connection
 * [getConnectionStats](#getconnectionstats) - Get Connection Stats
@@ -90,7 +90,7 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## createOauthRedirectUrlConnectionsOauthPost
+## createOAuthRedirectUrl
 
 Creates a redirect url to redirect the user to when initializing an embedded connector.
 
@@ -104,7 +104,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.createOauthRedirectUrlConnectionsOauthPost({
+  const result = await ragie.connections.createOAuthRedirectUrl({
     redirectUri: "https://lumbering-sundae.net",
     sourceType: "<value>",
   });
@@ -122,7 +122,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { connectionsCreateOauthRedirectUrlConnectionsOauthPost } from "ragie/funcs/connectionsCreateOauthRedirectUrlConnectionsOauthPost.js";
+import { connectionsCreateOAuthRedirectUrl } from "ragie/funcs/connectionsCreateOAuthRedirectUrl.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -131,7 +131,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsCreateOauthRedirectUrlConnectionsOauthPost(ragie, {
+  const res = await connectionsCreateOAuthRedirectUrl(ragie, {
     redirectUri: "https://lumbering-sundae.net",
     sourceType: "<value>",
   });
