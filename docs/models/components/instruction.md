@@ -6,9 +6,9 @@
 import { Instruction } from "ragie/models/components";
 
 let value: Instruction = {
-  id: "6904a496-2499-49aa-86e5-6ecb1ebf2d29",
-  createdAt: new Date("2024-07-18T10:00:30.471Z"),
-  updatedAt: new Date("2024-06-03T19:43:04.405Z"),
+  id: "baf0a99f-0bd8-45c1-b78b-1369e92fd8e8",
+  createdAt: new Date("2024-06-28T13:37:13.382Z"),
+  updatedAt: new Date("2024-11-27T05:48:20.651Z"),
   name: "Find all pizzas",
   active: true,
   scope: "chunk",

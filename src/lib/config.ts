@@ -11,7 +11,7 @@ import { Params, pathToFunc } from "./url.js";
  * Contains the list of servers available to the SDK
  */
 export const ServerList = [
-  "https://api.ragie.ai",
+  "http://localhost:8000",
 ] as const;
 
 export type SDKOptions = {
@@ -54,7 +54,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "1.3.5",
-  genVersion: "2.461.4",
-  userAgent: "speakeasy-sdk/typescript 1.3.5 2.461.4 1.0.0 ragie",
+  sdkVersion: "1.4.0",
+  genVersion: "2.474.4",
+  userAgent: "speakeasy-sdk/typescript 1.4.0 2.474.4 1.0.0 ragie",
 } as const;

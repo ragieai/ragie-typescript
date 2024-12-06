@@ -66,7 +66,12 @@ export class Entities extends ClientSDK {
   async listByInstruction(
     request: operations.ListEntitiesByInstructionRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListEntitiesByInstructionResponse>> {
+  ): Promise<
+    PageIterator<
+      operations.ListEntitiesByInstructionResponse,
+      { cursor: string }
+    >
+  > {
     return unwrapResultIterator(entitiesListByInstruction(
       this,
       request,
@@ -80,7 +85,9 @@ export class Entities extends ClientSDK {
   async listByDocument(
     request: operations.ListEntitiesByDocumentRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListEntitiesByDocumentResponse>> {
+  ): Promise<
+    PageIterator<operations.ListEntitiesByDocumentResponse, { cursor: string }>
+  > {
     return unwrapResultIterator(entitiesListByDocument(
       this,
       request,

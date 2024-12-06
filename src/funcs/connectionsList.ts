@@ -52,7 +52,8 @@ export async function connectionsList(
       | RequestAbortedError
       | RequestTimeoutError
       | ConnectionError
-    >
+    >,
+    { cursor: string }
   >
 > {
   const parsed = safeParse(
@@ -152,26 +153,29 @@ export async function connectionsList(
 
   const nextFunc = (
     responseData: unknown,
-  ): Paginator<
-    Result<
-      operations.ListConnectionsConnectionsGetResponse,
-      | errors.ErrorMessage
-      | errors.HTTPValidationError
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
-      | RequestAbortedError
-      | RequestTimeoutError
-      | ConnectionError
-    >
-  > => {
+  ): {
+    next: Paginator<
+      Result<
+        operations.ListConnectionsConnectionsGetResponse,
+        | errors.ErrorMessage
+        | errors.HTTPValidationError
+        | SDKError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >
+    >;
+    "~next"?: { cursor: string };
+  } => {
     const nextCursor = dlv(responseData, "pagination.next_cursor");
     if (nextCursor == null) {
-      return () => null;
+      return { next: () => null };
     }
 
-    return () =>
+    const nextVal = () =>
       connectionsList(
         client,
         {
@@ -180,8 +184,10 @@ export async function connectionsList(
         },
         options,
       );
+
+    return { next: nextVal, "~next": { cursor: nextCursor } };
   };
 
-  const page = { ...result, next: nextFunc(raw) };
+  const page = { ...result, ...nextFunc(raw) };
   return { ...page, ...createPageIterator(page, (v) => !v.ok) };
 }

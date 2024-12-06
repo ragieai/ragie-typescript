@@ -19,9 +19,8 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { openAsBlob } from "node:fs";
 import { RagieCore } from "ragie/core.js";
-import { documentsCreate } from "ragie/funcs/documentsCreate.js";
+import { healthzHealthzGet } from "ragie/funcs/healthzHealthzGet.js";
 import { SDKValidationError } from "ragie/models/errors/sdkvalidationerror.js";
 
 // Use `RagieCore` for best tree-shaking performance.
@@ -31,9 +30,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await documentsCreate(ragie, {
-    file: await openAsBlob("example.file"),
-  });
+  const res = await healthzHealthzGet(ragie);
 
   switch (true) {
     case res.ok:

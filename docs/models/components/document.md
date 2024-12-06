@@ -6,13 +6,15 @@
 import { Document } from "ragie/models/components";
 
 let value: Document = {
-  id: "b986a7ef-6c89-4e11-b0dc-dfc7c1a2f864",
-  createdAt: new Date("2023-05-15T22:34:42.019Z"),
-  updatedAt: new Date("2023-09-16T00:05:11.728Z"),
+  id: "42019ff6-2a7f-41c4-93a3-a8684b65de03",
+  createdAt: new Date("2024-06-12T04:52:41.784Z"),
+  updatedAt: new Date("2024-12-16T02:21:59.446Z"),
   status: "<value>",
   name: "<value>",
   metadata: {
-    "key": "<value>",
+    "key": [
+      "<value>",
+    ],
   },
   partition: "<value>",
 };

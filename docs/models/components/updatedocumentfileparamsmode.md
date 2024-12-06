@@ -7,7 +7,7 @@ Partition strategy for the document. Options are `'hi_res'` or `'fast'`. Only ap
 ```typescript
 import { UpdateDocumentFileParamsMode } from "ragie/models/components";
 
-let value: UpdateDocumentFileParamsMode = "fast";
+let value: UpdateDocumentFileParamsMode = "hi_res";
 ```
 
 ## Values

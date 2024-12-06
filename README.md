@@ -16,20 +16,26 @@
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [ragie](#ragie)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [File uploads](#file-uploads)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Retries](#retries)
+  * [Retries](#retries-1)
+  * [Standalone functions](#standalone-functions)
+  * [Pagination](#pagination)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Versioning](#versioning)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [Requirements](#requirements)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Standalone functions](#standalone-functions)
-* [Pagination](#pagination)
-* [File uploads](#file-uploads)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Debugging](#debugging)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -77,7 +83,6 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -85,9 +90,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  });
+  const result = await ragie.healthzHealthzGet();
 
   // Handle the result
   console.log(result);
@@ -110,6 +113,7 @@ run();
 * [createOAuthRedirectUrl](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 * [setConnectionEnabled](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
 * [updateConnection](docs/sdks/connections/README.md#updateconnection) - Update Connection
+* [getConnection](docs/sdks/connections/README.md#getconnection) - Get Connection
 * [getConnectionStats](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
 * [deleteConnection](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
 
@@ -134,6 +138,9 @@ run();
 * [listByInstruction](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 * [listByDocument](docs/sdks/entities/README.md#listbydocument) - Get Document Extracted Entities
 
+### [Ragie SDK](docs/sdks/ragie/README.md)
+
+* [healthzHealthzGet](docs/sdks/ragie/README.md#healthzhealthzget) - Healthz
 
 ### [retrievals](docs/sdks/retrievals/README.md)
 
@@ -263,18 +270,15 @@ Validation errors can also occur when either method arguments or data returned f
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
-  serverURL: "https://api.ragie.ai",
+  serverURL: "http://localhost:8000",
   auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  });
+  const result = await ragie.healthzHealthzGet();
 
   // Handle the result
   console.log(result);
@@ -347,7 +351,6 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `auth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -355,9 +358,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  });
+  const result = await ragie.healthzHealthzGet();
 
   // Handle the result
   console.log(result);
@@ -375,7 +376,6 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -383,9 +383,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  }, {
+  const result = await ragie.healthzHealthzGet({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -408,7 +406,6 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -426,9 +423,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  });
+  const result = await ragie.healthzHealthzGet();
 
   // Handle the result
   console.log(result);
@@ -446,7 +441,6 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -454,9 +448,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  }, {
+  const result = await ragie.healthzHealthzGet({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -479,7 +471,6 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -497,9 +488,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  });
+  const result = await ragie.healthzHealthzGet();
 
   // Handle the result
   console.log(result);
@@ -527,6 +516,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`connectionsCreateOAuthRedirectUrl`](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 - [`connectionsDeleteConnection`](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
+- [`connectionsGetConnection`](docs/sdks/connections/README.md#getconnection) - Get Connection
 - [`connectionsGetConnectionStats`](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
 - [`connectionsList`](docs/sdks/connections/README.md#list) - List Connections
 - [`connectionsSetConnectionEnabled`](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
@@ -546,6 +536,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`entitiesListByInstruction`](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 - [`entitiesListInstructions`](docs/sdks/entities/README.md#listinstructions) - List Instructions
 - [`entitiesUpdateInstruction`](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
+- [`healthzHealthzGet`](docs/sdks/ragie/README.md#healthzhealthzget) - Healthz
 - [`retrievalsRetrieve`](docs/sdks/retrievals/README.md#retrieve) - Retrieve
 
 </details>

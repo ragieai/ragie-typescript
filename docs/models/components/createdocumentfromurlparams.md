@@ -7,7 +7,7 @@ import { CreateDocumentFromUrlParams } from "ragie/models/components";
 
 let value: CreateDocumentFromUrlParams = {
   partition: null,
-  url: "https://close-farm.info/",
+  url: "https://improbable-marketplace.biz",
 };
 ```
 

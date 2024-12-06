@@ -1,14 +1,31 @@
 # OAuthUrlCreateMetadata
 
-## Example Usage
+
+## Supported Types
+
+### `string`
 
 ```typescript
-import { OAuthUrlCreateMetadata } from "ragie/models/components";
-
-let value: OAuthUrlCreateMetadata = {};
+const value: string = "<value>";
 ```
 
-## Fields
+### `number`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: number = 637462;
+```
+
+### `boolean`
+
+```typescript
+const value: boolean = false;
+```
+
+### `string[]`
+
+```typescript
+const value: string[] = [
+  "<value>",
+];
+```
+

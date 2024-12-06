@@ -1,12 +1,12 @@
-# GetConnectionStatsConnectionsConnectionIdStatsGetRequest
+# GetConnectionConnectionsConnectionIdGetRequest
 
 ## Example Usage
 
 ```typescript
-import { GetConnectionStatsConnectionsConnectionIdStatsGetRequest } from "ragie/models/operations";
+import { GetConnectionConnectionsConnectionIdGetRequest } from "ragie/models/operations";
 
-let value: GetConnectionStatsConnectionsConnectionIdStatsGetRequest = {
-  connectionId: "688a426f-2e87-4e7b-b6eb-b5ca32cf79d7",
+let value: GetConnectionConnectionsConnectionIdGetRequest = {
+  connectionId: "20447ab4-62c0-4bcc-8459-45370c1849fa",
 };
 ```
 

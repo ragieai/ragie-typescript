@@ -1,6 +1,5 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -8,9 +7,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
-  });
+  const result = await ragie.healthzHealthzGet();
 
   // Handle the result
   console.log(result);

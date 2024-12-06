@@ -45,7 +45,9 @@ export class Documents extends ClientSDK {
   async list(
     request?: operations.ListDocumentsRequest | undefined,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListDocumentsResponse>> {
+  ): Promise<
+    PageIterator<operations.ListDocumentsResponse, { cursor: string }>
+  > {
     return unwrapResultIterator(documentsList(
       this,
       request,
