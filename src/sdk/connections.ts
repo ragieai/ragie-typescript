@@ -4,6 +4,7 @@
 
 import { connectionsCreateOAuthRedirectUrl } from "../funcs/connectionsCreateOAuthRedirectUrl.js";
 import { connectionsDeleteConnection } from "../funcs/connectionsDeleteConnection.js";
+import { connectionsGetConnection } from "../funcs/connectionsGetConnection.js";
 import { connectionsGetConnectionStats } from "../funcs/connectionsGetConnectionStats.js";
 import { connectionsList } from "../funcs/connectionsList.js";
 import { connectionsSetConnectionEnabled } from "../funcs/connectionsSetConnectionEnabled.js";
@@ -24,7 +25,12 @@ export class Connections extends ClientSDK {
   async list(
     request?: operations.ListConnectionsConnectionsGetRequest | undefined,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListConnectionsConnectionsGetResponse>> {
+  ): Promise<
+    PageIterator<
+      operations.ListConnectionsConnectionsGetResponse,
+      { cursor: string }
+    >
+  > {
     return unwrapResultIterator(connectionsList(
       this,
       request,
@@ -78,6 +84,23 @@ export class Connections extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.Connection> {
     return unwrapAsync(connectionsUpdateConnection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Connection
+   *
+   * @remarks
+   * Get a connection.
+   */
+  async getConnection(
+    request: operations.GetConnectionConnectionsConnectionIdGetRequest,
+    options?: RequestOptions,
+  ): Promise<any> {
+    return unwrapAsync(connectionsGetConnection(
       this,
       request,
       options,

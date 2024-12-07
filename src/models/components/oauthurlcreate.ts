@@ -9,7 +9,7 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type OAuthUrlCreateMetadata = {};
+export type OAuthUrlCreateMetadata = string | number | boolean | Array<string>;
 
 export const Mode = {
   HiRes: "hi_res",
@@ -17,12 +17,28 @@ export const Mode = {
 } as const;
 export type Mode = ClosedEnum<typeof Mode>;
 
+export const Theme = {
+  Light: "light",
+  Dark: "dark",
+  System: "system",
+} as const;
+export type Theme = ClosedEnum<typeof Theme>;
+
 export type OAuthUrlCreate = {
   redirectUri: string;
   sourceType: string;
-  metadata?: OAuthUrlCreateMetadata | null | undefined;
+  /**
+   * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`.
+   */
+  metadata?:
+    | { [k: string]: string | number | boolean | Array<string> }
+    | undefined;
   mode?: Mode | null | undefined;
   partition?: string | null | undefined;
+  /**
+   * Sets the theme of the Ragie Web UI when the user lands there. Can be light, dark, or system to use whatever the system value is. If omitted, system is used.
+   */
+  theme?: Theme | null | undefined;
 };
 
 /** @internal */
@@ -30,17 +46,21 @@ export const OAuthUrlCreateMetadata$inboundSchema: z.ZodType<
   OAuthUrlCreateMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
 
 /** @internal */
-export type OAuthUrlCreateMetadata$Outbound = {};
+export type OAuthUrlCreateMetadata$Outbound =
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 /** @internal */
 export const OAuthUrlCreateMetadata$outboundSchema: z.ZodType<
   OAuthUrlCreateMetadata$Outbound,
   z.ZodTypeDef,
   OAuthUrlCreateMetadata
-> = z.object({});
+> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
 
 /**
  * @internal
@@ -94,6 +114,26 @@ export namespace Mode$ {
 }
 
 /** @internal */
+export const Theme$inboundSchema: z.ZodNativeEnum<typeof Theme> = z.nativeEnum(
+  Theme,
+);
+
+/** @internal */
+export const Theme$outboundSchema: z.ZodNativeEnum<typeof Theme> =
+  Theme$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Theme$ {
+  /** @deprecated use `Theme$inboundSchema` instead. */
+  export const inboundSchema = Theme$inboundSchema;
+  /** @deprecated use `Theme$outboundSchema` instead. */
+  export const outboundSchema = Theme$outboundSchema;
+}
+
+/** @internal */
 export const OAuthUrlCreate$inboundSchema: z.ZodType<
   OAuthUrlCreate,
   z.ZodTypeDef,
@@ -101,10 +141,12 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
 > = z.object({
   redirect_uri: z.string(),
   source_type: z.string(),
-  metadata: z.nullable(z.lazy(() => OAuthUrlCreateMetadata$inboundSchema))
-    .optional(),
+  metadata: z.record(
+    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+  ).optional(),
   mode: z.nullable(Mode$inboundSchema).optional(),
   partition: z.nullable(z.string()).optional(),
+  theme: z.nullable(Theme$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "redirect_uri": "redirectUri",
@@ -116,9 +158,12 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
 export type OAuthUrlCreate$Outbound = {
   redirect_uri: string;
   source_type: string;
-  metadata?: OAuthUrlCreateMetadata$Outbound | null | undefined;
+  metadata?:
+    | { [k: string]: string | number | boolean | Array<string> }
+    | undefined;
   mode?: string | null | undefined;
   partition?: string | null | undefined;
+  theme?: string | null | undefined;
 };
 
 /** @internal */
@@ -129,10 +174,12 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
 > = z.object({
   redirectUri: z.string(),
   sourceType: z.string(),
-  metadata: z.nullable(z.lazy(() => OAuthUrlCreateMetadata$outboundSchema))
-    .optional(),
+  metadata: z.record(
+    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+  ).optional(),
   mode: z.nullable(Mode$outboundSchema).optional(),
   partition: z.nullable(z.string()).optional(),
+  theme: z.nullable(Theme$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     redirectUri: "redirect_uri",

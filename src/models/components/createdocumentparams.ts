@@ -55,6 +55,10 @@ export type CreateDocumentParams = {
    */
   mode?: CreateDocumentParamsMode | undefined;
   /**
+   * An optional name for the document. If set, the document will have this name. Otherwise it will default to the file's name.
+   */
+  name?: string | undefined;
+  /**
    * An optional partition identifier. Documents can be scoped to a partition. Partitions must be lowercase alphanumeric and may only include the special characters `_` and `-`.  A partition is created any time a document is created or moved to a new partition.
    */
   partition?: string | undefined;
@@ -171,11 +175,11 @@ export namespace FileT$ {
   export type Outbound = FileT$Outbound;
 }
 
-export function fileTToJSON(fileT: FileT): string {
+export function fileToJSON(fileT: FileT): string {
   return JSON.stringify(FileT$outboundSchema.parse(fileT));
 }
 
-export function fileTFromJSON(
+export function fileFromJSON(
   jsonString: string,
 ): SafeParseResult<FileT, SDKValidationError> {
   return safeParse(
@@ -197,6 +201,7 @@ export const CreateDocumentParams$inboundSchema: z.ZodType<
     z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]),
   ).optional(),
   mode: CreateDocumentParamsMode$inboundSchema.default("fast"),
+  name: z.string().optional(),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -212,6 +217,7 @@ export type CreateDocumentParams$Outbound = {
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
   mode: string;
+  name?: string | undefined;
   partition?: string | undefined;
 };
 
@@ -227,6 +233,7 @@ export const CreateDocumentParams$outboundSchema: z.ZodType<
     z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]),
   ).optional(),
   mode: CreateDocumentParamsMode$outboundSchema.default("fast"),
+  name: z.string().optional(),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

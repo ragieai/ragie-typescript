@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: f0328b0a61a15bf19bed18dc0b5c4450
+  docChecksum: 2fb4db2ace25a076c75874acd27a88b8
   docVersion: 1.0.0
-  speakeasyVersion: 1.443.0
-  generationVersion: 2.461.4
-  releaseVersion: 1.3.6
-  configChecksum: 9b8de766d8cbc7b0378f13515ac6f000
+  speakeasyVersion: 1.453.1
+  generationVersion: 2.474.4
+  releaseVersion: 1.3.7
+  configChecksum: 50dfb8aa9eca6394ca64400472c9fb8d
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.6
+    core: 3.18.8
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -32,7 +32,6 @@ features:
     sdkHooks: 0.2.0
     unions: 2.85.8
     uploadStreams: 0.1.0
-    webhooks: 1.0.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -49,20 +48,8 @@ generatedFiles:
   - docs/models/components/connectionbase.md
   - docs/models/components/connectionbasemetadata.md
   - docs/models/components/connectionlist.md
-  - docs/models/components/connectionmetadata.md
   - docs/models/components/connectionmetadatametadata.md
   - docs/models/components/connectionstats.md
-  - docs/models/components/connectionsyncfinishedwebhook.md
-  - docs/models/components/connectionsyncfinishedwebhookpayload.md
-  - docs/models/components/connectionsyncfinishedwebhookpayloadconnectionmetadata.md
-  - docs/models/components/connectionsyncfinishedwebhooktype.md
-  - docs/models/components/connectionsyncprogresswebhook.md
-  - docs/models/components/connectionsyncprogresswebhookpayload.md
-  - docs/models/components/connectionsyncprogresswebhookpayloadconnectionmetadata.md
-  - docs/models/components/connectionsyncprogresswebhooktype.md
-  - docs/models/components/connectionsyncstartedwebhook.md
-  - docs/models/components/connectionsyncstartedwebhookpayload.md
-  - docs/models/components/connectionsyncstartedwebhooktype.md
   - docs/models/components/createdocumentfromurlparams.md
   - docs/models/components/createdocumentfromurlparamsmetadata.md
   - docs/models/components/createdocumentfromurlparamsmode.md
@@ -78,10 +65,6 @@ generatedFiles:
   - docs/models/components/deleteconnectionpayload.md
   - docs/models/components/document.md
   - docs/models/components/documentdelete.md
-  - docs/models/components/documentdeletewebhook.md
-  - docs/models/components/documentdeletewebhookpayload.md
-  - docs/models/components/documentdeletewebhookpayloadmetadata.md
-  - docs/models/components/documentdeletewebhooktype.md
   - docs/models/components/documentfileupdate.md
   - docs/models/components/documentget.md
   - docs/models/components/documentgetmetadata.md
@@ -91,15 +74,7 @@ generatedFiles:
   - docs/models/components/documentmetadataupdatemetadata.md
   - docs/models/components/documentrawupdate.md
   - docs/models/components/documentsummary.md
-  - docs/models/components/documentupdatewebhook.md
-  - docs/models/components/documentupdatewebhookpayload.md
-  - docs/models/components/documentupdatewebhookpayloadmetadata.md
   - docs/models/components/entity.md
-  - docs/models/components/entityextractedwebhook.md
-  - docs/models/components/entityextractedwebhookpayload.md
-  - docs/models/components/entityextractedwebhookpayloaddata.md
-  - docs/models/components/entityextractedwebhookpayloaddocumentmetadata.md
-  - docs/models/components/entityextractedwebhooktype.md
   - docs/models/components/entitylist.md
   - docs/models/components/filet.md
   - docs/models/components/filter.md
@@ -110,21 +85,17 @@ generatedFiles:
   - docs/models/components/oauthurlcreate.md
   - docs/models/components/oauthurlcreatemetadata.md
   - docs/models/components/oauthurlresponse.md
-  - docs/models/components/one.md
   - docs/models/components/pagination.md
   - docs/models/components/partitionstrategy.md
   - docs/models/components/patchdocumentmetadataparams.md
-  - docs/models/components/patchdocumentmetadataparamsmetadata.md
   - docs/models/components/retrieval.md
   - docs/models/components/retrieveparams.md
   - docs/models/components/scope.md
   - docs/models/components/scoredchunk.md
   - docs/models/components/security.md
   - docs/models/components/setconnectionenabledpayload.md
-  - docs/models/components/status.md
-  - docs/models/components/status2.md
+  - docs/models/components/theme.md
   - docs/models/components/two.md
-  - docs/models/components/type.md
   - docs/models/components/updatedocumentfileparams.md
   - docs/models/components/updatedocumentfileparamsfile.md
   - docs/models/components/updatedocumentfileparamsmode.md
@@ -136,6 +107,7 @@ generatedFiles:
   - docs/models/errors/httpvalidationerror.md
   - docs/models/operations/deleteconnectionconnectionsconnectioniddeletepostrequest.md
   - docs/models/operations/deletedocumentrequest.md
+  - docs/models/operations/getconnectionconnectionsconnectionidgetrequest.md
   - docs/models/operations/getconnectionstatsconnectionsconnectionidstatsgetrequest.md
   - docs/models/operations/getdocumentrequest.md
   - docs/models/operations/getdocumentsummaryrequest.md
@@ -153,7 +125,6 @@ generatedFiles:
   - docs/models/operations/updatedocumentfilerequest.md
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
-  - docs/models/webhooks/eventeventpostbody.md
   - docs/sdks/connections/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/entities/README.md
@@ -164,6 +135,7 @@ generatedFiles:
   - src/core.ts
   - src/funcs/connectionsCreateOAuthRedirectUrl.ts
   - src/funcs/connectionsDeleteConnection.ts
+  - src/funcs/connectionsGetConnection.ts
   - src/funcs/connectionsGetConnectionStats.ts
   - src/funcs/connectionsList.ts
   - src/funcs/connectionsSetConnectionEnabled.ts
@@ -207,12 +179,6 @@ generatedFiles:
   - src/models/components/connectionbase.ts
   - src/models/components/connectionlist.ts
   - src/models/components/connectionstats.ts
-  - src/models/components/connectionsyncfinishedwebhook.ts
-  - src/models/components/connectionsyncfinishedwebhookpayload.ts
-  - src/models/components/connectionsyncprogresswebhook.ts
-  - src/models/components/connectionsyncprogresswebhookpayload.ts
-  - src/models/components/connectionsyncstartedwebhook.ts
-  - src/models/components/connectionsyncstartedwebhookpayload.ts
   - src/models/components/createdocumentfromurlparams.ts
   - src/models/components/createdocumentparams.ts
   - src/models/components/createdocumentrawparams.ts
@@ -220,19 +186,13 @@ generatedFiles:
   - src/models/components/deleteconnectionpayload.ts
   - src/models/components/document.ts
   - src/models/components/documentdelete.ts
-  - src/models/components/documentdeletewebhook.ts
-  - src/models/components/documentdeletewebhookpayload.ts
   - src/models/components/documentfileupdate.ts
   - src/models/components/documentget.ts
   - src/models/components/documentlist.ts
   - src/models/components/documentmetadataupdate.ts
   - src/models/components/documentrawupdate.ts
   - src/models/components/documentsummary.ts
-  - src/models/components/documentupdatewebhook.ts
-  - src/models/components/documentupdatewebhookpayload.ts
   - src/models/components/entity.ts
-  - src/models/components/entityextractedwebhook.ts
-  - src/models/components/entityextractedwebhookpayload.ts
   - src/models/components/entitylist.ts
   - src/models/components/index.ts
   - src/models/components/instruction.ts
@@ -257,6 +217,7 @@ generatedFiles:
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/deleteconnectionconnectionsconnectioniddeletepost.ts
   - src/models/operations/deletedocument.ts
+  - src/models/operations/getconnectionconnectionsconnectionidget.ts
   - src/models/operations/getconnectionstatsconnectionsconnectionidstatsget.ts
   - src/models/operations/getdocument.ts
   - src/models/operations/getdocumentsummary.ts
@@ -271,8 +232,6 @@ generatedFiles:
   - src/models/operations/updatedocumentfile.ts
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
-  - src/models/webhooks/eventeventpost.ts
-  - src/models/webhooks/index.ts
   - src/sdk/connections.ts
   - src/sdk/documents.ts
   - src/sdk/entities.ts
@@ -535,3 +494,15 @@ examples:
         "401":
           application/json: {"detail": "<value>"}
         "422": {}
+  get_connection_connections__connection_id__get:
+    speakeasy-default-get-connection-connections-connection-id-get:
+      parameters:
+        path:
+          connection_id: "ee666f79-dcc9-4015-9e13-63993816d536"
+      responses:
+        "200":
+          application/json: "<value>"
+        "401":
+          application/json: {"detail": "<value>"}
+        "422": {}
+generatedTests: {}

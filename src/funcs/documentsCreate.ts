@@ -85,6 +85,9 @@ export async function documentsCreate(
   if (payload.mode !== undefined) {
     body.append("mode", payload.mode);
   }
+  if (payload.name !== undefined) {
+    body.append("name", payload.name);
+  }
   if (payload.partition !== undefined) {
     body.append("partition", payload.partition);
   }

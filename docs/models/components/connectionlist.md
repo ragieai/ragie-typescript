@@ -9,9 +9,9 @@ let value: ConnectionList = {
   pagination: {},
   connections: [
     {
-      id: "a0688a42-6f2e-487e-b7b6-ebb5ca32cf79",
-      createdAt: new Date("2023-05-17T02:48:20.581Z"),
-      updatedAt: new Date("2024-11-09T06:06:22.459Z"),
+      id: "fa0688a4-26f2-4e87-ae7b-6ebb5ca32cf7",
+      createdAt: new Date("2024-07-29T01:32:11.159Z"),
+      updatedAt: new Date("2023-05-17T02:48:20.581Z"),
       metadata: {},
       type: "<value>",
       name: "<value>",

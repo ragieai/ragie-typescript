@@ -7,7 +7,7 @@ import { ScoredChunk } from "ragie/models/components";
 
 let value: ScoredChunk = {
   text: "<value>",
-  score: 9560.84,
+  score: 5013.24,
   documentId: "<id>",
   documentName: "<value>",
   documentMetadata: {
