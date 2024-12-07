@@ -16,20 +16,26 @@
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [ragie](#ragie)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [File uploads](#file-uploads)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Retries](#retries)
+  * [Retries](#retries-1)
+  * [Standalone functions](#standalone-functions)
+  * [Pagination](#pagination)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Versioning](#versioning)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [Requirements](#requirements)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Standalone functions](#standalone-functions)
-* [Pagination](#pagination)
-* [File uploads](#file-uploads)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Debugging](#debugging)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -110,6 +116,7 @@ run();
 * [createOAuthRedirectUrl](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 * [setConnectionEnabled](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
 * [updateConnection](docs/sdks/connections/README.md#updateconnection) - Update Connection
+* [getConnection](docs/sdks/connections/README.md#getconnection) - Get Connection
 * [getConnectionStats](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
 * [deleteConnection](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
 
@@ -527,6 +534,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`connectionsCreateOAuthRedirectUrl`](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 - [`connectionsDeleteConnection`](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
+- [`connectionsGetConnection`](docs/sdks/connections/README.md#getconnection) - Get Connection
 - [`connectionsGetConnectionStats`](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
 - [`connectionsList`](docs/sdks/connections/README.md#list) - List Connections
 - [`connectionsSetConnectionEnabled`](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled

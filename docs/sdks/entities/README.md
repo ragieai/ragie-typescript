@@ -170,7 +170,6 @@ async function run() {
       "title": "Pizza",
       "type": "object",
     },
-    filter: {},
     partition: "<value>",
   });
 
@@ -269,7 +268,6 @@ async function run() {
       "title": "Pizza",
       "type": "object",
     },
-    filter: {},
     partition: "<value>",
   });
 

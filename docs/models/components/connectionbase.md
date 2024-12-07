@@ -6,7 +6,7 @@
 import { ConnectionBase } from "ragie/models/components";
 
 let value: ConnectionBase = {
-  partitionStrategy: "hi_res",
+  partitionStrategy: "fast",
 };
 ```
 

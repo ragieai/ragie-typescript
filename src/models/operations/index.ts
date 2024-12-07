@@ -4,6 +4,7 @@
 
 export * from "./deleteconnectionconnectionsconnectioniddeletepost.js";
 export * from "./deletedocument.js";
+export * from "./getconnectionconnectionsconnectionidget.js";
 export * from "./getconnectionstatsconnectionsconnectionidstatsget.js";
 export * from "./getdocument.js";
 export * from "./getdocumentsummary.js";
