@@ -97,6 +97,7 @@ export async function connectionsDeleteConnection(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -109,7 +110,7 @@ export async function connectionsDeleteConnection(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "422", "4XX", "5XX"],
+    errorCodes: ["401", "402", "422", "429", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -135,7 +136,7 @@ export async function connectionsDeleteConnection(
     | ConnectionError
   >(
     M.json(200, z.record(z.string())),
-    M.jsonErr(401, errors.ErrorMessage$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });
