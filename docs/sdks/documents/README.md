@@ -92,7 +92,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401                   | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -174,7 +174,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -264,7 +264,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401                   | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -350,7 +350,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401                   | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -428,7 +428,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -506,7 +506,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -592,7 +592,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -676,7 +676,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -705,6 +705,8 @@ async function run() {
         ],
         "title": "declassified report",
         "updated_at": 1714491736216,
+        "published": true,
+        "articleCount": 42,
       },
     },
   });
@@ -742,6 +744,8 @@ async function run() {
         ],
         "title": "declassified report",
         "updated_at": 1714491736216,
+        "published": true,
+        "articleCount": 42,
       },
     },
   });
@@ -776,7 +780,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -854,6 +858,6 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
