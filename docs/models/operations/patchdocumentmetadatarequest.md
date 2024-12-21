@@ -9,7 +9,14 @@ let value: PatchDocumentMetadataRequest = {
   documentId: "<DOCUMENT_ID>",
   patchDocumentMetadataParams: {
     metadata: {
-      "key": "<value>",
+      "classified": "null (setting null deletes key from metadata)",
+      "editors": [
+        "Alice",
+        "Bob",
+      ],
+      "published": true,
+      "articleCount": 42,
+      "title": "declassified report",
     },
   },
 };
