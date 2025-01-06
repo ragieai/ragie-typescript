@@ -11,6 +11,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type ScoredChunk = {
   text: string;
   score: number;
+  id: string;
+  index: number;
   documentId: string;
   documentName: string;
   documentMetadata: { [k: string]: any };
@@ -24,6 +26,8 @@ export const ScoredChunk$inboundSchema: z.ZodType<
 > = z.object({
   text: z.string(),
   score: z.number(),
+  id: z.string(),
+  index: z.number().int(),
   document_id: z.string(),
   document_name: z.string(),
   document_metadata: z.record(z.any()),
@@ -39,6 +43,8 @@ export const ScoredChunk$inboundSchema: z.ZodType<
 export type ScoredChunk$Outbound = {
   text: string;
   score: number;
+  id: string;
+  index: number;
   document_id: string;
   document_name: string;
   document_metadata: { [k: string]: any };
@@ -52,6 +58,8 @@ export const ScoredChunk$outboundSchema: z.ZodType<
 > = z.object({
   text: z.string(),
   score: z.number(),
+  id: z.string(),
+  index: z.number().int(),
   documentId: z.string(),
   documentName: z.string(),
   documentMetadata: z.record(z.any()),

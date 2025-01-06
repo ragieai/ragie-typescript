@@ -7,8 +7,8 @@ import { DocumentGet } from "ragie/models/components";
 
 let value: DocumentGet = {
   id: "b94819e5-a2b4-4290-9d0a-4bf39993f7db",
-  createdAt: new Date("2024-06-10T22:08:16.258Z"),
-  updatedAt: new Date("2023-03-11T13:41:13.226Z"),
+  createdAt: new Date("2025-06-10T22:08:16.258Z"),
+  updatedAt: new Date("2024-03-10T13:41:13.226Z"),
   status: "<value>",
   name: "<value>",
   metadata: {

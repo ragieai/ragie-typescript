@@ -7,6 +7,9 @@ import { documentsCreateDocumentFromUrl } from "../funcs/documentsCreateDocument
 import { documentsCreateRaw } from "../funcs/documentsCreateRaw.js";
 import { documentsDelete } from "../funcs/documentsDelete.js";
 import { documentsGet } from "../funcs/documentsGet.js";
+import { documentsGetChunk } from "../funcs/documentsGetChunk.js";
+import { documentsGetDocumentChunks } from "../funcs/documentsGetDocumentChunks.js";
+import { documentsGetDocumentContent } from "../funcs/documentsGetDocumentContent.js";
 import { documentsGetSummary } from "../funcs/documentsGetSummary.js";
 import { documentsList } from "../funcs/documentsList.js";
 import { documentsPatchMetadata } from "../funcs/documentsPatchMetadata.js";
@@ -150,6 +153,57 @@ export class Documents extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.DocumentMetadataUpdate> {
     return unwrapAsync(documentsPatchMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Document Chunks
+   *
+   * @remarks
+   * List all document chunks sorted by index in ascending order. May be limited to a range of chunk indices with the `start_index` and `end_index` parameters. Documents created prior to 9/18/2024, which have not been updated since, have chunks which do not include an index and their index will be returned as -1. They will be sorted by their ID instead. Updating the document using the `Update Document File` or `Update Document Raw` endpoint will regenerate document chunks, including their index. Results are paginated with a max limit of 100. When more chunks are available, a `cursor` will be provided. Use the `cursor` parameter to retrieve the subsequent page.
+   */
+  async getDocumentChunks(
+    request: operations.GetDocumentChunksRequest,
+    options?: RequestOptions,
+  ): Promise<components.DocumentChunkList> {
+    return unwrapAsync(documentsGetDocumentChunks(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Document Chunk
+   *
+   * @remarks
+   * Gets a document chunk by its document and chunk ID.
+   */
+  async getChunk(
+    request: operations.GetDocumentChunkRequest,
+    options?: RequestOptions,
+  ): Promise<components.DocumentChunk> {
+    return unwrapAsync(documentsGetChunk(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Document Content
+   *
+   * @remarks
+   * Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.
+   */
+  async getDocumentContent(
+    request: operations.GetDocumentContentRequest,
+    options?: RequestOptions,
+  ): Promise<components.DocumentWithContent> {
+    return unwrapAsync(documentsGetDocumentContent(
       this,
       request,
       options,

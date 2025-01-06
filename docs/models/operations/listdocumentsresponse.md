@@ -10,13 +10,15 @@ let value: ListDocumentsResponse = {
     pagination: {},
     documents: [
       {
-        id: "3a3a8684-b65d-4e03-95df-fe4f31f3b0be",
-        createdAt: new Date("2023-02-20T10:42:45.340Z"),
-        updatedAt: new Date("2023-02-15T05:29:12.502Z"),
+        id: "0594319b-af0a-499f-a0bd-85c178b1369e",
+        createdAt: new Date("2023-05-27T06:34:13.913Z"),
+        updatedAt: new Date("2025-12-10T17:10:47.327Z"),
         status: "<value>",
         name: "<value>",
         metadata: {
-          "key": false,
+          "key": [
+            "<value>",
+          ],
         },
         partition: "<value>",
       },

@@ -80,7 +80,7 @@ run();
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| errors.ErrorMessage | 401                 | application/json    |
+| errors.ErrorMessage | 401, 402, 429       | application/json    |
 | errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## createInstruction
@@ -301,7 +301,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -320,7 +320,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.updateInstruction({
-    instructionId: "<INSTRUCTION_ID>",
+    instructionId: "00000000-0000-0000-0000-000000000000",
     updateInstructionParams: {
       active: true,
     },
@@ -349,7 +349,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await entitiesUpdateInstruction(ragie, {
-    instructionId: "<INSTRUCTION_ID>",
+    instructionId: "00000000-0000-0000-0000-000000000000",
     updateInstructionParams: {
       active: true,
     },
@@ -385,7 +385,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -404,7 +404,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.listByInstruction({
-    instructionId: "<INSTRUCTION_ID>",
+    instructionId: "00000000-0000-0000-0000-000000000000",
   });
 
   for await (const page of result) {
@@ -432,7 +432,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await entitiesListByInstruction(ragie, {
-    instructionId: "<INSTRUCTION_ID>",
+    instructionId: "00000000-0000-0000-0000-000000000000",
   });
 
   if (!res.ok) {
@@ -467,7 +467,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -486,7 +486,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.entities.listByDocument({
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   for await (const page of result) {
@@ -514,7 +514,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await entitiesListByDocument(ragie, {
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   if (!res.ok) {
@@ -549,6 +549,6 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

@@ -6,7 +6,7 @@
 import { GetConnectionStatsConnectionsConnectionIdStatsGetRequest } from "ragie/models/operations";
 
 let value: GetConnectionStatsConnectionsConnectionIdStatsGetRequest = {
-  connectionId: "dd124161-9391-4fe6-9347-0a66cbf5ec59",
+  connectionId: "9cc5cb2d-7779-497d-ba66-c530ee1521e0",
 };
 ```
 

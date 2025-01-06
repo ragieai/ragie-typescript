@@ -131,6 +131,9 @@ run();
 * [updateFile](docs/sdks/documents/README.md#updatefile) - Update Document File
 * [updateRaw](docs/sdks/documents/README.md#updateraw) - Update Document Raw
 * [patchMetadata](docs/sdks/documents/README.md#patchmetadata) - Patch Document Metadata
+* [getDocumentChunks](docs/sdks/documents/README.md#getdocumentchunks) - Get Document Chunks
+* [getChunk](docs/sdks/documents/README.md#getchunk) - Get Document Chunk
+* [getDocumentContent](docs/sdks/documents/README.md#getdocumentcontent) - Get Document Content
 * [getSummary](docs/sdks/documents/README.md#getsummary) - Get Document Summary
 
 ### [entities](docs/sdks/entities/README.md)
@@ -188,25 +191,15 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
+Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `create` method may throw the following errors:
 
-If a HTTP request fails, an operation my also throw an error from the `models/errors/httpclienterrors.ts` module:
+| Error Type                 | Status Code        | Content Type     |
+| -------------------------- | ------------------ | ---------------- |
+| errors.ErrorMessage        | 400, 401, 402, 429 | application/json |
+| errors.HTTPValidationError | 422                | application/json |
+| errors.SDKError            | 4XX, 5XX           | \*/\*            |
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
-
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `create` method may throw the following errors:
-
-| Error Type                 | Status Code | Content Type     |
-| -------------------------- | ----------- | ---------------- |
-| errors.ErrorMessage        | 400, 401    | application/json |
-| errors.HTTPValidationError | 422         | application/json |
-| errors.SDKError            | 4XX, 5XX    | \*/\*            |
+If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
 ```typescript
 import { openAsBlob } from "node:fs";
@@ -232,8 +225,9 @@ async function run() {
     console.log(result);
   } catch (err) {
     switch (true) {
+      // The server response does not match the expected SDK schema
       case (err instanceof SDKValidationError): {
-        // Validation errors can be pretty-printed
+        // Pretty-print will provide a human-readable multi-line error message
         console.error(err.pretty());
         // Raw value may also be inspected
         console.error(err.rawValue);
@@ -250,6 +244,7 @@ async function run() {
         return;
       }
       default: {
+        // Other errors such as network errors, see HTTPClientErrors for more details
         throw err;
       }
     }
@@ -260,7 +255,17 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+
+In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -544,6 +549,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`documentsCreateRaw`](docs/sdks/documents/README.md#createraw) - Create Document Raw
 - [`documentsDelete`](docs/sdks/documents/README.md#delete) - Delete Document
 - [`documentsGet`](docs/sdks/documents/README.md#get) - Get Document
+- [`documentsGetChunk`](docs/sdks/documents/README.md#getchunk) - Get Document Chunk
+- [`documentsGetDocumentChunks`](docs/sdks/documents/README.md#getdocumentchunks) - Get Document Chunks
+- [`documentsGetDocumentContent`](docs/sdks/documents/README.md#getdocumentcontent) - Get Document Content
 - [`documentsGetSummary`](docs/sdks/documents/README.md#getsummary) - Get Document Summary
 - [`documentsList`](docs/sdks/documents/README.md#list) - List Documents
 - [`documentsPatchMetadata`](docs/sdks/documents/README.md#patchmetadata) - Patch Document Metadata
@@ -581,6 +589,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.list({
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
   for await (const page of result) {
