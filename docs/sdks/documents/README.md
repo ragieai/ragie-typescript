@@ -14,6 +14,9 @@
 * [updateFile](#updatefile) - Update Document File
 * [updateRaw](#updateraw) - Update Document Raw
 * [patchMetadata](#patchmetadata) - Patch Document Metadata
+* [getDocumentChunks](#getdocumentchunks) - Get Document Chunks
+* [getChunk](#getchunk) - Get Document Chunk
+* [getDocumentContent](#getdocumentcontent) - Get Document Content
 * [getSummary](#getsummary) - Get Document Summary
 
 ## create
@@ -92,7 +95,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401                   | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -112,6 +115,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.list({
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
   for await (const page of result) {
@@ -140,6 +144,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsList(ragie, {
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
   if (!res.ok) {
@@ -174,7 +179,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -264,7 +269,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401                   | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -350,7 +355,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401                   | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -369,7 +374,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.get({
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   // Handle the result
@@ -395,7 +400,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsGet(ragie, {
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   if (!res.ok) {
@@ -428,7 +433,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -447,7 +452,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.delete({
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   // Handle the result
@@ -473,7 +478,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsDelete(ragie, {
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   if (!res.ok) {
@@ -506,7 +511,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -526,7 +531,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.updateFile({
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
     },
@@ -556,7 +561,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsUpdateFile(ragie, {
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
     },
@@ -592,7 +597,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -611,7 +616,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.updateRaw({
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
     updateDocumentRawParams: {
       data: {},
     },
@@ -640,7 +645,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsUpdateRaw(ragie, {
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
     updateDocumentRawParams: {
       data: {},
     },
@@ -676,7 +681,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -695,7 +700,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.patchMetadata({
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
     patchDocumentMetadataParams: {
       metadata: {
         "classified": "null (setting null deletes key from metadata)",
@@ -705,6 +710,8 @@ async function run() {
         ],
         "title": "declassified report",
         "updated_at": 1714491736216,
+        "published": true,
+        "articleCount": 42,
       },
     },
   });
@@ -732,7 +739,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsPatchMetadata(ragie, {
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
     patchDocumentMetadataParams: {
       metadata: {
         "classified": "null (setting null deletes key from metadata)",
@@ -742,6 +749,8 @@ async function run() {
         ],
         "title": "declassified report",
         "updated_at": 1714491736216,
+        "published": true,
+        "articleCount": 42,
       },
     },
   });
@@ -776,7 +785,253 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getDocumentChunks
+
+List all document chunks sorted by index in ascending order. May be limited to a range of chunk indices with the `start_index` and `end_index` parameters. Documents created prior to 9/18/2024, which have not been updated since, have chunks which do not include an index and their index will be returned as -1. They will be sorted by their ID instead. Updating the document using the `Update Document File` or `Update Document Raw` endpoint will regenerate document chunks, including their index. Results are paginated with a max limit of 100. When more chunks are available, a `cursor` will be provided. Use the `cursor` parameter to retrieve the subsequent page.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.documents.getDocumentChunks({
+    documentId: "00000000-0000-0000-0000-000000000000",
+    startIndex: 3,
+    endIndex: 5,
+    partition: "acme_customer_id",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { documentsGetDocumentChunks } from "ragie/funcs/documentsGetDocumentChunks.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await documentsGetDocumentChunks(ragie, {
+    documentId: "00000000-0000-0000-0000-000000000000",
+    startIndex: 3,
+    endIndex: 5,
+    partition: "acme_customer_id",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDocumentChunksRequest](../../models/operations/getdocumentchunksrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.DocumentChunkList](../../models/components/documentchunklist.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getChunk
+
+Gets a document chunk by its document and chunk ID.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.documents.getChunk({
+    documentId: "00000000-0000-0000-0000-000000000000",
+    chunkId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { documentsGetChunk } from "ragie/funcs/documentsGetChunk.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await documentsGetChunk(ragie, {
+    documentId: "00000000-0000-0000-0000-000000000000",
+    chunkId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDocumentChunkRequest](../../models/operations/getdocumentchunkrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.DocumentChunk](../../models/components/documentchunk.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getDocumentContent
+
+Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.documents.getDocumentContent({
+    documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { documentsGetDocumentContent } from "ragie/funcs/documentsGetDocumentContent.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await documentsGetDocumentContent(ragie, {
+    documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDocumentContentRequest](../../models/operations/getdocumentcontentrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.DocumentWithContent](../../models/components/documentwithcontent.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -795,7 +1050,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.getSummary({
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   // Handle the result
@@ -821,7 +1076,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsGetSummary(ragie, {
-    documentId: "<DOCUMENT_ID>",
+    documentId: "00000000-0000-0000-0000-000000000000",
   });
 
   if (!res.ok) {
@@ -854,6 +1109,6 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 404                   | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

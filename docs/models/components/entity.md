@@ -6,11 +6,11 @@
 import { Entity } from "ragie/models/components";
 
 let value: Entity = {
-  id: "e189f431-0eac-4491-97fe-5f3ffcad4d90",
-  createdAt: new Date("2022-06-12T08:41:49.943Z"),
-  updatedAt: new Date("2024-12-12T02:02:24.972Z"),
-  instructionId: "77a52d38-31df-4fec-a516-320b0c211a36",
-  documentId: "db420447-ab46-42c0-abcc-45945370c184",
+  id: "8a426f2e-87e7-4b6e-bbb5-ca32cf79d7f9",
+  createdAt: new Date("2025-09-23T02:13:30.609Z"),
+  updatedAt: new Date("2025-06-12T19:32:18.704Z"),
+  instructionId: "2a6164d0-f550-426e-81fd-753900614342",
+  documentId: "19ff62a7-f1c4-43a3-ba86-84b65de035df",
   data: {
     "key": "<value>",
   },
@@ -26,4 +26,5 @@ let value: Entity = {
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `instructionId`                                                                               | *string*                                                                                      | :heavy_check_mark:                                                                            | The ID of the instruction which generated the entity.                                         |
 | `documentId`                                                                                  | *string*                                                                                      | :heavy_check_mark:                                                                            | The ID of the document which the entity was produced from.                                    |
+| `chunkId`                                                                                     | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `data`                                                                                        | Record<string, *any*>                                                                         | :heavy_check_mark:                                                                            | N/A                                                                                           |

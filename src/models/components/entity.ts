@@ -20,6 +20,7 @@ export type Entity = {
    * The ID of the document which the entity was produced from.
    */
   documentId: string;
+  chunkId?: string | null | undefined;
   data: { [k: string]: any };
 };
 
@@ -35,6 +36,7 @@ export const Entity$inboundSchema: z.ZodType<Entity, z.ZodTypeDef, unknown> = z
     ),
     instruction_id: z.string(),
     document_id: z.string(),
+    chunk_id: z.nullable(z.string()).optional(),
     data: z.record(z.any()),
   }).transform((v) => {
     return remap$(v, {
@@ -42,6 +44,7 @@ export const Entity$inboundSchema: z.ZodType<Entity, z.ZodTypeDef, unknown> = z
       "updated_at": "updatedAt",
       "instruction_id": "instructionId",
       "document_id": "documentId",
+      "chunk_id": "chunkId",
     });
   });
 
@@ -52,6 +55,7 @@ export type Entity$Outbound = {
   updated_at: string;
   instruction_id: string;
   document_id: string;
+  chunk_id?: string | null | undefined;
   data: { [k: string]: any };
 };
 
@@ -66,6 +70,7 @@ export const Entity$outboundSchema: z.ZodType<
   updatedAt: z.date().transform(v => v.toISOString()),
   instructionId: z.string(),
   documentId: z.string(),
+  chunkId: z.nullable(z.string()).optional(),
   data: z.record(z.any()),
 }).transform((v) => {
   return remap$(v, {
@@ -73,6 +78,7 @@ export const Entity$outboundSchema: z.ZodType<
     updatedAt: "updated_at",
     instructionId: "instruction_id",
     documentId: "document_id",
+    chunkId: "chunk_id",
   });
 });
 

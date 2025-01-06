@@ -69,6 +69,7 @@ export async function entitiesListInstructions(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
@@ -80,7 +81,7 @@ export async function entitiesListInstructions(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "4XX", "5XX"],
+    errorCodes: ["401", "402", "429", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -105,7 +106,7 @@ export async function entitiesListInstructions(
     | ConnectionError
   >(
     M.json(200, z.array(components.Instruction$inboundSchema)),
-    M.jsonErr(401, errors.ErrorMessage$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });
   if (!result.ok) {

@@ -23,13 +23,17 @@ export type RetrieveParams = {
    */
   rerank?: boolean | undefined;
   /**
-   * Maximum number of chunks to retrieve per document. Use this to increase the number of documents the final chunks are retreived from. This feature is in beta and may change in the future.
+   * Maximum number of chunks to retrieve per document. Use this to increase the number of documents the final chunks are retrieved from. This feature is in beta and may change in the future.
    */
   maxChunksPerDocument?: number | undefined;
   /**
-   * The partition to scope a retrieval to. If omitted, the retrieval will be scoped to the default partition, which includes any documents that have not been created in or moved to a partition.
+   * The partition to scope a retrieval to. If omitted, the retrieval will be scoped to the default partition, which includes any documents that have not been created in a partition.
    */
   partition?: string | undefined;
+  /**
+   * Enables recency bias which will favor more recent documents vs older documents. https://docs.ragie.ai/docs/retrievals-recency-bias
+   */
+  recencyBias?: boolean | undefined;
 };
 
 /** @internal */
@@ -44,10 +48,12 @@ export const RetrieveParams$inboundSchema: z.ZodType<
   rerank: z.boolean().default(false),
   max_chunks_per_document: z.number().int().optional(),
   partition: z.string().optional(),
+  recency_bias: z.boolean().default(false),
 }).transform((v) => {
   return remap$(v, {
     "top_k": "topK",
     "max_chunks_per_document": "maxChunksPerDocument",
+    "recency_bias": "recencyBias",
   });
 });
 
@@ -59,6 +65,7 @@ export type RetrieveParams$Outbound = {
   rerank: boolean;
   max_chunks_per_document?: number | undefined;
   partition?: string | undefined;
+  recency_bias: boolean;
 };
 
 /** @internal */
@@ -73,10 +80,12 @@ export const RetrieveParams$outboundSchema: z.ZodType<
   rerank: z.boolean().default(false),
   maxChunksPerDocument: z.number().int().optional(),
   partition: z.string().optional(),
+  recencyBias: z.boolean().default(false),
 }).transform((v) => {
   return remap$(v, {
     topK: "top_k",
     maxChunksPerDocument: "max_chunks_per_document",
+    recencyBias: "recency_bias",
   });
 });
 

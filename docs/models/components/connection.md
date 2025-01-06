@@ -6,9 +6,9 @@
 import { Connection } from "ragie/models/components";
 
 let value: Connection = {
-  id: "f9ded2a6-164d-40f5-8502-6e1fd7539006",
-  createdAt: new Date("2022-10-04T03:03:20.717Z"),
-  updatedAt: new Date("2022-08-31T09:25:00.182Z"),
+  id: "26296ef8-49e6-4847-a638-458c5ed04715",
+  createdAt: new Date("2025-01-15T20:15:10.483Z"),
+  updatedAt: new Date("2024-11-13T03:12:00.033Z"),
   metadata: {},
   type: "<value>",
   name: "<value>",

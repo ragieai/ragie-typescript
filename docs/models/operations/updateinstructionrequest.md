@@ -6,7 +6,7 @@
 import { UpdateInstructionRequest } from "ragie/models/operations";
 
 let value: UpdateInstructionRequest = {
-  instructionId: "<INSTRUCTION_ID>",
+  instructionId: "00000000-0000-0000-0000-000000000000",
   updateInstructionParams: {
     active: true,
   },
@@ -17,5 +17,5 @@ let value: UpdateInstructionRequest = {
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `instructionId`                                                                          | *string*                                                                                 | :heavy_check_mark:                                                                       | The ID of the instruction.                                                               | <INSTRUCTION_ID>                                                                         |
+| `instructionId`                                                                          | *string*                                                                                 | :heavy_check_mark:                                                                       | The ID of the instruction.                                                               | 00000000-0000-0000-0000-000000000000                                                     |
 | `updateInstructionParams`                                                                | [components.UpdateInstructionParams](../../models/components/updateinstructionparams.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |                                                                                          |
