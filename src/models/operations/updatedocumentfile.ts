@@ -14,6 +14,10 @@ export type UpdateDocumentFileRequest = {
    * The id of the document.
    */
   documentId: string;
+  /**
+   * An optional partition to scope the request to. If omitted, accounts created after 1/9/2025 will have the request scoped to the default partition, while older accounts will have the request scoped to all partitions. Older accounts may opt in to strict partition scoping by contacting support@ragie.ai. Older accounts using the partitions feature are strongly recommended to scope the request to a partition.
+   */
+  partition?: string | null | undefined;
   updateDocumentFileParams: components.UpdateDocumentFileParams;
 };
 
@@ -24,6 +28,7 @@ export const UpdateDocumentFileRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   document_id: z.string(),
+  partition: z.nullable(z.string()).optional(),
   UpdateDocumentFileParams: components.UpdateDocumentFileParams$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -35,6 +40,7 @@ export const UpdateDocumentFileRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateDocumentFileRequest$Outbound = {
   document_id: string;
+  partition?: string | null | undefined;
   UpdateDocumentFileParams: components.UpdateDocumentFileParams$Outbound;
 };
 
@@ -45,6 +51,7 @@ export const UpdateDocumentFileRequest$outboundSchema: z.ZodType<
   UpdateDocumentFileRequest
 > = z.object({
   documentId: z.string(),
+  partition: z.nullable(z.string()).optional(),
   updateDocumentFileParams: components.UpdateDocumentFileParams$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

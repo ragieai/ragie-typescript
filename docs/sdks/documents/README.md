@@ -375,6 +375,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.get({
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   // Handle the result
@@ -401,6 +402,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsGet(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   if (!res.ok) {
@@ -453,6 +455,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.delete({
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   // Handle the result
@@ -479,6 +482,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsDelete(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   if (!res.ok) {
@@ -532,6 +536,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.updateFile({
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
     },
@@ -562,6 +567,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsUpdateFile(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
     },
@@ -617,6 +623,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.updateRaw({
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
     updateDocumentRawParams: {
       data: {},
     },
@@ -646,6 +653,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsUpdateRaw(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
     updateDocumentRawParams: {
       data: {},
     },
@@ -701,6 +709,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.patchMetadata({
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
     patchDocumentMetadataParams: {
       metadata: {
         "classified": "null (setting null deletes key from metadata)",
@@ -708,10 +717,9 @@ async function run() {
           "Alice",
           "Bob",
         ],
-        "title": "declassified report",
-        "updated_at": 1714491736216,
         "published": true,
         "articleCount": 42,
+        "title": "declassified report",
       },
     },
   });
@@ -740,6 +748,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsPatchMetadata(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
     patchDocumentMetadataParams: {
       metadata: {
         "classified": "null (setting null deletes key from metadata)",
@@ -747,10 +756,9 @@ async function run() {
           "Alice",
           "Bob",
         ],
-        "title": "declassified report",
-        "updated_at": 1714491736216,
         "published": true,
         "articleCount": 42,
+        "title": "declassified report",
       },
     },
   });
@@ -1051,6 +1059,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.getSummary({
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   // Handle the result
@@ -1077,6 +1086,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsGetSummary(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   if (!res.ok) {

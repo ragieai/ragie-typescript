@@ -14,6 +14,10 @@ export type PatchDocumentMetadataRequest = {
    * The id of the document.
    */
   documentId: string;
+  /**
+   * An optional partition to scope the request to. If omitted, accounts created after 1/9/2025 will have the request scoped to the default partition, while older accounts will have the request scoped to all partitions. Older accounts may opt in to strict partition scoping by contacting support@ragie.ai. Older accounts using the partitions feature are strongly recommended to scope the request to a partition.
+   */
+  partition?: string | null | undefined;
   patchDocumentMetadataParams: components.PatchDocumentMetadataParams;
 };
 
@@ -24,6 +28,7 @@ export const PatchDocumentMetadataRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   document_id: z.string(),
+  partition: z.nullable(z.string()).optional(),
   PatchDocumentMetadataParams:
     components.PatchDocumentMetadataParams$inboundSchema,
 }).transform((v) => {
@@ -36,6 +41,7 @@ export const PatchDocumentMetadataRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type PatchDocumentMetadataRequest$Outbound = {
   document_id: string;
+  partition?: string | null | undefined;
   PatchDocumentMetadataParams: components.PatchDocumentMetadataParams$Outbound;
 };
 
@@ -46,6 +52,7 @@ export const PatchDocumentMetadataRequest$outboundSchema: z.ZodType<
   PatchDocumentMetadataRequest
 > = z.object({
   documentId: z.string(),
+  partition: z.nullable(z.string()).optional(),
   patchDocumentMetadataParams:
     components.PatchDocumentMetadataParams$outboundSchema,
 }).transform((v) => {

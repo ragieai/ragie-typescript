@@ -69,6 +69,10 @@ export async function documentsUpdateRaw(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "partition": encodeSimple("partition", payload.partition, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.auth);
