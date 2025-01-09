@@ -81,6 +81,10 @@ export async function entitiesListByDocument(
 
   const headers = new Headers({
     Accept: "application/json",
+    "partition": encodeSimple("partition", payload.partition, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.auth);

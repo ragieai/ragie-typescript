@@ -22,6 +22,10 @@ export type ListEntitiesByInstructionRequest = {
    * The number of items per page (must be greater than 0 and less than or equal to 100)
    */
   pageSize?: number | undefined;
+  /**
+   * An optional partition to scope the request to. If omitted, accounts created after 1/9/2025 will have the request scoped to the default partition, while older accounts will have the request scoped to all partitions. Older accounts may opt in to strict partition scoping by contacting support@ragie.ai. Older accounts using the partitions feature are strongly recommended to scope the request to a partition.
+   */
+  partition?: string | null | undefined;
 };
 
 export type ListEntitiesByInstructionResponse = {
@@ -37,6 +41,7 @@ export const ListEntitiesByInstructionRequest$inboundSchema: z.ZodType<
   instruction_id: z.string(),
   cursor: z.nullable(z.string()).optional(),
   page_size: z.number().int().default(10),
+  partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "instruction_id": "instructionId",
@@ -49,6 +54,7 @@ export type ListEntitiesByInstructionRequest$Outbound = {
   instruction_id: string;
   cursor?: string | null | undefined;
   page_size: number;
+  partition?: string | null | undefined;
 };
 
 /** @internal */
@@ -60,6 +66,7 @@ export const ListEntitiesByInstructionRequest$outboundSchema: z.ZodType<
   instructionId: z.string(),
   cursor: z.nullable(z.string()).optional(),
   pageSize: z.number().int().default(10),
+  partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     instructionId: "instruction_id",

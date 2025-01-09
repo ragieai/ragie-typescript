@@ -405,6 +405,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.listByInstruction({
     instructionId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   for await (const page of result) {
@@ -433,6 +434,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesListByInstruction(ragie, {
     instructionId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   if (!res.ok) {
@@ -487,6 +489,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.listByDocument({
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   for await (const page of result) {
@@ -515,6 +518,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesListByDocument(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
   });
 
   if (!res.ok) {
