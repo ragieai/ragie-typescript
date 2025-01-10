@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * List all document chunks sorted by index in ascending order. May be limited to a range of chunk indices with the `start_index` and `end_index` parameters. Documents created prior to 9/18/2024, which have not been updated since, have chunks which do not include an index and their index will be returned as -1. They will be sorted by their ID instead. Updating the document using the `Update Document File` or `Update Document Raw` endpoint will regenerate document chunks, including their index. Results are paginated with a max limit of 100. When more chunks are available, a `cursor` will be provided. Use the `cursor` parameter to retrieve the subsequent page.
  */
-export async function documentsGetDocumentChunks(
+export async function documentsGetChunks(
   client: RagieCore,
   request: operations.GetDocumentChunksRequest,
   options?: RequestOptions,

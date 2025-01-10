@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 879305928ae3c786432ceab9c51149b5
+  docChecksum: da10448fedebe2ccff8fb102392e9427
   docVersion: 1.0.0
-  speakeasyVersion: 1.467.0
+  speakeasyVersion: 1.467.1
   generationVersion: 2.492.3
-  releaseVersion: 1.4.1
-  configChecksum: 2de9c556b5da7df661be3e64ee3ce988
+  releaseVersion: 1.4.2
+  configChecksum: 838f6c0a11771118dc41830521f44e3b
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -153,8 +153,8 @@ generatedFiles:
   - src/funcs/documentsDelete.ts
   - src/funcs/documentsGet.ts
   - src/funcs/documentsGetChunk.ts
-  - src/funcs/documentsGetDocumentChunks.ts
-  - src/funcs/documentsGetDocumentContent.ts
+  - src/funcs/documentsGetChunks.ts
+  - src/funcs/documentsGetContent.ts
   - src/funcs/documentsGetSummary.ts
   - src/funcs/documentsList.ts
   - src/funcs/documentsPatchMetadata.ts

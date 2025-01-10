@@ -14,9 +14,9 @@
 * [updateFile](#updatefile) - Update Document File
 * [updateRaw](#updateraw) - Update Document Raw
 * [patchMetadata](#patchmetadata) - Patch Document Metadata
-* [getDocumentChunks](#getdocumentchunks) - Get Document Chunks
+* [getChunks](#getchunks) - Get Document Chunks
 * [getChunk](#getchunk) - Get Document Chunk
-* [getDocumentContent](#getdocumentcontent) - Get Document Content
+* [getContent](#getcontent) - Get Document Content
 * [getSummary](#getsummary) - Get Document Summary
 
 ## create
@@ -797,7 +797,7 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## getDocumentChunks
+## getChunks
 
 List all document chunks sorted by index in ascending order. May be limited to a range of chunk indices with the `start_index` and `end_index` parameters. Documents created prior to 9/18/2024, which have not been updated since, have chunks which do not include an index and their index will be returned as -1. They will be sorted by their ID instead. Updating the document using the `Update Document File` or `Update Document Raw` endpoint will regenerate document chunks, including their index. Results are paginated with a max limit of 100. When more chunks are available, a `cursor` will be provided. Use the `cursor` parameter to retrieve the subsequent page.
 
@@ -811,7 +811,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.getDocumentChunks({
+  const result = await ragie.documents.getChunks({
     documentId: "00000000-0000-0000-0000-000000000000",
     startIndex: 3,
     endIndex: 5,
@@ -831,7 +831,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { documentsGetDocumentChunks } from "ragie/funcs/documentsGetDocumentChunks.js";
+import { documentsGetChunks } from "ragie/funcs/documentsGetChunks.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -840,7 +840,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await documentsGetDocumentChunks(ragie, {
+  const res = await documentsGetChunks(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
     startIndex: 3,
     endIndex: 5,
@@ -963,7 +963,7 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## getDocumentContent
+## getContent
 
 Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.
 
@@ -977,7 +977,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.getDocumentContent({
+  const result = await ragie.documents.getContent({
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
@@ -995,7 +995,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { documentsGetDocumentContent } from "ragie/funcs/documentsGetDocumentContent.js";
+import { documentsGetContent } from "ragie/funcs/documentsGetContent.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1004,7 +1004,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await documentsGetDocumentContent(ragie, {
+  const res = await documentsGetContent(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
