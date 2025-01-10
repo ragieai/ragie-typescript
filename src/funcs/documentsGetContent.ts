@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.
  */
-export async function documentsGetDocumentContent(
+export async function documentsGetContent(
   client: RagieCore,
   request: operations.GetDocumentContentRequest,
   options?: RequestOptions,
