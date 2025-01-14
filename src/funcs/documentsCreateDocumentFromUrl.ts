@@ -5,6 +5,7 @@
 import { RagieCore } from "../core.js";
 import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -24,6 +25,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Create Document From Url
+ *
+ * @remarks
+ * Ingest a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
  */
 export async function documentsCreateDocumentFromUrl(
   client: RagieCore,
@@ -57,10 +61,10 @@ export async function documentsCreateDocumentFromUrl(
 
   const path = pathToFunc("/documents/url")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.auth);
   const securityInput = secConfig == null ? {} : { auth: secConfig };

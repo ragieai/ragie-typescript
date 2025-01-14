@@ -6,12 +6,12 @@
 import { Instruction } from "ragie/models/components";
 
 let value: Instruction = {
-  id: "c2fa3fb4-3803-4657-a49d-182b692275fc",
-  createdAt: new Date("2025-09-17T11:26:38.524Z"),
-  updatedAt: new Date("2023-04-02T10:20:37.470Z"),
+  id: "3fb43803-6574-49d1-a82b-692275fcbe18",
+  createdAt: new Date("2025-11-20T06:46:28.205Z"),
+  updatedAt: new Date("2023-11-17T04:38:54.761Z"),
   name: "Find all pizzas",
   active: true,
-  scope: "chunk",
+  scope: "document",
   prompt: "Find all pizzas described in the text.",
   entitySchema: {
     "key": "<value>",

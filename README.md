@@ -130,10 +130,12 @@ run();
 * [delete](docs/sdks/documents/README.md#delete) - Delete Document
 * [updateFile](docs/sdks/documents/README.md#updatefile) - Update Document File
 * [updateRaw](docs/sdks/documents/README.md#updateraw) - Update Document Raw
+* [updateDocumentFromUrl](docs/sdks/documents/README.md#updatedocumentfromurl) - Update Document Url
 * [patchMetadata](docs/sdks/documents/README.md#patchmetadata) - Patch Document Metadata
 * [getChunks](docs/sdks/documents/README.md#getchunks) - Get Document Chunks
 * [getChunk](docs/sdks/documents/README.md#getchunk) - Get Document Chunk
 * [getContent](docs/sdks/documents/README.md#getcontent) - Get Document Content
+* [getSource](docs/sdks/documents/README.md#getsource) - Get Document Source
 * [getSummary](docs/sdks/documents/README.md#getsummary) - Get Document Summary
 
 ### [entities](docs/sdks/entities/README.md)
@@ -552,9 +554,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`documentsGetChunk`](docs/sdks/documents/README.md#getchunk) - Get Document Chunk
 - [`documentsGetChunks`](docs/sdks/documents/README.md#getchunks) - Get Document Chunks
 - [`documentsGetContent`](docs/sdks/documents/README.md#getcontent) - Get Document Content
+- [`documentsGetSource`](docs/sdks/documents/README.md#getsource) - Get Document Source
 - [`documentsGetSummary`](docs/sdks/documents/README.md#getsummary) - Get Document Summary
 - [`documentsList`](docs/sdks/documents/README.md#list) - List Documents
 - [`documentsPatchMetadata`](docs/sdks/documents/README.md#patchmetadata) - Patch Document Metadata
+- [`documentsUpdateDocumentFromUrl`](docs/sdks/documents/README.md#updatedocumentfromurl) - Update Document Url
 - [`documentsUpdateFile`](docs/sdks/documents/README.md#updatefile) - Update Document File
 - [`documentsUpdateRaw`](docs/sdks/documents/README.md#updateraw) - Update Document Raw
 - [`entitiesCreateInstruction`](docs/sdks/entities/README.md#createinstruction) - Create Instruction

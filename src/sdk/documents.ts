@@ -10,9 +10,11 @@ import { documentsGet } from "../funcs/documentsGet.js";
 import { documentsGetChunk } from "../funcs/documentsGetChunk.js";
 import { documentsGetChunks } from "../funcs/documentsGetChunks.js";
 import { documentsGetContent } from "../funcs/documentsGetContent.js";
+import { documentsGetSource } from "../funcs/documentsGetSource.js";
 import { documentsGetSummary } from "../funcs/documentsGetSummary.js";
 import { documentsList } from "../funcs/documentsList.js";
 import { documentsPatchMetadata } from "../funcs/documentsPatchMetadata.js";
+import { documentsUpdateDocumentFromUrl } from "../funcs/documentsUpdateDocumentFromUrl.js";
 import { documentsUpdateFile } from "../funcs/documentsUpdateFile.js";
 import { documentsUpdateRaw } from "../funcs/documentsUpdateRaw.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -77,6 +79,9 @@ export class Documents extends ClientSDK {
 
   /**
    * Create Document From Url
+   *
+   * @remarks
+   * Ingest a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
    */
   async createDocumentFromUrl(
     request: components.CreateDocumentFromUrlParams,
@@ -146,6 +151,23 @@ export class Documents extends ClientSDK {
   }
 
   /**
+   * Update Document Url
+   *
+   * @remarks
+   * Updates a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
+   */
+  async updateDocumentFromUrl(
+    request: operations.UpdateDocumentFromUrlRequest,
+    options?: RequestOptions,
+  ): Promise<components.DocumentUrlUpdate> {
+    return unwrapAsync(documentsUpdateDocumentFromUrl(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Patch Document Metadata
    */
   async patchMetadata(
@@ -204,6 +226,23 @@ export class Documents extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.DocumentWithContent> {
     return unwrapAsync(documentsGetContent(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Document Source
+   *
+   * @remarks
+   * Get the source file of a document. The source file is the original file that was uploaded to create the document. If the document was created from a URL, the source file will be the content of the URL. If the document was created by a connection, the source file will vary based on the type of the connection. For example, a Google Drive connection will return the file that was synced from the Google Drive, while a SalesForce connection would return a JSON file of the data synced from SalesForce.
+   */
+  async getSource(
+    request: operations.GetDocumentSourceRequest,
+    options?: RequestOptions,
+  ): Promise<ReadableStream<Uint8Array>> {
+    return unwrapAsync(documentsGetSource(
       this,
       request,
       options,

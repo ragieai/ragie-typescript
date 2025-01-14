@@ -179,3 +179,13 @@ Based on:
 - [typescript v1.4.2] .
 ### Releases
 - [NPM v1.4.2] https://www.npmjs.com/package/ragie/v/1.4.2 - .
+
+## 2025-01-14 21:37:56
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.468.6 (2.493.13) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.4.3] .
+### Releases
+- [NPM v1.4.3] https://www.npmjs.com/package/ragie/v/1.4.3 - .

@@ -6,7 +6,7 @@
 import { OAuthUrlResponse } from "ragie/models/components";
 
 let value: OAuthUrlResponse = {
-  url: "https://downright-flight.net",
+  url: "https://neat-ecliptic.com",
 };
 ```
 
