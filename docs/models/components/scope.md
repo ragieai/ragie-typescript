@@ -7,7 +7,7 @@ The scope of the instruction. Determines whether the instruction is applied to t
 ```typescript
 import { Scope } from "ragie/models/components";
 
-let value: Scope = "document";
+let value: Scope = "chunk";
 ```
 
 ## Values

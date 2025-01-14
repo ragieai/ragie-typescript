@@ -3,9 +3,10 @@
  */
 
 import { RagieCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { appendForm, encodeJSON } from "../lib/encodings.js";
 import { readableStreamToArrayBuffer } from "../lib/files.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -61,42 +62,44 @@ export async function documentsCreate(
   const body = new FormData();
 
   if (isBlobLike(payload.file)) {
-    body.append("file", payload.file);
+    appendForm(body, "file", payload.file);
   } else if (isReadableStream(payload.file.content)) {
     const buffer = await readableStreamToArrayBuffer(payload.file.content);
     const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body.append("file", blob);
+    appendForm(body, "file", blob);
   } else {
-    body.append(
+    appendForm(
+      body,
       "file",
       new Blob([payload.file.content], { type: "application/octet-stream" }),
       payload.file.fileName,
     );
   }
   if (payload.external_id !== undefined) {
-    body.append("external_id", payload.external_id);
+    appendForm(body, "external_id", payload.external_id);
   }
   if (payload.metadata !== undefined) {
-    body.append(
+    appendForm(
+      body,
       "metadata",
       encodeJSON("metadata", payload.metadata, { explode: true }),
     );
   }
   if (payload.mode !== undefined) {
-    body.append("mode", payload.mode);
+    appendForm(body, "mode", payload.mode);
   }
   if (payload.name !== undefined) {
-    body.append("name", payload.name);
+    appendForm(body, "name", payload.name);
   }
   if (payload.partition !== undefined) {
-    body.append("partition", payload.partition);
+    appendForm(body, "partition", payload.partition);
   }
 
   const path = pathToFunc("/documents")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.auth);
   const securityInput = secConfig == null ? {} : { auth: secConfig };

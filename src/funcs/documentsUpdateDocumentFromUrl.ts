@@ -3,7 +3,7 @@
  */
 
 import { RagieCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -25,18 +25,18 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get Document Content
+ * Update Document Url
  *
  * @remarks
- * Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.
+ * Updates a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
  */
-export async function documentsGetContent(
+export async function documentsUpdateDocumentFromUrl(
   client: RagieCore,
-  request: operations.GetDocumentContentRequest,
+  request: operations.UpdateDocumentFromUrlRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.DocumentWithContent,
+    components.DocumentUrlUpdate,
     | errors.ErrorMessage
     | errors.HTTPValidationError
     | SDKError
@@ -50,14 +50,17 @@ export async function documentsGetContent(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.GetDocumentContentRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.UpdateDocumentFromUrlRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.UpdateDocumentFromUrlParams, {
+    explode: true,
+  });
 
   const pathParams = {
     document_id: encodeSimple("document_id", payload.document_id, {
@@ -66,9 +69,10 @@ export async function documentsGetContent(
     }),
   };
 
-  const path = pathToFunc("/documents/{document_id}/content")(pathParams);
+  const path = pathToFunc("/documents/{document_id}/url")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
     "partition": encodeSimple("partition", payload.partition, {
       explode: false,
@@ -81,7 +85,7 @@ export async function documentsGetContent(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "GetDocumentContent",
+    operationID: "UpdateDocumentFromUrl",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -95,7 +99,7 @@ export async function documentsGetContent(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "PUT",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -123,7 +127,7 @@ export async function documentsGetContent(
   };
 
   const [result] = await M.match<
-    components.DocumentWithContent,
+    components.DocumentUrlUpdate,
     | errors.ErrorMessage
     | errors.HTTPValidationError
     | SDKError
@@ -134,7 +138,7 @@ export async function documentsGetContent(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.DocumentWithContent$inboundSchema),
+    M.json(200, components.DocumentUrlUpdate$inboundSchema),
     M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail(["4XX", "5XX"]),

@@ -13,10 +13,12 @@
 * [delete](#delete) - Delete Document
 * [updateFile](#updatefile) - Update Document File
 * [updateRaw](#updateraw) - Update Document Raw
+* [updateDocumentFromUrl](#updatedocumentfromurl) - Update Document Url
 * [patchMetadata](#patchmetadata) - Patch Document Metadata
 * [getChunks](#getchunks) - Get Document Chunks
 * [getChunk](#getchunk) - Get Document Chunk
 * [getContent](#getcontent) - Get Document Content
+* [getSource](#getsource) - Get Document Source
 * [getSummary](#getsummary) - Get Document Summary
 
 ## create
@@ -200,7 +202,7 @@ async function run() {
   const result = await ragie.documents.createRaw({
     metadata: {
       "key": [
-        "<value>",
+
       ],
     },
     partition: "<value>",
@@ -232,7 +234,7 @@ async function run() {
   const res = await documentsCreateRaw(ragie, {
     metadata: {
       "key": [
-        "<value>",
+  
       ],
     },
     partition: "<value>",
@@ -275,7 +277,7 @@ run();
 
 ## createDocumentFromUrl
 
-Create Document From Url
+Ingest a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
 
 ### Example Usage
 
@@ -288,9 +290,6 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.createDocumentFromUrl({
-    metadata: {
-
-    },
     partition: "<value>",
     url: "https://scientific-plain.biz/",
   });
@@ -318,9 +317,6 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsCreateDocumentFromUrl(ragie, {
-    metadata: {
-  
-    },
     partition: "<value>",
     url: "https://scientific-plain.biz/",
   });
@@ -693,6 +689,92 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
+## updateDocumentFromUrl
+
+Updates a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.documents.updateDocumentFromUrl({
+    documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+    updateDocumentFromUrlParams: {
+      url: "https://dual-longboat.com/",
+    },
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { documentsUpdateDocumentFromUrl } from "ragie/funcs/documentsUpdateDocumentFromUrl.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await documentsUpdateDocumentFromUrl(ragie, {
+    documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+    updateDocumentFromUrlParams: {
+      url: "https://dual-longboat.com/",
+    },
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateDocumentFromUrlRequest](../../models/operations/updatedocumentfromurlrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.DocumentUrlUpdate](../../models/components/documenturlupdate.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
 ## patchMetadata
 
 Patch Document Metadata
@@ -1034,6 +1116,86 @@ run();
 ### Response
 
 **Promise\<[components.DocumentWithContent](../../models/components/documentwithcontent.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getSource
+
+Get the source file of a document. The source file is the original file that was uploaded to create the document. If the document was created from a URL, the source file will be the content of the URL. If the document was created by a connection, the source file will vary based on the type of the connection. For example, a Google Drive connection will return the file that was synced from the Google Drive, while a SalesForce connection would return a JSON file of the data synced from SalesForce.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.documents.getSource({
+    documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { documentsGetSource } from "ragie/funcs/documentsGetSource.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await documentsGetSource(ragie, {
+    documentId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDocumentSourceRequest](../../models/operations/getdocumentsourcerequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[ReadableStream<Uint8Array>](../../models/.md)\>**
 
 ### Errors
 

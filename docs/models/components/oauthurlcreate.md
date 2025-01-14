@@ -6,7 +6,7 @@
 import { OAuthUrlCreate } from "ragie/models/components";
 
 let value: OAuthUrlCreate = {
-  redirectUri: "https://scary-accountability.info/",
+  redirectUri: "https://utter-bonnet.info",
   sourceType: "<value>",
 };
 ```

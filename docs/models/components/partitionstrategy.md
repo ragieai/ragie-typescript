@@ -5,7 +5,7 @@
 ```typescript
 import { PartitionStrategy } from "ragie/models/components";
 
-let value: PartitionStrategy = "fast";
+let value: PartitionStrategy = "hi_res";
 ```
 
 ## Values

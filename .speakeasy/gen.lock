@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: da10448fedebe2ccff8fb102392e9427
+  docChecksum: 2acaf6b4fff01298bdb81e05cd7998a7
   docVersion: 1.0.0
-  speakeasyVersion: 1.467.1
-  generationVersion: 2.492.3
-  releaseVersion: 1.4.2
-  configChecksum: 838f6c0a11771118dc41830521f44e3b
+  speakeasyVersion: 1.468.6
+  generationVersion: 2.493.13
+  releaseVersion: 1.4.3
+  configChecksum: f62470874b6357288923a10bcbb5c617
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,9 +14,10 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.12
+    core: 3.18.14
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
+    downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     globalSecurity: 2.82.12
@@ -39,7 +40,6 @@ generatedFiles:
   - .eslintrc.cjs
   - .gitattributes
   - .npmignore
-  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
   - USAGE.md
@@ -76,6 +76,7 @@ generatedFiles:
   - docs/models/components/documentmetadataupdatemetadata.md
   - docs/models/components/documentrawupdate.md
   - docs/models/components/documentsummary.md
+  - docs/models/components/documenturlupdate.md
   - docs/models/components/documentwithcontent.md
   - docs/models/components/documentwithcontentmetadata.md
   - docs/models/components/entity.md
@@ -103,6 +104,8 @@ generatedFiles:
   - docs/models/components/updatedocumentfileparams.md
   - docs/models/components/updatedocumentfileparamsfile.md
   - docs/models/components/updatedocumentfileparamsmode.md
+  - docs/models/components/updatedocumentfromurlparams.md
+  - docs/models/components/updatedocumentfromurlparamsmode.md
   - docs/models/components/updatedocumentrawparams.md
   - docs/models/components/updatedocumentrawparamsdata.md
   - docs/models/components/updateinstructionparams.md
@@ -117,6 +120,7 @@ generatedFiles:
   - docs/models/operations/getdocumentchunksrequest.md
   - docs/models/operations/getdocumentcontentrequest.md
   - docs/models/operations/getdocumentrequest.md
+  - docs/models/operations/getdocumentsourcerequest.md
   - docs/models/operations/getdocumentsummaryrequest.md
   - docs/models/operations/listconnectionsconnectionsgetrequest.md
   - docs/models/operations/listconnectionsconnectionsgetresponse.md
@@ -130,6 +134,7 @@ generatedFiles:
   - docs/models/operations/setconnectionenabledconnectionsconnectionidenabledputrequest.md
   - docs/models/operations/updateconnectionconnectionsconnectionidputrequest.md
   - docs/models/operations/updatedocumentfilerequest.md
+  - docs/models/operations/updatedocumentfromurlrequest.md
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
   - docs/sdks/connections/README.md
@@ -155,9 +160,11 @@ generatedFiles:
   - src/funcs/documentsGetChunk.ts
   - src/funcs/documentsGetChunks.ts
   - src/funcs/documentsGetContent.ts
+  - src/funcs/documentsGetSource.ts
   - src/funcs/documentsGetSummary.ts
   - src/funcs/documentsList.ts
   - src/funcs/documentsPatchMetadata.ts
+  - src/funcs/documentsUpdateDocumentFromUrl.ts
   - src/funcs/documentsUpdateFile.ts
   - src/funcs/documentsUpdateRaw.ts
   - src/funcs/entitiesCreateInstruction.ts
@@ -204,6 +211,7 @@ generatedFiles:
   - src/models/components/documentmetadataupdate.ts
   - src/models/components/documentrawupdate.ts
   - src/models/components/documentsummary.ts
+  - src/models/components/documenturlupdate.ts
   - src/models/components/documentwithcontent.ts
   - src/models/components/entity.ts
   - src/models/components/entitylist.ts
@@ -219,6 +227,7 @@ generatedFiles:
   - src/models/components/security.ts
   - src/models/components/setconnectionenabledpayload.ts
   - src/models/components/updatedocumentfileparams.ts
+  - src/models/components/updatedocumentfromurlparams.ts
   - src/models/components/updatedocumentrawparams.ts
   - src/models/components/updateinstructionparams.ts
   - src/models/components/validationerror.ts
@@ -236,6 +245,7 @@ generatedFiles:
   - src/models/operations/getdocumentchunk.ts
   - src/models/operations/getdocumentchunks.ts
   - src/models/operations/getdocumentcontent.ts
+  - src/models/operations/getdocumentsource.ts
   - src/models/operations/getdocumentsummary.ts
   - src/models/operations/index.ts
   - src/models/operations/listconnectionsconnectionsget.ts
@@ -246,6 +256,7 @@ generatedFiles:
   - src/models/operations/setconnectionenabledconnectionsconnectionidenabledput.ts
   - src/models/operations/updateconnectionconnectionsconnectionidput.ts
   - src/models/operations/updatedocumentfile.ts
+  - src/models/operations/updatedocumentfromurl.ts
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
   - src/sdk/connections.ts
@@ -284,7 +295,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"documents": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2022-03-24T06:20:14.879Z", "updated_at": "2024-09-10T04:30:13.188Z", "status": "<value>", "name": "<value>", "metadata": {}, "partition": "<value>"}, {"id": "766718d6-d461-42e0-aaee-1b9ddf121dc2", "created_at": "2022-11-08T21:35:05.868Z", "updated_at": "2024-05-06T10:10:32.094Z", "status": "<value>", "name": "<value>", "metadata": {"key": "<value>", "key1": "<value>"}, "partition": "<value>"}, {"id": "4fb451a7-0cfc-48fe-807f-bc60ab960d56", "created_at": "2022-05-09T15:43:49.850Z", "updated_at": "2024-10-31T06:20:54.910Z", "status": "<value>", "name": "<value>", "metadata": {"key": 370293, "key1": 212921, "key2": []}, "partition": "<value>"}]}
+          application/json: {"pagination": {}, "documents": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2022-03-24T06:20:14.879Z", "updated_at": "2024-09-10T04:30:13.188Z", "status": "<value>", "name": "<value>", "metadata": {}, "partition": "<value>"}, {"id": "766718d6-d461-42e0-aaee-1b9ddf121dc2", "created_at": "2022-11-08T21:35:05.868Z", "updated_at": "2024-05-06T10:10:32.094Z", "status": "<value>", "name": "<value>", "metadata": {"key": "<value>", "key1": "<value>"}, "partition": "<value>"}, {"id": "4fb451a7-0cfc-48fe-807f-bc60ab960d56", "created_at": "2022-05-09T15:43:49.850Z", "updated_at": "2024-10-31T06:20:54.910Z", "status": "<value>", "name": "<value>", "metadata": {"key": 370293, "key1": 212921, "key2": []}, "partition": "<value>"}]}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -303,7 +314,7 @@ examples:
   CreateDocumentFromUrl:
     speakeasy-default-create-document-from-url:
       requestBody:
-        application/json: {"metadata": {}, "partition": "<value>", "url": "https://scientific-plain.biz/"}
+        application/json: {"partition": "<value>", "url": "https://scientific-plain.biz/"}
       responses:
         "201":
           application/json: {"id": "0adf151b-6a78-4e39-a7b3-465615a95443", "created_at": "2022-07-13T10:16:17.094Z", "updated_at": "2024-05-24T16:33:21.360Z", "status": "<value>", "name": "<value>", "metadata": {}, "partition": "<value>"}
@@ -454,7 +465,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"entities": []}
+          application/json: {"pagination": {}, "entities": []}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -469,7 +480,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"entities": [{"id": "0acf0abf-c6b5-4e2a-9ea8-a13f725d0bb4", "created_at": "2024-05-24T20:59:27.681Z", "updated_at": "2022-12-13T21:49:21.883Z", "instruction_id": "92a05549-1b0f-45fb-8f85-0f20075f1108", "document_id": "104fc7ec-2190-4ecf-83d0-7049ae9e1af9", "data": {"key": "<value>", "key1": "<value>"}}]}
+          application/json: {"pagination": {}, "entities": [{"id": "0acf0abf-c6b5-4e2a-9ea8-a13f725d0bb4", "created_at": "2024-05-24T20:59:27.681Z", "updated_at": "2022-12-13T21:49:21.883Z", "instruction_id": "92a05549-1b0f-45fb-8f85-0f20075f1108", "document_id": "104fc7ec-2190-4ecf-83d0-7049ae9e1af9", "data": {"key": "<value>", "key1": "<value>"}}]}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -478,7 +489,7 @@ examples:
     speakeasy-default-list-connections-connections-get:
       responses:
         "200":
-          application/json: {"connections": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2022-03-24T06:20:14.879Z", "updated_at": "2024-09-10T04:30:13.188Z", "type": "<value>", "name": "<value>", "enabled": true}, {"id": "766718d6-d461-42e0-aaee-1b9ddf121dc2", "created_at": "2022-11-08T21:35:05.868Z", "updated_at": "2024-05-06T10:10:32.094Z", "type": "<value>", "name": "<value>", "enabled": false}, {"id": "104fb451-a70c-4fc8-9fe0-7fbc60ab960d", "created_at": "2023-03-22T09:41:56.524Z", "updated_at": "2022-03-28T18:28:26.777Z", "type": "<value>", "name": "<value>", "enabled": true}]}
+          application/json: {"pagination": {}, "connections": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2022-03-24T06:20:14.879Z", "updated_at": "2024-09-10T04:30:13.188Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": true}, {"id": "766718d6-d461-42e0-aaee-1b9ddf121dc2", "created_at": "2022-11-08T21:35:05.868Z", "updated_at": "2024-05-06T10:10:32.094Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": false}, {"id": "104fb451-a70c-4fc8-9fe0-7fbc60ab960d", "created_at": "2023-03-22T09:41:56.524Z", "updated_at": "2022-03-28T18:28:26.777Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": true}]}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -492,7 +503,7 @@ examples:
         application/json: {"enabled": true}
       responses:
         "200":
-          application/json: {"id": "26fadfa1-29b4-490b-acfb-7e6429656623", "created_at": "2024-10-14T19:56:20.471Z", "updated_at": "2022-04-26T16:53:39.637Z", "type": "<value>", "name": "<value>", "enabled": false}
+          application/json: {"id": "26fadfa1-29b4-490b-acfb-7e6429656623", "created_at": "2024-10-14T19:56:20.471Z", "updated_at": "2022-04-26T16:53:39.637Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": false}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -506,7 +517,7 @@ examples:
         application/json: {"partition_strategy": "fast"}
       responses:
         "200":
-          application/json: {"id": "e8483df4-d337-4f04-a295-c0df4e3bbb65", "created_at": "2022-04-30T21:32:17.394Z", "updated_at": "2024-08-07T23:17:45.906Z", "type": "<value>", "name": "<value>", "enabled": true}
+          application/json: {"id": "e8483df4-d337-4f04-a295-c0df4e3bbb65", "created_at": "2022-04-30T21:32:17.394Z", "updated_at": "2024-08-07T23:17:45.906Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": true}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -572,7 +583,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"chunks": [{"id": "e6393c90-ff5b-42b1-bc7e-3a9e3df36039", "text": "<value>"}, {"id": "1bd873e6-6a23-427a-96ff-5447556a4fd9", "text": "<value>"}, {"id": "06c06583-a581-4d24-8f54-26da443e5ea7", "text": "<value>"}]}
+          application/json: {"pagination": {}, "chunks": [{"id": "e6393c90-ff5b-42b1-bc7e-3a9e3df36039", "text": "<value>"}, {"id": "1bd873e6-6a23-427a-96ff-5447556a4fd9", "text": "<value>"}, {"id": "06c06583-a581-4d24-8f54-26da443e5ea7", "text": "<value>"}]}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -602,6 +613,36 @@ examples:
       responses:
         "200":
           application/json: {"id": "2387e2a9-6a78-42cc-a38d-781714107a8e", "created_at": "2023-03-31T02:08:08.673Z", "updated_at": "2023-01-16T22:14:29.610Z", "status": "<value>", "name": "<value>", "metadata": {}, "partition": "<value>", "content": "<value>"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {}
+  UpdateDocumentFromUrl:
+    speakeasy-default-update-document-from-url:
+      parameters:
+        path:
+          document_id: "00000000-0000-0000-0000-000000000000"
+        header:
+          partition: "acme_customer_id"
+      requestBody:
+        application/json: {"url": "https://dual-longboat.com/"}
+      responses:
+        "200":
+          application/json: {"status": "<value>"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {}
+  GetDocumentSource:
+    speakeasy-default-get-document-source:
+      parameters:
+        path:
+          document_id: "00000000-0000-0000-0000-000000000000"
+        header:
+          partition: "acme_customer_id"
+      responses:
+        "200":
+          application/octet-stream: "x-file: example.file"
         "401":
           application/json: {"detail": "<value>"}
         "422":

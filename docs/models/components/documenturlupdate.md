@@ -1,12 +1,12 @@
-# ConnectionStats
+# DocumentUrlUpdate
 
 ## Example Usage
 
 ```typescript
-import { ConnectionStats } from "ragie/models/components";
+import { DocumentUrlUpdate } from "ragie/models/components";
 
-let value: ConnectionStats = {
-  documentCount: 279068,
+let value: DocumentUrlUpdate = {
+  status: "<value>",
 };
 ```
 
@@ -14,4 +14,4 @@ let value: ConnectionStats = {
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `documentCount`    | *number*           | :heavy_check_mark: | N/A                |
+| `status`           | *string*           | :heavy_check_mark: | N/A                |

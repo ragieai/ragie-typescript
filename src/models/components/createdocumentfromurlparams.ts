@@ -50,7 +50,7 @@ export type CreateDocumentFromUrlParams = {
    */
   partition?: string | undefined;
   /**
-   * Url of the file to download. Must be publicly accessible and HTTP or HTTPS scheme
+   * Url of the file to download. Must be publicly accessible and HTTP or HTTPS scheme.
    */
   url: string;
 };
