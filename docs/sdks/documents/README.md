@@ -38,6 +38,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   // Handle the result
@@ -65,6 +66,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsCreate(ragie, {
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   if (!res.ok) {
@@ -116,6 +118,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.list({
+    pageSize: 10,
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });
@@ -145,6 +148,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsList(ragie, {
+    pageSize: 10,
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });
@@ -200,11 +204,6 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.createRaw({
-    metadata: {
-      "key": [
-
-      ],
-    },
     partition: "<value>",
     data: "<value>",
   });
@@ -232,11 +231,6 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsCreateRaw(ragie, {
-    metadata: {
-      "key": [
-  
-      ],
-    },
     partition: "<value>",
     data: "<value>",
   });
@@ -290,6 +284,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.createDocumentFromUrl({
+    mode: "fast",
     partition: "<value>",
     url: "https://scientific-plain.biz/",
   });
@@ -317,6 +312,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsCreateDocumentFromUrl(ragie, {
+    mode: "fast",
     partition: "<value>",
     url: "https://scientific-plain.biz/",
   });
@@ -535,6 +531,7 @@ async function run() {
     partition: "acme_customer_id",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
+      mode: "fast",
     },
   });
 
@@ -566,6 +563,7 @@ async function run() {
     partition: "acme_customer_id",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
+      mode: "fast",
     },
   });
 
@@ -707,6 +705,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentFromUrlParams: {
+      mode: "fast",
       url: "https://dual-longboat.com/",
     },
   });
@@ -737,6 +736,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentFromUrlParams: {
+      mode: "fast",
       url: "https://dual-longboat.com/",
     },
   });
@@ -897,6 +897,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     startIndex: 3,
     endIndex: 5,
+    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -926,6 +927,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     startIndex: 3,
     endIndex: 5,
+    pageSize: 10,
     partition: "acme_customer_id",
   });
 

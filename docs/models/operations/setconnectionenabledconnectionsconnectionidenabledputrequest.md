@@ -6,7 +6,7 @@
 import { SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest } from "ragie/models/operations";
 
 let value: SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest = {
-  connectionId: "63470a66-cbf5-4ec5-894d-1326b870613e",
+  connectionId: "66cbf5ec-594d-4132-a6b8-70613e3dc291",
   setConnectionEnabledPayload: {
     enabled: false,
   },

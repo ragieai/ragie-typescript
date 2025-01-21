@@ -27,7 +27,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.list();
+  const result = await ragie.connections.list({
+    pageSize: 10,
+  });
 
   for await (const page of result) {
     // Handle the page
@@ -53,7 +55,9 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsList(ragie);
+  const res = await connectionsList(ragie, {
+    pageSize: 10,
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -106,8 +110,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.createOAuthRedirectUrl({
-    redirectUri: "https://lumbering-sundae.net",
-    sourceType: "<value>",
+    redirectUri: "https://fatherly-soup.com",
   });
 
   // Handle the result
@@ -133,8 +136,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsCreateOAuthRedirectUrl(ragie, {
-    redirectUri: "https://lumbering-sundae.net",
-    sourceType: "<value>",
+    redirectUri: "https://fatherly-soup.com",
   });
 
   if (!res.ok) {
@@ -407,7 +409,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.Connection](../../models/components/connection.md)\>**
 
 ### Errors
 

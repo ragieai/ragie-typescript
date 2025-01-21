@@ -12,10 +12,13 @@ let value: ConnectionList = {
       id: "1f3b0be4-65b3-4274-9d38-fadfcbff7142",
       createdAt: new Date("2023-05-24T21:26:04.186Z"),
       updatedAt: new Date("2024-10-24T02:42:52.981Z"),
-      metadata: {},
+      metadata: {
+        "key": 895386,
+      },
       type: "<value>",
       name: "<value>",
       enabled: false,
+      partition: "<value>",
     },
   ],
 };
