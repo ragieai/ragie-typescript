@@ -8,6 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ConnectorSource,
+  ConnectorSource$inboundSchema,
+  ConnectorSource$outboundSchema,
+} from "./connectorsource.js";
 
 export type OAuthUrlCreateMetadata = string | number | boolean | Array<string>;
 
@@ -26,7 +31,7 @@ export type Theme = ClosedEnum<typeof Theme>;
 
 export type OAuthUrlCreate = {
   redirectUri: string;
-  sourceType: string;
+  sourceType?: ConnectorSource | undefined;
   /**
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`.
    */
@@ -140,7 +145,7 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   redirect_uri: z.string(),
-  source_type: z.string(),
+  source_type: ConnectorSource$inboundSchema.optional(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
@@ -157,7 +162,7 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
 /** @internal */
 export type OAuthUrlCreate$Outbound = {
   redirect_uri: string;
-  source_type: string;
+  source_type?: string | undefined;
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
@@ -173,7 +178,7 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   OAuthUrlCreate
 > = z.object({
   redirectUri: z.string(),
-  sourceType: z.string(),
+  sourceType: ConnectorSource$outboundSchema.optional(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),

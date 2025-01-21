@@ -24,17 +24,10 @@ async function run() {
   const result = await ragie.retrievals.retrieve({
     query: "What is the best pizza place in SF?",
     topK: 8,
-    filter: {
-      "department": {
-        "$in": [
-          "sales",
-          "marketing",
-        ],
-      },
-    },
     rerank: true,
     maxChunksPerDocument: 0,
     partition: "<value>",
+    recencyBias: false,
   });
 
   // Handle the result
@@ -62,17 +55,10 @@ async function run() {
   const res = await retrievalsRetrieve(ragie, {
     query: "What is the best pizza place in SF?",
     topK: 8,
-    filter: {
-      "department": {
-        "$in": [
-          "sales",
-          "marketing",
-        ],
-      },
-    },
     rerank: true,
     maxChunksPerDocument: 0,
     partition: "<value>",
+    recencyBias: false,
   });
 
   if (!res.ok) {

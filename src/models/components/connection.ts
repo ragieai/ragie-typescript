@@ -8,65 +8,70 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type ConnectionMetadataMetadata = {};
+export type ConnectionMetadata = string | number | boolean | Array<string>;
 
 export type Connection = {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  metadata: ConnectionMetadataMetadata;
+  metadata: { [k: string]: string | number | boolean | Array<string> };
   type: string;
   name: string;
   enabled: boolean;
   lastSyncedAt?: Date | null | undefined;
   syncing?: boolean | null | undefined;
+  partition: string;
 };
 
 /** @internal */
-export const ConnectionMetadataMetadata$inboundSchema: z.ZodType<
-  ConnectionMetadataMetadata,
+export const ConnectionMetadata$inboundSchema: z.ZodType<
+  ConnectionMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
 
 /** @internal */
-export type ConnectionMetadataMetadata$Outbound = {};
+export type ConnectionMetadata$Outbound =
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 /** @internal */
-export const ConnectionMetadataMetadata$outboundSchema: z.ZodType<
-  ConnectionMetadataMetadata$Outbound,
+export const ConnectionMetadata$outboundSchema: z.ZodType<
+  ConnectionMetadata$Outbound,
   z.ZodTypeDef,
-  ConnectionMetadataMetadata
-> = z.object({});
+  ConnectionMetadata
+> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ConnectionMetadataMetadata$ {
-  /** @deprecated use `ConnectionMetadataMetadata$inboundSchema` instead. */
-  export const inboundSchema = ConnectionMetadataMetadata$inboundSchema;
-  /** @deprecated use `ConnectionMetadataMetadata$outboundSchema` instead. */
-  export const outboundSchema = ConnectionMetadataMetadata$outboundSchema;
-  /** @deprecated use `ConnectionMetadataMetadata$Outbound` instead. */
-  export type Outbound = ConnectionMetadataMetadata$Outbound;
+export namespace ConnectionMetadata$ {
+  /** @deprecated use `ConnectionMetadata$inboundSchema` instead. */
+  export const inboundSchema = ConnectionMetadata$inboundSchema;
+  /** @deprecated use `ConnectionMetadata$outboundSchema` instead. */
+  export const outboundSchema = ConnectionMetadata$outboundSchema;
+  /** @deprecated use `ConnectionMetadata$Outbound` instead. */
+  export type Outbound = ConnectionMetadata$Outbound;
 }
 
-export function connectionMetadataMetadataToJSON(
-  connectionMetadataMetadata: ConnectionMetadataMetadata,
+export function connectionMetadataToJSON(
+  connectionMetadata: ConnectionMetadata,
 ): string {
   return JSON.stringify(
-    ConnectionMetadataMetadata$outboundSchema.parse(connectionMetadataMetadata),
+    ConnectionMetadata$outboundSchema.parse(connectionMetadata),
   );
 }
 
-export function connectionMetadataMetadataFromJSON(
+export function connectionMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<ConnectionMetadataMetadata, SDKValidationError> {
+): SafeParseResult<ConnectionMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ConnectionMetadataMetadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionMetadataMetadata' from JSON`,
+    (x) => ConnectionMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionMetadata' from JSON`,
   );
 }
 
@@ -79,7 +84,9 @@ export const Connection$inboundSchema: z.ZodType<
   id: z.string(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  metadata: z.lazy(() => ConnectionMetadataMetadata$inboundSchema),
+  metadata: z.record(
+    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+  ),
   type: z.string(),
   name: z.string(),
   enabled: z.boolean(),
@@ -87,6 +94,7 @@ export const Connection$inboundSchema: z.ZodType<
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   syncing: z.nullable(z.boolean()).optional(),
+  partition: z.string(),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",
@@ -100,12 +108,13 @@ export type Connection$Outbound = {
   id: string;
   created_at: string;
   updated_at: string;
-  metadata: ConnectionMetadataMetadata$Outbound;
+  metadata: { [k: string]: string | number | boolean | Array<string> };
   type: string;
   name: string;
   enabled: boolean;
   last_synced_at?: string | null | undefined;
   syncing?: boolean | null | undefined;
+  partition: string;
 };
 
 /** @internal */
@@ -117,12 +126,15 @@ export const Connection$outboundSchema: z.ZodType<
   id: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
-  metadata: z.lazy(() => ConnectionMetadataMetadata$outboundSchema),
+  metadata: z.record(
+    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+  ),
   type: z.string(),
   name: z.string(),
   enabled: z.boolean(),
   lastSyncedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   syncing: z.nullable(z.boolean()).optional(),
+  partition: z.string(),
 }).transform((v) => {
   return remap$(v, {
     createdAt: "created_at",

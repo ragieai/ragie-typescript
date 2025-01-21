@@ -6,6 +6,7 @@ export * from "./connection.js";
 export * from "./connectionbase.js";
 export * from "./connectionlist.js";
 export * from "./connectionstats.js";
+export * from "./connectorsource.js";
 export * from "./createdocumentfromurlparams.js";
 export * from "./createdocumentparams.js";
 export * from "./createdocumentrawparams.js";

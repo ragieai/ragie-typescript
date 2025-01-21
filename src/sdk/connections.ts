@@ -99,7 +99,7 @@ export class Connections extends ClientSDK {
   async getConnection(
     request: operations.GetConnectionConnectionsConnectionIdGetRequest,
     options?: RequestOptions,
-  ): Promise<any> {
+  ): Promise<components.Connection> {
     return unwrapAsync(connectionsGetConnection(
       this,
       request,

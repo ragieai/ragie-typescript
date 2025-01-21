@@ -103,72 +103,7 @@ async function run() {
     scope: "chunk",
     prompt: "Find all pizzas described in the text.",
     entitySchema: {
-      "additionalProperties": false,
-      "properties": {
-        "size": {
-          "enum": [
-            "small",
-            "medium",
-            "large",
-          ],
-          "type": "string",
-        },
-        "crust": {
-          "enum": [
-            "thin",
-            "thick",
-            "stuffed",
-          ],
-          "type": "string",
-        },
-        "sauce": {
-          "enum": [
-            "tomato",
-            "alfredo",
-            "pesto",
-          ],
-          "type": "string",
-        },
-        "cheese": {
-          "enum": [
-            "mozzarella",
-            "cheddar",
-            "parmesan",
-            "vegan",
-          ],
-          "type": "string",
-        },
-        "toppings": {
-          "items": {
-            "enum": [
-              "pepperoni",
-              "mushrooms",
-              "onions",
-              "sausage",
-              "bacon",
-              "extra cheese",
-              "black olives",
-              "green peppers",
-              "pineapple",
-              "spinach",
-            ],
-            "type": "string",
-          },
-          "type": "array",
-          "uniqueItems": true,
-        },
-        "extraInstructions": {
-          "type": "string",
-        },
-      },
-      "required": [
-        "size",
-        "crust",
-        "sauce",
-        "cheese",
-      ],
-      "title": "Pizza",
-      "type": "object",
+      "key": "<value>",
     },
     partition: "<value>",
   });
@@ -201,72 +136,7 @@ async function run() {
     scope: "chunk",
     prompt: "Find all pizzas described in the text.",
     entitySchema: {
-      "additionalProperties": false,
-      "properties": {
-        "size": {
-          "enum": [
-            "small",
-            "medium",
-            "large",
-          ],
-          "type": "string",
-        },
-        "crust": {
-          "enum": [
-            "thin",
-            "thick",
-            "stuffed",
-          ],
-          "type": "string",
-        },
-        "sauce": {
-          "enum": [
-            "tomato",
-            "alfredo",
-            "pesto",
-          ],
-          "type": "string",
-        },
-        "cheese": {
-          "enum": [
-            "mozzarella",
-            "cheddar",
-            "parmesan",
-            "vegan",
-          ],
-          "type": "string",
-        },
-        "toppings": {
-          "items": {
-            "enum": [
-              "pepperoni",
-              "mushrooms",
-              "onions",
-              "sausage",
-              "bacon",
-              "extra cheese",
-              "black olives",
-              "green peppers",
-              "pineapple",
-              "spinach",
-            ],
-            "type": "string",
-          },
-          "type": "array",
-          "uniqueItems": true,
-        },
-        "extraInstructions": {
-          "type": "string",
-        },
-      },
-      "required": [
-        "size",
-        "crust",
-        "sauce",
-        "cheese",
-      ],
-      "title": "Pizza",
-      "type": "object",
+      "key": "<value>",
     },
     partition: "<value>",
   });
@@ -405,6 +275,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.listByInstruction({
     instructionId: "00000000-0000-0000-0000-000000000000",
+    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -434,6 +305,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesListByInstruction(ragie, {
     instructionId: "00000000-0000-0000-0000-000000000000",
+    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -489,6 +361,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.listByDocument({
     documentId: "00000000-0000-0000-0000-000000000000",
+    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -518,6 +391,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesListByDocument(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    pageSize: 10,
     partition: "acme_customer_id",
   });
 

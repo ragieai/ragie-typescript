@@ -93,6 +93,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   // Handle the result
@@ -179,6 +180,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   // Handle the result
@@ -221,6 +223,7 @@ async function run() {
   try {
     result = await ragie.documents.create({
       file: await openAsBlob("example.file"),
+      mode: "fast",
     });
 
     // Handle the result
@@ -288,6 +291,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   // Handle the result
@@ -371,6 +375,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   // Handle the result
@@ -399,6 +404,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   }, {
     retries: {
       strategy: "backoff",
@@ -442,6 +448,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   // Handle the result
@@ -470,6 +477,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   }, {
     retries: {
       strategy: "backoff",
@@ -513,6 +521,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
+    mode: "fast",
   });
 
   // Handle the result
@@ -592,6 +601,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.list({
+    pageSize: 10,
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });
