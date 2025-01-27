@@ -7,11 +7,12 @@
 
 * [list](#list) - List Connections
 * [createOAuthRedirectUrl](#createoauthredirecturl) - Create Oauth Redirect Url
-* [setConnectionEnabled](#setconnectionenabled) - Set Connection Enabled
-* [updateConnection](#updateconnection) - Update Connection
-* [getConnection](#getconnection) - Get Connection
-* [getConnectionStats](#getconnectionstats) - Get Connection Stats
-* [deleteConnection](#deleteconnection) - Delete Connection
+* [setEnabled](#setenabled) - Set Connection Enabled
+* [update](#update) - Update Connection
+* [get](#get) - Get Connection
+* [getStats](#getstats) - Get Connection Stats
+* [setLimits](#setlimits) - Set Connection Limits
+* [delete](#delete) - Delete Connection
 
 ## list
 
@@ -173,7 +174,7 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## setConnectionEnabled
+## setEnabled
 
 Enable or disable the connection. A disabled connection won't sync.
 
@@ -187,7 +188,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.setConnectionEnabled({
+  const result = await ragie.connections.setEnabled({
     connectionId: "bf0424b5-8be9-4a67-a8ca-6ab0e9e89780",
     setConnectionEnabledPayload: {
       enabled: true,
@@ -207,7 +208,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { connectionsSetConnectionEnabled } from "ragie/funcs/connectionsSetConnectionEnabled.js";
+import { connectionsSetEnabled } from "ragie/funcs/connectionsSetEnabled.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -216,7 +217,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsSetConnectionEnabled(ragie, {
+  const res = await connectionsSetEnabled(ragie, {
     connectionId: "bf0424b5-8be9-4a67-a8ca-6ab0e9e89780",
     setConnectionEnabledPayload: {
       enabled: true,
@@ -257,7 +258,7 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## updateConnection
+## update
 
 Updates a connections metadata or mode. These changes will be seen after the next sync.
 
@@ -271,7 +272,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.updateConnection({
+  const result = await ragie.connections.update({
     connectionId: "60a91616-1376-4585-82c8-85b663abc0c8",
     connectionBase: {
       partitionStrategy: "fast",
@@ -291,7 +292,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { connectionsUpdateConnection } from "ragie/funcs/connectionsUpdateConnection.js";
+import { connectionsUpdate } from "ragie/funcs/connectionsUpdate.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -300,7 +301,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsUpdateConnection(ragie, {
+  const res = await connectionsUpdate(ragie, {
     connectionId: "60a91616-1376-4585-82c8-85b663abc0c8",
     connectionBase: {
       partitionStrategy: "fast",
@@ -341,7 +342,7 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## getConnection
+## get
 
 Get a connection.
 
@@ -355,7 +356,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.getConnection({
+  const result = await ragie.connections.get({
     connectionId: "ee666f79-dcc9-4015-9e13-63993816d536",
   });
 
@@ -372,7 +373,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { connectionsGetConnection } from "ragie/funcs/connectionsGetConnection.js";
+import { connectionsGet } from "ragie/funcs/connectionsGet.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -381,7 +382,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsGetConnection(ragie, {
+  const res = await connectionsGet(ragie, {
     connectionId: "ee666f79-dcc9-4015-9e13-63993816d536",
   });
 
@@ -419,9 +420,9 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## getConnectionStats
+## getStats
 
-Lists connection stats: total documents synced.
+Lists connection stats: total documents active documents, total active pages.
 
 ### Example Usage
 
@@ -433,7 +434,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.getConnectionStats({
+  const result = await ragie.connections.getStats({
     connectionId: "1f4a1403-1d6d-4b6c-b869-7469eff2dd5e",
   });
 
@@ -450,7 +451,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { connectionsGetConnectionStats } from "ragie/funcs/connectionsGetConnectionStats.js";
+import { connectionsGetStats } from "ragie/funcs/connectionsGetStats.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -459,7 +460,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsGetConnectionStats(ragie, {
+  const res = await connectionsGetStats(ragie, {
     connectionId: "1f4a1403-1d6d-4b6c-b869-7469eff2dd5e",
   });
 
@@ -497,7 +498,91 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## deleteConnection
+## setLimits
+
+Sets limits on a connection. Limits can be set on the total number of pages a connection can sync. When the limit is reached, the connection will be disabled. Limit may be removed by setting it to `null`.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.connections.setLimits({
+    connectionId: "dfde4e02-1322-4e1c-8bdc-47313184eebe",
+    connectionLimitParams: {
+      pageLimit: 1000,
+    },
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { connectionsSetLimits } from "ragie/funcs/connectionsSetLimits.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await connectionsSetLimits(ragie, {
+    connectionId: "dfde4e02-1322-4e1c-8bdc-47313184eebe",
+    connectionLimitParams: {
+      pageLimit: 1000,
+    },
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.SetConnectionLimitsConnectionsConnectionIdLimitPutRequest](../../models/operations/setconnectionlimitsconnectionsconnectionidlimitputrequest.md)                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.Connection](../../models/components/connection.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## delete
 
 Schedules a connection to be deleted. You can choose to keep the files from the connection or delete them all. If you keep the files, they will no longer be associated to the connection. Deleting can take some time, so you will still see files for a bit after this is called.
 
@@ -511,7 +596,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.deleteConnection({
+  const result = await ragie.connections.delete({
     connectionId: "5922bdb9-d99a-4e03-8cb8-05fcacce856d",
     deleteConnectionPayload: {
       keepFiles: true,
@@ -531,7 +616,7 @@ The standalone function version of this method:
 
 ```typescript
 import { RagieCore } from "ragie/core.js";
-import { connectionsDeleteConnection } from "ragie/funcs/connectionsDeleteConnection.js";
+import { connectionsDelete } from "ragie/funcs/connectionsDelete.js";
 
 // Use `RagieCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -540,7 +625,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsDeleteConnection(ragie, {
+  const res = await connectionsDelete(ragie, {
     connectionId: "5922bdb9-d99a-4e03-8cb8-05fcacce856d",
     deleteConnectionPayload: {
       keepFiles: true,

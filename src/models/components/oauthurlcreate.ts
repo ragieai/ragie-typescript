@@ -44,6 +44,10 @@ export type OAuthUrlCreate = {
    * Sets the theme of the Ragie Web UI when the user lands there. Can be light, dark, or system to use whatever the system value is. If omitted, system is used.
    */
   theme?: Theme | null | undefined;
+  /**
+   * The maximum number of pages a connection will sync. The connection will be disabled after this limit is reached. Some in progress documents may continue processing after the limit is reached. The limit will be enforced at the start of the next document sync. Remove the limit by setting to null.
+   */
+  pageLimit?: number | null | undefined;
 };
 
 /** @internal */
@@ -152,10 +156,12 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   mode: z.nullable(Mode$inboundSchema).optional(),
   partition: z.nullable(z.string()).optional(),
   theme: z.nullable(Theme$inboundSchema).optional(),
+  page_limit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "redirect_uri": "redirectUri",
     "source_type": "sourceType",
+    "page_limit": "pageLimit",
   });
 });
 
@@ -169,6 +175,7 @@ export type OAuthUrlCreate$Outbound = {
   mode?: string | null | undefined;
   partition?: string | null | undefined;
   theme?: string | null | undefined;
+  page_limit?: number | null | undefined;
 };
 
 /** @internal */
@@ -185,10 +192,12 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   mode: z.nullable(Mode$outboundSchema).optional(),
   partition: z.nullable(z.string()).optional(),
   theme: z.nullable(Theme$outboundSchema).optional(),
+  pageLimit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     redirectUri: "redirect_uri",
     sourceType: "source_type",
+    pageLimit: "page_limit",
   });
 });
 

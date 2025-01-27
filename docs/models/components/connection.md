@@ -16,6 +16,7 @@ let value: Connection = {
   name: "<value>",
   enabled: false,
   partition: "<value>",
+  disabledBySystem: false,
 };
 ```
 
@@ -30,6 +31,8 @@ let value: Connection = {
 | `type`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `enabled`                                                                                     | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `disabledBySystemReason`                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `lastSyncedAt`                                                                                | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `syncing`                                                                                     | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `partition`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `disabledBySystem`                                                                            | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |

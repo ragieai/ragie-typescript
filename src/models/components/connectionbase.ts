@@ -25,6 +25,10 @@ export type ConnectionBase = {
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
+  /**
+   * The maximum number of pages a connection will sync. The connection will be disabled after this limit is reached. Some in process documents may continue processing. Remove the limit by setting to `null`.
+   */
+  pageLimit?: number | null | undefined;
 };
 
 /** @internal */
@@ -110,9 +114,11 @@ export const ConnectionBase$inboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
+  page_limit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "partition_strategy": "partitionStrategy",
+    "page_limit": "pageLimit",
   });
 });
 
@@ -122,6 +128,7 @@ export type ConnectionBase$Outbound = {
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
+  page_limit?: number | null | undefined;
 };
 
 /** @internal */
@@ -134,9 +141,11 @@ export const ConnectionBase$outboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
+  pageLimit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     partitionStrategy: "partition_strategy",
+    pageLimit: "page_limit",
   });
 });
 
