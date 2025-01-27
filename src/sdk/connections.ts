@@ -3,12 +3,13 @@
  */
 
 import { connectionsCreateOAuthRedirectUrl } from "../funcs/connectionsCreateOAuthRedirectUrl.js";
-import { connectionsDeleteConnection } from "../funcs/connectionsDeleteConnection.js";
-import { connectionsGetConnection } from "../funcs/connectionsGetConnection.js";
-import { connectionsGetConnectionStats } from "../funcs/connectionsGetConnectionStats.js";
+import { connectionsDelete } from "../funcs/connectionsDelete.js";
+import { connectionsGet } from "../funcs/connectionsGet.js";
+import { connectionsGetStats } from "../funcs/connectionsGetStats.js";
 import { connectionsList } from "../funcs/connectionsList.js";
-import { connectionsSetConnectionEnabled } from "../funcs/connectionsSetConnectionEnabled.js";
-import { connectionsUpdateConnection } from "../funcs/connectionsUpdateConnection.js";
+import { connectionsSetEnabled } from "../funcs/connectionsSetEnabled.js";
+import { connectionsSetLimits } from "../funcs/connectionsSetLimits.js";
+import { connectionsUpdate } from "../funcs/connectionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -61,12 +62,12 @@ export class Connections extends ClientSDK {
    * @remarks
    * Enable or disable the connection. A disabled connection won't sync.
    */
-  async setConnectionEnabled(
+  async setEnabled(
     request:
       operations.SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest,
     options?: RequestOptions,
   ): Promise<components.Connection> {
-    return unwrapAsync(connectionsSetConnectionEnabled(
+    return unwrapAsync(connectionsSetEnabled(
       this,
       request,
       options,
@@ -79,11 +80,11 @@ export class Connections extends ClientSDK {
    * @remarks
    * Updates a connections metadata or mode. These changes will be seen after the next sync.
    */
-  async updateConnection(
+  async update(
     request: operations.UpdateConnectionConnectionsConnectionIdPutRequest,
     options?: RequestOptions,
   ): Promise<components.Connection> {
-    return unwrapAsync(connectionsUpdateConnection(
+    return unwrapAsync(connectionsUpdate(
       this,
       request,
       options,
@@ -96,11 +97,11 @@ export class Connections extends ClientSDK {
    * @remarks
    * Get a connection.
    */
-  async getConnection(
+  async get(
     request: operations.GetConnectionConnectionsConnectionIdGetRequest,
     options?: RequestOptions,
   ): Promise<components.Connection> {
-    return unwrapAsync(connectionsGetConnection(
+    return unwrapAsync(connectionsGet(
       this,
       request,
       options,
@@ -111,14 +112,32 @@ export class Connections extends ClientSDK {
    * Get Connection Stats
    *
    * @remarks
-   * Lists connection stats: total documents synced.
+   * Lists connection stats: total documents active documents, total active pages.
    */
-  async getConnectionStats(
+  async getStats(
     request:
       operations.GetConnectionStatsConnectionsConnectionIdStatsGetRequest,
     options?: RequestOptions,
   ): Promise<components.ConnectionStats> {
-    return unwrapAsync(connectionsGetConnectionStats(
+    return unwrapAsync(connectionsGetStats(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Set Connection Limits
+   *
+   * @remarks
+   * Sets limits on a connection. Limits can be set on the total number of pages a connection can sync. When the limit is reached, the connection will be disabled. Limit may be removed by setting it to `null`.
+   */
+  async setLimits(
+    request:
+      operations.SetConnectionLimitsConnectionsConnectionIdLimitPutRequest,
+    options?: RequestOptions,
+  ): Promise<components.Connection> {
+    return unwrapAsync(connectionsSetLimits(
       this,
       request,
       options,
@@ -131,12 +150,12 @@ export class Connections extends ClientSDK {
    * @remarks
    * Schedules a connection to be deleted. You can choose to keep the files from the connection or delete them all. If you keep the files, they will no longer be associated to the connection. Deleting can take some time, so you will still see files for a bit after this is called.
    */
-  async deleteConnection(
+  async delete(
     request:
       operations.DeleteConnectionConnectionsConnectionIdDeletePostRequest,
     options?: RequestOptions,
   ): Promise<{ [k: string]: string }> {
-    return unwrapAsync(connectionsDeleteConnection(
+    return unwrapAsync(connectionsDelete(
       this,
       request,
       options,

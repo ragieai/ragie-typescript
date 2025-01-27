@@ -4,6 +4,7 @@
 
 export * from "./connection.js";
 export * from "./connectionbase.js";
+export * from "./connectionlimitparams.js";
 export * from "./connectionlist.js";
 export * from "./connectionstats.js";
 export * from "./connectorsource.js";

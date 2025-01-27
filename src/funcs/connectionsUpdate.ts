@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Updates a connections metadata or mode. These changes will be seen after the next sync.
  */
-export async function connectionsUpdateConnection(
+export async function connectionsUpdate(
   client: RagieCore,
   request: operations.UpdateConnectionConnectionsConnectionIdPutRequest,
   options?: RequestOptions,

@@ -18,9 +18,14 @@ export type Connection = {
   type: string;
   name: string;
   enabled: boolean;
+  disabledBySystemReason?:
+    | "connection_over_total_page_limit"
+    | null
+    | undefined;
   lastSyncedAt?: Date | null | undefined;
   syncing?: boolean | null | undefined;
   partition: string;
+  disabledBySystem: boolean;
 };
 
 /** @internal */
@@ -90,16 +95,22 @@ export const Connection$inboundSchema: z.ZodType<
   type: z.string(),
   name: z.string(),
   enabled: z.boolean(),
+  disabled_by_system_reason: z.nullable(
+    z.literal("connection_over_total_page_limit"),
+  ).optional(),
   last_synced_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   syncing: z.nullable(z.boolean()).optional(),
   partition: z.string(),
+  disabled_by_system: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",
     "updated_at": "updatedAt",
+    "disabled_by_system_reason": "disabledBySystemReason",
     "last_synced_at": "lastSyncedAt",
+    "disabled_by_system": "disabledBySystem",
   });
 });
 
@@ -112,9 +123,11 @@ export type Connection$Outbound = {
   type: string;
   name: string;
   enabled: boolean;
+  disabled_by_system_reason: "connection_over_total_page_limit" | null;
   last_synced_at?: string | null | undefined;
   syncing?: boolean | null | undefined;
   partition: string;
+  disabled_by_system: boolean;
 };
 
 /** @internal */
@@ -132,14 +145,22 @@ export const Connection$outboundSchema: z.ZodType<
   type: z.string(),
   name: z.string(),
   enabled: z.boolean(),
+  disabledBySystemReason: z.nullable(
+    z.literal("connection_over_total_page_limit").default(
+      "connection_over_total_page_limit" as const,
+    ),
+  ),
   lastSyncedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   syncing: z.nullable(z.boolean()).optional(),
   partition: z.string(),
+  disabledBySystem: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
     createdAt: "created_at",
     updatedAt: "updated_at",
+    disabledBySystemReason: "disabled_by_system_reason",
     lastSyncedAt: "last_synced_at",
+    disabledBySystem: "disabled_by_system",
   });
 });
 

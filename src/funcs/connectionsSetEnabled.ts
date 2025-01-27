@@ -3,7 +3,7 @@
  */
 
 import { RagieCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -25,18 +25,19 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get Connection Stats
+ * Set Connection Enabled
  *
  * @remarks
- * Lists connection stats: total documents synced.
+ * Enable or disable the connection. A disabled connection won't sync.
  */
-export async function connectionsGetConnectionStats(
+export async function connectionsSetEnabled(
   client: RagieCore,
-  request: operations.GetConnectionStatsConnectionsConnectionIdStatsGetRequest,
+  request:
+    operations.SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.ConnectionStats,
+    components.Connection,
     | errors.ErrorMessage
     | errors.HTTPValidationError
     | SDKError
@@ -52,7 +53,7 @@ export async function connectionsGetConnectionStats(
     request,
     (value) =>
       operations
-        .GetConnectionStatsConnectionsConnectionIdStatsGetRequest$outboundSchema
+        .SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -60,7 +61,9 @@ export async function connectionsGetConnectionStats(
     return parsed;
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.SetConnectionEnabledPayload, {
+    explode: true,
+  });
 
   const pathParams = {
     connection_id: encodeSimple("connection_id", payload.connection_id, {
@@ -69,9 +72,10 @@ export async function connectionsGetConnectionStats(
     }),
   };
 
-  const path = pathToFunc("/connections/{connection_id}/stats")(pathParams);
+  const path = pathToFunc("/connections/{connection_id}/enabled")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
@@ -80,7 +84,8 @@ export async function connectionsGetConnectionStats(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "get_connection_stats_connections__connection_id__stats_get",
+    operationID:
+      "set_connection_enabled_connections__connection_id__enabled_put",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -94,7 +99,7 @@ export async function connectionsGetConnectionStats(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "PUT",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -122,7 +127,7 @@ export async function connectionsGetConnectionStats(
   };
 
   const [result] = await M.match<
-    components.ConnectionStats,
+    components.Connection,
     | errors.ErrorMessage
     | errors.HTTPValidationError
     | SDKError
@@ -133,7 +138,7 @@ export async function connectionsGetConnectionStats(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.ConnectionStats$inboundSchema),
+    M.json(200, components.Connection$inboundSchema),
     M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail("4XX"),

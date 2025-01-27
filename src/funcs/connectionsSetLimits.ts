@@ -3,7 +3,7 @@
  */
 
 import { RagieCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -25,14 +25,14 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get Connection
+ * Set Connection Limits
  *
  * @remarks
- * Get a connection.
+ * Sets limits on a connection. Limits can be set on the total number of pages a connection can sync. When the limit is reached, the connection will be disabled. Limit may be removed by setting it to `null`.
  */
-export async function connectionsGetConnection(
+export async function connectionsSetLimits(
   client: RagieCore,
-  request: operations.GetConnectionConnectionsConnectionIdGetRequest,
+  request: operations.SetConnectionLimitsConnectionsConnectionIdLimitPutRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -51,7 +51,8 @@ export async function connectionsGetConnection(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.GetConnectionConnectionsConnectionIdGetRequest$outboundSchema
+      operations
+        .SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -59,7 +60,9 @@ export async function connectionsGetConnection(
     return parsed;
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.ConnectionLimitParams, {
+    explode: true,
+  });
 
   const pathParams = {
     connection_id: encodeSimple("connection_id", payload.connection_id, {
@@ -68,9 +71,10 @@ export async function connectionsGetConnection(
     }),
   };
 
-  const path = pathToFunc("/connections/{connection_id}")(pathParams);
+  const path = pathToFunc("/connections/{connection_id}/limit")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
@@ -79,7 +83,7 @@ export async function connectionsGetConnection(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "get_connection_connections__connection_id__get",
+    operationID: "set_connection_limits_connections__connection_id__limit_put",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -93,7 +97,7 @@ export async function connectionsGetConnection(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "PUT",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,

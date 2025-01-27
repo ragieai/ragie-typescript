@@ -115,11 +115,12 @@ run();
 
 * [list](docs/sdks/connections/README.md#list) - List Connections
 * [createOAuthRedirectUrl](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
-* [setConnectionEnabled](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
-* [updateConnection](docs/sdks/connections/README.md#updateconnection) - Update Connection
-* [getConnection](docs/sdks/connections/README.md#getconnection) - Get Connection
-* [getConnectionStats](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
-* [deleteConnection](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
+* [setEnabled](docs/sdks/connections/README.md#setenabled) - Set Connection Enabled
+* [update](docs/sdks/connections/README.md#update) - Update Connection
+* [get](docs/sdks/connections/README.md#get) - Get Connection
+* [getStats](docs/sdks/connections/README.md#getstats) - Get Connection Stats
+* [setLimits](docs/sdks/connections/README.md#setlimits) - Set Connection Limits
+* [delete](docs/sdks/connections/README.md#delete) - Delete Connection
 
 ### [documents](docs/sdks/documents/README.md)
 
@@ -549,12 +550,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`connectionsCreateOAuthRedirectUrl`](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
-- [`connectionsDeleteConnection`](docs/sdks/connections/README.md#deleteconnection) - Delete Connection
-- [`connectionsGetConnection`](docs/sdks/connections/README.md#getconnection) - Get Connection
-- [`connectionsGetConnectionStats`](docs/sdks/connections/README.md#getconnectionstats) - Get Connection Stats
+- [`connectionsDelete`](docs/sdks/connections/README.md#delete) - Delete Connection
+- [`connectionsGet`](docs/sdks/connections/README.md#get) - Get Connection
+- [`connectionsGetStats`](docs/sdks/connections/README.md#getstats) - Get Connection Stats
 - [`connectionsList`](docs/sdks/connections/README.md#list) - List Connections
-- [`connectionsSetConnectionEnabled`](docs/sdks/connections/README.md#setconnectionenabled) - Set Connection Enabled
-- [`connectionsUpdateConnection`](docs/sdks/connections/README.md#updateconnection) - Update Connection
+- [`connectionsSetEnabled`](docs/sdks/connections/README.md#setenabled) - Set Connection Enabled
+- [`connectionsSetLimits`](docs/sdks/connections/README.md#setlimits) - Set Connection Limits
+- [`connectionsUpdate`](docs/sdks/connections/README.md#update) - Update Connection
 - [`documentsCreate`](docs/sdks/documents/README.md#create) - Create Document
 - [`documentsCreateDocumentFromUrl`](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
 - [`documentsCreateRaw`](docs/sdks/documents/README.md#createraw) - Create Document Raw

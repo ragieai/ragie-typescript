@@ -10,6 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionStats = {
   documentCount: number;
+  pageCount: number;
 };
 
 /** @internal */
@@ -19,15 +20,18 @@ export const ConnectionStats$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   document_count: z.number().int(),
+  page_count: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "document_count": "documentCount",
+    "page_count": "pageCount",
   });
 });
 
 /** @internal */
 export type ConnectionStats$Outbound = {
   document_count: number;
+  page_count: number;
 };
 
 /** @internal */
@@ -37,9 +41,11 @@ export const ConnectionStats$outboundSchema: z.ZodType<
   ConnectionStats
 > = z.object({
   documentCount: z.number().int(),
+  pageCount: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     documentCount: "document_count",
+    pageCount: "page_count",
   });
 });
 

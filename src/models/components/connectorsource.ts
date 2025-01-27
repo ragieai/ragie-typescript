@@ -7,6 +7,7 @@ import { ClosedEnum } from "../../types/enums.js";
 
 export const ConnectorSource = {
   Confluence: "confluence",
+  Freshdesk: "freshdesk",
   Dropbox: "dropbox",
   Onedrive: "onedrive",
   GoogleDrive: "google_drive",

@@ -18,6 +18,7 @@ export * from "./listentitiesbydocument.js";
 export * from "./listentitiesbyinstruction.js";
 export * from "./patchdocumentmetadata.js";
 export * from "./setconnectionenabledconnectionsconnectionidenabledput.js";
+export * from "./setconnectionlimitsconnectionsconnectionidlimitput.js";
 export * from "./updateconnectionconnectionsconnectionidput.js";
 export * from "./updatedocumentfile.js";
 export * from "./updatedocumentfromurl.js";

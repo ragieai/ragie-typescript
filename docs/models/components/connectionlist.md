@@ -19,6 +19,7 @@ let value: ConnectionList = {
       name: "<value>",
       enabled: false,
       partition: "<value>",
+      disabledBySystem: false,
     },
   ],
 };
