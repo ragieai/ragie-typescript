@@ -41,8 +41,8 @@ export async function entitiesListByDocument(
   PageIterator<
     Result<
       operations.ListEntitiesByDocumentResponse,
-      | errors.ErrorMessage
       | errors.HTTPValidationError
+      | errors.ErrorMessage
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -137,8 +137,8 @@ export async function entitiesListByDocument(
 
   const [result, raw] = await M.match<
     operations.ListEntitiesByDocumentResponse,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -150,8 +150,8 @@ export async function entitiesListByDocument(
     M.json(200, operations.ListEntitiesByDocumentResponse$inboundSchema, {
       key: "Result",
     }),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
@@ -165,8 +165,8 @@ export async function entitiesListByDocument(
     next: Paginator<
       Result<
         operations.ListEntitiesByDocumentResponse,
-        | errors.ErrorMessage
         | errors.HTTPValidationError
+        | errors.ErrorMessage
         | SDKError
         | SDKValidationError
         | UnexpectedClientError

@@ -37,8 +37,8 @@ export async function connectionsUpdate(
 ): Promise<
   Result<
     components.Connection,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -125,8 +125,8 @@ export async function connectionsUpdate(
 
   const [result] = await M.match<
     components.Connection,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -136,8 +136,8 @@ export async function connectionsUpdate(
     | ConnectionError
   >(
     M.json(200, components.Connection$inboundSchema),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

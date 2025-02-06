@@ -93,7 +93,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -181,7 +180,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -200,8 +198,8 @@ Some methods specify known errors which can be thrown. All the known errors are 
 
 | Error Type                 | Status Code        | Content Type     |
 | -------------------------- | ------------------ | ---------------- |
-| errors.ErrorMessage        | 400, 401, 402, 429 | application/json |
 | errors.HTTPValidationError | 422                | application/json |
+| errors.ErrorMessage        | 400, 401, 402, 429 | application/json |
 | errors.SDKError            | 4XX, 5XX           | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
@@ -224,7 +222,6 @@ async function run() {
   try {
     result = await ragie.documents.create({
       file: await openAsBlob("example.file"),
-      mode: "fast",
     });
 
     // Handle the result
@@ -239,13 +236,13 @@ async function run() {
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof ErrorMessage): {
-        // Handle err.data$: ErrorMessageData
+      case (err instanceof HTTPValidationError): {
+        // Handle err.data$: HTTPValidationErrorData
         console.error(err);
         return;
       }
-      case (err instanceof HTTPValidationError): {
-        // Handle err.data$: HTTPValidationErrorData
+      case (err instanceof ErrorMessage): {
+        // Handle err.data$: ErrorMessageData
         console.error(err);
         return;
       }
@@ -292,7 +289,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -376,7 +372,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -405,7 +400,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   }, {
     retries: {
       strategy: "backoff",
@@ -449,7 +443,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -478,7 +471,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   }, {
     retries: {
       strategy: "backoff",
@@ -522,7 +514,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -603,7 +594,6 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.list({
-    pageSize: 10,
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });

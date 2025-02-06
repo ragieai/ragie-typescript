@@ -10,16 +10,20 @@ let value: ListConnectionsConnectionsGetResponse = {
     pagination: {},
     connections: [
       {
-        id: "a332e477-cd26-4dd1-8241-619391fe6347",
-        createdAt: new Date("2024-12-02T02:48:11.197Z"),
-        updatedAt: new Date("2024-03-23T11:59:58.923Z"),
+        id: "32e477cd-26dd-4124-9161-9391fe63470a",
+        createdAt: new Date("2024-02-18T15:18:08.947Z"),
+        updatedAt: new Date("2025-06-06T01:32:10.356Z"),
         metadata: {
-          "key": 809365,
+          "key": false,
         },
         type: "<value>",
         name: "<value>",
+        source: [
+          "<value>",
+        ],
         enabled: false,
         partition: "<value>",
+        pageLimit: 351936,
         disabledBySystem: false,
       },
     ],

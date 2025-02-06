@@ -37,8 +37,8 @@ export async function documentsGetChunks(
 ): Promise<
   Result<
     components.DocumentChunkList,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -132,8 +132,8 @@ export async function documentsGetChunks(
 
   const [result] = await M.match<
     components.DocumentChunkList,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -143,8 +143,8 @@ export async function documentsGetChunks(
     | ConnectionError
   >(
     M.json(200, components.DocumentChunkList$inboundSchema),
-    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

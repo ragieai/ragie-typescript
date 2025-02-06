@@ -10,6 +10,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionMetadata = string | number | boolean | Array<string>;
 
+export type Source = string | Array<string>;
+
 export type Connection = {
   id: string;
   createdAt: Date;
@@ -17,6 +19,7 @@ export type Connection = {
   metadata: { [k: string]: string | number | boolean | Array<string> };
   type: string;
   name: string;
+  source: string | Array<string> | null;
   enabled: boolean;
   disabledBySystemReason?:
     | "connection_over_total_page_limit"
@@ -25,6 +28,7 @@ export type Connection = {
   lastSyncedAt?: Date | null | undefined;
   syncing?: boolean | null | undefined;
   partition: string;
+  pageLimit: number | null;
   disabledBySystem: boolean;
 };
 
@@ -81,6 +85,47 @@ export function connectionMetadataFromJSON(
 }
 
 /** @internal */
+export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> = z
+  .union([z.string(), z.array(z.string())]);
+
+/** @internal */
+export type Source$Outbound = string | Array<string>;
+
+/** @internal */
+export const Source$outboundSchema: z.ZodType<
+  Source$Outbound,
+  z.ZodTypeDef,
+  Source
+> = z.union([z.string(), z.array(z.string())]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Source$ {
+  /** @deprecated use `Source$inboundSchema` instead. */
+  export const inboundSchema = Source$inboundSchema;
+  /** @deprecated use `Source$outboundSchema` instead. */
+  export const outboundSchema = Source$outboundSchema;
+  /** @deprecated use `Source$Outbound` instead. */
+  export type Outbound = Source$Outbound;
+}
+
+export function sourceToJSON(source: Source): string {
+  return JSON.stringify(Source$outboundSchema.parse(source));
+}
+
+export function sourceFromJSON(
+  jsonString: string,
+): SafeParseResult<Source, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Source$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Source' from JSON`,
+  );
+}
+
+/** @internal */
 export const Connection$inboundSchema: z.ZodType<
   Connection,
   z.ZodTypeDef,
@@ -94,6 +139,7 @@ export const Connection$inboundSchema: z.ZodType<
   ),
   type: z.string(),
   name: z.string(),
+  source: z.nullable(z.union([z.string(), z.array(z.string())])),
   enabled: z.boolean(),
   disabled_by_system_reason: z.nullable(
     z.literal("connection_over_total_page_limit"),
@@ -103,6 +149,7 @@ export const Connection$inboundSchema: z.ZodType<
   ).optional(),
   syncing: z.nullable(z.boolean()).optional(),
   partition: z.string(),
+  page_limit: z.nullable(z.number().int()),
   disabled_by_system: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
@@ -110,6 +157,7 @@ export const Connection$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
     "disabled_by_system_reason": "disabledBySystemReason",
     "last_synced_at": "lastSyncedAt",
+    "page_limit": "pageLimit",
     "disabled_by_system": "disabledBySystem",
   });
 });
@@ -122,11 +170,13 @@ export type Connection$Outbound = {
   metadata: { [k: string]: string | number | boolean | Array<string> };
   type: string;
   name: string;
+  source: string | Array<string> | null;
   enabled: boolean;
   disabled_by_system_reason: "connection_over_total_page_limit" | null;
   last_synced_at?: string | null | undefined;
   syncing?: boolean | null | undefined;
   partition: string;
+  page_limit: number | null;
   disabled_by_system: boolean;
 };
 
@@ -144,6 +194,7 @@ export const Connection$outboundSchema: z.ZodType<
   ),
   type: z.string(),
   name: z.string(),
+  source: z.nullable(z.union([z.string(), z.array(z.string())])),
   enabled: z.boolean(),
   disabledBySystemReason: z.nullable(
     z.literal("connection_over_total_page_limit").default(
@@ -153,6 +204,7 @@ export const Connection$outboundSchema: z.ZodType<
   lastSyncedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   syncing: z.nullable(z.boolean()).optional(),
   partition: z.string(),
+  pageLimit: z.nullable(z.number().int()),
   disabledBySystem: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
@@ -160,6 +212,7 @@ export const Connection$outboundSchema: z.ZodType<
     updatedAt: "updated_at",
     disabledBySystemReason: "disabled_by_system_reason",
     lastSyncedAt: "last_synced_at",
+    pageLimit: "page_limit",
     disabledBySystem: "disabled_by_system",
   });
 });

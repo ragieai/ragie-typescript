@@ -37,8 +37,8 @@ export async function connectionsGetStats(
 ): Promise<
   Result<
     components.ConnectionStats,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -123,8 +123,8 @@ export async function connectionsGetStats(
 
   const [result] = await M.match<
     components.ConnectionStats,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,8 +134,8 @@ export async function connectionsGetStats(
     | ConnectionError
   >(
     M.json(200, components.ConnectionStats$inboundSchema),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
