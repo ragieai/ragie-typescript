@@ -20,7 +20,7 @@ export const ConnectionStats$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   document_count: z.number().int(),
-  page_count: z.number().int(),
+  page_count: z.number(),
 }).transform((v) => {
   return remap$(v, {
     "document_count": "documentCount",
@@ -41,7 +41,7 @@ export const ConnectionStats$outboundSchema: z.ZodType<
   ConnectionStats
 > = z.object({
   documentCount: z.number().int(),
-  pageCount: z.number().int(),
+  pageCount: z.number(),
 }).transform((v) => {
   return remap$(v, {
     documentCount: "document_count",

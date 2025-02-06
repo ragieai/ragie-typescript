@@ -10,8 +10,6 @@ let value: Instruction = {
   createdAt: new Date("2025-11-20T06:46:28.205Z"),
   updatedAt: new Date("2023-11-17T04:38:54.761Z"),
   name: "Find all pizzas",
-  active: true,
-  scope: "document",
   prompt: "Find all pizzas described in the text.",
   entitySchema: {
     "key": "<value>",

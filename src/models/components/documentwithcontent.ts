@@ -24,6 +24,7 @@ export type DocumentWithContent = {
   partition: string;
   chunkCount?: number | null | undefined;
   externalId?: string | null | undefined;
+  pageCount?: number | null | undefined;
   content: string;
 };
 
@@ -98,6 +99,7 @@ export const DocumentWithContent$inboundSchema: z.ZodType<
   partition: z.string(),
   chunk_count: z.nullable(z.number().int()).optional(),
   external_id: z.nullable(z.string()).optional(),
+  page_count: z.nullable(z.number()).optional(),
   content: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -105,6 +107,7 @@ export const DocumentWithContent$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
     "chunk_count": "chunkCount",
     "external_id": "externalId",
+    "page_count": "pageCount",
   });
 });
 
@@ -119,6 +122,7 @@ export type DocumentWithContent$Outbound = {
   partition: string;
   chunk_count?: number | null | undefined;
   external_id?: string | null | undefined;
+  page_count?: number | null | undefined;
   content: string;
 };
 
@@ -139,6 +143,7 @@ export const DocumentWithContent$outboundSchema: z.ZodType<
   partition: z.string(),
   chunkCount: z.nullable(z.number().int()).optional(),
   externalId: z.nullable(z.string()).optional(),
+  pageCount: z.nullable(z.number()).optional(),
   content: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -146,6 +151,7 @@ export const DocumentWithContent$outboundSchema: z.ZodType<
     updatedAt: "updated_at",
     chunkCount: "chunk_count",
     externalId: "external_id",
+    pageCount: "page_count",
   });
 });
 

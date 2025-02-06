@@ -33,8 +33,8 @@ export async function retrievalsRetrieve(
 ): Promise<
   Result<
     components.Retrieval,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -110,8 +110,8 @@ export async function retrievalsRetrieve(
 
   const [result] = await M.match<
     components.Retrieval,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -121,8 +121,8 @@ export async function retrievalsRetrieve(
     | ConnectionError
   >(
     M.json(200, components.Retrieval$inboundSchema),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

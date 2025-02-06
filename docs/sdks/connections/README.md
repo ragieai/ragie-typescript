@@ -28,9 +28,7 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.connections.list({
-    pageSize: 10,
-  });
+  const result = await ragie.connections.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -56,9 +54,7 @@ const ragie = new RagieCore({
 });
 
 async function run() {
-  const res = await connectionsList(ragie, {
-    pageSize: 10,
-  });
+  const res = await connectionsList(ragie, {});
 
   if (!res.ok) {
     throw res.error;
@@ -92,8 +88,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createOAuthRedirectUrl
@@ -170,8 +166,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## setEnabled
@@ -254,8 +250,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## update
@@ -338,8 +334,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
@@ -416,8 +412,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getStats
@@ -494,8 +490,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## setLimits
@@ -578,8 +574,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -662,6 +658,6 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
