@@ -36,8 +36,8 @@ export async function connectionsCreateOAuthRedirectUrl(
 ): Promise<
   Result<
     components.OAuthUrlResponse,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -70,6 +70,7 @@ export async function connectionsCreateOAuthRedirectUrl(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "create_oauth_redirect_url_connections_oauth_post",
     oAuth2Scopes: [],
 
@@ -113,8 +114,8 @@ export async function connectionsCreateOAuthRedirectUrl(
 
   const [result] = await M.match<
     components.OAuthUrlResponse,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -124,8 +125,8 @@ export async function connectionsCreateOAuthRedirectUrl(
     | ConnectionError
   >(
     M.json(200, components.OAuthUrlResponse$inboundSchema),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

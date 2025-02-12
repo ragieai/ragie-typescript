@@ -93,7 +93,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -121,6 +120,7 @@ run();
 * [getStats](docs/sdks/connections/README.md#getstats) - Get Connection Stats
 * [setLimits](docs/sdks/connections/README.md#setlimits) - Set Connection Limits
 * [delete](docs/sdks/connections/README.md#delete) - Delete Connection
+* [sync](docs/sdks/connections/README.md#sync) - Sync Connection
 
 ### [documents](docs/sdks/documents/README.md)
 
@@ -181,7 +181,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -200,8 +199,8 @@ Some methods specify known errors which can be thrown. All the known errors are 
 
 | Error Type                 | Status Code        | Content Type     |
 | -------------------------- | ------------------ | ---------------- |
-| errors.ErrorMessage        | 400, 401, 402, 429 | application/json |
 | errors.HTTPValidationError | 422                | application/json |
+| errors.ErrorMessage        | 400, 401, 402, 429 | application/json |
 | errors.SDKError            | 4XX, 5XX           | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
@@ -224,7 +223,6 @@ async function run() {
   try {
     result = await ragie.documents.create({
       file: await openAsBlob("example.file"),
-      mode: "fast",
     });
 
     // Handle the result
@@ -239,13 +237,13 @@ async function run() {
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof ErrorMessage): {
-        // Handle err.data$: ErrorMessageData
+      case (err instanceof HTTPValidationError): {
+        // Handle err.data$: HTTPValidationErrorData
         console.error(err);
         return;
       }
-      case (err instanceof HTTPValidationError): {
-        // Handle err.data$: HTTPValidationErrorData
+      case (err instanceof ErrorMessage): {
+        // Handle err.data$: ErrorMessageData
         console.error(err);
         return;
       }
@@ -292,7 +290,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -376,7 +373,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -405,7 +401,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   }, {
     retries: {
       strategy: "backoff",
@@ -449,7 +444,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -478,7 +472,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   }, {
     retries: {
       strategy: "backoff",
@@ -522,7 +515,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -556,6 +548,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`connectionsList`](docs/sdks/connections/README.md#list) - List Connections
 - [`connectionsSetEnabled`](docs/sdks/connections/README.md#setenabled) - Set Connection Enabled
 - [`connectionsSetLimits`](docs/sdks/connections/README.md#setlimits) - Set Connection Limits
+- [`connectionsSync`](docs/sdks/connections/README.md#sync) - Sync Connection
 - [`connectionsUpdate`](docs/sdks/connections/README.md#update) - Update Connection
 - [`documentsCreate`](docs/sdks/documents/README.md#create) - Create Document
 - [`documentsCreateDocumentFromUrl`](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
@@ -603,7 +596,6 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.list({
-    pageSize: 10,
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });

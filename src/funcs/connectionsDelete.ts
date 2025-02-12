@@ -37,8 +37,8 @@ export async function connectionsDelete(
 ): Promise<
   Result<
     { [k: string]: string },
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -83,6 +83,7 @@ export async function connectionsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "delete_connection_connections__connection_id__delete_post",
     oAuth2Scopes: [],
 
@@ -126,8 +127,8 @@ export async function connectionsDelete(
 
   const [result] = await M.match<
     { [k: string]: string },
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -137,8 +138,8 @@ export async function connectionsDelete(
     | ConnectionError
   >(
     M.json(200, z.record(z.string())),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

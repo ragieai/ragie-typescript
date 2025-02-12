@@ -99,8 +99,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.createInstruction({
     name: "Find all pizzas",
-    active: true,
-    scope: "chunk",
     prompt: "Find all pizzas described in the text.",
     entitySchema: {
       "key": "<value>",
@@ -132,8 +130,6 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesCreateInstruction(ragie, {
     name: "Find all pizzas",
-    active: true,
-    scope: "chunk",
     prompt: "Find all pizzas described in the text.",
     entitySchema: {
       "key": "<value>",
@@ -171,8 +167,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateInstruction
@@ -255,8 +251,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listByInstruction
@@ -275,7 +271,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.listByInstruction({
     instructionId: "00000000-0000-0000-0000-000000000000",
-    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -305,7 +300,6 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesListByInstruction(ragie, {
     instructionId: "00000000-0000-0000-0000-000000000000",
-    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -341,8 +335,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listByDocument
@@ -361,7 +355,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.listByDocument({
     documentId: "00000000-0000-0000-0000-000000000000",
-    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -391,7 +384,6 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesListByDocument(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
-    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -427,6 +419,6 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

@@ -23,11 +23,8 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.retrievals.retrieve({
     query: "What is the best pizza place in SF?",
-    topK: 8,
-    rerank: true,
     maxChunksPerDocument: 0,
     partition: "<value>",
-    recencyBias: false,
   });
 
   // Handle the result
@@ -54,11 +51,8 @@ const ragie = new RagieCore({
 async function run() {
   const res = await retrievalsRetrieve(ragie, {
     query: "What is the best pizza place in SF?",
-    topK: 8,
-    rerank: true,
     maxChunksPerDocument: 0,
     partition: "<value>",
-    recencyBias: false,
   });
 
   if (!res.ok) {
@@ -91,6 +85,6 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

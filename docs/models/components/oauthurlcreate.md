@@ -6,7 +6,7 @@
 import { OAuthUrlCreate } from "ragie/models/components";
 
 let value: OAuthUrlCreate = {
-  redirectUri: "https://grounded-onset.biz/",
+  redirectUri: "https://alive-flint.name/",
   pageLimit: 1000,
 };
 ```

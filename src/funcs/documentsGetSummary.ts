@@ -37,8 +37,8 @@ export async function documentsGetSummary(
 ): Promise<
   Result<
     components.DocumentSummary,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -81,6 +81,7 @@ export async function documentsGetSummary(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "GetDocumentSummary",
     oAuth2Scopes: [],
 
@@ -124,8 +125,8 @@ export async function documentsGetSummary(
 
   const [result] = await M.match<
     components.DocumentSummary,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -135,8 +136,8 @@ export async function documentsGetSummary(
     | ConnectionError
   >(
     M.json(200, components.DocumentSummary$inboundSchema),
-    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

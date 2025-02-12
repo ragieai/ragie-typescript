@@ -10,7 +10,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result

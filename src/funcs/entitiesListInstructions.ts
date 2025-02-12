@@ -55,6 +55,7 @@ export async function entitiesListInstructions(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "ListInstructions",
     oAuth2Scopes: [],
 

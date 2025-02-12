@@ -5,7 +5,7 @@
 ```typescript
 import { Theme } from "ragie/models/components";
 
-let value: Theme = "dark";
+let value: Theme = "light";
 ```
 
 ## Values

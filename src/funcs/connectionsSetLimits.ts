@@ -37,8 +37,8 @@ export async function connectionsSetLimits(
 ): Promise<
   Result<
     components.Connection,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -83,6 +83,7 @@ export async function connectionsSetLimits(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "set_connection_limits_connections__connection_id__limit_put",
     oAuth2Scopes: [],
 
@@ -126,8 +127,8 @@ export async function connectionsSetLimits(
 
   const [result] = await M.match<
     components.Connection,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -137,8 +138,8 @@ export async function connectionsSetLimits(
     | ConnectionError
   >(
     M.json(200, components.Connection$inboundSchema),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

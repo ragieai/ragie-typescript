@@ -38,7 +38,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   // Handle the result
@@ -66,7 +65,6 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsCreate(ragie, {
     file: await openAsBlob("example.file"),
-    mode: "fast",
   });
 
   if (!res.ok) {
@@ -99,8 +97,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## list
@@ -118,7 +116,6 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.list({
-    pageSize: 10,
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });
@@ -148,7 +145,6 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsList(ragie, {
-    pageSize: 10,
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });
@@ -185,8 +181,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createRaw
@@ -265,8 +261,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createDocumentFromUrl
@@ -284,7 +280,6 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.documents.createDocumentFromUrl({
-    mode: "fast",
     partition: "<value>",
     url: "https://scientific-plain.biz/",
   });
@@ -312,7 +307,6 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await documentsCreateDocumentFromUrl(ragie, {
-    mode: "fast",
     partition: "<value>",
     url: "https://scientific-plain.biz/",
   });
@@ -347,8 +341,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
@@ -427,8 +421,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -507,8 +501,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateFile
@@ -531,7 +525,6 @@ async function run() {
     partition: "acme_customer_id",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
-      mode: "fast",
     },
   });
 
@@ -563,7 +556,6 @@ async function run() {
     partition: "acme_customer_id",
     updateDocumentFileParams: {
       file: await openAsBlob("example.file"),
-      mode: "fast",
     },
   });
 
@@ -597,8 +589,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateRaw
@@ -683,8 +675,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateDocumentFromUrl
@@ -705,7 +697,6 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentFromUrlParams: {
-      mode: "fast",
       url: "https://dual-longboat.com/",
     },
   });
@@ -736,7 +727,6 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentFromUrlParams: {
-      mode: "fast",
       url: "https://dual-longboat.com/",
     },
   });
@@ -771,8 +761,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## patchMetadata
@@ -875,8 +865,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getChunks
@@ -897,7 +887,6 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     startIndex: 3,
     endIndex: 5,
-    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -927,7 +916,6 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     startIndex: 3,
     endIndex: 5,
-    pageSize: 10,
     partition: "acme_customer_id",
   });
 
@@ -961,8 +949,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getChunk
@@ -1043,8 +1031,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getContent
@@ -1123,8 +1111,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getSource
@@ -1203,8 +1191,8 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getSummary
@@ -1283,6 +1271,6 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

@@ -44,8 +44,8 @@ export async function documentsList(
   PageIterator<
     Result<
       operations.ListDocumentsResponse,
-      | errors.ErrorMessage
       | errors.HTTPValidationError
+      | errors.ErrorMessage
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -90,6 +90,7 @@ export async function documentsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "ListDocuments",
     oAuth2Scopes: [],
 
@@ -134,8 +135,8 @@ export async function documentsList(
 
   const [result, raw] = await M.match<
     operations.ListDocumentsResponse,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -147,8 +148,8 @@ export async function documentsList(
     M.json(200, operations.ListDocumentsResponse$inboundSchema, {
       key: "Result",
     }),
-    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
@@ -162,8 +163,8 @@ export async function documentsList(
     next: Paginator<
       Result<
         operations.ListDocumentsResponse,
-        | errors.ErrorMessage
         | errors.HTTPValidationError
+        | errors.ErrorMessage
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
