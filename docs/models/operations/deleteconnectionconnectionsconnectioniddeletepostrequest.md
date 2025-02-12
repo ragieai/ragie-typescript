@@ -6,7 +6,7 @@
 import { DeleteConnectionConnectionsConnectionIdDeletePostRequest } from "ragie/models/operations";
 
 let value: DeleteConnectionConnectionsConnectionIdDeletePostRequest = {
-  connectionId: "917557b1-eb2f-48f3-9844-9ecb8e7dd3c0",
+  connectionId: "3917557b-1eb2-4f8f-8384-49ecb8e7dd3c",
   deleteConnectionPayload: {
     keepFiles: false,
   },

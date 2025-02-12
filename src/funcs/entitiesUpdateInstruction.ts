@@ -34,8 +34,8 @@ export async function entitiesUpdateInstruction(
 ): Promise<
   Result<
     components.Instruction,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -77,6 +77,7 @@ export async function entitiesUpdateInstruction(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "UpdateInstruction",
     oAuth2Scopes: [],
 
@@ -120,8 +121,8 @@ export async function entitiesUpdateInstruction(
 
   const [result] = await M.match<
     components.Instruction,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -131,8 +132,8 @@ export async function entitiesUpdateInstruction(
     | ConnectionError
   >(
     M.json(200, components.Instruction$inboundSchema),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

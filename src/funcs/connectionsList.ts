@@ -44,8 +44,8 @@ export async function connectionsList(
   PageIterator<
     Result<
       operations.ListConnectionsConnectionsGetResponse,
-      | errors.ErrorMessage
       | errors.HTTPValidationError
+      | errors.ErrorMessage
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -74,6 +74,7 @@ export async function connectionsList(
 
   const query = encodeFormQuery({
     "cursor": payload?.cursor,
+    "filter": payload?.filter,
     "page_size": payload?.page_size,
   });
 
@@ -86,6 +87,7 @@ export async function connectionsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "list_connections_connections_get",
     oAuth2Scopes: [],
 
@@ -130,8 +132,8 @@ export async function connectionsList(
 
   const [result, raw] = await M.match<
     operations.ListConnectionsConnectionsGetResponse,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -145,8 +147,8 @@ export async function connectionsList(
       operations.ListConnectionsConnectionsGetResponse$inboundSchema,
       { key: "Result" },
     ),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
@@ -160,8 +162,8 @@ export async function connectionsList(
     next: Paginator<
       Result<
         operations.ListConnectionsConnectionsGetResponse,
-        | errors.ErrorMessage
         | errors.HTTPValidationError
+        | errors.ErrorMessage
         | SDKError
         | SDKValidationError
         | UnexpectedClientError

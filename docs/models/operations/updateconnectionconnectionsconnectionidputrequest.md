@@ -6,7 +6,7 @@
 import { UpdateConnectionConnectionsConnectionIdPutRequest } from "ragie/models/operations";
 
 let value: UpdateConnectionConnectionsConnectionIdPutRequest = {
-  connectionId: "e04b621d-7eb6-458e-8b0b-eb2725ee459f",
+  connectionId: "7e04b621-d7eb-4658-beb0-beb2725ee459",
   connectionBase: {
     partitionStrategy: "hi_res",
     pageLimit: 1000,

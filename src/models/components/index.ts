@@ -32,6 +32,7 @@ export * from "./oauthurlcreate.js";
 export * from "./oauthurlresponse.js";
 export * from "./pagination.js";
 export * from "./patchdocumentmetadataparams.js";
+export * from "./responseok.js";
 export * from "./retrieval.js";
 export * from "./retrieveparams.js";
 export * from "./scoredchunk.js";

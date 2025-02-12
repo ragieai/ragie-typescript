@@ -41,8 +41,8 @@ export async function entitiesListByInstruction(
   PageIterator<
     Result<
       operations.ListEntitiesByInstructionResponse,
-      | errors.ErrorMessage
       | errors.HTTPValidationError
+      | errors.ErrorMessage
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -95,6 +95,7 @@ export async function entitiesListByInstruction(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "ListEntitiesByInstruction",
     oAuth2Scopes: [],
 
@@ -139,8 +140,8 @@ export async function entitiesListByInstruction(
 
   const [result, raw] = await M.match<
     operations.ListEntitiesByInstructionResponse,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -152,8 +153,8 @@ export async function entitiesListByInstruction(
     M.json(200, operations.ListEntitiesByInstructionResponse$inboundSchema, {
       key: "Result",
     }),
-    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
@@ -167,8 +168,8 @@ export async function entitiesListByInstruction(
     next: Paginator<
       Result<
         operations.ListEntitiesByInstructionResponse,
-        | errors.ErrorMessage
         | errors.HTTPValidationError
+        | errors.ErrorMessage
         | SDKError
         | SDKValidationError
         | UnexpectedClientError

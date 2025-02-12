@@ -37,8 +37,8 @@ export async function documentsUpdateDocumentFromUrl(
 ): Promise<
   Result<
     components.DocumentUrlUpdate,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -85,6 +85,7 @@ export async function documentsUpdateDocumentFromUrl(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "UpdateDocumentFromUrl",
     oAuth2Scopes: [],
 
@@ -128,8 +129,8 @@ export async function documentsUpdateDocumentFromUrl(
 
   const [result] = await M.match<
     components.DocumentUrlUpdate,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -139,8 +140,8 @@ export async function documentsUpdateDocumentFromUrl(
     | ConnectionError
   >(
     M.json(200, components.DocumentUrlUpdate$inboundSchema),
-    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

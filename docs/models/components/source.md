@@ -1,4 +1,4 @@
-# ConnectionMetadata
+# Source
 
 
 ## Supported Types
@@ -7,18 +7,6 @@
 
 ```typescript
 const value: string = "<value>";
-```
-
-### `number`
-
-```typescript
-const value: number = 604118;
-```
-
-### `boolean`
-
-```typescript
-const value: boolean = false;
 ```
 
 ### `string[]`

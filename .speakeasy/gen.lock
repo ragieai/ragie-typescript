@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 83f8bcc7eee813d10854d3894859d858
+  docChecksum: 15fe73349abd76ac6b3e03d5c6695796
   docVersion: 1.0.0
-  speakeasyVersion: 1.476.2
-  generationVersion: 2.495.1
-  releaseVersion: 1.4.5
-  configChecksum: 6d936adcecea36429bd8b469aa2efec0
+  speakeasyVersion: 1.490.0
+  generationVersion: 2.512.0
+  releaseVersion: 1.5.0
+  configChecksum: e2ee251b9c046a716b38a56f804dc574
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,13 +14,13 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.17
+    core: 3.19.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.12
+    globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -37,7 +37,6 @@ generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
   - .devcontainer/setup.sh
-  - .eslintrc.cjs
   - .gitattributes
   - .npmignore
   - FUNCTIONS.md
@@ -95,12 +94,14 @@ generatedFiles:
   - docs/models/components/pagination.md
   - docs/models/components/partitionstrategy.md
   - docs/models/components/patchdocumentmetadataparams.md
+  - docs/models/components/responseok.md
   - docs/models/components/retrieval.md
   - docs/models/components/retrieveparams.md
   - docs/models/components/scope.md
   - docs/models/components/scoredchunk.md
   - docs/models/components/security.md
   - docs/models/components/setconnectionenabledpayload.md
+  - docs/models/components/source.md
   - docs/models/components/theme.md
   - docs/models/components/two.md
   - docs/models/components/updatedocumentfileparams.md
@@ -135,6 +136,7 @@ generatedFiles:
   - docs/models/operations/patchdocumentmetadatarequest.md
   - docs/models/operations/setconnectionenabledconnectionsconnectionidenabledputrequest.md
   - docs/models/operations/setconnectionlimitsconnectionsconnectionidlimitputrequest.md
+  - docs/models/operations/syncconnectionrequest.md
   - docs/models/operations/updateconnectionconnectionsconnectionidputrequest.md
   - docs/models/operations/updatedocumentfilerequest.md
   - docs/models/operations/updatedocumentfromurlrequest.md
@@ -145,6 +147,7 @@ generatedFiles:
   - docs/sdks/entities/README.md
   - docs/sdks/ragie/README.md
   - docs/sdks/retrievals/README.md
+  - eslint.config.mjs
   - jsr.json
   - package.json
   - src/core.ts
@@ -155,6 +158,7 @@ generatedFiles:
   - src/funcs/connectionsList.ts
   - src/funcs/connectionsSetEnabled.ts
   - src/funcs/connectionsSetLimits.ts
+  - src/funcs/connectionsSync.ts
   - src/funcs/connectionsUpdate.ts
   - src/funcs/documentsCreate.ts
   - src/funcs/documentsCreateDocumentFromUrl.ts
@@ -227,6 +231,7 @@ generatedFiles:
   - src/models/components/oauthurlresponse.ts
   - src/models/components/pagination.ts
   - src/models/components/patchdocumentmetadataparams.ts
+  - src/models/components/responseok.ts
   - src/models/components/retrieval.ts
   - src/models/components/retrieveparams.ts
   - src/models/components/scoredchunk.ts
@@ -261,6 +266,7 @@ generatedFiles:
   - src/models/operations/patchdocumentmetadata.ts
   - src/models/operations/setconnectionenabledconnectionsconnectionidenabledput.ts
   - src/models/operations/setconnectionlimitsconnectionsconnectionidlimitput.ts
+  - src/models/operations/syncconnection.ts
   - src/models/operations/updateconnectionconnectionsconnectionidput.ts
   - src/models/operations/updatedocumentfile.ts
   - src/models/operations/updatedocumentfromurl.ts
@@ -518,7 +524,7 @@ examples:
   CreateInstruction:
     speakeasy-default-create-instruction:
       requestBody:
-        application/json: {"name": "Find all pizzas", "active": true, "scope": "chunk", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>"}, "partition": "<value>"}
+        application/json: {"name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>"}, "partition": "<value>"}
       responses:
         "200":
           application/json: {"id": "a4c45043-a1d4-46a2-bd35-4e705734d3bf", "created_at": "2024-09-23T03:06:52.578Z", "updated_at": "2023-03-21T16:28:26.454Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>"}, "partition": "<value>"}
@@ -577,9 +583,10 @@ examples:
       parameters:
         query:
           page_size: 10
+          filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}"
       responses:
         "200":
-          application/json: {"pagination": {}, "connections": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2023-03-24T06:20:14.879Z", "updated_at": "2025-09-10T04:30:13.188Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": true, "partition": "<value>", "disabled_by_system": false}, {"id": "66718d6d-4612-4e0a-9ee1-b9ddf121dc2a", "created_at": "2025-05-06T10:10:32.094Z", "updated_at": "2024-08-19T22:29:27.736Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": true, "partition": "<value>", "disabled_by_system": false}, {"id": "4fb451a7-0cfc-48fe-807f-bc60ab960d56", "created_at": "2023-05-09T15:43:49.850Z", "updated_at": "2025-10-31T06:20:54.910Z", "metadata": {"key": 370293, "key1": 212921, "key2": []}, "type": "<value>", "name": "<value>", "enabled": false, "partition": "<value>", "disabled_by_system": false}]}
+          application/json: {"pagination": {}, "connections": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2023-03-24T06:20:14.879Z", "updated_at": "2025-09-10T04:30:13.188Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": ["<value>", "<value>"], "enabled": true, "partition": "<value>", "page_limit": 678317, "disabled_by_system": false}, {"id": "66718d6d-4612-4e0a-9ee1-b9ddf121dc2a", "created_at": "2025-05-06T10:10:32.094Z", "updated_at": "2024-08-19T22:29:27.736Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "partition": "<value>", "page_limit": 229716, "disabled_by_system": false}, {"id": "4fb451a7-0cfc-48fe-807f-bc60ab960d56", "created_at": "2023-05-09T15:43:49.850Z", "updated_at": "2025-10-31T06:20:54.910Z", "metadata": {"key": 370293, "key1": 212921, "key2": []}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": false, "partition": "<value>", "page_limit": 635532, "disabled_by_system": false}]}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -587,7 +594,7 @@ examples:
   create_oauth_redirect_url_connections_oauth_post:
     speakeasy-default-create-oauth-redirect-url-connections-oauth-post:
       requestBody:
-        application/json: {"redirect_uri": "https://fatherly-soup.com"}
+        application/json: {"redirect_uri": "https://fatherly-soup.com", "page_limit": 1000}
       responses:
         "200":
           application/json: {"url": "https://better-negotiation.net/"}
@@ -604,7 +611,7 @@ examples:
         application/json: {"enabled": true}
       responses:
         "200":
-          application/json: {"id": "26fadfa1-29b4-490b-acfb-7e6429656623", "created_at": "2025-10-14T19:56:20.471Z", "updated_at": "2023-04-26T16:53:39.637Z", "metadata": {"key": 43810, "key1": true, "key2": true}, "type": "<value>", "name": "<value>", "enabled": false, "partition": "<value>", "disabled_by_system": false}
+          application/json: {"id": "26fadfa1-29b4-490b-acfb-7e6429656623", "created_at": "2025-10-14T19:56:20.471Z", "updated_at": "2023-04-26T16:53:39.637Z", "metadata": {"key": 43810, "key1": true, "key2": true}, "type": "<value>", "name": "<value>", "source": [], "enabled": false, "partition": "<value>", "page_limit": 898430, "disabled_by_system": false}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -615,10 +622,10 @@ examples:
         path:
           connection_id: "60a91616-1376-4585-82c8-85b663abc0c8"
       requestBody:
-        application/json: {"partition_strategy": "fast"}
+        application/json: {"partition_strategy": "fast", "page_limit": 1000}
       responses:
         "200":
-          application/json: {"id": "e8483df4-d337-4f04-a295-c0df4e3bbb65", "created_at": "2023-04-30T21:32:17.394Z", "updated_at": "2025-08-07T23:17:45.906Z", "metadata": {"key": true}, "type": "<value>", "name": "<value>", "enabled": false, "partition": "<value>", "disabled_by_system": false}
+          application/json: {"id": "e8483df4-d337-4f04-a295-c0df4e3bbb65", "created_at": "2023-04-30T21:32:17.394Z", "updated_at": "2025-08-07T23:17:45.906Z", "metadata": {"key": true}, "type": "<value>", "name": "<value>", "source": ["<value>", "<value>"], "enabled": false, "partition": "<value>", "page_limit": 344620, "disabled_by_system": false}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -630,7 +637,7 @@ examples:
           connection_id: "ee666f79-dcc9-4015-9e13-63993816d536"
       responses:
         "200":
-          application/json: {"id": "78e43ac5-5898-4648-926e-6fab72ebbe8d", "created_at": "2023-03-16T14:08:34.785Z", "updated_at": "2024-07-23T20:09:43.508Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": true, "partition": "<value>", "disabled_by_system": false}
+          application/json: {"id": "78e43ac5-5898-4648-926e-6fab72ebbe8d", "created_at": "2023-03-16T14:08:34.785Z", "updated_at": "2024-07-23T20:09:43.508Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": ["<value>", "<value>"], "enabled": true, "partition": "<value>", "page_limit": 544221, "disabled_by_system": false}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -670,10 +677,15 @@ examples:
         application/json: {"page_limit": 1000}
       responses:
         "200":
-          application/json: {"id": "46973cfa-f674-422d-bdc5-0c22d63d4490", "created_at": "2025-07-01T15:25:15.852Z", "updated_at": "2023-02-14T11:43:08.736Z", "metadata": {}, "type": "<value>", "name": "<value>", "enabled": true, "partition": "<value>", "disabled_by_system": true}
+          application/json: {"id": "46973cfa-f674-422d-bdc5-0c22d63d4490", "created_at": "2025-07-01T15:25:15.852Z", "updated_at": "2023-02-14T11:43:08.736Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": ["<value>", "<value>", "<value>"], "enabled": true, "partition": "<value>", "page_limit": 839833, "disabled_by_system": true}
         "401":
           application/json: {"detail": "<value>"}
         "422":
           application/json: {}
+  SyncConnection:
+    speakeasy-default-sync-connection:
+      parameters:
+        path:
+          connection_id: "f0897be3-0808-45c9-a63b-509c0142ddd3"
 examplesVersion: 1.0.0
 generatedTests: {}

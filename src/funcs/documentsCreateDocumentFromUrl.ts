@@ -36,8 +36,8 @@ export async function documentsCreateDocumentFromUrl(
 ): Promise<
   Result<
     components.Document,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -71,6 +71,7 @@ export async function documentsCreateDocumentFromUrl(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "CreateDocumentFromUrl",
     oAuth2Scopes: [],
 
@@ -114,8 +115,8 @@ export async function documentsCreateDocumentFromUrl(
 
   const [result] = await M.match<
     components.Document,
-    | errors.ErrorMessage
     | errors.HTTPValidationError
+    | errors.ErrorMessage
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -125,8 +126,8 @@ export async function documentsCreateDocumentFromUrl(
     | ConnectionError
   >(
     M.json(201, components.Document$inboundSchema),
-    M.jsonErr([400, 401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.jsonErr([400, 401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

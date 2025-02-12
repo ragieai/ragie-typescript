@@ -9,6 +9,7 @@ import { connectionsGetStats } from "../funcs/connectionsGetStats.js";
 import { connectionsList } from "../funcs/connectionsList.js";
 import { connectionsSetEnabled } from "../funcs/connectionsSetEnabled.js";
 import { connectionsSetLimits } from "../funcs/connectionsSetLimits.js";
+import { connectionsSync } from "../funcs/connectionsSync.js";
 import { connectionsUpdate } from "../funcs/connectionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -156,6 +157,23 @@ export class Connections extends ClientSDK {
     options?: RequestOptions,
   ): Promise<{ [k: string]: string }> {
     return unwrapAsync(connectionsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Sync Connection
+   *
+   * @remarks
+   * Schedules a connector to sync as soon as possible.
+   */
+  async sync(
+    request: operations.SyncConnectionRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResponseOK> {
+    return unwrapAsync(connectionsSync(
       this,
       request,
       options,

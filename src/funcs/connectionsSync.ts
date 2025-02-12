@@ -3,8 +3,7 @@
  */
 
 import { RagieCore } from "../core.js";
-import { appendForm, encodeSimple } from "../lib/encodings.js";
-import { readableStreamToArrayBuffer } from "../lib/files.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -23,20 +22,21 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
-import { isBlobLike } from "../types/blobs.js";
 import { Result } from "../types/fp.js";
-import { isReadableStream } from "../types/streams.js";
 
 /**
- * Update Document File
+ * Sync Connection
+ *
+ * @remarks
+ * Schedules a connector to sync as soon as possible.
  */
-export async function documentsUpdateFile(
+export async function connectionsSync(
   client: RagieCore,
-  request: operations.UpdateDocumentFileRequest,
+  request: operations.SyncConnectionRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.DocumentFileUpdate,
+    components.ResponseOK,
     | errors.HTTPValidationError
     | errors.ErrorMessage
     | SDKError
@@ -50,52 +50,26 @@ export async function documentsUpdateFile(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.UpdateDocumentFileRequest$outboundSchema.parse(value),
+    (value) => operations.SyncConnectionRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = new FormData();
-
-  if (isBlobLike(payload.UpdateDocumentFileParams.file)) {
-    appendForm(body, "file", payload.UpdateDocumentFileParams.file);
-  } else if (isReadableStream(payload.UpdateDocumentFileParams.file.content)) {
-    const buffer = await readableStreamToArrayBuffer(
-      payload.UpdateDocumentFileParams.file.content,
-    );
-    const blob = new Blob([buffer], { type: "application/octet-stream" });
-    appendForm(body, "file", blob);
-  } else {
-    appendForm(
-      body,
-      "file",
-      new Blob([payload.UpdateDocumentFileParams.file.content], {
-        type: "application/octet-stream",
-      }),
-      payload.UpdateDocumentFileParams.file.fileName,
-    );
-  }
-  if (payload.UpdateDocumentFileParams.mode !== undefined) {
-    appendForm(body, "mode", payload.UpdateDocumentFileParams.mode);
-  }
+  const body = null;
 
   const pathParams = {
-    document_id: encodeSimple("document_id", payload.document_id, {
+    connection_id: encodeSimple("connection_id", payload.connection_id, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc("/documents/{document_id}/file")(pathParams);
+  const path = pathToFunc("/connections/{connection_id}/sync")(pathParams);
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
-    "partition": encodeSimple("partition", payload.partition, {
-      explode: false,
-      charEncoding: "none",
-    }),
   }));
 
   const secConfig = await extractSecurity(client._options.auth);
@@ -104,7 +78,7 @@ export async function documentsUpdateFile(
 
   const context = {
     baseURL: options?.serverURL ?? "",
-    operationID: "UpdateDocumentFile",
+    operationID: "SyncConnection",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -118,7 +92,7 @@ export async function documentsUpdateFile(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "PUT",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -132,7 +106,7 @@ export async function documentsUpdateFile(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "402", "404", "422", "429", "4XX", "5XX"],
+    errorCodes: ["400", "401", "402", "422", "429", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -146,7 +120,7 @@ export async function documentsUpdateFile(
   };
 
   const [result] = await M.match<
-    components.DocumentFileUpdate,
+    components.ResponseOK,
     | errors.HTTPValidationError
     | errors.ErrorMessage
     | SDKError
@@ -157,9 +131,9 @@ export async function documentsUpdateFile(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.DocumentFileUpdate$inboundSchema),
+    M.json(201, components.ResponseOK$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
+    M.jsonErr([400, 401, 402, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

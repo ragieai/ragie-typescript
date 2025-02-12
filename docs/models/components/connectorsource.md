@@ -5,7 +5,7 @@
 ```typescript
 import { ConnectorSource } from "ragie/models/components";
 
-let value: ConnectorSource = "dropbox";
+let value: ConnectorSource = "onedrive";
 ```
 
 ## Values
