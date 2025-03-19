@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Create a new instruction. Instructions are applied to documents as they are created or updated. The results of the instruction are stored as structured data in the schema defined by the `entity_schema` parameter. The `prompt` parameter is a natural language instruction which will be applied to documents. This feature is in beta and may change in the future.
  */
-export async function entitiesCreateInstruction(
+export function entitiesCreateInstruction(
   client: RagieCore,
   request: components.CreateInstructionParams,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     components.Instruction,
     | errors.HTTPValidationError
@@ -47,13 +48,41 @@ export async function entitiesCreateInstruction(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: RagieCore,
+  request: components.CreateInstructionParams,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      components.Instruction,
+      | errors.HTTPValidationError
+      | errors.ErrorMessage
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => components.CreateInstructionParams$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
@@ -70,7 +99,7 @@ export async function entitiesCreateInstruction(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    baseURL: options?.serverURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "CreateInstruction",
     oAuth2Scopes: [],
 
@@ -93,7 +122,7 @@ export async function entitiesCreateInstruction(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -104,7 +133,7 @@ export async function entitiesCreateInstruction(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -131,8 +160,8 @@ export async function entitiesCreateInstruction(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

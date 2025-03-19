@@ -15,17 +15,17 @@ export const ServerList = [
 ] as const;
 
 export type SDKOptions = {
-  auth?: string | (() => Promise<string>);
+  auth?: string | (() => Promise<string>) | undefined;
 
   httpClient?: HTTPClient;
   /**
    * Allows overriding the default server used by the SDK
    */
-  serverIdx?: number;
+  serverIdx?: number | undefined;
   /**
    * Allows overriding the default server URL used by the SDK
    */
-  serverURL?: string;
+  serverURL?: string | undefined;
   /**
    * Allows overriding the default retry config used by the SDK
    */
@@ -54,7 +54,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "1.5.0",
-  genVersion: "2.512.0",
-  userAgent: "speakeasy-sdk/typescript 1.5.0 2.512.0 1.0.0 ragie",
+  sdkVersion: "1.6.0",
+  genVersion: "2.556.1",
+  userAgent: "speakeasy-sdk/typescript 1.6.0 2.556.1 1.0.0 ragie",
 } as const;

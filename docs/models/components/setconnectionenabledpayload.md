@@ -12,6 +12,7 @@ let value: SetConnectionEnabledPayload = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `enabled`          | *boolean*          | :heavy_check_mark: | N/A                |
+| Field                                                  | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `enabled`                                              | *boolean*                                              | :heavy_check_mark:                                     | N/A                                                    |
+| `reason`                                               | [components.Reason](../../models/components/reason.md) | :heavy_minus_sign:                                     | N/A                                                    |

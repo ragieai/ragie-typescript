@@ -6,8 +6,8 @@
 import { ConnectionStats } from "ragie/models/components";
 
 let value: ConnectionStats = {
-  documentCount: 695270,
-  pageCount: 6719.57,
+  documentCount: 600392,
+  pageCount: 5887.4,
 };
 ```
 

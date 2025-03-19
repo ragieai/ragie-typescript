@@ -6,7 +6,7 @@
 import { OAuthUrlCreate } from "ragie/models/components";
 
 let value: OAuthUrlCreate = {
-  redirectUri: "https://alive-flint.name/",
+  redirectUri: "https://dull-captain.name/",
   pageLimit: 1000,
 };
 ```

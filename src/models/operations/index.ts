@@ -4,6 +4,7 @@
 
 export * from "./deleteconnectionconnectionsconnectioniddeletepost.js";
 export * from "./deletedocument.js";
+export * from "./deletepartitionpartitionspartitioniddelete.js";
 export * from "./getconnectionconnectionsconnectionidget.js";
 export * from "./getconnectionstatsconnectionsconnectionidstatsget.js";
 export * from "./getdocument.js";
@@ -12,13 +13,16 @@ export * from "./getdocumentchunks.js";
 export * from "./getdocumentcontent.js";
 export * from "./getdocumentsource.js";
 export * from "./getdocumentsummary.js";
+export * from "./getpartitionpartitionspartitionidget.js";
 export * from "./listconnectionsconnectionsget.js";
 export * from "./listdocuments.js";
 export * from "./listentitiesbydocument.js";
 export * from "./listentitiesbyinstruction.js";
+export * from "./listpartitionspartitionsget.js";
 export * from "./patchdocumentmetadata.js";
 export * from "./setconnectionenabledconnectionsconnectionidenabledput.js";
 export * from "./setconnectionlimitsconnectionsconnectionidlimitput.js";
+export * from "./setpartitionlimitspartitionspartitionidlimitsput.js";
 export * from "./syncconnection.js";
 export * from "./updateconnectionconnectionsconnectionidput.js";
 export * from "./updatedocumentfile.js";
