@@ -22,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -30,11 +31,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Get a LLM generated summary of the document. The summary is created when the document is first created or updated. Documents of types ['xls', 'xlsx', 'csv', 'json'] are not supported for summarization. Documents greater than 1M in token length are not supported. This feature is in beta and may change in the future.
  */
-export async function documentsGetSummary(
+export function documentsGetSummary(
   client: RagieCore,
   request: operations.GetDocumentSummaryRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     components.DocumentSummary,
     | errors.HTTPValidationError
@@ -48,13 +49,41 @@ export async function documentsGetSummary(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: RagieCore,
+  request: operations.GetDocumentSummaryRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      components.DocumentSummary,
+      | errors.HTTPValidationError
+      | errors.ErrorMessage
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.GetDocumentSummaryRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -81,7 +110,7 @@ export async function documentsGetSummary(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    baseURL: options?.serverURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "GetDocumentSummary",
     oAuth2Scopes: [],
 
@@ -104,7 +133,7 @@ export async function documentsGetSummary(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -115,7 +144,7 @@ export async function documentsGetSummary(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -142,8 +171,8 @@ export async function documentsGetSummary(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

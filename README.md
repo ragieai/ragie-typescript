@@ -69,6 +69,91 @@ yarn add ragie zod
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
 ```
+
+
+
+### Model Context Protocol (MCP) Server
+
+This SDK is also an installable MCP server where the various SDK methods are
+exposed as tools that can be invoked by AI applications.
+
+> Node.js v20 or greater is required to run the MCP server from npm.
+
+<details>
+<summary>Claude installation steps</summary>
+
+Add the following server definition to your `claude_desktop_config.json` file:
+
+```json
+{
+  "mcpServers": {
+    "Ragie": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "ragie",
+        "--",
+        "mcp", "start",
+        "--api-auth", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Cursor installation steps</summary>
+
+Create a `.cursor/mcp.json` file in your project root with the following content:
+
+```json
+{
+  "mcpServers": {
+    "Ragie": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "ragie",
+        "--",
+        "mcp", "start",
+        "--api-auth", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
+
+```bash
+curl -L -o mcp-server \
+    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+chmod +x mcp-server
+```
+
+If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
+
+
+```json
+{
+  "mcpServers": {
+    "Todos": {
+      "command": "./DOWNLOAD/PATH/mcp-server",
+      "args": [
+        "start"
+      ]
+    }
+  }
+}
+```
+
+For a full list of server arguments, run:
+
+```sh
+npx -y --package ragie -- mcp start --help
+```
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -147,6 +232,14 @@ run();
 * [updateInstruction](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
 * [listByInstruction](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 * [listByDocument](docs/sdks/entities/README.md#listbydocument) - Get Document Extracted Entities
+
+### [partitions](docs/sdks/partitions/README.md)
+
+* [list](docs/sdks/partitions/README.md#list) - List Partitions
+* [create](docs/sdks/partitions/README.md#create) - Create Partition
+* [get](docs/sdks/partitions/README.md#get) - Get Partition
+* [delete](docs/sdks/partitions/README.md#delete) - Delete Partition
+* [setLimits](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
 
 
 ### [retrievals](docs/sdks/retrievals/README.md)
@@ -277,7 +370,7 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
@@ -570,6 +663,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`entitiesListByInstruction`](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 - [`entitiesListInstructions`](docs/sdks/entities/README.md#listinstructions) - List Instructions
 - [`entitiesUpdateInstruction`](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
+- [`partitionsCreate`](docs/sdks/partitions/README.md#create) - Create Partition
+- [`partitionsDelete`](docs/sdks/partitions/README.md#delete) - Delete Partition
+- [`partitionsGet`](docs/sdks/partitions/README.md#get) - Get Partition
+- [`partitionsList`](docs/sdks/partitions/README.md#list) - List Partitions
+- [`partitionsSetLimits`](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
 - [`retrievalsRetrieve`](docs/sdks/retrievals/README.md#retrieve) - Retrieve
 
 </details>

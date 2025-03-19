@@ -5,12 +5,19 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionMetadata = string | number | boolean | Array<string>;
 
 export type Source = string | Array<string>;
+
+export const DisabledBySystemReason = {
+  ConnectionOverTotalPageLimit: "connection_over_total_page_limit",
+  AuthenticationFailed: "authentication_failed",
+} as const;
+export type DisabledBySystemReason = ClosedEnum<typeof DisabledBySystemReason>;
 
 export type Connection = {
   id: string;
@@ -21,13 +28,10 @@ export type Connection = {
   name: string;
   source: string | Array<string> | null;
   enabled: boolean;
-  disabledBySystemReason?:
-    | "connection_over_total_page_limit"
-    | null
-    | undefined;
+  disabledBySystemReason: DisabledBySystemReason | null;
   lastSyncedAt?: Date | null | undefined;
   syncing?: boolean | null | undefined;
-  partition: string;
+  partition?: string | null | undefined;
   pageLimit: number | null;
   disabledBySystem: boolean;
 };
@@ -126,6 +130,27 @@ export function sourceFromJSON(
 }
 
 /** @internal */
+export const DisabledBySystemReason$inboundSchema: z.ZodNativeEnum<
+  typeof DisabledBySystemReason
+> = z.nativeEnum(DisabledBySystemReason);
+
+/** @internal */
+export const DisabledBySystemReason$outboundSchema: z.ZodNativeEnum<
+  typeof DisabledBySystemReason
+> = DisabledBySystemReason$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DisabledBySystemReason$ {
+  /** @deprecated use `DisabledBySystemReason$inboundSchema` instead. */
+  export const inboundSchema = DisabledBySystemReason$inboundSchema;
+  /** @deprecated use `DisabledBySystemReason$outboundSchema` instead. */
+  export const outboundSchema = DisabledBySystemReason$outboundSchema;
+}
+
+/** @internal */
 export const Connection$inboundSchema: z.ZodType<
   Connection,
   z.ZodTypeDef,
@@ -141,14 +166,12 @@ export const Connection$inboundSchema: z.ZodType<
   name: z.string(),
   source: z.nullable(z.union([z.string(), z.array(z.string())])),
   enabled: z.boolean(),
-  disabled_by_system_reason: z.nullable(
-    z.literal("connection_over_total_page_limit"),
-  ).optional(),
+  disabled_by_system_reason: z.nullable(DisabledBySystemReason$inboundSchema),
   last_synced_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   syncing: z.nullable(z.boolean()).optional(),
-  partition: z.string(),
+  partition: z.nullable(z.string()).optional(),
   page_limit: z.nullable(z.number().int()),
   disabled_by_system: z.boolean(),
 }).transform((v) => {
@@ -172,10 +195,10 @@ export type Connection$Outbound = {
   name: string;
   source: string | Array<string> | null;
   enabled: boolean;
-  disabled_by_system_reason: "connection_over_total_page_limit" | null;
+  disabled_by_system_reason: string | null;
   last_synced_at?: string | null | undefined;
   syncing?: boolean | null | undefined;
-  partition: string;
+  partition?: string | null | undefined;
   page_limit: number | null;
   disabled_by_system: boolean;
 };
@@ -196,14 +219,10 @@ export const Connection$outboundSchema: z.ZodType<
   name: z.string(),
   source: z.nullable(z.union([z.string(), z.array(z.string())])),
   enabled: z.boolean(),
-  disabledBySystemReason: z.nullable(
-    z.literal("connection_over_total_page_limit").default(
-      "connection_over_total_page_limit" as const,
-    ),
-  ),
+  disabledBySystemReason: z.nullable(DisabledBySystemReason$outboundSchema),
   lastSyncedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   syncing: z.nullable(z.boolean()).optional(),
-  partition: z.string(),
+  partition: z.nullable(z.string()).optional(),
   pageLimit: z.nullable(z.number().int()),
   disabledBySystem: z.boolean(),
 }).transform((v) => {

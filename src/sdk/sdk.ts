@@ -6,6 +6,7 @@ import { ClientSDK } from "../lib/sdks.js";
 import { Connections } from "./connections.js";
 import { Documents } from "./documents.js";
 import { Entities } from "./entities.js";
+import { Partitions } from "./partitions.js";
 import { Retrievals } from "./retrievals.js";
 
 export class Ragie extends ClientSDK {
@@ -27,5 +28,10 @@ export class Ragie extends ClientSDK {
   private _connections?: Connections;
   get connections(): Connections {
     return (this._connections ??= new Connections(this._options));
+  }
+
+  private _partitions?: Partitions;
+  get partitions(): Partitions {
+    return (this._partitions ??= new Partitions(this._options));
   }
 }

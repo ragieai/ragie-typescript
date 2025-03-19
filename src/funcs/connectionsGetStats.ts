@@ -22,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -30,11 +31,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Lists connection stats: total documents active documents, total active pages.
  */
-export async function connectionsGetStats(
+export function connectionsGetStats(
   client: RagieCore,
   request: operations.GetConnectionStatsConnectionsConnectionIdStatsGetRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     components.ConnectionStats,
     | errors.HTTPValidationError
@@ -48,6 +49,34 @@ export async function connectionsGetStats(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: RagieCore,
+  request: operations.GetConnectionStatsConnectionsConnectionIdStatsGetRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      components.ConnectionStats,
+      | errors.HTTPValidationError
+      | errors.ErrorMessage
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -57,7 +86,7 @@ export async function connectionsGetStats(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -80,7 +109,7 @@ export async function connectionsGetStats(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    baseURL: options?.serverURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get_connection_stats_connections__connection_id__stats_get",
     oAuth2Scopes: [],
 
@@ -103,7 +132,7 @@ export async function connectionsGetStats(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -114,7 +143,7 @@ export async function connectionsGetStats(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -141,8 +170,8 @@ export async function connectionsGetStats(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

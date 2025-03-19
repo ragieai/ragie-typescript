@@ -6,7 +6,7 @@
 import { SetConnectionLimitsConnectionsConnectionIdLimitPutRequest } from "ragie/models/operations";
 
 let value: SetConnectionLimitsConnectionsConnectionIdLimitPutRequest = {
-  connectionId: "3e0517d4-25d2-431b-b64b-5bd3f242578d",
+  connectionId: "57b1eb2f-8f38-4449-8ecb-8e7dd3c0538b",
   connectionLimitParams: {
     pageLimit: 1000,
   },
