@@ -33,6 +33,16 @@ export type FileT = {
 
 export type CreateDocumentParams = {
   /**
+   * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
+   */
+  mode?: CreateDocumentParamsMode | undefined;
+  /**
+   * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
+   */
+  metadata?:
+    | { [k: string]: string | number | boolean | Array<string> }
+    | undefined;
+  /**
    * The binary file to upload, extract, and index for retrieval. The following file types are supported: Plain Text: `.eml` `.html` `.json` `.md` `.msg` `.rst` `.rtf` `.txt` `.xml`
    *
    * @remarks
@@ -44,16 +54,6 @@ export type CreateDocumentParams = {
    * An optional identifier for the document. A common value might be an id in an external system or the URL where the source file may be found.
    */
   externalId?: string | undefined;
-  /**
-   * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`.
-   */
-  metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
-    | undefined;
-  /**
-   * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
-   */
-  mode?: CreateDocumentParamsMode | undefined;
   /**
    * An optional name for the document. If set, the document will have this name. Otherwise it will default to the file's name.
    */
@@ -195,12 +195,12 @@ export const CreateDocumentParams$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  file: z.lazy(() => FileT$inboundSchema),
-  external_id: z.string().optional(),
+  mode: CreateDocumentParamsMode$inboundSchema.default("fast"),
   metadata: z.record(
     z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]),
   ).optional(),
-  mode: CreateDocumentParamsMode$inboundSchema.default("fast"),
+  file: z.lazy(() => FileT$inboundSchema),
+  external_id: z.string().optional(),
   name: z.string().optional(),
   partition: z.string().optional(),
 }).transform((v) => {
@@ -211,12 +211,12 @@ export const CreateDocumentParams$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateDocumentParams$Outbound = {
-  file: FileT$Outbound | Blob;
-  external_id?: string | undefined;
+  mode: string;
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
-  mode: string;
+  file: FileT$Outbound | Blob;
+  external_id?: string | undefined;
   name?: string | undefined;
   partition?: string | undefined;
 };
@@ -227,12 +227,12 @@ export const CreateDocumentParams$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateDocumentParams
 > = z.object({
-  file: z.lazy(() => FileT$outboundSchema).or(blobLikeSchema),
-  externalId: z.string().optional(),
+  mode: CreateDocumentParamsMode$outboundSchema.default("fast"),
   metadata: z.record(
     z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]),
   ).optional(),
-  mode: CreateDocumentParamsMode$outboundSchema.default("fast"),
+  file: z.lazy(() => FileT$outboundSchema).or(blobLikeSchema),
+  externalId: z.string().optional(),
   name: z.string().optional(),
   partition: z.string().optional(),
 }).transform((v) => {

@@ -4,11 +4,13 @@
 
 export * from "./deleteconnectionconnectionsconnectioniddeletepost.js";
 export * from "./deletedocument.js";
+export * from "./deleteinstruction.js";
 export * from "./deletepartitionpartitionspartitioniddelete.js";
 export * from "./getconnectionconnectionsconnectionidget.js";
 export * from "./getconnectionstatsconnectionsconnectionidstatsget.js";
 export * from "./getdocument.js";
 export * from "./getdocumentchunk.js";
+export * from "./getdocumentchunkcontent.js";
 export * from "./getdocumentchunks.js";
 export * from "./getdocumentcontent.js";
 export * from "./getdocumentsource.js";

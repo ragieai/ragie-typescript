@@ -37,7 +37,7 @@ export function documentsGetChunk(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.DocumentChunk,
+    components.DocumentChunkDetail,
     | errors.HTTPValidationError
     | errors.ErrorMessage
     | SDKError
@@ -63,7 +63,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      components.DocumentChunk,
+      components.DocumentChunkDetail,
       | errors.HTTPValidationError
       | errors.ErrorMessage
       | SDKError
@@ -159,7 +159,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.DocumentChunk,
+    components.DocumentChunkDetail,
     | errors.HTTPValidationError
     | errors.ErrorMessage
     | SDKError
@@ -170,7 +170,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.DocumentChunk$inboundSchema),
+    M.json(200, components.DocumentChunkDetail$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),

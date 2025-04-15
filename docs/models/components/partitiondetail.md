@@ -8,19 +8,19 @@ import { PartitionDetail } from "ragie/models/components";
 let value: PartitionDetail = {
   name: "<value>",
   isDefault: false,
-  limitExceededAt: new Date("2024-11-14T03:08:35.085Z"),
+  limitExceededAt: new Date("2023-05-03T00:00:03.241Z"),
   limits: {
-    pagesProcessedLimitMonthly: 8869.61,
-    pagesHostedLimitMonthly: 6188.26,
-    pagesProcessedLimitMax: 1334.61,
-    pagesHostedLimitMax: 9805.81,
+    pagesProcessedLimitMonthly: 8331.52,
+    pagesHostedLimitMonthly: 9002.14,
+    pagesProcessedLimitMax: 9246.23,
+    pagesHostedLimitMax: 9599.05,
   },
   stats: {
-    pagesProcessedMonthly: 8717.86,
-    pagesHostedMonthly: 5027.21,
-    pagesProcessedTotal: 9223.48,
-    pagesHostedTotal: 5413.81,
-    documentCount: 923306,
+    pagesProcessedMonthly: 4315.89,
+    pagesHostedMonthly: 5076.26,
+    pagesProcessedTotal: 9301.51,
+    pagesHostedTotal: 6751.33,
+    documentCount: 624393,
   },
 };
 ```

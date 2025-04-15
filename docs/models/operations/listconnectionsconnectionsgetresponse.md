@@ -10,9 +10,9 @@ let value: ListConnectionsConnectionsGetResponse = {
     pagination: {},
     connections: [
       {
-        id: "6cbf5ec5-94d1-4326-ab87-0613e3dc291b",
-        createdAt: new Date("2025-06-08T21:13:54.937Z"),
-        updatedAt: new Date("2024-06-09T09:43:52.274Z"),
+        id: "a0da6530-4806-42f5-afd3-889810c29b7b",
+        createdAt: new Date("2025-05-19T20:25:53.233Z"),
+        updatedAt: new Date("2025-10-07T02:32:19.524Z"),
         metadata: {
           "key": [
             "<value>",
@@ -20,10 +20,12 @@ let value: ListConnectionsConnectionsGetResponse = {
         },
         type: "<value>",
         name: "<value>",
-        source: "<value>",
+        source: [
+          "<value>",
+        ],
         enabled: false,
-        disabledBySystemReason: "connection_over_total_page_limit",
-        pageLimit: 715053,
+        disabledBySystemReason: "authentication_failed",
+        pageLimit: 235404,
         disabledBySystem: false,
       },
     ],

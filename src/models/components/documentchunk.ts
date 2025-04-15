@@ -6,11 +6,19 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  Link,
+  Link$inboundSchema,
+  Link$Outbound,
+  Link$outboundSchema,
+} from "./link.js";
 
 export type DocumentChunk = {
   id: string;
   index?: number | undefined;
   text: string;
+  metadata?: { [k: string]: any } | undefined;
+  links: { [k: string]: Link };
 };
 
 /** @internal */
@@ -22,6 +30,8 @@ export const DocumentChunk$inboundSchema: z.ZodType<
   id: z.string(),
   index: z.number().int().default(-1),
   text: z.string(),
+  metadata: z.record(z.any()).optional(),
+  links: z.record(Link$inboundSchema),
 });
 
 /** @internal */
@@ -29,6 +39,8 @@ export type DocumentChunk$Outbound = {
   id: string;
   index: number;
   text: string;
+  metadata?: { [k: string]: any } | undefined;
+  links: { [k: string]: Link$Outbound };
 };
 
 /** @internal */
@@ -40,6 +52,8 @@ export const DocumentChunk$outboundSchema: z.ZodType<
   id: z.string(),
   index: z.number().int().default(-1),
   text: z.string(),
+  metadata: z.record(z.any()).optional(),
+  links: z.record(Link$outboundSchema),
 });
 
 /**

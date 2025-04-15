@@ -5,7 +5,7 @@
 ```typescript
 import { DisabledBySystemReason } from "ragie/models/components";
 
-let value: DisabledBySystemReason = "authentication_failed";
+let value: DisabledBySystemReason = "connection_over_total_page_limit";
 ```
 
 ## Values

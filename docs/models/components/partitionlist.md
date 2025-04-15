@@ -11,12 +11,12 @@ let value: PartitionList = {
     {
       name: "<value>",
       isDefault: false,
-      limitExceededAt: new Date("2025-11-21T04:42:37.776Z"),
+      limitExceededAt: new Date("2023-10-06T14:56:53.088Z"),
       limits: {
-        pagesProcessedLimitMonthly: 168.71,
-        pagesHostedLimitMonthly: 6964.83,
-        pagesProcessedLimitMax: 8136.79,
-        pagesHostedLimitMax: 5098.07,
+        pagesProcessedLimitMonthly: 8991.34,
+        pagesHostedLimitMonthly: 860.13,
+        pagesProcessedLimitMax: 3094.41,
+        pagesHostedLimitMax: 7283.47,
       },
     },
   ],

@@ -9,13 +9,19 @@ let value: Retrieval = {
   scoredChunks: [
     {
       text: "<value>",
-      score: 2735.42,
+      score: 2691.35,
       id: "<id>",
-      index: 798047,
+      index: 522812,
       documentId: "<id>",
       documentName: "<value>",
       documentMetadata: {
         "key": "<value>",
+      },
+      links: {
+        "key": {
+          href: "<value>",
+          type: "<value>",
+        },
       },
     },
   ],

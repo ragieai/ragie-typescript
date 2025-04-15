@@ -15,10 +15,10 @@ export type DocumentWithContentMetadata =
   | Array<string>;
 
 export type DocumentWithContent = {
+  status: string;
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  status: string;
   name: string;
   metadata: { [k: string]: string | number | boolean | Array<string> };
   partition: string;
@@ -88,10 +88,10 @@ export const DocumentWithContent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  status: z.string(),
   id: z.string(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  status: z.string(),
   name: z.string(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
@@ -113,10 +113,10 @@ export const DocumentWithContent$inboundSchema: z.ZodType<
 
 /** @internal */
 export type DocumentWithContent$Outbound = {
+  status: string;
   id: string;
   created_at: string;
   updated_at: string;
-  status: string;
   name: string;
   metadata: { [k: string]: string | number | boolean | Array<string> };
   partition: string;
@@ -132,10 +132,10 @@ export const DocumentWithContent$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DocumentWithContent
 > = z.object({
+  status: z.string(),
   id: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
-  status: z.string(),
   name: z.string(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),

@@ -8,6 +8,7 @@ import { documentsCreateRaw } from "../funcs/documentsCreateRaw.js";
 import { documentsDelete } from "../funcs/documentsDelete.js";
 import { documentsGet } from "../funcs/documentsGet.js";
 import { documentsGetChunk } from "../funcs/documentsGetChunk.js";
+import { documentsGetChunkContent } from "../funcs/documentsGetChunkContent.js";
 import { documentsGetChunks } from "../funcs/documentsGetChunks.js";
 import { documentsGetContent } from "../funcs/documentsGetContent.js";
 import { documentsGetSource } from "../funcs/documentsGetSource.js";
@@ -207,8 +208,25 @@ export class Documents extends ClientSDK {
   async getChunk(
     request: operations.GetDocumentChunkRequest,
     options?: RequestOptions,
-  ): Promise<components.DocumentChunk> {
+  ): Promise<components.DocumentChunkDetail> {
     return unwrapAsync(documentsGetChunk(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Document Chunk Content
+   *
+   * @remarks
+   * Returns the content of a document chunk in the requested format. Can be used to stream media of the content for audio/video documents.
+   */
+  async getChunkContent(
+    request: operations.GetDocumentChunkContentRequest,
+    options?: RequestOptions,
+  ): Promise<any> {
+    return unwrapAsync(documentsGetChunkContent(
       this,
       request,
       options,

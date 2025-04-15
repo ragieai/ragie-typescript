@@ -6,6 +6,7 @@ import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const ConnectorSource = {
+  Backblaze: "backblaze",
   Confluence: "confluence",
   Freshdesk: "freshdesk",
   Dropbox: "dropbox",
@@ -14,6 +15,7 @@ export const ConnectorSource = {
   Gmail: "gmail",
   Notion: "notion",
   Salesforce: "salesforce",
+  Sharepoint: "sharepoint",
   Jira: "jira",
   Slack: "slack",
   S3: "s3",

@@ -221,6 +221,7 @@ run();
 * [patchMetadata](docs/sdks/documents/README.md#patchmetadata) - Patch Document Metadata
 * [getChunks](docs/sdks/documents/README.md#getchunks) - Get Document Chunks
 * [getChunk](docs/sdks/documents/README.md#getchunk) - Get Document Chunk
+* [getChunkContent](docs/sdks/documents/README.md#getchunkcontent) - Get Document Chunk Content
 * [getContent](docs/sdks/documents/README.md#getcontent) - Get Document Content
 * [getSource](docs/sdks/documents/README.md#getsource) - Get Document Source
 * [getSummary](docs/sdks/documents/README.md#getsummary) - Get Document Summary
@@ -230,6 +231,7 @@ run();
 * [listInstructions](docs/sdks/entities/README.md#listinstructions) - List Instructions
 * [createInstruction](docs/sdks/entities/README.md#createinstruction) - Create Instruction
 * [updateInstruction](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
+* [delete](docs/sdks/entities/README.md#delete) - Delete Instruction
 * [listByInstruction](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 * [listByDocument](docs/sdks/entities/README.md#listbydocument) - Get Document Extracted Entities
 
@@ -649,6 +651,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`documentsDelete`](docs/sdks/documents/README.md#delete) - Delete Document
 - [`documentsGet`](docs/sdks/documents/README.md#get) - Get Document
 - [`documentsGetChunk`](docs/sdks/documents/README.md#getchunk) - Get Document Chunk
+- [`documentsGetChunkContent`](docs/sdks/documents/README.md#getchunkcontent) - Get Document Chunk Content
 - [`documentsGetChunks`](docs/sdks/documents/README.md#getchunks) - Get Document Chunks
 - [`documentsGetContent`](docs/sdks/documents/README.md#getcontent) - Get Document Content
 - [`documentsGetSource`](docs/sdks/documents/README.md#getsource) - Get Document Source
@@ -659,6 +662,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`documentsUpdateFile`](docs/sdks/documents/README.md#updatefile) - Update Document File
 - [`documentsUpdateRaw`](docs/sdks/documents/README.md#updateraw) - Update Document Raw
 - [`entitiesCreateInstruction`](docs/sdks/entities/README.md#createinstruction) - Create Instruction
+- [`entitiesDelete`](docs/sdks/entities/README.md#delete) - Delete Instruction
 - [`entitiesListByDocument`](docs/sdks/entities/README.md#listbydocument) - Get Document Extracted Entities
 - [`entitiesListByInstruction`](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 - [`entitiesListInstructions`](docs/sdks/entities/README.md#listinstructions) - List Instructions

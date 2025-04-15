@@ -6,7 +6,7 @@
 import { UpdateDocumentFromUrlParams } from "ragie/models/components";
 
 let value: UpdateDocumentFromUrlParams = {
-  url: "https://mature-vanadyl.name",
+  url: "https://tense-pneumonia.biz/",
 };
 ```
 

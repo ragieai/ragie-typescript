@@ -9,8 +9,14 @@ let value: DocumentChunkList = {
   pagination: {},
   chunks: [
     {
-      id: "904a4962-4999-4aa6-be56-ecb1ebf2d291",
+      id: "e1609414-3d9d-4409-b46e-22a0629bb470",
       text: "<value>",
+      links: {
+        "key": {
+          href: "<value>",
+          type: "<value>",
+        },
+      },
     },
   ],
 };

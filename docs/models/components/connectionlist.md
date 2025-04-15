@@ -9,18 +9,20 @@ let value: ConnectionList = {
   pagination: {},
   connections: [
     {
-      id: "e4f31f3b-0be4-465b-9327-4d38fadfcbff",
-      createdAt: new Date("2023-03-19T16:09:31.123Z"),
-      updatedAt: new Date("2023-11-17T21:39:15.131Z"),
+      id: "9fb79104-2b3f-43df-ac30-9281da8af892",
+      createdAt: new Date("2023-11-30T07:24:24.446Z"),
+      updatedAt: new Date("2023-03-29T00:56:47.996Z"),
       metadata: {
-        "key": "<value>",
+        "key": [
+          "<value>",
+        ],
       },
       type: "<value>",
       name: "<value>",
       source: "<value>",
       enabled: false,
       disabledBySystemReason: "connection_over_total_page_limit",
-      pageLimit: 604118,
+      pageLimit: 818012,
       disabledBySystem: false,
     },
   ],

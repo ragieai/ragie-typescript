@@ -17,6 +17,7 @@
 * [patchMetadata](#patchmetadata) - Patch Document Metadata
 * [getChunks](#getchunks) - Get Document Chunks
 * [getChunk](#getchunk) - Get Document Chunk
+* [getChunkContent](#getchunkcontent) - Get Document Chunk Content
 * [getContent](#getcontent) - Get Document Content
 * [getSource](#getsource) - Get Document Source
 * [getSummary](#getsummary) - Get Document Summary
@@ -1025,7 +1026,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentChunk](../../models/components/documentchunk.md)\>**
+**Promise\<[components.DocumentChunkDetail](../../models/components/documentchunkdetail.md)\>**
 
 ### Errors
 
@@ -1033,6 +1034,88 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getChunkContent
+
+Returns the content of a document chunk in the requested format. Can be used to stream media of the content for audio/video documents.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.documents.getChunkContent({
+    documentId: "00000000-0000-0000-0000-000000000000",
+    chunkId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { documentsGetChunkContent } from "ragie/funcs/documentsGetChunkContent.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await documentsGetChunkContent(ragie, {
+    documentId: "00000000-0000-0000-0000-000000000000",
+    chunkId: "00000000-0000-0000-0000-000000000000",
+    partition: "acme_customer_id",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDocumentChunkContentRequest](../../models/operations/getdocumentchunkcontentrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[any](../../models/.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getContent

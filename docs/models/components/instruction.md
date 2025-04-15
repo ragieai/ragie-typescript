@@ -6,9 +6,9 @@
 import { Instruction } from "ragie/models/components";
 
 let value: Instruction = {
-  id: "a3fb4380-3657-449d-a182-b692275fcbe1",
-  createdAt: new Date("2024-10-02T14:03:30.664Z"),
-  updatedAt: new Date("2025-11-20T06:46:28.205Z"),
+  id: "89994601-8cf9-4731-a349-de541af8dda2",
+  createdAt: new Date("2024-06-29T04:14:18.600Z"),
+  updatedAt: new Date("2023-10-20T20:22:48.983Z"),
   name: "Find all pizzas",
   prompt: "Find all pizzas described in the text.",
   entitySchema: {
