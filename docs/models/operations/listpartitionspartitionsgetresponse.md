@@ -12,12 +12,12 @@ let value: ListPartitionsPartitionsGetResponse = {
       {
         name: "<value>",
         isDefault: false,
-        limitExceededAt: new Date("2025-02-22T19:07:41.165Z"),
+        limitExceededAt: new Date("2025-03-18T10:00:46.466Z"),
         limits: {
-          pagesProcessedLimitMonthly: 5580.51,
-          pagesHostedLimitMonthly: 7049.48,
-          pagesProcessedLimitMax: 4186.37,
-          pagesHostedLimitMax: 53.1,
+          pagesProcessedLimitMonthly: 2986.78,
+          pagesHostedLimitMonthly: 3745.4,
+          pagesProcessedLimitMax: 8199.74,
+          pagesHostedLimitMax: 5185.83,
         },
       },
     ],

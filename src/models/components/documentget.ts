@@ -11,10 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type DocumentGetMetadata = string | number | boolean | Array<string>;
 
 export type DocumentGet = {
+  status: string;
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  status: string;
   name: string;
   metadata: { [k: string]: string | number | boolean | Array<string> };
   partition: string;
@@ -82,10 +82,10 @@ export const DocumentGet$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  status: z.string(),
   id: z.string(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  status: z.string(),
   name: z.string(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
@@ -107,10 +107,10 @@ export const DocumentGet$inboundSchema: z.ZodType<
 
 /** @internal */
 export type DocumentGet$Outbound = {
+  status: string;
   id: string;
   created_at: string;
   updated_at: string;
-  status: string;
   name: string;
   metadata: { [k: string]: string | number | boolean | Array<string> };
   partition: string;
@@ -126,10 +126,10 @@ export const DocumentGet$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DocumentGet
 > = z.object({
+  status: z.string(),
   id: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
-  status: z.string(),
   name: z.string(),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),

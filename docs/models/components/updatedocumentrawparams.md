@@ -6,7 +6,7 @@
 import { UpdateDocumentRawParams } from "ragie/models/components";
 
 let value: UpdateDocumentRawParams = {
-  data: {},
+  data: "<value>",
 };
 ```
 

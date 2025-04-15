@@ -6,10 +6,10 @@
 import { PartitionLimits } from "ragie/models/components";
 
 let value: PartitionLimits = {
-  pagesProcessedLimitMonthly: 6939.57,
-  pagesHostedLimitMonthly: 908.85,
-  pagesProcessedLimitMax: 2277.59,
-  pagesHostedLimitMax: 4103.01,
+  pagesProcessedLimitMonthly: 1991.46,
+  pagesHostedLimitMonthly: 6786.29,
+  pagesProcessedLimitMax: 4990.39,
+  pagesHostedLimitMax: 7658.31,
 };
 ```
 

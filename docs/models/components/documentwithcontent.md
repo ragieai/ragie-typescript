@@ -6,15 +6,13 @@
 import { DocumentWithContent } from "ragie/models/components";
 
 let value: DocumentWithContent = {
-  id: "b4632fb7-3406-44b6-a201-a78ef3a40c56",
-  createdAt: new Date("2025-06-29T19:53:54.840Z"),
-  updatedAt: new Date("2024-11-20T08:44:18.290Z"),
   status: "<value>",
+  id: "1feff81a-a4f8-475a-95bc-8ac79e88fa71",
+  createdAt: new Date("2024-04-08T17:54:19.683Z"),
+  updatedAt: new Date("2023-08-05T03:50:53.816Z"),
   name: "<value>",
   metadata: {
-    "key": [
-      "<value>",
-    ],
+    "key": 839455,
   },
   partition: "<value>",
   content: "<value>",
@@ -25,10 +23,10 @@ let value: DocumentWithContent = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `status`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `status`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `metadata`                                                                                    | Record<string, *components.DocumentWithContentMetadata*>                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `partition`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |

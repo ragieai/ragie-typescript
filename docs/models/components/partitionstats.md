@@ -6,11 +6,11 @@
 import { PartitionStats } from "ragie/models/components";
 
 let value: PartitionStats = {
-  pagesProcessedMonthly: 8298.98,
-  pagesHostedMonthly: 9682.87,
-  pagesProcessedTotal: 9197.83,
-  pagesHostedTotal: 360.33,
-  documentCount: 174772,
+  pagesProcessedMonthly: 5829.46,
+  pagesHostedMonthly: 2760.31,
+  pagesProcessedTotal: 7590.51,
+  pagesHostedTotal: 7180.51,
+  documentCount: 261694,
 };
 ```
 

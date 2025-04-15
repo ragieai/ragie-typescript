@@ -7,15 +7,23 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  Link,
+  Link$inboundSchema,
+  Link$Outbound,
+  Link$outboundSchema,
+} from "./link.js";
 
 export type ScoredChunk = {
   text: string;
   score: number;
   id: string;
   index: number;
+  metadata?: { [k: string]: any } | undefined;
   documentId: string;
   documentName: string;
   documentMetadata: { [k: string]: any };
+  links: { [k: string]: Link };
 };
 
 /** @internal */
@@ -28,9 +36,11 @@ export const ScoredChunk$inboundSchema: z.ZodType<
   score: z.number(),
   id: z.string(),
   index: z.number().int(),
+  metadata: z.record(z.any()).optional(),
   document_id: z.string(),
   document_name: z.string(),
   document_metadata: z.record(z.any()),
+  links: z.record(Link$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "document_id": "documentId",
@@ -45,9 +55,11 @@ export type ScoredChunk$Outbound = {
   score: number;
   id: string;
   index: number;
+  metadata?: { [k: string]: any } | undefined;
   document_id: string;
   document_name: string;
   document_metadata: { [k: string]: any };
+  links: { [k: string]: Link$Outbound };
 };
 
 /** @internal */
@@ -60,9 +72,11 @@ export const ScoredChunk$outboundSchema: z.ZodType<
   score: z.number(),
   id: z.string(),
   index: z.number().int(),
+  metadata: z.record(z.any()).optional(),
   documentId: z.string(),
   documentName: z.string(),
   documentMetadata: z.record(z.any()),
+  links: z.record(Link$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     documentId: "document_id",

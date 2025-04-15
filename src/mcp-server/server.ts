@@ -11,7 +11,7 @@ import {
   createRegisterResource,
   createRegisterResourceTemplate,
 } from "./resources.js";
-import { MCPScope, mcpScopes } from "./scopes.js";
+import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
 import { tool$connectionsCreateOAuthRedirectUrl } from "./tools/connectionsCreateOAuthRedirectUrl.js";
 import { tool$connectionsDelete } from "./tools/connectionsDelete.js";
@@ -28,6 +28,7 @@ import { tool$documentsCreateRaw } from "./tools/documentsCreateRaw.js";
 import { tool$documentsDelete } from "./tools/documentsDelete.js";
 import { tool$documentsGet } from "./tools/documentsGet.js";
 import { tool$documentsGetChunk } from "./tools/documentsGetChunk.js";
+import { tool$documentsGetChunkContent } from "./tools/documentsGetChunkContent.js";
 import { tool$documentsGetChunks } from "./tools/documentsGetChunks.js";
 import { tool$documentsGetContent } from "./tools/documentsGetContent.js";
 import { tool$documentsGetSource } from "./tools/documentsGetSource.js";
@@ -38,6 +39,7 @@ import { tool$documentsUpdateDocumentFromUrl } from "./tools/documentsUpdateDocu
 import { tool$documentsUpdateFile } from "./tools/documentsUpdateFile.js";
 import { tool$documentsUpdateRaw } from "./tools/documentsUpdateRaw.js";
 import { tool$entitiesCreateInstruction } from "./tools/entitiesCreateInstruction.js";
+import { tool$entitiesDelete } from "./tools/entitiesDelete.js";
 import { tool$entitiesListByDocument } from "./tools/entitiesListByDocument.js";
 import { tool$entitiesListByInstruction } from "./tools/entitiesListByInstruction.js";
 import { tool$entitiesListInstructions } from "./tools/entitiesListInstructions.js";
@@ -59,7 +61,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.6.0",
+    version: "1.6.1",
   });
 
   const client = new RagieCore({
@@ -68,7 +70,7 @@ export function createMCPServer(deps: {
     serverIdx: deps.serverIdx,
   });
 
-  const scopes = new Set(deps.scopes ?? mcpScopes);
+  const scopes = new Set(deps.scopes);
 
   const allowedTools = deps.allowedTools && new Set(deps.allowedTools);
   const tool = createRegisterTool(
@@ -101,6 +103,7 @@ export function createMCPServer(deps: {
   tool(tool$documentsPatchMetadata);
   tool(tool$documentsGetChunks);
   tool(tool$documentsGetChunk);
+  tool(tool$documentsGetChunkContent);
   tool(tool$documentsGetContent);
   tool(tool$documentsGetSource);
   tool(tool$documentsGetSummary);
@@ -108,6 +111,7 @@ export function createMCPServer(deps: {
   tool(tool$entitiesListInstructions);
   tool(tool$entitiesCreateInstruction);
   tool(tool$entitiesUpdateInstruction);
+  tool(tool$entitiesDelete);
   tool(tool$entitiesListByInstruction);
   tool(tool$entitiesListByDocument);
   tool(tool$connectionsList);

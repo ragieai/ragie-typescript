@@ -5,7 +5,7 @@
 ```typescript
 import { Mode } from "ragie/models/components";
 
-let value: Mode = "hi_res";
+let value: Mode = "fast";
 ```
 
 ## Values

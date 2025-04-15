@@ -30,6 +30,10 @@ export type UpdateDocumentFileParamsFile = {
 
 export type UpdateDocumentFileParams = {
   /**
+   * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
+   */
+  mode?: UpdateDocumentFileParamsMode | undefined;
+  /**
    * The binary file to upload, extract, and index for retrieval. The following file types are supported: Plain Text: `.eml` `.html` `.json` `.md` `.msg` `.rst` `.rtf` `.txt` `.xml`
    *
    * @remarks
@@ -37,10 +41,6 @@ export type UpdateDocumentFileParams = {
    * Documents: `.csv` `.doc` `.docx` `.epub` `.epub+zip` `.odt` `.pdf` `.ppt` `.pptx` `.tsv` `.xlsx` `.xls`.
    */
   file: UpdateDocumentFileParamsFile | Blob;
-  /**
-   * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
-   */
-  mode?: UpdateDocumentFileParamsMode | undefined;
 };
 
 /** @internal */
@@ -139,14 +139,14 @@ export const UpdateDocumentFileParams$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  file: z.lazy(() => UpdateDocumentFileParamsFile$inboundSchema),
   mode: UpdateDocumentFileParamsMode$inboundSchema.default("fast"),
+  file: z.lazy(() => UpdateDocumentFileParamsFile$inboundSchema),
 });
 
 /** @internal */
 export type UpdateDocumentFileParams$Outbound = {
-  file: UpdateDocumentFileParamsFile$Outbound | Blob;
   mode: string;
+  file: UpdateDocumentFileParamsFile$Outbound | Blob;
 };
 
 /** @internal */
@@ -155,10 +155,10 @@ export const UpdateDocumentFileParams$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateDocumentFileParams
 > = z.object({
+  mode: UpdateDocumentFileParamsMode$outboundSchema.default("fast"),
   file: z.lazy(() => UpdateDocumentFileParamsFile$outboundSchema).or(
     blobLikeSchema,
   ),
-  mode: UpdateDocumentFileParamsMode$outboundSchema.default("fast"),
 });
 
 /**
