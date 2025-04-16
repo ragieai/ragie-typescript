@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 56f0cb574266be005e02c9cdd6a474b4
+  docChecksum: 182099965e5a2467d97b68e829b78a3a
   docVersion: 1.0.0
-  speakeasyVersion: 1.531.4
-  generationVersion: 2.570.4
-  releaseVersion: 1.6.1
-  configChecksum: da76247ce367398023e6b310b7fd8e48
+  speakeasyVersion: 1.533.0
+  generationVersion: 2.578.0
+  releaseVersion: 1.6.2
+  configChecksum: 01c614aefbd46b0c0aa0e200f459f5cc
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -45,7 +45,6 @@ generatedFiles:
   - USAGE.md
   - docs/lib/utils/retryconfig.md
   - docs/models/components/audiomodalitydata.md
-  - docs/models/components/config.md
   - docs/models/components/connection.md
   - docs/models/components/connectionbase.md
   - docs/models/components/connectionbasemetadata.md
@@ -808,7 +807,7 @@ examples:
         application/json: {"keep_files": false}
       responses:
         "200":
-          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "422":
           application/json: {}
         "401":
