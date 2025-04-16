@@ -29,8 +29,6 @@ export const Theme = {
 } as const;
 export type Theme = ClosedEnum<typeof Theme>;
 
-export type Config = {};
-
 export type OAuthUrlCreate = {
   redirectUri: string;
   sourceType?: ConnectorSource | undefined;
@@ -50,7 +48,10 @@ export type OAuthUrlCreate = {
    * The maximum number of pages a connection will sync. The connection will be disabled after this limit is reached. Some in progress documents may continue processing after the limit is reached. The limit will be enforced at the start of the next document sync. Remove the limit by setting to null.
    */
   pageLimit?: number | null | undefined;
-  config?: Config | null | undefined;
+  /**
+   * Optional config per connector
+   */
+  config?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -146,47 +147,6 @@ export namespace Theme$ {
 }
 
 /** @internal */
-export const Config$inboundSchema: z.ZodType<Config, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Config$Outbound = {};
-
-/** @internal */
-export const Config$outboundSchema: z.ZodType<
-  Config$Outbound,
-  z.ZodTypeDef,
-  Config
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Config$ {
-  /** @deprecated use `Config$inboundSchema` instead. */
-  export const inboundSchema = Config$inboundSchema;
-  /** @deprecated use `Config$outboundSchema` instead. */
-  export const outboundSchema = Config$outboundSchema;
-  /** @deprecated use `Config$Outbound` instead. */
-  export type Outbound = Config$Outbound;
-}
-
-export function configToJSON(config: Config): string {
-  return JSON.stringify(Config$outboundSchema.parse(config));
-}
-
-export function configFromJSON(
-  jsonString: string,
-): SafeParseResult<Config, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Config$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Config' from JSON`,
-  );
-}
-
-/** @internal */
 export const OAuthUrlCreate$inboundSchema: z.ZodType<
   OAuthUrlCreate,
   z.ZodTypeDef,
@@ -201,7 +161,7 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   partition: z.nullable(z.string()).optional(),
   theme: z.nullable(Theme$inboundSchema).optional(),
   page_limit: z.nullable(z.number().int()).optional(),
-  config: z.nullable(z.lazy(() => Config$inboundSchema)).optional(),
+  config: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "redirect_uri": "redirectUri",
@@ -221,7 +181,7 @@ export type OAuthUrlCreate$Outbound = {
   partition?: string | null | undefined;
   theme?: string | null | undefined;
   page_limit?: number | null | undefined;
-  config?: Config$Outbound | null | undefined;
+  config?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -239,7 +199,7 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   partition: z.nullable(z.string()).optional(),
   theme: z.nullable(Theme$outboundSchema).optional(),
   pageLimit: z.nullable(z.number().int()).optional(),
-  config: z.nullable(z.lazy(() => Config$outboundSchema)).optional(),
+  config: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     redirectUri: "redirect_uri",
