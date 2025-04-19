@@ -1,6 +1,6 @@
 {
   "name": "ragie",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "author": "Speakeasy",
   "bin": {
     "mcp": "bin/mcp-server.js"
@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@modelcontextprotocol/sdk": "^1.5.0",
+    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "zod": ">= 3"
   },
   "peerDependenciesMeta": {
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@modelcontextprotocol/sdk": "^1.5.0",
+    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "@stricli/core": "^1.1.1",
     "@types/express": "^4.17.21",
     "bun": "^1.2.2",

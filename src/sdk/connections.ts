@@ -7,6 +7,7 @@ import { connectionsDelete } from "../funcs/connectionsDelete.js";
 import { connectionsGet } from "../funcs/connectionsGet.js";
 import { connectionsGetStats } from "../funcs/connectionsGetStats.js";
 import { connectionsList } from "../funcs/connectionsList.js";
+import { connectionsListConnectionSourceTypes } from "../funcs/connectionsListConnectionSourceTypes.js";
 import { connectionsSetEnabled } from "../funcs/connectionsSetEnabled.js";
 import { connectionsSetLimits } from "../funcs/connectionsSetLimits.js";
 import { connectionsSync } from "../funcs/connectionsSync.js";
@@ -53,6 +54,21 @@ export class Connections extends ClientSDK {
     return unwrapAsync(connectionsCreateOAuthRedirectUrl(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * List Connection Source Types
+   *
+   * @remarks
+   * List available connection source types like 'google_drive' and 'notion' along with their metadata
+   */
+  async listConnectionSourceTypes(
+    options?: RequestOptions,
+  ): Promise<components.ListConnectorSourceTypeInfo> {
+    return unwrapAsync(connectionsListConnectionSourceTypes(
+      this,
       options,
     ));
   }

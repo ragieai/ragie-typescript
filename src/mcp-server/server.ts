@@ -18,6 +18,7 @@ import { tool$connectionsDelete } from "./tools/connectionsDelete.js";
 import { tool$connectionsGet } from "./tools/connectionsGet.js";
 import { tool$connectionsGetStats } from "./tools/connectionsGetStats.js";
 import { tool$connectionsList } from "./tools/connectionsList.js";
+import { tool$connectionsListConnectionSourceTypes } from "./tools/connectionsListConnectionSourceTypes.js";
 import { tool$connectionsSetEnabled } from "./tools/connectionsSetEnabled.js";
 import { tool$connectionsSetLimits } from "./tools/connectionsSetLimits.js";
 import { tool$connectionsSync } from "./tools/connectionsSync.js";
@@ -61,7 +62,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.6.2",
+    version: "1.6.3",
   });
 
   const client = new RagieCore({
@@ -116,6 +117,7 @@ export function createMCPServer(deps: {
   tool(tool$entitiesListByDocument);
   tool(tool$connectionsList);
   tool(tool$connectionsCreateOAuthRedirectUrl);
+  tool(tool$connectionsListConnectionSourceTypes);
   tool(tool$connectionsSetEnabled);
   tool(tool$connectionsUpdate);
   tool(tool$connectionsGet);

@@ -8,8 +8,8 @@ import { ClosedEnum } from "../../types/enums.js";
 export const ConnectorSource = {
   Backblaze: "backblaze",
   Confluence: "confluence",
-  Freshdesk: "freshdesk",
   Dropbox: "dropbox",
+  Freshdesk: "freshdesk",
   Onedrive: "onedrive",
   GoogleDrive: "google_drive",
   Gmail: "gmail",
@@ -21,6 +21,7 @@ export const ConnectorSource = {
   S3: "s3",
   Gcs: "gcs",
   Hubspot: "hubspot",
+  Zendesk: "zendesk",
 } as const;
 export type ConnectorSource = ClosedEnum<typeof ConnectorSource>;
 
