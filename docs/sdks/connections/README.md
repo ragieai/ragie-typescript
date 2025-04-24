@@ -7,6 +7,7 @@
 
 * [list](#list) - List Connections
 * [createOAuthRedirectUrl](#createoauthredirecturl) - Create Oauth Redirect Url
+* [listConnectionSourceTypes](#listconnectionsourcetypes) - List Connection Source Types
 * [setEnabled](#setenabled) - Set Connection Enabled
 * [update](#update) - Update Connection
 * [get](#get) - Get Connection
@@ -176,6 +177,78 @@ run();
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## listConnectionSourceTypes
+
+List available connection source types like 'google_drive' and 'notion' along with their metadata
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.connections.listConnectionSourceTypes();
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { connectionsListConnectionSourceTypes } from "ragie/funcs/connectionsListConnectionSourceTypes.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await connectionsListConnectionSourceTypes(ragie);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ListConnectorSourceTypeInfo](../../models/components/listconnectorsourcetypeinfo.md)\>**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| errors.ErrorMessage | 401, 402, 429       | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## setEnabled
 

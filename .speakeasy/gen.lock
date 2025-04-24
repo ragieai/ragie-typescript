@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 182099965e5a2467d97b68e829b78a3a
+  docChecksum: 439ee01a1cdd0016e0b68e917b2e9523
   docVersion: 1.0.0
-  speakeasyVersion: 1.533.0
-  generationVersion: 2.578.0
-  releaseVersion: 1.6.2
-  configChecksum: 01c614aefbd46b0c0aa0e200f459f5cc
+  speakeasyVersion: 1.538.0
+  generationVersion: 2.591.1
+  releaseVersion: 1.6.3
+  configChecksum: 64a9092478fdbf88f5045c994f6012e2
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -24,7 +24,7 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
-    mcpServer: 0.9.1
+    mcpServer: 0.9.2
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
@@ -53,6 +53,7 @@ generatedFiles:
   - docs/models/components/connectionmetadata.md
   - docs/models/components/connectionstats.md
   - docs/models/components/connectorsource.md
+  - docs/models/components/connectorsourcetypeinfo.md
   - docs/models/components/createdocumentfromurlparams.md
   - docs/models/components/createdocumentfromurlparamsmetadata.md
   - docs/models/components/createdocumentfromurlparamsmode.md
@@ -91,6 +92,7 @@ generatedFiles:
   - docs/models/components/filter.md
   - docs/models/components/instruction.md
   - docs/models/components/link.md
+  - docs/models/components/listconnectorsourcetypeinfo.md
   - docs/models/components/loc.md
   - docs/models/components/metadata.md
   - docs/models/components/modalitydata.md
@@ -180,6 +182,7 @@ generatedFiles:
   - src/funcs/connectionsGet.ts
   - src/funcs/connectionsGetStats.ts
   - src/funcs/connectionsList.ts
+  - src/funcs/connectionsListConnectionSourceTypes.ts
   - src/funcs/connectionsSetEnabled.ts
   - src/funcs/connectionsSetLimits.ts
   - src/funcs/connectionsSync.ts
@@ -249,6 +252,7 @@ generatedFiles:
   - src/mcp-server/tools/connectionsGet.ts
   - src/mcp-server/tools/connectionsGetStats.ts
   - src/mcp-server/tools/connectionsList.ts
+  - src/mcp-server/tools/connectionsListConnectionSourceTypes.ts
   - src/mcp-server/tools/connectionsSetEnabled.ts
   - src/mcp-server/tools/connectionsSetLimits.ts
   - src/mcp-server/tools/connectionsSync.ts
@@ -288,6 +292,7 @@ generatedFiles:
   - src/models/components/connectionlist.ts
   - src/models/components/connectionstats.ts
   - src/models/components/connectorsource.ts
+  - src/models/components/connectorsourcetypeinfo.ts
   - src/models/components/createdocumentfromurlparams.ts
   - src/models/components/createdocumentparams.ts
   - src/models/components/createdocumentrawparams.ts
@@ -312,6 +317,7 @@ generatedFiles:
   - src/models/components/index.ts
   - src/models/components/instruction.ts
   - src/models/components/link.ts
+  - src/models/components/listconnectorsourcetypeinfo.ts
   - src/models/components/oauthurlcreate.ts
   - src/models/components/oauthurlresponse.ts
   - src/models/components/pagination.ts
@@ -883,6 +889,13 @@ examples:
           application/json: {"name": "<value>", "is_default": false, "limit_exceeded_at": "2025-11-24T01:01:44.131Z", "limits": {"pages_processed_limit_monthly": 8398.33, "pages_hosted_limit_monthly": 9368.54, "pages_processed_limit_max": 2906.53, "pages_hosted_limit_max": 8986.73}, "stats": {"pages_processed_monthly": 434.22, "pages_hosted_monthly": 1388.47, "pages_processed_total": 1187.52, "pages_hosted_total": 2241.15, "document_count": 152223}}
         "422":
           application/json: {}
+        "401":
+          application/json: {"detail": "<value>"}
+  list_connection_source_types_connections_source_type_get:
+    speakeasy-default-list-connection-source-types-connections-source-type-get:
+      responses:
+        "200":
+          application/json: {"connectors": [{"source_type": "jira", "display_name": "Zackery14", "icon_url": "https://circular-advertisement.org", "docs_url": "https://expensive-lid.com"}, {"source_type": "notion", "display_name": "Quentin.Schulist97", "icon_url": "https://miserly-space.biz/", "docs_url": "https://another-baritone.com"}, {"source_type": "onedrive", "display_name": "Tristian_Emmerich", "icon_url": "https://worthy-arcade.net", "docs_url": "https://mundane-presume.net/"}]}
         "401":
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.1
