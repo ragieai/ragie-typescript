@@ -199,6 +199,7 @@ run();
 
 * [list](docs/sdks/connections/README.md#list) - List Connections
 * [createOAuthRedirectUrl](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
+* [listConnectionSourceTypes](docs/sdks/connections/README.md#listconnectionsourcetypes) - List Connection Source Types
 * [setEnabled](docs/sdks/connections/README.md#setenabled) - Set Connection Enabled
 * [update](docs/sdks/connections/README.md#update) - Update Connection
 * [get](docs/sdks/connections/README.md#get) - Get Connection
@@ -641,6 +642,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`connectionsGet`](docs/sdks/connections/README.md#get) - Get Connection
 - [`connectionsGetStats`](docs/sdks/connections/README.md#getstats) - Get Connection Stats
 - [`connectionsList`](docs/sdks/connections/README.md#list) - List Connections
+- [`connectionsListConnectionSourceTypes`](docs/sdks/connections/README.md#listconnectionsourcetypes) - List Connection Source Types
 - [`connectionsSetEnabled`](docs/sdks/connections/README.md#setenabled) - Set Connection Enabled
 - [`connectionsSetLimits`](docs/sdks/connections/README.md#setlimits) - Set Connection Limits
 - [`connectionsSync`](docs/sdks/connections/README.md#sync) - Sync Connection

@@ -5,11 +5,11 @@
 ```typescript
 import { ConnectorSource } from "ragie/models/components";
 
-let value: ConnectorSource = "hubspot";
+let value: ConnectorSource = "zendesk";
 ```
 
 ## Values
 
 ```typescript
-"backblaze" | "confluence" | "freshdesk" | "dropbox" | "onedrive" | "google_drive" | "gmail" | "notion" | "salesforce" | "sharepoint" | "jira" | "slack" | "s3" | "gcs" | "hubspot"
+"backblaze" | "confluence" | "dropbox" | "freshdesk" | "onedrive" | "google_drive" | "gmail" | "notion" | "salesforce" | "sharepoint" | "jira" | "slack" | "s3" | "gcs" | "hubspot" | "zendesk"
 ```

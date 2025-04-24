@@ -15,6 +15,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const MediaType = {
   TextPlain: "text/plain",
   AudioMpeg: "audio/mpeg",
+  VideoMp4: "video/mp4",
 } as const;
 /**
  * The desired media type of the content to return described as a mime type. An error will be returned if the requested media type is not supported for the chunk's document type.

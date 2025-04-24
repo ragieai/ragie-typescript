@@ -13,5 +13,5 @@ let value: MediaType = "audio/mpeg";
 ## Values
 
 ```typescript
-"text/plain" | "audio/mpeg"
+"text/plain" | "audio/mpeg" | "video/mp4"
 ```
