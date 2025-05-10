@@ -13,6 +13,7 @@ export const ConnectorSource = {
   Onedrive: "onedrive",
   GoogleDrive: "google_drive",
   Gmail: "gmail",
+  Intercom: "intercom",
   Notion: "notion",
   Salesforce: "salesforce",
   Sharepoint: "sharepoint",

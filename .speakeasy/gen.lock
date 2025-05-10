@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 439ee01a1cdd0016e0b68e917b2e9523
+  docChecksum: 53f882b5bc99471fd90e061d2305f69f
   docVersion: 1.0.0
-  speakeasyVersion: 1.538.0
-  generationVersion: 2.591.1
-  releaseVersion: 1.6.3
-  configChecksum: 64a9092478fdbf88f5045c994f6012e2
+  speakeasyVersion: 1.543.4
+  generationVersion: 2.598.22
+  releaseVersion: 1.6.4
+  configChecksum: 4766a43f25c6d4d9f1ecfb1fc7e6d1e6
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.6
+    core: 3.21.7
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
@@ -23,7 +23,7 @@ features:
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.4
+    globalServerURLs: 2.82.5
     mcpServer: 0.9.2
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
