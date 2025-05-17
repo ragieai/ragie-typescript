@@ -6,23 +6,23 @@
 import { ConnectionList } from "ragie/models/components";
 
 let value: ConnectionList = {
-  pagination: {},
+  pagination: {
+    totalCount: 599899,
+  },
   connections: [
     {
-      id: "9fb79104-2b3f-43df-ac30-9281da8af892",
-      createdAt: new Date("2023-11-30T07:24:24.446Z"),
-      updatedAt: new Date("2023-03-29T00:56:47.996Z"),
+      id: "fb791042-b3f3-4dfc-9309-281da8af8929",
+      createdAt: new Date("2023-03-29T00:56:47.996Z"),
+      updatedAt: new Date("2025-12-08T11:39:54.430Z"),
       metadata: {
-        "key": [
-          "<value>",
-        ],
+        "key": "<value>",
       },
       type: "<value>",
       name: "<value>",
       source: "<value>",
       enabled: false,
-      disabledBySystemReason: "connection_over_total_page_limit",
-      pageLimit: 818012,
+      disabledBySystemReason: "authentication_failed",
+      pageLimit: 18787,
       disabledBySystem: false,
     },
   ],

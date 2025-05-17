@@ -11,9 +11,11 @@ Document data in a text or JSON format.
 const value: string = "<value>";
 ```
 
-### `components.Data2`
+### `{ [k: string]: any }`
 
 ```typescript
-const value: components.Data2 = {};
+const value: { [k: string]: any } = {
+  "key": "<value>",
+};
 ```
 

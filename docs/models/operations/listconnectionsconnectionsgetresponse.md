@@ -7,12 +7,14 @@ import { ListConnectionsConnectionsGetResponse } from "ragie/models/operations";
 
 let value: ListConnectionsConnectionsGetResponse = {
   result: {
-    pagination: {},
+    pagination: {
+      totalCount: 658333,
+    },
     connections: [
       {
-        id: "a0da6530-4806-42f5-afd3-889810c29b7b",
-        createdAt: new Date("2025-05-19T20:25:53.233Z"),
-        updatedAt: new Date("2025-10-07T02:32:19.524Z"),
+        id: "0da65304-8062-4f5f-bd38-89810c29b7bb",
+        createdAt: new Date("2025-10-07T02:32:19.524Z"),
+        updatedAt: new Date("2025-10-17T19:42:48.819Z"),
         metadata: {
           "key": [
             "<value>",
@@ -24,8 +26,8 @@ let value: ListConnectionsConnectionsGetResponse = {
           "<value>",
         ],
         enabled: false,
-        disabledBySystemReason: "authentication_failed",
-        pageLimit: 235404,
+        disabledBySystemReason: "connection_over_total_page_limit",
+        pageLimit: 212717,
         disabledBySystem: false,
       },
     ],

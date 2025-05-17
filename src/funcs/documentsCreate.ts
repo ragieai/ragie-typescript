@@ -115,7 +115,11 @@ async function $do(
     );
   }
   if (payload.mode !== undefined) {
-    appendForm(body, "mode", payload.mode);
+    appendForm(
+      body,
+      "mode",
+      encodeJSON("mode", payload.mode, { explode: true }),
+    );
   }
   if (payload.name !== undefined) {
     appendForm(body, "name", payload.name);

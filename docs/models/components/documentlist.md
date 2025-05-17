@@ -6,16 +6,18 @@
 import { DocumentList } from "ragie/models/components";
 
 let value: DocumentList = {
-  pagination: {},
+  pagination: {
+    totalCount: 878808,
+  },
   documents: [
     {
       status: "<value>",
-      id: "ec9fa669-e2e0-44b1-bbee-1aae2e77822d",
-      createdAt: new Date("2025-02-17T08:51:39.871Z"),
-      updatedAt: new Date("2023-01-16T04:16:13.143Z"),
+      id: "c9fa669e-2e04-4b1b-aee1-aae2e77822dd",
+      createdAt: new Date("2023-01-16T04:16:13.143Z"),
+      updatedAt: new Date("2024-12-22T21:06:26.072Z"),
       name: "<value>",
       metadata: {
-        "key": false,
+        "key": "<value>",
       },
       partition: "<value>",
     },

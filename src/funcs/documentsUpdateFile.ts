@@ -3,7 +3,7 @@
  */
 
 import { RagieCore } from "../core.js";
-import { appendForm, encodeSimple } from "../lib/encodings.js";
+import { appendForm, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import { readableStreamToArrayBuffer } from "../lib/files.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -107,7 +107,13 @@ async function $do(
     );
   }
   if (payload.UpdateDocumentFileParams.mode !== undefined) {
-    appendForm(body, "mode", payload.UpdateDocumentFileParams.mode);
+    appendForm(
+      body,
+      "mode",
+      encodeJSON("mode", payload.UpdateDocumentFileParams.mode, {
+        explode: true,
+      }),
+    );
   }
 
   const pathParams = {

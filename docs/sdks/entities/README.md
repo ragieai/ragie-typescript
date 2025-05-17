@@ -105,6 +105,14 @@ async function run() {
       "key": "<value>",
       "key1": "<value>",
     },
+    filter: {
+      "toppings": {
+        "$in": [
+          "pizza",
+          "mushrooms",
+        ],
+      },
+    },
     partition: "<value>",
   });
 
@@ -136,6 +144,14 @@ async function run() {
     entitySchema: {
       "key": "<value>",
       "key1": "<value>",
+    },
+    filter: {
+      "toppings": {
+        "$in": [
+          "pizza",
+          "mushrooms",
+        ],
+      },
     },
     partition: "<value>",
   });

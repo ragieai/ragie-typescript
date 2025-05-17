@@ -7,14 +7,16 @@ import { ListEntitiesByDocumentResponse } from "ragie/models/operations";
 
 let value: ListEntitiesByDocumentResponse = {
   result: {
-    pagination: {},
+    pagination: {
+      totalCount: 940486,
+    },
     entities: [
       {
-        id: "f312a36a-6c78-4d73-a238-fb3ebb49e886",
-        createdAt: new Date("2025-07-27T22:41:14.913Z"),
-        updatedAt: new Date("2025-05-04T00:00:17.371Z"),
-        instructionId: "6434bac7-3ded-40eb-91a6-b5afa62f2ff7",
-        documentId: "d369de78-7229-4b9c-bd26-210c37455135",
+        id: "312a36a6-c78d-4732-b38f-b3ebb49e8869",
+        createdAt: new Date("2025-05-04T00:00:17.371Z"),
+        updatedAt: new Date("2024-03-15T19:18:06.815Z"),
+        instructionId: "434bac73-ded0-4eb1-ba6b-5afa62f2ff77",
+        documentId: "369de787-229b-49cd-9262-10c37455135f",
         data: {
           "key": "<value>",
         },

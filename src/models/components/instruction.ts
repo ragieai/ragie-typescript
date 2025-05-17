@@ -21,11 +21,6 @@ export const Scope = {
  */
 export type Scope = ClosedEnum<typeof Scope>;
 
-/**
- * An optional metadata filter that is matched against document metadata during update and creation. The instruction will only be applied to documents with metadata matching the filter.  The following filter operators are supported: $eq - Equal to (number, string, boolean), $ne - Not equal to (number, string, boolean), $gt - Greater than (number), $gte - Greater than or equal to (number), $lt - Less than (number), $lte - Less than or equal to (number), $in - In array (string or number), $nin - Not in array (string or number). The operators can be combined with AND and OR. Read [Metadata & Filters guide](https://docs.ragie.ai/docs/metadata-filters) for more details and examples.
- */
-export type Filter = {};
-
 export type Instruction = {
   id: string;
   createdAt: Date;
@@ -50,7 +45,7 @@ export type Instruction = {
   /**
    * An optional metadata filter that is matched against document metadata during update and creation. The instruction will only be applied to documents with metadata matching the filter.  The following filter operators are supported: $eq - Equal to (number, string, boolean), $ne - Not equal to (number, string, boolean), $gt - Greater than (number), $gte - Greater than or equal to (number), $lt - Less than (number), $lte - Less than or equal to (number), $in - In array (string or number), $nin - Not in array (string or number). The operators can be combined with AND and OR. Read [Metadata & Filters guide](https://docs.ragie.ai/docs/metadata-filters) for more details and examples.
    */
-  filter?: Filter | undefined;
+  filter?: { [k: string]: any } | undefined;
   /**
    * An optional partition identifier. Instructions can be scoped to a partition. An instruction that defines a partition will only be executed for documents in that partition.
    */
@@ -78,47 +73,6 @@ export namespace Scope$ {
 }
 
 /** @internal */
-export const Filter$inboundSchema: z.ZodType<Filter, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Filter$Outbound = {};
-
-/** @internal */
-export const Filter$outboundSchema: z.ZodType<
-  Filter$Outbound,
-  z.ZodTypeDef,
-  Filter
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Filter$ {
-  /** @deprecated use `Filter$inboundSchema` instead. */
-  export const inboundSchema = Filter$inboundSchema;
-  /** @deprecated use `Filter$outboundSchema` instead. */
-  export const outboundSchema = Filter$outboundSchema;
-  /** @deprecated use `Filter$Outbound` instead. */
-  export type Outbound = Filter$Outbound;
-}
-
-export function filterToJSON(filter: Filter): string {
-  return JSON.stringify(Filter$outboundSchema.parse(filter));
-}
-
-export function filterFromJSON(
-  jsonString: string,
-): SafeParseResult<Filter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Filter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Filter' from JSON`,
-  );
-}
-
-/** @internal */
 export const Instruction$inboundSchema: z.ZodType<
   Instruction,
   z.ZodTypeDef,
@@ -132,7 +86,7 @@ export const Instruction$inboundSchema: z.ZodType<
   scope: Scope$inboundSchema.default("chunk"),
   prompt: z.string(),
   entity_schema: z.record(z.any()),
-  filter: z.lazy(() => Filter$inboundSchema).optional(),
+  filter: z.record(z.any()).optional(),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -152,7 +106,7 @@ export type Instruction$Outbound = {
   scope: string;
   prompt: string;
   entity_schema: { [k: string]: any };
-  filter?: Filter$Outbound | undefined;
+  filter?: { [k: string]: any } | undefined;
   partition?: string | undefined;
 };
 
@@ -170,7 +124,7 @@ export const Instruction$outboundSchema: z.ZodType<
   scope: Scope$outboundSchema.default("chunk"),
   prompt: z.string(),
   entitySchema: z.record(z.any()),
-  filter: z.lazy(() => Filter$outboundSchema).optional(),
+  filter: z.record(z.any()).optional(),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

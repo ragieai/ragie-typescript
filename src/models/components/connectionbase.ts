@@ -8,17 +8,25 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  MediaModeParam,
+  MediaModeParam$inboundSchema,
+  MediaModeParam$Outbound,
+  MediaModeParam$outboundSchema,
+} from "./mediamodeparam.js";
 
-export const PartitionStrategy = {
+export const PartitionStrategy1 = {
   HiRes: "hi_res",
   Fast: "fast",
 } as const;
-export type PartitionStrategy = ClosedEnum<typeof PartitionStrategy>;
+export type PartitionStrategy1 = ClosedEnum<typeof PartitionStrategy1>;
+
+export type PartitionStrategy = MediaModeParam | PartitionStrategy1;
 
 export type ConnectionBaseMetadata = string | number | boolean | Array<string>;
 
 export type ConnectionBase = {
-  partitionStrategy: PartitionStrategy;
+  partitionStrategy: MediaModeParam | PartitionStrategy1;
   /**
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
    */
@@ -32,14 +40,42 @@ export type ConnectionBase = {
 };
 
 /** @internal */
-export const PartitionStrategy$inboundSchema: z.ZodNativeEnum<
-  typeof PartitionStrategy
-> = z.nativeEnum(PartitionStrategy);
+export const PartitionStrategy1$inboundSchema: z.ZodNativeEnum<
+  typeof PartitionStrategy1
+> = z.nativeEnum(PartitionStrategy1);
 
 /** @internal */
-export const PartitionStrategy$outboundSchema: z.ZodNativeEnum<
-  typeof PartitionStrategy
-> = PartitionStrategy$inboundSchema;
+export const PartitionStrategy1$outboundSchema: z.ZodNativeEnum<
+  typeof PartitionStrategy1
+> = PartitionStrategy1$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PartitionStrategy1$ {
+  /** @deprecated use `PartitionStrategy1$inboundSchema` instead. */
+  export const inboundSchema = PartitionStrategy1$inboundSchema;
+  /** @deprecated use `PartitionStrategy1$outboundSchema` instead. */
+  export const outboundSchema = PartitionStrategy1$outboundSchema;
+}
+
+/** @internal */
+export const PartitionStrategy$inboundSchema: z.ZodType<
+  PartitionStrategy,
+  z.ZodTypeDef,
+  unknown
+> = z.union([MediaModeParam$inboundSchema, PartitionStrategy1$inboundSchema]);
+
+/** @internal */
+export type PartitionStrategy$Outbound = MediaModeParam$Outbound | string;
+
+/** @internal */
+export const PartitionStrategy$outboundSchema: z.ZodType<
+  PartitionStrategy$Outbound,
+  z.ZodTypeDef,
+  PartitionStrategy
+> = z.union([MediaModeParam$outboundSchema, PartitionStrategy1$outboundSchema]);
 
 /**
  * @internal
@@ -50,6 +86,26 @@ export namespace PartitionStrategy$ {
   export const inboundSchema = PartitionStrategy$inboundSchema;
   /** @deprecated use `PartitionStrategy$outboundSchema` instead. */
   export const outboundSchema = PartitionStrategy$outboundSchema;
+  /** @deprecated use `PartitionStrategy$Outbound` instead. */
+  export type Outbound = PartitionStrategy$Outbound;
+}
+
+export function partitionStrategyToJSON(
+  partitionStrategy: PartitionStrategy,
+): string {
+  return JSON.stringify(
+    PartitionStrategy$outboundSchema.parse(partitionStrategy),
+  );
+}
+
+export function partitionStrategyFromJSON(
+  jsonString: string,
+): SafeParseResult<PartitionStrategy, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PartitionStrategy$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PartitionStrategy' from JSON`,
+  );
 }
 
 /** @internal */
@@ -110,7 +166,10 @@ export const ConnectionBase$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  partition_strategy: PartitionStrategy$inboundSchema,
+  partition_strategy: z.union([
+    MediaModeParam$inboundSchema,
+    PartitionStrategy1$inboundSchema,
+  ]),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
@@ -124,7 +183,7 @@ export const ConnectionBase$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ConnectionBase$Outbound = {
-  partition_strategy: string;
+  partition_strategy: MediaModeParam$Outbound | string;
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
@@ -137,7 +196,10 @@ export const ConnectionBase$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectionBase
 > = z.object({
-  partitionStrategy: PartitionStrategy$outboundSchema,
+  partitionStrategy: z.union([
+    MediaModeParam$outboundSchema,
+    PartitionStrategy1$outboundSchema,
+  ]),
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),

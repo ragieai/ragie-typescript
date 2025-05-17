@@ -7,77 +7,36 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Data2 = {};
-
 /**
  * Document data in a text or JSON format.
  */
-export type UpdateDocumentRawParamsData = Data2 | string;
+export type UpdateDocumentRawParamsData = string | { [k: string]: any };
 
 export type UpdateDocumentRawParams = {
   /**
    * Document data in a text or JSON format.
    */
-  data: Data2 | string;
+  data: string | { [k: string]: any };
 };
-
-/** @internal */
-export const Data2$inboundSchema: z.ZodType<Data2, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Data2$Outbound = {};
-
-/** @internal */
-export const Data2$outboundSchema: z.ZodType<
-  Data2$Outbound,
-  z.ZodTypeDef,
-  Data2
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Data2$ {
-  /** @deprecated use `Data2$inboundSchema` instead. */
-  export const inboundSchema = Data2$inboundSchema;
-  /** @deprecated use `Data2$outboundSchema` instead. */
-  export const outboundSchema = Data2$outboundSchema;
-  /** @deprecated use `Data2$Outbound` instead. */
-  export type Outbound = Data2$Outbound;
-}
-
-export function data2ToJSON(data2: Data2): string {
-  return JSON.stringify(Data2$outboundSchema.parse(data2));
-}
-
-export function data2FromJSON(
-  jsonString: string,
-): SafeParseResult<Data2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Data2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Data2' from JSON`,
-  );
-}
 
 /** @internal */
 export const UpdateDocumentRawParamsData$inboundSchema: z.ZodType<
   UpdateDocumentRawParamsData,
   z.ZodTypeDef,
   unknown
-> = z.union([z.lazy(() => Data2$inboundSchema), z.string()]);
+> = z.union([z.string(), z.record(z.any())]);
 
 /** @internal */
-export type UpdateDocumentRawParamsData$Outbound = Data2$Outbound | string;
+export type UpdateDocumentRawParamsData$Outbound = string | {
+  [k: string]: any;
+};
 
 /** @internal */
 export const UpdateDocumentRawParamsData$outboundSchema: z.ZodType<
   UpdateDocumentRawParamsData$Outbound,
   z.ZodTypeDef,
   UpdateDocumentRawParamsData
-> = z.union([z.lazy(() => Data2$outboundSchema), z.string()]);
+> = z.union([z.string(), z.record(z.any())]);
 
 /**
  * @internal
@@ -118,12 +77,12 @@ export const UpdateDocumentRawParams$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.union([z.lazy(() => Data2$inboundSchema), z.string()]),
+  data: z.union([z.string(), z.record(z.any())]),
 });
 
 /** @internal */
 export type UpdateDocumentRawParams$Outbound = {
-  data: Data2$Outbound | string;
+  data: string | { [k: string]: any };
 };
 
 /** @internal */
@@ -132,7 +91,7 @@ export const UpdateDocumentRawParams$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateDocumentRawParams
 > = z.object({
-  data: z.union([z.lazy(() => Data2$outboundSchema), z.string()]),
+  data: z.union([z.string(), z.record(z.any())]),
 });
 
 /**

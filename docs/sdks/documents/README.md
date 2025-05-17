@@ -282,7 +282,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.createDocumentFromUrl({
     partition: "<value>",
-    url: "https://scientific-plain.biz/",
+    url: "https://plain-cleaner.com/",
   });
 
   // Handle the result
@@ -309,7 +309,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsCreateDocumentFromUrl(ragie, {
     partition: "<value>",
-    url: "https://scientific-plain.biz/",
+    url: "https://plain-cleaner.com/",
   });
 
   if (!res.ok) {
@@ -612,7 +612,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentRawParams: {
-      data: {},
+      data: "<value>",
     },
   });
 
@@ -642,7 +642,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentRawParams: {
-      data: {},
+      data: "<value>",
     },
   });
 
@@ -698,7 +698,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentFromUrlParams: {
-      url: "https://dual-longboat.com/",
+      url: "https://sarcastic-colon.org",
     },
   });
 
@@ -728,7 +728,7 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
     updateDocumentFromUrlParams: {
-      url: "https://dual-longboat.com/",
+      url: "https://sarcastic-colon.org",
     },
   });
 
@@ -1053,6 +1053,7 @@ async function run() {
   const result = await ragie.documents.getChunkContent({
     documentId: "00000000-0000-0000-0000-000000000000",
     chunkId: "00000000-0000-0000-0000-000000000000",
+    mediaType: "video/mp4",
     partition: "acme_customer_id",
   });
 
@@ -1081,6 +1082,7 @@ async function run() {
   const res = await documentsGetChunkContent(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
     chunkId: "00000000-0000-0000-0000-000000000000",
+    mediaType: "video/mp4",
     partition: "acme_customer_id",
   });
 
@@ -1120,7 +1122,7 @@ run();
 
 ## getContent
 
-Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.
+Get the content of a document. The `media_type` parameter can be used to request the content in a different format. When requesting as `application/json` additional metadata about the document will be included. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data. Using mime types such as `audio/mpeg` or `video/mp4` will stream the file in a format that can be provided to an audio video player.
 
 ### Example Usage
 
@@ -1134,6 +1136,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.getContent({
     documentId: "00000000-0000-0000-0000-000000000000",
+    mediaType: "video/mp4",
     partition: "acme_customer_id",
   });
 
@@ -1161,6 +1164,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsGetContent(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    mediaType: "video/mp4",
     partition: "acme_customer_id",
   });
 
