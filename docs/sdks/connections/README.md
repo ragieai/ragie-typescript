@@ -113,7 +113,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.createOAuthRedirectUrl({
-    redirectUri: "https://fatherly-soup.com",
+    redirectUri: "https://babyish-rationale.biz/",
     pageLimit: 1000,
   });
 
@@ -140,7 +140,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsCreateOAuthRedirectUrl(ragie, {
-    redirectUri: "https://fatherly-soup.com",
+    redirectUri: "https://babyish-rationale.biz/",
     pageLimit: 1000,
   });
 
@@ -265,9 +265,9 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.setEnabled({
-    connectionId: "1e380027-f68d-43de-9bae-68e42f38f83c",
+    connectionId: "e424ce92-7b06-4702-9d48-a18157d07128",
     setConnectionEnabledPayload: {
-      enabled: false,
+      enabled: true,
     },
   });
 
@@ -294,9 +294,9 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsSetEnabled(ragie, {
-    connectionId: "1e380027-f68d-43de-9bae-68e42f38f83c",
+    connectionId: "e424ce92-7b06-4702-9d48-a18157d07128",
     setConnectionEnabledPayload: {
-      enabled: false,
+      enabled: true,
     },
   });
 
@@ -349,9 +349,9 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.update({
-    connectionId: "95fa7f0e-7432-4ce4-a7cb-60cc78135dde",
+    connectionId: "eff214ac-1929-43f3-892b-108f57be0158",
     connectionBase: {
-      partitionStrategy: "fast",
+      partitionStrategy: {},
       pageLimit: 1000,
     },
   });
@@ -379,9 +379,9 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsUpdate(ragie, {
-    connectionId: "95fa7f0e-7432-4ce4-a7cb-60cc78135dde",
+    connectionId: "eff214ac-1929-43f3-892b-108f57be0158",
     connectionBase: {
-      partitionStrategy: "fast",
+      partitionStrategy: {},
       pageLimit: 1000,
     },
   });
@@ -435,7 +435,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.get({
-    connectionId: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
   });
 
   // Handle the result
@@ -461,7 +461,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsGet(ragie, {
-    connectionId: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
   });
 
   if (!res.ok) {
@@ -513,7 +513,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.getStats({
-    connectionId: "eb0d219a-f873-4b97-b475-8b26b746a105",
+    connectionId: "1568dd0e-2d57-45b1-a9f4-9d646aec54a2",
   });
 
   // Handle the result
@@ -539,7 +539,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsGetStats(ragie, {
-    connectionId: "eb0d219a-f873-4b97-b475-8b26b746a105",
+    connectionId: "1568dd0e-2d57-45b1-a9f4-9d646aec54a2",
   });
 
   if (!res.ok) {
@@ -591,7 +591,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.setLimits({
-    connectionId: "dfde4e02-1322-4e1c-8bdc-47313184eebe",
+    connectionId: "ab1a17e7-8b6f-470a-aeda-1c8e11512d19",
     connectionLimitParams: {
       pageLimit: 1000,
     },
@@ -620,7 +620,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsSetLimits(ragie, {
-    connectionId: "dfde4e02-1322-4e1c-8bdc-47313184eebe",
+    connectionId: "ab1a17e7-8b6f-470a-aeda-1c8e11512d19",
     connectionLimitParams: {
       pageLimit: 1000,
     },
@@ -675,9 +675,9 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.delete({
-    connectionId: "b6fe91aa-0b1b-43eb-97be-83a32f2399eb",
+    connectionId: "4082c01e-fae3-4426-9e96-0d19035a99ea",
     deleteConnectionPayload: {
-      keepFiles: false,
+      keepFiles: true,
     },
   });
 
@@ -704,9 +704,9 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsDelete(ragie, {
-    connectionId: "b6fe91aa-0b1b-43eb-97be-83a32f2399eb",
+    connectionId: "4082c01e-fae3-4426-9e96-0d19035a99ea",
     deleteConnectionPayload: {
-      keepFiles: false,
+      keepFiles: true,
     },
   });
 
@@ -759,7 +759,7 @@ const ragie = new Ragie({
 
 async function run() {
   const result = await ragie.connections.sync({
-    connectionId: "f0897be3-0808-45c9-a63b-509c0142ddd3",
+    connectionId: "cf2b9381-3cee-4449-b7d1-9eb470186924",
   });
 
   // Handle the result
@@ -785,7 +785,7 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsSync(ragie, {
-    connectionId: "f0897be3-0808-45c9-a63b-509c0142ddd3",
+    connectionId: "cf2b9381-3cee-4449-b7d1-9eb470186924",
   });
 
   if (!res.ok) {

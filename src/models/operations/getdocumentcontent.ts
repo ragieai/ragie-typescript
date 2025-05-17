@@ -5,8 +5,21 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export const One = {
+  TextPlain: "text/plain",
+  AudioMpeg: "audio/mpeg",
+  VideoMp4: "video/mp4",
+} as const;
+export type One = ClosedEnum<typeof One>;
+
+/**
+ * The desired media type of the content to return described as a mime type. An error will be returned if the requested media type is not supported for the document's type.
+ */
+export type QueryParamMediaType = One | string;
 
 export type GetDocumentContentRequest = {
   /**
@@ -14,10 +27,84 @@ export type GetDocumentContentRequest = {
    */
   documentId: string;
   /**
+   * The desired media type of the content to return described as a mime type. An error will be returned if the requested media type is not supported for the document's type.
+   */
+  mediaType?: One | string | null | undefined;
+  /**
+   * Whether to return the content as a file download or a raw stream. If set to `true`, the content will be returned as a named file for download.
+   */
+  download?: boolean | undefined;
+  /**
    * An optional partition to scope the request to. If omitted, accounts created after 1/9/2025 will have the request scoped to the default partition, while older accounts will have the request scoped to all partitions. Older accounts may opt in to strict partition scoping by contacting support@ragie.ai. Older accounts using the partitions feature are strongly recommended to scope the request to a partition.
    */
   partition?: string | null | undefined;
 };
+
+/** @internal */
+export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
+
+/** @internal */
+export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
+  One$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace One$ {
+  /** @deprecated use `One$inboundSchema` instead. */
+  export const inboundSchema = One$inboundSchema;
+  /** @deprecated use `One$outboundSchema` instead. */
+  export const outboundSchema = One$outboundSchema;
+}
+
+/** @internal */
+export const QueryParamMediaType$inboundSchema: z.ZodType<
+  QueryParamMediaType,
+  z.ZodTypeDef,
+  unknown
+> = z.union([One$inboundSchema, z.string()]);
+
+/** @internal */
+export type QueryParamMediaType$Outbound = string | string;
+
+/** @internal */
+export const QueryParamMediaType$outboundSchema: z.ZodType<
+  QueryParamMediaType$Outbound,
+  z.ZodTypeDef,
+  QueryParamMediaType
+> = z.union([One$outboundSchema, z.string()]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace QueryParamMediaType$ {
+  /** @deprecated use `QueryParamMediaType$inboundSchema` instead. */
+  export const inboundSchema = QueryParamMediaType$inboundSchema;
+  /** @deprecated use `QueryParamMediaType$outboundSchema` instead. */
+  export const outboundSchema = QueryParamMediaType$outboundSchema;
+  /** @deprecated use `QueryParamMediaType$Outbound` instead. */
+  export type Outbound = QueryParamMediaType$Outbound;
+}
+
+export function queryParamMediaTypeToJSON(
+  queryParamMediaType: QueryParamMediaType,
+): string {
+  return JSON.stringify(
+    QueryParamMediaType$outboundSchema.parse(queryParamMediaType),
+  );
+}
+
+export function queryParamMediaTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<QueryParamMediaType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => QueryParamMediaType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'QueryParamMediaType' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetDocumentContentRequest$inboundSchema: z.ZodType<
@@ -26,16 +113,21 @@ export const GetDocumentContentRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   document_id: z.string(),
+  media_type: z.nullable(z.union([One$inboundSchema, z.string()])).optional(),
+  download: z.boolean().default(false),
   partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "document_id": "documentId",
+    "media_type": "mediaType",
   });
 });
 
 /** @internal */
 export type GetDocumentContentRequest$Outbound = {
   document_id: string;
+  media_type?: string | string | null | undefined;
+  download: boolean;
   partition?: string | null | undefined;
 };
 
@@ -46,10 +138,13 @@ export const GetDocumentContentRequest$outboundSchema: z.ZodType<
   GetDocumentContentRequest
 > = z.object({
   documentId: z.string(),
+  mediaType: z.nullable(z.union([One$outboundSchema, z.string()])).optional(),
+  download: z.boolean().default(false),
   partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     documentId: "document_id",
+    mediaType: "media_type",
   });
 });
 

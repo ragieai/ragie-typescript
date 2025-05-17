@@ -13,14 +13,22 @@ import {
   ConnectorSource$inboundSchema,
   ConnectorSource$outboundSchema,
 } from "./connectorsource.js";
+import {
+  MediaModeParam,
+  MediaModeParam$inboundSchema,
+  MediaModeParam$Outbound,
+  MediaModeParam$outboundSchema,
+} from "./mediamodeparam.js";
 
 export type OAuthUrlCreateMetadata = string | number | boolean | Array<string>;
 
-export const Mode = {
+export const OAuthUrlCreateMode1 = {
   HiRes: "hi_res",
   Fast: "fast",
 } as const;
-export type Mode = ClosedEnum<typeof Mode>;
+export type OAuthUrlCreateMode1 = ClosedEnum<typeof OAuthUrlCreateMode1>;
+
+export type OAuthUrlCreateMode = MediaModeParam | OAuthUrlCreateMode1;
 
 export const Theme = {
   Light: "light",
@@ -38,7 +46,7 @@ export type OAuthUrlCreate = {
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
-  mode?: Mode | null | undefined;
+  mode?: MediaModeParam | OAuthUrlCreateMode1 | null | undefined;
   partition?: string | null | undefined;
   /**
    * Sets the theme of the Ragie Web UI when the user lands there. Can be light, dark, or system to use whatever the system value is. If omitted, system is used.
@@ -107,23 +115,75 @@ export function oAuthUrlCreateMetadataFromJSON(
 }
 
 /** @internal */
-export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
-  Mode,
-);
+export const OAuthUrlCreateMode1$inboundSchema: z.ZodNativeEnum<
+  typeof OAuthUrlCreateMode1
+> = z.nativeEnum(OAuthUrlCreateMode1);
 
 /** @internal */
-export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> =
-  Mode$inboundSchema;
+export const OAuthUrlCreateMode1$outboundSchema: z.ZodNativeEnum<
+  typeof OAuthUrlCreateMode1
+> = OAuthUrlCreateMode1$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Mode$ {
-  /** @deprecated use `Mode$inboundSchema` instead. */
-  export const inboundSchema = Mode$inboundSchema;
-  /** @deprecated use `Mode$outboundSchema` instead. */
-  export const outboundSchema = Mode$outboundSchema;
+export namespace OAuthUrlCreateMode1$ {
+  /** @deprecated use `OAuthUrlCreateMode1$inboundSchema` instead. */
+  export const inboundSchema = OAuthUrlCreateMode1$inboundSchema;
+  /** @deprecated use `OAuthUrlCreateMode1$outboundSchema` instead. */
+  export const outboundSchema = OAuthUrlCreateMode1$outboundSchema;
+}
+
+/** @internal */
+export const OAuthUrlCreateMode$inboundSchema: z.ZodType<
+  OAuthUrlCreateMode,
+  z.ZodTypeDef,
+  unknown
+> = z.union([MediaModeParam$inboundSchema, OAuthUrlCreateMode1$inboundSchema]);
+
+/** @internal */
+export type OAuthUrlCreateMode$Outbound = MediaModeParam$Outbound | string;
+
+/** @internal */
+export const OAuthUrlCreateMode$outboundSchema: z.ZodType<
+  OAuthUrlCreateMode$Outbound,
+  z.ZodTypeDef,
+  OAuthUrlCreateMode
+> = z.union([
+  MediaModeParam$outboundSchema,
+  OAuthUrlCreateMode1$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace OAuthUrlCreateMode$ {
+  /** @deprecated use `OAuthUrlCreateMode$inboundSchema` instead. */
+  export const inboundSchema = OAuthUrlCreateMode$inboundSchema;
+  /** @deprecated use `OAuthUrlCreateMode$outboundSchema` instead. */
+  export const outboundSchema = OAuthUrlCreateMode$outboundSchema;
+  /** @deprecated use `OAuthUrlCreateMode$Outbound` instead. */
+  export type Outbound = OAuthUrlCreateMode$Outbound;
+}
+
+export function oAuthUrlCreateModeToJSON(
+  oAuthUrlCreateMode: OAuthUrlCreateMode,
+): string {
+  return JSON.stringify(
+    OAuthUrlCreateMode$outboundSchema.parse(oAuthUrlCreateMode),
+  );
+}
+
+export function oAuthUrlCreateModeFromJSON(
+  jsonString: string,
+): SafeParseResult<OAuthUrlCreateMode, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OAuthUrlCreateMode$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OAuthUrlCreateMode' from JSON`,
+  );
 }
 
 /** @internal */
@@ -157,7 +217,9 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
-  mode: z.nullable(Mode$inboundSchema).optional(),
+  mode: z.nullable(
+    z.union([MediaModeParam$inboundSchema, OAuthUrlCreateMode1$inboundSchema]),
+  ).optional(),
   partition: z.nullable(z.string()).optional(),
   theme: z.nullable(Theme$inboundSchema).optional(),
   page_limit: z.nullable(z.number().int()).optional(),
@@ -177,7 +239,7 @@ export type OAuthUrlCreate$Outbound = {
   metadata?:
     | { [k: string]: string | number | boolean | Array<string> }
     | undefined;
-  mode?: string | null | undefined;
+  mode?: MediaModeParam$Outbound | string | null | undefined;
   partition?: string | null | undefined;
   theme?: string | null | undefined;
   page_limit?: number | null | undefined;
@@ -195,7 +257,12 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   metadata: z.record(
     z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
   ).optional(),
-  mode: z.nullable(Mode$outboundSchema).optional(),
+  mode: z.nullable(
+    z.union([
+      MediaModeParam$outboundSchema,
+      OAuthUrlCreateMode1$outboundSchema,
+    ]),
+  ).optional(),
   partition: z.nullable(z.string()).optional(),
   theme: z.nullable(Theme$outboundSchema).optional(),
   pageLimit: z.nullable(z.number().int()).optional(),

@@ -6,17 +6,19 @@
 import { PartitionList } from "ragie/models/components";
 
 let value: PartitionList = {
-  pagination: {},
+  pagination: {
+    totalCount: 254218,
+  },
   partitions: [
     {
       name: "<value>",
       isDefault: false,
-      limitExceededAt: new Date("2023-10-06T14:56:53.088Z"),
+      limitExceededAt: new Date("2025-09-12T10:48:16.840Z"),
       limits: {
-        pagesProcessedLimitMonthly: 8991.34,
-        pagesHostedLimitMonthly: 860.13,
-        pagesProcessedLimitMax: 3094.41,
-        pagesHostedLimitMax: 7283.47,
+        pagesProcessedLimitMonthly: 860.13,
+        pagesHostedLimitMonthly: 3094.41,
+        pagesProcessedLimitMax: 7283.47,
+        pagesHostedLimitMax: 3512.28,
       },
     },
   ],

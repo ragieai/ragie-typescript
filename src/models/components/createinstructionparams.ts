@@ -23,11 +23,6 @@ export type CreateInstructionParamsScope = ClosedEnum<
   typeof CreateInstructionParamsScope
 >;
 
-/**
- * An optional metadata filter that is matched against document metadata during update and creation. The instruction will only be applied to documents with metadata matching the filter.  The following filter operators are supported: $eq - Equal to (number, string, boolean), $ne - Not equal to (number, string, boolean), $gt - Greater than (number), $gte - Greater than or equal to (number), $lt - Less than (number), $lte - Less than or equal to (number), $in - In array (string or number), $nin - Not in array (string or number). The operators can be combined with AND and OR. Read [Metadata & Filters guide](https://docs.ragie.ai/docs/metadata-filters) for more details and examples.
- */
-export type CreateInstructionParamsFilter = {};
-
 export type CreateInstructionParams = {
   /**
    * The name of the instruction. Must be unique.
@@ -49,7 +44,7 @@ export type CreateInstructionParams = {
   /**
    * An optional metadata filter that is matched against document metadata during update and creation. The instruction will only be applied to documents with metadata matching the filter.  The following filter operators are supported: $eq - Equal to (number, string, boolean), $ne - Not equal to (number, string, boolean), $gt - Greater than (number), $gte - Greater than or equal to (number), $lt - Less than (number), $lte - Less than or equal to (number), $in - In array (string or number), $nin - Not in array (string or number). The operators can be combined with AND and OR. Read [Metadata & Filters guide](https://docs.ragie.ai/docs/metadata-filters) for more details and examples.
    */
-  filter?: CreateInstructionParamsFilter | undefined;
+  filter?: { [k: string]: any } | undefined;
   /**
    * An optional partition identifier. Instructions can be scoped to a partition. An instruction that defines a partition will only be executed for documents in that partition.
    */
@@ -78,56 +73,6 @@ export namespace CreateInstructionParamsScope$ {
 }
 
 /** @internal */
-export const CreateInstructionParamsFilter$inboundSchema: z.ZodType<
-  CreateInstructionParamsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type CreateInstructionParamsFilter$Outbound = {};
-
-/** @internal */
-export const CreateInstructionParamsFilter$outboundSchema: z.ZodType<
-  CreateInstructionParamsFilter$Outbound,
-  z.ZodTypeDef,
-  CreateInstructionParamsFilter
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateInstructionParamsFilter$ {
-  /** @deprecated use `CreateInstructionParamsFilter$inboundSchema` instead. */
-  export const inboundSchema = CreateInstructionParamsFilter$inboundSchema;
-  /** @deprecated use `CreateInstructionParamsFilter$outboundSchema` instead. */
-  export const outboundSchema = CreateInstructionParamsFilter$outboundSchema;
-  /** @deprecated use `CreateInstructionParamsFilter$Outbound` instead. */
-  export type Outbound = CreateInstructionParamsFilter$Outbound;
-}
-
-export function createInstructionParamsFilterToJSON(
-  createInstructionParamsFilter: CreateInstructionParamsFilter,
-): string {
-  return JSON.stringify(
-    CreateInstructionParamsFilter$outboundSchema.parse(
-      createInstructionParamsFilter,
-    ),
-  );
-}
-
-export function createInstructionParamsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateInstructionParamsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateInstructionParamsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateInstructionParamsFilter' from JSON`,
-  );
-}
-
-/** @internal */
 export const CreateInstructionParams$inboundSchema: z.ZodType<
   CreateInstructionParams,
   z.ZodTypeDef,
@@ -138,7 +83,7 @@ export const CreateInstructionParams$inboundSchema: z.ZodType<
   scope: CreateInstructionParamsScope$inboundSchema.default("chunk"),
   prompt: z.string(),
   entity_schema: z.record(z.any()),
-  filter: z.lazy(() => CreateInstructionParamsFilter$inboundSchema).optional(),
+  filter: z.record(z.any()).optional(),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -153,7 +98,7 @@ export type CreateInstructionParams$Outbound = {
   scope: string;
   prompt: string;
   entity_schema: { [k: string]: any };
-  filter?: CreateInstructionParamsFilter$Outbound | undefined;
+  filter?: { [k: string]: any } | undefined;
   partition?: string | undefined;
 };
 
@@ -168,7 +113,7 @@ export const CreateInstructionParams$outboundSchema: z.ZodType<
   scope: CreateInstructionParamsScope$outboundSchema.default("chunk"),
   prompt: z.string(),
   entitySchema: z.record(z.any()),
-  filter: z.lazy(() => CreateInstructionParamsFilter$outboundSchema).optional(),
+  filter: z.record(z.any()).optional(),
   partition: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

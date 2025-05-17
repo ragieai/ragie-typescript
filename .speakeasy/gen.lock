@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 439ee01a1cdd0016e0b68e917b2e9523
+  docChecksum: e96990103b98a2e048512029c82fc4a4
   docVersion: 1.0.0
-  speakeasyVersion: 1.538.0
-  generationVersion: 2.591.1
-  releaseVersion: 1.6.3
-  configChecksum: 64a9092478fdbf88f5045c994f6012e2
+  speakeasyVersion: 1.546.1
+  generationVersion: 2.604.2
+  releaseVersion: 1.9.0
+  configChecksum: e355f20311e52c699ff3a7f6128438a9
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.6
+    core: 3.21.8
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
@@ -23,7 +23,7 @@ features:
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.4
+    globalServerURLs: 2.82.5
     mcpServer: 0.9.2
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
@@ -58,15 +58,12 @@ generatedFiles:
   - docs/models/components/createdocumentfromurlparamsmetadata.md
   - docs/models/components/createdocumentfromurlparamsmode.md
   - docs/models/components/createdocumentparams.md
-  - docs/models/components/createdocumentparamsmode.md
   - docs/models/components/createdocumentrawparams.md
   - docs/models/components/createdocumentrawparamsmetadata.md
   - docs/models/components/createinstructionparams.md
-  - docs/models/components/createinstructionparamsfilter.md
   - docs/models/components/createinstructionparamsscope.md
   - docs/models/components/createpartitionparams.md
   - docs/models/components/data.md
-  - docs/models/components/data2.md
   - docs/models/components/deleteconnectionpayload.md
   - docs/models/components/disabledbysystemreason.md
   - docs/models/components/document.md
@@ -89,17 +86,26 @@ generatedFiles:
   - docs/models/components/entity.md
   - docs/models/components/entitylist.md
   - docs/models/components/filet.md
-  - docs/models/components/filter.md
   - docs/models/components/instruction.md
   - docs/models/components/link.md
   - docs/models/components/listconnectorsourcetypeinfo.md
   - docs/models/components/loc.md
+  - docs/models/components/mediamodeparam.md
   - docs/models/components/metadata.md
   - docs/models/components/modalitydata.md
   - docs/models/components/mode.md
+  - docs/models/components/mode1.md
+  - docs/models/components/mode2.md
+  - docs/models/components/modestatic.md
+  - docs/models/components/modevideo.md
   - docs/models/components/oauthurlcreate.md
   - docs/models/components/oauthurlcreatemetadata.md
+  - docs/models/components/oauthurlcreatemode.md
+  - docs/models/components/oauthurlcreatemode1.md
   - docs/models/components/oauthurlresponse.md
+  - docs/models/components/one.md
+  - docs/models/components/one1.md
+  - docs/models/components/one2.md
   - docs/models/components/pagination.md
   - docs/models/components/partition.md
   - docs/models/components/partitiondetail.md
@@ -108,6 +114,7 @@ generatedFiles:
   - docs/models/components/partitionlist.md
   - docs/models/components/partitionstats.md
   - docs/models/components/partitionstrategy.md
+  - docs/models/components/partitionstrategy1.md
   - docs/models/components/patchdocumentmetadataparams.md
   - docs/models/components/reason.md
   - docs/models/components/responseok.md
@@ -118,17 +125,26 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/components/setconnectionenabledpayload.md
   - docs/models/components/source.md
+  - docs/models/components/static.md
   - docs/models/components/theme.md
   - docs/models/components/two.md
   - docs/models/components/updatedocumentfileparams.md
+  - docs/models/components/updatedocumentfileparams11.md
+  - docs/models/components/updatedocumentfileparams12.md
   - docs/models/components/updatedocumentfileparamsfile.md
   - docs/models/components/updatedocumentfileparamsmode.md
+  - docs/models/components/updatedocumentfileparamsmode1.md
+  - docs/models/components/updatedocumentfileparamsmodestatic.md
+  - docs/models/components/updatedocumentfileparamsmodevideo.md
   - docs/models/components/updatedocumentfromurlparams.md
   - docs/models/components/updatedocumentfromurlparamsmode.md
+  - docs/models/components/updatedocumentfromurlparamsmode1.md
   - docs/models/components/updatedocumentrawparams.md
   - docs/models/components/updatedocumentrawparamsdata.md
   - docs/models/components/updateinstructionparams.md
   - docs/models/components/validationerror.md
+  - docs/models/components/video.md
+  - docs/models/components/videomodalitydata.md
   - docs/models/components/wordtimestamp.md
   - docs/models/errors/errormessage.md
   - docs/models/errors/httpvalidationerror.md
@@ -157,7 +173,9 @@ generatedFiles:
   - docs/models/operations/listpartitionspartitionsgetrequest.md
   - docs/models/operations/listpartitionspartitionsgetresponse.md
   - docs/models/operations/mediatype.md
+  - docs/models/operations/one.md
   - docs/models/operations/patchdocumentmetadatarequest.md
+  - docs/models/operations/queryparammediatype.md
   - docs/models/operations/setconnectionenabledconnectionsconnectionidenabledputrequest.md
   - docs/models/operations/setconnectionlimitsconnectionsconnectionidlimitputrequest.md
   - docs/models/operations/setpartitionlimitspartitionspartitionidlimitsputrequest.md
@@ -318,6 +336,7 @@ generatedFiles:
   - src/models/components/instruction.ts
   - src/models/components/link.ts
   - src/models/components/listconnectorsourcetypeinfo.ts
+  - src/models/components/mediamodeparam.ts
   - src/models/components/oauthurlcreate.ts
   - src/models/components/oauthurlresponse.ts
   - src/models/components/pagination.ts
@@ -339,6 +358,7 @@ generatedFiles:
   - src/models/components/updatedocumentrawparams.ts
   - src/models/components/updateinstructionparams.ts
   - src/models/components/validationerror.ts
+  - src/models/components/videomodalitydata.ts
   - src/models/components/wordtimestamp.ts
   - src/models/errors/errormessage.ts
   - src/models/errors/httpclienterrors.ts
@@ -397,10 +417,10 @@ examples:
   CreateDocument:
     speakeasy-default-create-document:
       requestBody:
-        multipart/form-data: {"mode": "fast", "file": {"": "x-file: example.file"}}
+        multipart/form-data: {"file": {"": "x-file: example.file"}}
       responses:
         "201":
-          application/json: {"status": "<value>", "id": "7a621cf0-21cd-49cf-8540-3315211a509a", "created_at": "2023-01-18T01:06:03.366Z", "updated_at": "2024-07-27T18:44:31.482Z", "name": "<value>", "metadata": {}, "partition": "<value>"}
+          application/json: {"status": "<value>", "id": "514e493d-a037-48f4-af3c-12b09e8c8d24", "created_at": "2024-03-25T07:46:04.132Z", "updated_at": "2025-11-04T23:57:42.637Z", "name": "<value>", "metadata": {}, "partition": "<value>"}
         "422":
           application/json: {}
         "400":
@@ -415,7 +435,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"pagination": {}, "documents": [{"status": "<value>", "id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2023-03-24T06:20:14.879Z", "updated_at": "2025-09-10T04:30:13.188Z", "name": "<value>", "metadata": {}, "partition": "<value>"}, {"status": "<value>", "id": "766718d6-d461-42e0-aaee-1b9ddf121dc2", "created_at": "2023-11-08T21:35:05.868Z", "updated_at": "2025-05-06T10:10:32.094Z", "name": "<value>", "metadata": {"key": "<value>", "key1": "<value>"}, "partition": "<value>"}, {"status": "<value>", "id": "4fb451a7-0cfc-48fe-807f-bc60ab960d56", "created_at": "2023-05-09T15:43:49.850Z", "updated_at": "2025-10-31T06:20:54.910Z", "name": "<value>", "metadata": {"key": 370293, "key1": 212921, "key2": []}, "partition": "<value>"}]}
+          application/json: {"pagination": {"total_count": 30797}, "documents": [{"status": "<value>", "id": "e1bda599-b1ba-4fb0-8390-5d8e094f74ef", "created_at": "2023-04-06T01:47:02.548Z", "updated_at": "2025-01-06T01:02:40.334Z", "name": "<value>", "metadata": {"key": false, "key1": true, "key2": 506246}, "partition": "<value>"}]}
         "422":
           application/json: {}
         "401":
@@ -426,7 +446,7 @@ examples:
         application/json: {"partition": "<value>", "data": "<value>"}
       responses:
         "201":
-          application/json: {"status": "<value>", "id": "f32d8f20-2af5-4fe3-9301-884a461abb5d", "created_at": "2025-10-07T02:25:22.865Z", "updated_at": "2025-07-13T21:12:32.248Z", "name": "<value>", "metadata": {"key": 391493, "key1": 816075, "key2": true}, "partition": "<value>"}
+          application/json: {"status": "<value>", "id": "090b2dbb-e6ed-4bb5-bf99-5f160a1a8baa", "created_at": "2023-01-28T03:24:45.640Z", "updated_at": "2025-07-29T09:58:40.734Z", "name": "<value>", "metadata": {"key": 872780, "key1": "<value>", "key2": ["<value 1>", "<value 2>", "<value 3>"]}, "partition": "<value>"}
         "422":
           application/json: {}
         "400":
@@ -434,10 +454,10 @@ examples:
   CreateDocumentFromUrl:
     speakeasy-default-create-document-from-url:
       requestBody:
-        application/json: {"mode": "fast", "partition": "<value>", "url": "https://scientific-plain.biz/"}
+        application/json: {"partition": "<value>", "url": "https://plain-cleaner.com/"}
       responses:
         "201":
-          application/json: {"status": "<value>", "id": "0adf151b-6a78-4e39-a7b3-465615a95443", "created_at": "2023-07-13T10:16:17.094Z", "updated_at": "2025-05-24T16:33:21.360Z", "name": "<value>", "metadata": {}, "partition": "<value>"}
+          application/json: {"status": "<value>", "id": "1c09c90d-6d19-453d-a571-82675571d7f1", "created_at": "2023-10-15T09:06:45.371Z", "updated_at": "2025-05-23T18:50:14.432Z", "name": "<value>", "metadata": {}, "partition": "<value>"}
         "422":
           application/json: {}
         "400":
@@ -451,7 +471,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"status": "<value>", "id": "b888f774-3e7c-4135-a18c-6b985523c4bc", "created_at": "2025-09-23T09:26:26.647Z", "updated_at": "2023-12-22T20:41:29.028Z", "name": "<value>", "metadata": {}, "partition": "<value>", "errors": ["<value>", "<value>", "<value>"]}
+          application/json: {"status": "<value>", "id": "f9902d0a-1ea4-4953-be48-52df6edd302a", "created_at": "2025-04-09T15:32:42.448Z", "updated_at": "2023-08-29T10:19:09.831Z", "name": "<value>", "metadata": {"key": "<value>", "key1": "<value>", "key2": ["<value 1>", "<value 2>", "<value 3>"]}, "partition": "<value>", "errors": ["<value 1>", "<value 2>"]}
         "422":
           application/json: {}
         "401":
@@ -478,7 +498,7 @@ examples:
         header:
           partition: "acme_customer_id"
       requestBody:
-        multipart/form-data: {"mode": "fast", "file": {"": "x-file: example.file"}}
+        multipart/form-data: {"file": {"": "x-file: example.file"}}
       responses:
         "200":
           application/json: {"status": "<value>"}
@@ -494,7 +514,7 @@ examples:
         header:
           partition: "acme_customer_id"
       requestBody:
-        application/json: {"data": {}}
+        application/json: {"data": "<value>"}
       responses:
         "200":
           application/json: {"status": "<value>"}
@@ -510,7 +530,7 @@ examples:
         header:
           partition: "acme_customer_id"
       requestBody:
-        application/json: {"mode": "fast", "url": "https://dual-longboat.com/"}
+        application/json: {"url": "https://sarcastic-colon.org"}
       responses:
         "200":
           application/json: {"status": "<value>"}
@@ -547,7 +567,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"pagination": {}, "chunks": []}
+          application/json: {"pagination": {"total_count": 944463}, "chunks": [{"id": "a33133db-dcf2-434b-9a57-bfe8224739de", "index": -1, "text": "<value>", "links": {"key": {"href": "<value>", "type": "<value>"}, "key1": {"href": "<value>", "type": "<value>"}}}, {"id": "a33133db-dcf2-434b-9a57-bfe8224739de", "index": -1, "text": "<value>", "links": {"key": {"href": "<value>", "type": "<value>"}, "key1": {"href": "<value>", "type": "<value>"}}}]}
         "422":
           application/json: {}
         "401":
@@ -562,7 +582,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"id": "34609590-8f6d-44f1-bccc-6b72f3d01897", "index": -1, "text": "<value>", "links": {}}
+          application/json: {"id": "623d750d-d419-40a7-a172-be953463b558", "index": -1, "text": "<value>", "links": {"key": {"href": "<value>", "type": "<value>"}, "key1": {"href": "<value>", "type": "<value>"}}}
         "422":
           application/json: {}
         "401":
@@ -574,7 +594,7 @@ examples:
           document_id: "00000000-0000-0000-0000-000000000000"
           chunk_id: "00000000-0000-0000-0000-000000000000"
         query:
-          media_type: "audio/mpeg"
+          media_type: "video/mp4"
           download: false
         header:
           partition: "acme_customer_id"
@@ -590,11 +610,14 @@ examples:
       parameters:
         path:
           document_id: "00000000-0000-0000-0000-000000000000"
+        query:
+          media_type: "video/mp4"
+          download: false
         header:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"status": "<value>", "id": "4ef0a601-5625-4d36-bb58-a4475ef91735", "created_at": "2024-07-15T09:31:52.945Z", "updated_at": "2023-08-30T16:52:35.685Z", "name": "<value>", "metadata": {"key": ["<value>"]}, "partition": "<value>", "content": "<value>"}
+          application/json: {"status": "<value>", "id": "44e85908-16ad-4c26-9820-47723348b6f7", "created_at": "2023-03-21T00:44:56.605Z", "updated_at": "2023-06-06T22:45:58.954Z", "name": "<value>", "metadata": {"key": false}, "partition": "<value>", "content": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -633,7 +656,7 @@ examples:
         application/json: {"query": "What is the best pizza place in SF?", "top_k": 8, "rerank": true, "max_chunks_per_document": 0, "partition": "<value>", "recency_bias": false}
       responses:
         "200":
-          application/json: {"scored_chunks": [{"text": "<value>", "score": 9198.31, "id": "<id>", "index": 312993, "document_id": "<id>", "document_name": "<value>", "document_metadata": {"key": "<value>"}, "links": {}}]}
+          application/json: {"scored_chunks": [{"text": "<value>", "score": 6492.69, "id": "<id>", "index": 623266, "document_id": "<id>", "document_name": "<value>", "document_metadata": {}, "links": {"key": {"href": "<value>", "type": "<value>"}}}, {"text": "<value>", "score": 6492.69, "id": "<id>", "index": 623266, "document_id": "<id>", "document_name": "<value>", "document_metadata": {}, "links": {"key": {"href": "<value>", "type": "<value>"}}}, {"text": "<value>", "score": 6492.69, "id": "<id>", "index": 623266, "document_id": "<id>", "document_name": "<value>", "document_metadata": {}, "links": {"key": {"href": "<value>", "type": "<value>"}}}]}
         "422":
           application/json: {}
         "401":
@@ -642,16 +665,16 @@ examples:
     speakeasy-default-list-instructions:
       responses:
         "200":
-          application/json: [{"id": "07948203-9687-472b-addd-d152fe0e4b0c", "created_at": "2024-07-15T13:45:54.250Z", "updated_at": "2024-06-26T05:32:29.020Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {}, "partition": "<value>"}, {"id": "f95ebdea-c9b6-4acc-a2ae-1f9c459df591", "created_at": "2025-09-06T19:15:55.184Z", "updated_at": "2024-10-05T19:25:40.120Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "partition": "<value>"}]
+          application/json: [{"id": "12ebb70a-aa29-40e5-96de-61266e1691e4", "created_at": "2024-02-04T20:59:56.577Z", "updated_at": "2023-07-11T02:23:54.004Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "filter": {"toppings": {"$in": ["pizza", "mushrooms"]}}, "partition": "<value>"}]
         "401":
           application/json: {"detail": "<value>"}
   CreateInstruction:
     speakeasy-default-create-instruction:
       requestBody:
-        application/json: {"name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>"}, "partition": "<value>"}
+        application/json: {"name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>"}, "filter": {"toppings": {"$in": ["pizza", "mushrooms"]}}, "partition": "<value>"}
       responses:
         "200":
-          application/json: {"id": "7a4c4504-3a1d-446a-b2d3-54e705734d3b", "created_at": "2025-07-30T12:44:16.443Z", "updated_at": "2024-09-23T03:06:52.578Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {}, "partition": "<value>"}
+          application/json: {"id": "4af7393d-fac3-4962-bb45-25db73b70699", "created_at": "2025-10-01T12:16:29.015Z", "updated_at": "2024-09-12T03:28:32.551Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>"}, "filter": {"toppings": {"$in": ["pizza", "mushrooms"]}}, "partition": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -665,7 +688,7 @@ examples:
         application/json: {"active": true}
       responses:
         "200":
-          application/json: {"id": "300da585-97bb-4310-a83d-8181b96e85ab", "created_at": "2024-01-22T23:04:46.512Z", "updated_at": "2024-05-29T20:38:04.429Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>"}, "partition": "<value>"}
+          application/json: {"id": "45030322-0323-4a00-b045-98ae849abe00", "created_at": "2024-03-12T19:41:18.506Z", "updated_at": "2024-02-04T12:36:23.182Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>"}, "filter": {"toppings": {"$in": ["pizza", "mushrooms"]}}, "partition": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -693,7 +716,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"pagination": {}, "entities": []}
+          application/json: {"pagination": {"total_count": 393037}, "entities": []}
         "422":
           application/json: {}
         "401":
@@ -709,7 +732,7 @@ examples:
           partition: "acme_customer_id"
       responses:
         "200":
-          application/json: {"pagination": {}, "entities": [{"id": "0acf0abf-c6b5-4e2a-9ea8-a13f725d0bb4", "created_at": "2025-05-24T20:59:27.681Z", "updated_at": "2023-12-13T21:49:21.883Z", "instruction_id": "92a05549-1b0f-45fb-8f85-0f20075f1108", "document_id": "104fc7ec-2190-4ecf-83d0-7049ae9e1af9", "data": {"key": "<value>", "key1": "<value>"}}]}
+          application/json: {"pagination": {"total_count": 309348}, "entities": [{"id": "8f8e0e0d-cadc-4b7a-b14d-d98ba1831eb2", "created_at": "2024-04-11T14:58:25.188Z", "updated_at": "2025-03-05T09:30:05.725Z", "instruction_id": "454c9012-2e6a-4bd0-83df-69720bd50512", "document_id": "4561e278-d08b-46ab-ae34-0fa22d68598e", "data": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}]}
         "422":
           application/json: {}
         "401":
@@ -722,7 +745,7 @@ examples:
           filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}"
       responses:
         "200":
-          application/json: {"pagination": {}, "connections": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "created_at": "2023-03-24T06:20:14.879Z", "updated_at": "2025-09-10T04:30:13.188Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "connection_over_total_page_limit", "page_limit": 480616, "disabled_by_system": true}, {"id": "8d6d4612-e0ae-4e1b-89dd-f121dc2a4c81", "created_at": "2023-11-19T07:34:10.466Z", "updated_at": "2025-12-24T15:52:28.107Z", "metadata": {"key": 324206, "key1": "<value>"}, "type": "<value>", "name": "<value>", "source": ["<value>"], "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 956959, "disabled_by_system": false}, {"id": "8fe07fbc-60ab-4960-8d56-11ff6573e0a6", "created_at": "2023-08-16T08:48:23.679Z", "updated_at": "2023-08-31T18:02:52.360Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": ["<value>", "<value>", "<value>"], "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 8211, "disabled_by_system": true}]}
+          application/json: {"pagination": {"total_count": 375666}, "connections": [{"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}]}
         "422":
           application/json: {}
         "401":
@@ -730,24 +753,31 @@ examples:
   create_oauth_redirect_url_connections_oauth_post:
     speakeasy-default-create-oauth-redirect-url-connections-oauth-post:
       requestBody:
-        application/json: {"redirect_uri": "https://fatherly-soup.com", "page_limit": 1000}
+        application/json: {"redirect_uri": "https://babyish-rationale.biz/", "page_limit": 1000}
       responses:
         "200":
-          application/json: {"url": "https://better-negotiation.net/"}
+          application/json: {"url": "https://natural-cauliflower.name"}
         "422":
           application/json: {}
+        "401":
+          application/json: {"detail": "<value>"}
+  list_connection_source_types_connections_source_type_get:
+    speakeasy-default-list-connection-source-types-connections-source-type-get:
+      responses:
+        "200":
+          application/json: {"connectors": []}
         "401":
           application/json: {"detail": "<value>"}
   set_connection_enabled_connections__connection_id__enabled_put:
     speakeasy-default-set-connection-enabled-connections-connection-id-enabled-put:
       parameters:
         path:
-          connection_id: "1e380027-f68d-43de-9bae-68e42f38f83c"
+          connection_id: "e424ce92-7b06-4702-9d48-a18157d07128"
       requestBody:
-        application/json: {"enabled": false}
+        application/json: {"enabled": true}
       responses:
         "200":
-          application/json: {"id": "3e5a723f-46d0-4e81-a23f-ff70ab893016", "created_at": "2024-07-05T22:49:44.785Z", "updated_at": "2024-01-22T14:14:23.641Z", "metadata": {"key": "<value>"}, "type": "<value>", "name": "<value>", "source": ["<value>", "<value>"], "enabled": false, "disabled_by_system_reason": "authentication_failed", "page_limit": 741678, "disabled_by_system": false}
+          application/json: {"id": "d285b21c-cda9-4400-9d74-306f99b9ca30", "created_at": "2025-03-27T18:08:58.956Z", "updated_at": "2024-04-06T11:09:10.546Z", "metadata": {"key": ["<value 1>", "<value 2>"], "key1": false}, "type": "<value>", "name": "<value>", "source": ["<value 1>", "<value 2>"], "enabled": true, "disabled_by_system_reason": "connection_over_total_page_limit", "page_limit": 551690, "disabled_by_system": false}
         "422":
           application/json: {}
         "401":
@@ -756,12 +786,12 @@ examples:
     speakeasy-default-update-connection-connections-connection-id-put:
       parameters:
         path:
-          connection_id: "95fa7f0e-7432-4ce4-a7cb-60cc78135dde"
+          connection_id: "eff214ac-1929-43f3-892b-108f57be0158"
       requestBody:
-        application/json: {"partition_strategy": "fast", "page_limit": 1000}
+        application/json: {"partition_strategy": {}, "page_limit": 1000}
       responses:
         "200":
-          application/json: {"id": "85898c12-5a19-4071-8c55-62af6646dadb", "created_at": "2025-01-05T19:25:16.577Z", "updated_at": "2023-09-24T19:37:32.283Z", "metadata": {"key": "<value>"}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": false, "disabled_by_system_reason": "connection_over_total_page_limit", "page_limit": 276135, "disabled_by_system": true}
+          application/json: {"id": "30fd2dc3-7362-45dd-93d2-2c1c73276b25", "created_at": "2024-05-18T02:54:20.859Z", "updated_at": "2025-03-30T04:55:25.056Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": ["<value 1>", "<value 2>", "<value 3>"], "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 674062, "disabled_by_system": true}
         "422":
           application/json: {}
         "401":
@@ -770,10 +800,10 @@ examples:
     speakeasy-default-get-connection-connections-connection-id-get:
       parameters:
         path:
-          connection_id: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+          connection_id: "af154d9d-a1af-4619-964d-b1589f2ec4f8"
       responses:
         "200":
-          application/json: {"id": "e50f7622-81da-484b-9c66-1c8a99c6b71b", "created_at": "2025-09-22T11:43:32.718Z", "updated_at": "2025-04-06T10:37:18.493Z", "metadata": {"key": 149108, "key1": false, "key2": ["<value>"]}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "connection_over_total_page_limit", "page_limit": 649141, "disabled_by_system": false}
+          application/json: {"id": "014564a7-c333-444c-a6a3-8932625ff240", "created_at": "2025-07-02T11:37:55.971Z", "updated_at": "2023-11-11T15:29:45.226Z", "metadata": {"key": "<value>"}, "type": "<value>", "name": "<value>", "source": ["<value 1>", "<value 2>", "<value 3>"], "enabled": false, "disabled_by_system_reason": "authentication_failed", "page_limit": 626735, "disabled_by_system": true}
         "422":
           application/json: {}
         "401":
@@ -782,10 +812,10 @@ examples:
     speakeasy-default-get-connection-stats-connections-connection-id-stats-get:
       parameters:
         path:
-          connection_id: "eb0d219a-f873-4b97-b475-8b26b746a105"
+          connection_id: "1568dd0e-2d57-45b1-a9f4-9d646aec54a2"
       responses:
         "200":
-          application/json: {"document_count": 625848, "page_count": 7749.6}
+          application/json: {"document_count": 227859, "page_count": 2984.63}
         "422":
           application/json: {}
         "401":
@@ -794,12 +824,12 @@ examples:
     speakeasy-default-set-connection-limits-connections-connection-id-limit-put:
       parameters:
         path:
-          connection_id: "dfde4e02-1322-4e1c-8bdc-47313184eebe"
+          connection_id: "ab1a17e7-8b6f-470a-aeda-1c8e11512d19"
       requestBody:
         application/json: {"page_limit": 1000}
       responses:
         "200":
-          application/json: {"id": "46973cfa-f674-422d-bdc5-0c22d63d4490", "created_at": "2025-07-01T15:25:15.852Z", "updated_at": "2023-02-14T11:43:08.736Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 938862, "disabled_by_system": false}
+          application/json: {"id": "8ebeaf51-fc3e-4a54-8bf9-dc40acdf654b", "created_at": "2023-03-11T10:39:00.154Z", "updated_at": "2023-12-20T16:02:08.329Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": [], "enabled": false, "disabled_by_system_reason": "connection_over_total_page_limit", "page_limit": 479423, "disabled_by_system": true}
         "422":
           application/json: {}
         "401":
@@ -808,12 +838,12 @@ examples:
     speakeasy-default-delete-connection-connections-connection-id-delete-post:
       parameters:
         path:
-          connection_id: "b6fe91aa-0b1b-43eb-97be-83a32f2399eb"
+          connection_id: "4082c01e-fae3-4426-9e96-0d19035a99ea"
       requestBody:
-        application/json: {"keep_files": false}
+        application/json: {"keep_files": true}
       responses:
         "200":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -822,7 +852,7 @@ examples:
     speakeasy-default-sync-connection:
       parameters:
         path:
-          connection_id: "f0897be3-0808-45c9-a63b-509c0142ddd3"
+          connection_id: "cf2b9381-3cee-4449-b7d1-9eb470186924"
       responses:
         "201":
           application/json: {"message": "ok"}
@@ -837,7 +867,7 @@ examples:
           page_size: 10
       responses:
         "200":
-          application/json: {"pagination": {}, "partitions": [{"name": "<value>", "is_default": false, "limit_exceeded_at": "2025-01-13T10:26:00.433Z", "limits": {"pages_processed_limit_monthly": 1777.06, "pages_hosted_limit_monthly": 2297.16, "pages_processed_limit_max": 1528.37, "pages_hosted_limit_max": 6355.32}}, {"name": "<value>", "is_default": false, "limit_exceeded_at": "2023-01-20T06:21:22.156Z", "limits": {"pages_processed_limit_monthly": 7183.03, "pages_hosted_limit_monthly": 861.4, "pages_processed_limit_max": 685.04, "pages_hosted_limit_max": 6879.6}}, {"name": "<value>", "is_default": false, "limit_exceeded_at": "2024-11-25T18:23:24.264Z", "limits": {"pages_processed_limit_monthly": 74.68, "pages_hosted_limit_monthly": 546.07, "pages_processed_limit_max": 3677.45, "pages_hosted_limit_max": 4857.29}}]}
+          application/json: {"pagination": {"total_count": 816318}, "partitions": [{"name": "<value>", "is_default": true, "limit_exceeded_at": "2023-01-29T08:25:20.822Z", "limits": {"pages_processed_limit_monthly": 13.73, "pages_hosted_limit_monthly": 112.66, "pages_processed_limit_max": 2218.53, "pages_hosted_limit_max": 8228.05}}]}
         "422":
           application/json: {}
         "401":
@@ -848,7 +878,7 @@ examples:
         application/json: {"name": "<value>", "pages_hosted_limit_monthly": 1000, "pages_processed_limit_monthly": 1000, "pages_hosted_limit_max": 1000, "pages_processed_limit_max": 1000}
       responses:
         "200":
-          application/json: {"name": "<value>", "is_default": true, "limit_exceeded_at": "2024-11-30T17:06:07.804Z", "limits": {"pages_processed_limit_monthly": 4174.58, "pages_hosted_limit_monthly": 1343.65, "pages_processed_limit_max": 690.25, "pages_hosted_limit_max": 7964.74}}
+          application/json: {"name": "<value>", "is_default": false, "limit_exceeded_at": "2024-01-16T14:27:53.935Z", "limits": {"pages_processed_limit_monthly": 5303.15, "pages_hosted_limit_monthly": 7057.63, "pages_processed_limit_max": 1488.26, "pages_hosted_limit_max": 3860.18}}
         "422":
           application/json: {}
         "401":
@@ -860,7 +890,7 @@ examples:
           partition_id: "<id>"
       responses:
         "200":
-          application/json: {"name": "<value>", "is_default": false, "limit_exceeded_at": "2024-09-04T11:33:52.011Z", "limits": {"pages_processed_limit_monthly": 5442.21, "pages_hosted_limit_monthly": 5212.35, "pages_processed_limit_max": 9699.61, "pages_hosted_limit_max": 4580.49}, "stats": {"pages_processed_monthly": 4508.24, "pages_hosted_monthly": 2627.95, "pages_processed_total": 2134.57, "pages_hosted_total": 9371.46, "document_count": 438142}}
+          application/json: {"name": "<value>", "is_default": true, "limit_exceeded_at": "2025-03-13T22:34:27.195Z", "limits": {"pages_processed_limit_monthly": 8934.44, "pages_hosted_limit_monthly": 1377.51, "pages_processed_limit_max": 5054.99, "pages_hosted_limit_max": 5073.22}, "stats": {"pages_processed_monthly": 8083.81, "pages_hosted_monthly": 3060.13, "pages_processed_total": 65.72, "pages_hosted_total": 7144.35, "document_count": 801056}}
         "422":
           application/json: {}
         "401":
@@ -872,7 +902,7 @@ examples:
           partition_id: "<id>"
       responses:
         "200":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -886,17 +916,10 @@ examples:
         application/json: {"pages_hosted_limit_monthly": 1000, "pages_processed_limit_monthly": 1000, "pages_hosted_limit_max": 1000, "pages_processed_limit_max": 1000}
       responses:
         "200":
-          application/json: {"name": "<value>", "is_default": false, "limit_exceeded_at": "2025-11-24T01:01:44.131Z", "limits": {"pages_processed_limit_monthly": 8398.33, "pages_hosted_limit_monthly": 9368.54, "pages_processed_limit_max": 2906.53, "pages_hosted_limit_max": 8986.73}, "stats": {"pages_processed_monthly": 434.22, "pages_hosted_monthly": 1388.47, "pages_processed_total": 1187.52, "pages_hosted_total": 2241.15, "document_count": 152223}}
+          application/json: {"name": "<value>", "is_default": true, "limit_exceeded_at": "2024-11-01T21:01:15.346Z", "limits": {"pages_processed_limit_monthly": 8386.93, "pages_hosted_limit_monthly": 5996.32, "pages_processed_limit_max": 2850.42, "pages_hosted_limit_max": 4665.02}, "stats": {"pages_processed_monthly": 7494.45, "pages_hosted_monthly": 5737.57, "pages_processed_total": 27.55, "pages_hosted_total": 2366.15, "document_count": 706713}}
         "422":
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
-  list_connection_source_types_connections_source_type_get:
-    speakeasy-default-list-connection-source-types-connections-source-type-get:
-      responses:
-        "200":
-          application/json: {"connectors": [{"source_type": "jira", "display_name": "Zackery14", "icon_url": "https://circular-advertisement.org", "docs_url": "https://expensive-lid.com"}, {"source_type": "notion", "display_name": "Quentin.Schulist97", "icon_url": "https://miserly-space.biz/", "docs_url": "https://another-baritone.com"}, {"source_type": "onedrive", "display_name": "Tristian_Emmerich", "icon_url": "https://worthy-arcade.net", "docs_url": "https://mundane-presume.net/"}]}
-        "401":
-          application/json: {"detail": "<value>"}
-examplesVersion: 1.0.1
+examplesVersion: 1.0.2
 generatedTests: {}

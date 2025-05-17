@@ -54,7 +54,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "1.6.3",
-  genVersion: "2.591.1",
-  userAgent: "speakeasy-sdk/typescript 1.6.3 2.591.1 1.0.0 ragie",
+  sdkVersion: "1.9.0",
+  genVersion: "2.604.2",
+  userAgent: "speakeasy-sdk/typescript 1.9.0 2.604.2 1.0.0 ragie",
 } as const;

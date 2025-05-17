@@ -10,6 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Pagination = {
   nextCursor?: string | null | undefined;
+  totalCount: number;
 };
 
 /** @internal */
@@ -19,15 +20,18 @@ export const Pagination$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   next_cursor: z.nullable(z.string()).optional(),
+  total_count: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "next_cursor": "nextCursor",
+    "total_count": "totalCount",
   });
 });
 
 /** @internal */
 export type Pagination$Outbound = {
   next_cursor?: string | null | undefined;
+  total_count: number;
 };
 
 /** @internal */
@@ -37,9 +41,11 @@ export const Pagination$outboundSchema: z.ZodType<
   Pagination
 > = z.object({
   nextCursor: z.nullable(z.string()).optional(),
+  totalCount: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     nextCursor: "next_cursor",
+    totalCount: "total_count",
   });
 });
 

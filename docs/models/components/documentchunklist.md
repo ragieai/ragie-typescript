@@ -6,10 +6,12 @@
 import { DocumentChunkList } from "ragie/models/components";
 
 let value: DocumentChunkList = {
-  pagination: {},
+  pagination: {
+    totalCount: 889122,
+  },
   chunks: [
     {
-      id: "e1609414-3d9d-4409-b46e-22a0629bb470",
+      id: "16094143-d9d4-4094-a6e2-2a0629bb470c",
       text: "<value>",
       links: {
         "key": {

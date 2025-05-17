@@ -9,3 +9,9 @@
 const value: components.AudioModalityData = {};
 ```
 
+### `components.VideoModalityData`
+
+```typescript
+const value: components.VideoModalityData = {};
+```
+

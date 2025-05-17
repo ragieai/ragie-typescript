@@ -14,7 +14,7 @@ export const tool$documentsGetContent: ToolDefinition<typeof args> = {
   name: "documents-get-content",
   description: `Get Document Content
 
-Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.`,
+Get the content of a document. The \`media_type\` parameter can be used to request the content in a different format. When requesting as \`application/json\` additional metadata about the document will be included. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data. Using mime types such as \`audio/mpeg\` or \`video/mp4\` will stream the file in a format that can be provided to an audio video player.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await documentsGetContent(

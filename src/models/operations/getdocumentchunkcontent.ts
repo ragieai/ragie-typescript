@@ -34,15 +34,16 @@ export type GetDocumentChunkContentRequest = {
   /**
    * The desired media type of the content to return described as a mime type. An error will be returned if the requested media type is not supported for the chunk's document type.
    */
-  mediaType?: MediaType | undefined;
+  mediaType?: MediaType | null | undefined;
   /**
-   * Whether to return the content as a file download or a raw string. If set to `true`, the content will be returned as a named file for download or as a data stream.
+   * Whether to return the content as a file download or a raw stream. If set to `true`, the content will be returned as a named file for download.
    */
   download?: boolean | undefined;
   /**
    * An optional partition to scope the request to. If omitted, accounts created after 1/9/2025 will have the request scoped to the default partition, while older accounts will have the request scoped to all partitions. Older accounts may opt in to strict partition scoping by contacting support@ragie.ai. Older accounts using the partitions feature are strongly recommended to scope the request to a partition.
    */
   partition?: string | null | undefined;
+  range?: string | null | undefined;
 };
 
 /** @internal */
@@ -72,9 +73,10 @@ export const GetDocumentChunkContentRequest$inboundSchema: z.ZodType<
 > = z.object({
   document_id: z.string(),
   chunk_id: z.string(),
-  media_type: MediaType$inboundSchema.default("text/plain"),
+  media_type: z.nullable(MediaType$inboundSchema).optional(),
   download: z.boolean().default(false),
   partition: z.nullable(z.string()).optional(),
+  range: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "document_id": "documentId",
@@ -87,9 +89,10 @@ export const GetDocumentChunkContentRequest$inboundSchema: z.ZodType<
 export type GetDocumentChunkContentRequest$Outbound = {
   document_id: string;
   chunk_id: string;
-  media_type: string;
+  media_type?: string | null | undefined;
   download: boolean;
   partition?: string | null | undefined;
+  range?: string | null | undefined;
 };
 
 /** @internal */
@@ -100,9 +103,10 @@ export const GetDocumentChunkContentRequest$outboundSchema: z.ZodType<
 > = z.object({
   documentId: z.string(),
   chunkId: z.string(),
-  mediaType: MediaType$outboundSchema.default("text/plain"),
+  mediaType: z.nullable(MediaType$outboundSchema).optional(),
   download: z.boolean().default(false),
   partition: z.nullable(z.string()).optional(),
+  range: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     documentId: "document_id",

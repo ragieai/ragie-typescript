@@ -115,6 +115,10 @@ async function $do(
       explode: false,
       charEncoding: "none",
     }),
+    "range": encodeSimple("range", payload.range, {
+      explode: false,
+      charEncoding: "none",
+    }),
   }));
 
   const secConfig = await extractSecurity(client._options.auth);

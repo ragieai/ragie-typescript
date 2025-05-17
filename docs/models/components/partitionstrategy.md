@@ -1,15 +1,17 @@
 # PartitionStrategy
 
-## Example Usage
+
+## Supported Types
+
+### `components.PartitionStrategy1`
 
 ```typescript
-import { PartitionStrategy } from "ragie/models/components";
-
-let value: PartitionStrategy = "fast";
+const value: components.PartitionStrategy1 = "hi_res";
 ```
 
-## Values
+### `components.MediaModeParam`
 
 ```typescript
-"hi_res" | "fast"
+const value: components.MediaModeParam = {};
 ```
+

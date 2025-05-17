@@ -3,7 +3,7 @@
  */
 
 import { RagieCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get Document Content
  *
  * @remarks
- * Get the content of a document. The content is the raw text of the document. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data.
+ * Get the content of a document. The `media_type` parameter can be used to request the content in a different format. When requesting as `application/json` additional metadata about the document will be included. If the original document contained content such as images or other non-textual media, this response will include a text description of that media instead of the original file data. Using mime types such as `audio/mpeg` or `video/mp4` will stream the file in a format that can be provided to an audio video player.
  */
 export function documentsGetContent(
   client: RagieCore,
@@ -97,6 +97,11 @@ async function $do(
 
   const path = pathToFunc("/documents/{document_id}/content")(pathParams);
 
+  const query = encodeFormQuery({
+    "download": payload.download,
+    "media_type": payload.media_type,
+  });
+
   const headers = new Headers(compactMap({
     Accept: "application/json",
     "partition": encodeSimple("partition", payload.partition, {
@@ -129,6 +134,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

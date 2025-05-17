@@ -7,26 +7,33 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  MediaModeParam,
+  MediaModeParam$inboundSchema,
+  MediaModeParam$Outbound,
+  MediaModeParam$outboundSchema,
+} from "./mediamodeparam.js";
 
-/**
- * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
- */
-export const UpdateDocumentFromUrlParamsMode = {
+export const UpdateDocumentFromUrlParamsMode1 = {
   HiRes: "hi_res",
   Fast: "fast",
 } as const;
-/**
- * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
- */
-export type UpdateDocumentFromUrlParamsMode = ClosedEnum<
-  typeof UpdateDocumentFromUrlParamsMode
+export type UpdateDocumentFromUrlParamsMode1 = ClosedEnum<
+  typeof UpdateDocumentFromUrlParamsMode1
 >;
+
+/**
+ * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }
+ */
+export type UpdateDocumentFromUrlParamsMode =
+  | MediaModeParam
+  | UpdateDocumentFromUrlParamsMode1;
 
 export type UpdateDocumentFromUrlParams = {
   /**
-   * Partition strategy for the document. Options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
+   * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }
    */
-  mode?: UpdateDocumentFromUrlParamsMode | undefined;
+  mode?: MediaModeParam | UpdateDocumentFromUrlParamsMode1 | undefined;
   /**
    * Url of the file to download. Must be publicly accessible and HTTP or HTTPS scheme.
    */
@@ -34,14 +41,50 @@ export type UpdateDocumentFromUrlParams = {
 };
 
 /** @internal */
-export const UpdateDocumentFromUrlParamsMode$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFromUrlParamsMode
-> = z.nativeEnum(UpdateDocumentFromUrlParamsMode);
+export const UpdateDocumentFromUrlParamsMode1$inboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFromUrlParamsMode1
+> = z.nativeEnum(UpdateDocumentFromUrlParamsMode1);
 
 /** @internal */
-export const UpdateDocumentFromUrlParamsMode$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFromUrlParamsMode
-> = UpdateDocumentFromUrlParamsMode$inboundSchema;
+export const UpdateDocumentFromUrlParamsMode1$outboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFromUrlParamsMode1
+> = UpdateDocumentFromUrlParamsMode1$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateDocumentFromUrlParamsMode1$ {
+  /** @deprecated use `UpdateDocumentFromUrlParamsMode1$inboundSchema` instead. */
+  export const inboundSchema = UpdateDocumentFromUrlParamsMode1$inboundSchema;
+  /** @deprecated use `UpdateDocumentFromUrlParamsMode1$outboundSchema` instead. */
+  export const outboundSchema = UpdateDocumentFromUrlParamsMode1$outboundSchema;
+}
+
+/** @internal */
+export const UpdateDocumentFromUrlParamsMode$inboundSchema: z.ZodType<
+  UpdateDocumentFromUrlParamsMode,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  MediaModeParam$inboundSchema,
+  UpdateDocumentFromUrlParamsMode1$inboundSchema,
+]);
+
+/** @internal */
+export type UpdateDocumentFromUrlParamsMode$Outbound =
+  | MediaModeParam$Outbound
+  | string;
+
+/** @internal */
+export const UpdateDocumentFromUrlParamsMode$outboundSchema: z.ZodType<
+  UpdateDocumentFromUrlParamsMode$Outbound,
+  z.ZodTypeDef,
+  UpdateDocumentFromUrlParamsMode
+> = z.union([
+  MediaModeParam$outboundSchema,
+  UpdateDocumentFromUrlParamsMode1$outboundSchema,
+]);
 
 /**
  * @internal
@@ -52,6 +95,28 @@ export namespace UpdateDocumentFromUrlParamsMode$ {
   export const inboundSchema = UpdateDocumentFromUrlParamsMode$inboundSchema;
   /** @deprecated use `UpdateDocumentFromUrlParamsMode$outboundSchema` instead. */
   export const outboundSchema = UpdateDocumentFromUrlParamsMode$outboundSchema;
+  /** @deprecated use `UpdateDocumentFromUrlParamsMode$Outbound` instead. */
+  export type Outbound = UpdateDocumentFromUrlParamsMode$Outbound;
+}
+
+export function updateDocumentFromUrlParamsModeToJSON(
+  updateDocumentFromUrlParamsMode: UpdateDocumentFromUrlParamsMode,
+): string {
+  return JSON.stringify(
+    UpdateDocumentFromUrlParamsMode$outboundSchema.parse(
+      updateDocumentFromUrlParamsMode,
+    ),
+  );
+}
+
+export function updateDocumentFromUrlParamsModeFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateDocumentFromUrlParamsMode, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateDocumentFromUrlParamsMode$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDocumentFromUrlParamsMode' from JSON`,
+  );
 }
 
 /** @internal */
@@ -60,13 +125,16 @@ export const UpdateDocumentFromUrlParams$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  mode: UpdateDocumentFromUrlParamsMode$inboundSchema.default("fast"),
+  mode: z.union([
+    MediaModeParam$inboundSchema,
+    UpdateDocumentFromUrlParamsMode1$inboundSchema,
+  ]).optional(),
   url: z.string(),
 });
 
 /** @internal */
 export type UpdateDocumentFromUrlParams$Outbound = {
-  mode: string;
+  mode?: MediaModeParam$Outbound | string | undefined;
   url: string;
 };
 
@@ -76,7 +144,10 @@ export const UpdateDocumentFromUrlParams$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateDocumentFromUrlParams
 > = z.object({
-  mode: UpdateDocumentFromUrlParamsMode$outboundSchema.default("fast"),
+  mode: z.union([
+    MediaModeParam$outboundSchema,
+    UpdateDocumentFromUrlParamsMode1$outboundSchema,
+  ]).optional(),
   url: z.string(),
 });
 

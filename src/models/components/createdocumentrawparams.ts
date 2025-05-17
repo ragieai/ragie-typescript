@@ -14,12 +14,10 @@ export type CreateDocumentRawParamsMetadata =
   | boolean
   | Array<string>;
 
-export type Two = {};
-
 /**
  * Document data in a text or JSON format.
  */
-export type Data = Two | string;
+export type Data = string | { [k: string]: any };
 
 export type CreateDocumentRawParams = {
   /**
@@ -43,7 +41,7 @@ export type CreateDocumentRawParams = {
   /**
    * Document data in a text or JSON format.
    */
-  data: Two | string;
+  data: string | { [k: string]: any };
 };
 
 /** @internal */
@@ -101,53 +99,15 @@ export function createDocumentRawParamsMetadataFromJSON(
 }
 
 /** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Two$Outbound = {};
-
-/** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
-export function twoToJSON(two: Two): string {
-  return JSON.stringify(Two$outboundSchema.parse(two));
-}
-
-export function twoFromJSON(
-  jsonString: string,
-): SafeParseResult<Two, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Two$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Two' from JSON`,
-  );
-}
-
-/** @internal */
 export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .union([z.lazy(() => Two$inboundSchema), z.string()]);
+  .union([z.string(), z.record(z.any())]);
 
 /** @internal */
-export type Data$Outbound = Two$Outbound | string;
+export type Data$Outbound = string | { [k: string]: any };
 
 /** @internal */
 export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.union([z.lazy(() => Two$outboundSchema), z.string()]);
+  z.union([z.string(), z.record(z.any())]);
 
 /**
  * @internal
@@ -188,7 +148,7 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
   ).optional(),
   external_id: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
-  data: z.union([z.lazy(() => Two$inboundSchema), z.string()]),
+  data: z.union([z.string(), z.record(z.any())]),
 }).transform((v) => {
   return remap$(v, {
     "external_id": "externalId",
@@ -203,7 +163,7 @@ export type CreateDocumentRawParams$Outbound = {
     | undefined;
   external_id?: string | null | undefined;
   partition?: string | undefined;
-  data: Two$Outbound | string;
+  data: string | { [k: string]: any };
 };
 
 /** @internal */
@@ -218,7 +178,7 @@ export const CreateDocumentRawParams$outboundSchema: z.ZodType<
   ).optional(),
   externalId: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
-  data: z.union([z.lazy(() => Two$outboundSchema), z.string()]),
+  data: z.union([z.string(), z.record(z.any())]),
 }).transform((v) => {
   return remap$(v, {
     externalId: "external_id",
