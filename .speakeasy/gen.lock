@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: e96990103b98a2e048512029c82fc4a4
+  docChecksum: 896e8b53e0968c892ab19f842b1234f7
   docVersion: 1.0.0
-  speakeasyVersion: 1.546.1
-  generationVersion: 2.604.2
-  releaseVersion: 1.9.0
-  configChecksum: e355f20311e52c699ff3a7f6128438a9
+  speakeasyVersion: 1.551.0
+  generationVersion: 2.610.0
+  releaseVersion: 1.9.1
+  configChecksum: 6755f49ea828d1d7fcb4dc73564694f9
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.8
+    core: 3.21.9
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
@@ -594,7 +594,7 @@ examples:
           document_id: "00000000-0000-0000-0000-000000000000"
           chunk_id: "00000000-0000-0000-0000-000000000000"
         query:
-          media_type: "video/mp4"
+          media_type: "text/plain"
           download: false
         header:
           partition: "acme_customer_id"
@@ -611,7 +611,7 @@ examples:
         path:
           document_id: "00000000-0000-0000-0000-000000000000"
         query:
-          media_type: "video/mp4"
+          media_type: "text/plain"
           download: false
         header:
           partition: "acme_customer_id"
