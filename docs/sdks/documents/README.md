@@ -1053,7 +1053,7 @@ async function run() {
   const result = await ragie.documents.getChunkContent({
     documentId: "00000000-0000-0000-0000-000000000000",
     chunkId: "00000000-0000-0000-0000-000000000000",
-    mediaType: "video/mp4",
+    mediaType: "text/plain",
     partition: "acme_customer_id",
   });
 
@@ -1082,7 +1082,7 @@ async function run() {
   const res = await documentsGetChunkContent(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
     chunkId: "00000000-0000-0000-0000-000000000000",
-    mediaType: "video/mp4",
+    mediaType: "text/plain",
     partition: "acme_customer_id",
   });
 
@@ -1136,7 +1136,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.getContent({
     documentId: "00000000-0000-0000-0000-000000000000",
-    mediaType: "video/mp4",
+    mediaType: "text/plain",
     partition: "acme_customer_id",
   });
 
@@ -1164,7 +1164,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsGetContent(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
-    mediaType: "video/mp4",
+    mediaType: "text/plain",
     partition: "acme_customer_id",
   });
 
