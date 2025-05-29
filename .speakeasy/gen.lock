@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: e96990103b98a2e048512029c82fc4a4
+  docChecksum: 896e8b53e0968c892ab19f842b1234f7
   docVersion: 1.0.0
-  speakeasyVersion: 1.546.1
-  generationVersion: 2.604.2
-  releaseVersion: 1.9.0
-  configChecksum: e355f20311e52c699ff3a7f6128438a9
+  speakeasyVersion: 1.552.0
+  generationVersion: 2.610.0
+  releaseVersion: 1.10.0
+  configChecksum: f1a42a2f023c95e98d287f958c0b3b77
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.8
+    core: 3.21.9
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
@@ -34,6 +34,7 @@ features:
     sdkHooks: 0.2.0
     unions: 2.85.8
     uploadStreams: 0.1.0
+    webhooks: 1.5.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -48,10 +49,18 @@ generatedFiles:
   - docs/models/components/connection.md
   - docs/models/components/connectionbase.md
   - docs/models/components/connectionbasemetadata.md
+  - docs/models/components/connectionlimitexceededwebhook.md
+  - docs/models/components/connectionlimitexceededwebhookpayload.md
   - docs/models/components/connectionlimitparams.md
   - docs/models/components/connectionlist.md
   - docs/models/components/connectionmetadata.md
   - docs/models/components/connectionstats.md
+  - docs/models/components/connectionsyncfinishedwebhook.md
+  - docs/models/components/connectionsyncfinishedwebhookpayload.md
+  - docs/models/components/connectionsyncprogresswebhook.md
+  - docs/models/components/connectionsyncprogresswebhookpayload.md
+  - docs/models/components/connectionsyncstartedwebhook.md
+  - docs/models/components/connectionsyncstartedwebhookpayload.md
   - docs/models/components/connectorsource.md
   - docs/models/components/connectorsourcetypeinfo.md
   - docs/models/components/createdocumentfromurlparams.md
@@ -71,6 +80,8 @@ generatedFiles:
   - docs/models/components/documentchunkdetail.md
   - docs/models/components/documentchunklist.md
   - docs/models/components/documentdelete.md
+  - docs/models/components/documentdeletewebhook.md
+  - docs/models/components/documentdeletewebhookpayload.md
   - docs/models/components/documentfileupdate.md
   - docs/models/components/documentget.md
   - docs/models/components/documentgetmetadata.md
@@ -80,13 +91,18 @@ generatedFiles:
   - docs/models/components/documentmetadataupdatemetadata.md
   - docs/models/components/documentrawupdate.md
   - docs/models/components/documentsummary.md
+  - docs/models/components/documentupdatewebhook.md
+  - docs/models/components/documentupdatewebhookpayload.md
   - docs/models/components/documenturlupdate.md
   - docs/models/components/documentwithcontent.md
   - docs/models/components/documentwithcontentmetadata.md
   - docs/models/components/entity.md
+  - docs/models/components/entityextractedwebhook.md
+  - docs/models/components/entityextractedwebhookpayload.md
   - docs/models/components/entitylist.md
   - docs/models/components/filet.md
   - docs/models/components/instruction.md
+  - docs/models/components/limittype.md
   - docs/models/components/link.md
   - docs/models/components/listconnectorsourcetypeinfo.md
   - docs/models/components/loc.md
@@ -109,6 +125,8 @@ generatedFiles:
   - docs/models/components/pagination.md
   - docs/models/components/partition.md
   - docs/models/components/partitiondetail.md
+  - docs/models/components/partitionlimitexceededwebhook.md
+  - docs/models/components/partitionlimitexceededwebhookpayload.md
   - docs/models/components/partitionlimitparams.md
   - docs/models/components/partitionlimits.md
   - docs/models/components/partitionlist.md
@@ -185,6 +203,7 @@ generatedFiles:
   - docs/models/operations/updatedocumentfromurlrequest.md
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
+  - docs/models/webhooks/eventeventpostbody.md
   - docs/sdks/connections/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/entities/README.md
@@ -306,9 +325,17 @@ generatedFiles:
   - src/models/components/audiomodalitydata.ts
   - src/models/components/connection.ts
   - src/models/components/connectionbase.ts
+  - src/models/components/connectionlimitexceededwebhook.ts
+  - src/models/components/connectionlimitexceededwebhookpayload.ts
   - src/models/components/connectionlimitparams.ts
   - src/models/components/connectionlist.ts
   - src/models/components/connectionstats.ts
+  - src/models/components/connectionsyncfinishedwebhook.ts
+  - src/models/components/connectionsyncfinishedwebhookpayload.ts
+  - src/models/components/connectionsyncprogresswebhook.ts
+  - src/models/components/connectionsyncprogresswebhookpayload.ts
+  - src/models/components/connectionsyncstartedwebhook.ts
+  - src/models/components/connectionsyncstartedwebhookpayload.ts
   - src/models/components/connectorsource.ts
   - src/models/components/connectorsourcetypeinfo.ts
   - src/models/components/createdocumentfromurlparams.ts
@@ -322,15 +349,21 @@ generatedFiles:
   - src/models/components/documentchunkdetail.ts
   - src/models/components/documentchunklist.ts
   - src/models/components/documentdelete.ts
+  - src/models/components/documentdeletewebhook.ts
+  - src/models/components/documentdeletewebhookpayload.ts
   - src/models/components/documentfileupdate.ts
   - src/models/components/documentget.ts
   - src/models/components/documentlist.ts
   - src/models/components/documentmetadataupdate.ts
   - src/models/components/documentrawupdate.ts
   - src/models/components/documentsummary.ts
+  - src/models/components/documentupdatewebhook.ts
+  - src/models/components/documentupdatewebhookpayload.ts
   - src/models/components/documenturlupdate.ts
   - src/models/components/documentwithcontent.ts
   - src/models/components/entity.ts
+  - src/models/components/entityextractedwebhook.ts
+  - src/models/components/entityextractedwebhookpayload.ts
   - src/models/components/entitylist.ts
   - src/models/components/index.ts
   - src/models/components/instruction.ts
@@ -342,6 +375,8 @@ generatedFiles:
   - src/models/components/pagination.ts
   - src/models/components/partition.ts
   - src/models/components/partitiondetail.ts
+  - src/models/components/partitionlimitexceededwebhook.ts
+  - src/models/components/partitionlimitexceededwebhookpayload.ts
   - src/models/components/partitionlimitparams.ts
   - src/models/components/partitionlimits.ts
   - src/models/components/partitionlist.ts
@@ -396,6 +431,8 @@ generatedFiles:
   - src/models/operations/updatedocumentfromurl.ts
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
+  - src/models/webhooks/eventeventpost.ts
+  - src/models/webhooks/index.ts
   - src/sdk/connections.ts
   - src/sdk/documents.ts
   - src/sdk/entities.ts
@@ -412,6 +449,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/webhooks.ts
   - tsconfig.json
 examples:
   CreateDocument:
@@ -594,7 +632,7 @@ examples:
           document_id: "00000000-0000-0000-0000-000000000000"
           chunk_id: "00000000-0000-0000-0000-000000000000"
         query:
-          media_type: "video/mp4"
+          media_type: "text/plain"
           download: false
         header:
           partition: "acme_customer_id"
@@ -611,7 +649,7 @@ examples:
         path:
           document_id: "00000000-0000-0000-0000-000000000000"
         query:
-          media_type: "video/mp4"
+          media_type: "text/plain"
           download: false
         header:
           partition: "acme_customer_id"
@@ -921,5 +959,14 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+  eventevent_post:
+    speakeasy-default-eventevent-post:
+      requestBody:
+        application/json: {"nonce": "<value>", "type": "partition_limit_exceeded", "payload": {"partition": "<value>", "limit_type": "pages_hosted_limit_monthly"}}
+      responses:
+        "200":
+          application/json: "<value>"
+        "422":
+          application/json: {}
 examplesVersion: 1.0.2
 generatedTests: {}
