@@ -37,7 +37,6 @@ class DequoteBodyStringHook implements BeforeRequestHook {
 
     let modified = false;
     for (const field of this.fields) {
-      console.log("field", field);
       if (!formData.has(field)) continue;
       const originalValue = formData.get(field)?.toString();
 
