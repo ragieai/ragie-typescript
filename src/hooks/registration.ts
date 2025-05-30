@@ -10,7 +10,6 @@ export function initHooks(hooks: Hooks) {
   // Add hooks by calling hooks.register{ClientInit/BeforeCreateRequest/BeforeRequest/AfterSuccess/AfterError}Hook
   // with an instance of a hook that implements that specific Hook interface
   // Hooks are registered per SDK instance, and are valid for the lifetime of the SDK instance
-
   const createDocumentBodyFixerHook = new DequoteBodyStringHook(
     "CreateDocument",
     ["mode"],
@@ -35,7 +34,6 @@ class DequoteBodyStringHook implements BeforeRequestHook {
     const clonedRequest = request.clone();
     const formData = await clonedRequest.formData();
 
-    let modified = false;
     for (const field of this.fields) {
       if (!formData.has(field)) continue;
       const originalValue = formData.get(field)?.toString();
@@ -48,12 +46,11 @@ class DequoteBodyStringHook implements BeforeRequestHook {
       if (!isQuoteWrapped) continue;
 
       formData.set(field, originalValue.slice(1, -1));
-      modified = true;
     }
 
     // If the body was modified, we need to remove the Content-Type header
     // so the browser can set it correctly for FormData
-    if (modified) request.headers.delete("Content-Type");
+    request.headers.delete("Content-Type");
 
     return new Request(request, { body: formData });
   }
