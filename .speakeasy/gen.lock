@@ -3,10 +3,10 @@ id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
   docChecksum: 896e8b53e0968c892ab19f842b1234f7
   docVersion: 1.0.0
-  speakeasyVersion: 1.552.0
-  generationVersion: 2.610.0
-  releaseVersion: 1.10.0
-  configChecksum: f1a42a2f023c95e98d287f958c0b3b77
+  speakeasyVersion: 1.554.1
+  generationVersion: 2.616.1
+  releaseVersion: 1.11.1
+  configChecksum: 8bf3ee56956d39fbb8e84ed9e52e0de6
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -31,7 +31,7 @@ features:
     pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.2.0
+    sdkHooks: 0.3.0
     unions: 2.85.8
     uploadStreams: 0.1.0
     webhooks: 1.5.0
