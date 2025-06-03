@@ -168,17 +168,16 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
+import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
-const ragie = new Ragie();
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const result = await ragie.eventeventPost({
-    nonce: "<value>",
-    payload: {
-      partition: "<value>",
-      limitType: "pages_hosted_limit_monthly",
-    },
+  const result = await ragie.documents.create({
+    file: await openAsBlob("example.file"),
   });
 
   // Handle the result
