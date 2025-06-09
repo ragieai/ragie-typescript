@@ -1,8 +1,8 @@
-speakeasyVersion: 1.558.0
+speakeasyVersion: 1.558.1
 sources:
     local:
         sourceNamespace: local
-        sourceRevisionDigest: sha256:1fac9c91a6dd2fac7f6cb4f1e36ffda84363a41b9c825a416cab5715f7bcf3d0
+        sourceRevisionDigest: sha256:afb615a0859d961a3a1b9e321309ebf458eb003c699eaa04225b119941746601
         sourceBlobDigest: sha256:93dc5f95e26766dd15b312de29ef31e457c2dbc07161c722ffed6ee76d6d6ada
         tags:
             - latest
@@ -49,16 +49,6 @@ workflow:
             registry:
                 location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/ragie-ai-spec
     targets:
-        local:
-            target: typescript
-            source: local
-            output: ./
-            codeSamples:
-                registry:
-                    location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/local-typescript-code-samples
-                labelOverride:
-                    fixedValue: Typescript (SDK)
-                blocking: false
         ragie:
             target: typescript
             source: ragie.ai_spec
