@@ -5,7 +5,7 @@
 ```typescript
 import { One } from "ragie/models/operations";
 
-let value: One = "audio/mpeg";
+let value: One = "text/plain";
 ```
 
 ## Values

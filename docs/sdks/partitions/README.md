@@ -28,7 +28,6 @@ async function run() {
   const result = await ragie.partitions.list({});
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -52,16 +51,13 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await partitionsList(ragie, {});
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("partitionsList failed:", res.error);
   }
 }
 
@@ -111,7 +107,6 @@ async function run() {
     pagesProcessedLimitMax: 1000,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -140,15 +135,12 @@ async function run() {
     pagesHostedLimitMax: 1000,
     pagesProcessedLimitMax: 1000,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("partitionsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -193,7 +185,6 @@ async function run() {
     partitionId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -218,15 +209,12 @@ async function run() {
   const res = await partitionsGet(ragie, {
     partitionId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("partitionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -271,7 +259,6 @@ async function run() {
     partitionId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -296,15 +283,12 @@ async function run() {
   const res = await partitionsDelete(ragie, {
     partitionId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("partitionsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -355,7 +339,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -386,15 +369,12 @@ async function run() {
       pagesProcessedLimitMax: 1000,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("partitionsSetLimits failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

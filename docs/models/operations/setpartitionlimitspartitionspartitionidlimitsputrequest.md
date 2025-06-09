@@ -7,12 +7,6 @@ import { SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest } from "ragie/m
 
 let value: SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest = {
   partitionId: "<id>",
-  partitionLimitParams: {
-    pagesHostedLimitMonthly: 1000,
-    pagesProcessedLimitMonthly: 1000,
-    pagesHostedLimitMax: 1000,
-    pagesProcessedLimitMax: 1000,
-  },
 };
 ```
 

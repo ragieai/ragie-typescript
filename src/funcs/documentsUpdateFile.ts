@@ -20,7 +20,8 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { RagieError } from "../models/errors/ragieerror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
@@ -40,13 +41,14 @@ export function documentsUpdateFile(
     components.DocumentFileUpdate,
     | errors.HTTPValidationError
     | errors.ErrorMessage
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | RagieError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -66,13 +68,14 @@ async function $do(
       components.DocumentFileUpdate,
       | errors.HTTPValidationError
       | errors.ErrorMessage
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | RagieError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -107,13 +110,17 @@ async function $do(
     );
   }
   if (payload.UpdateDocumentFileParams.mode !== undefined) {
-    appendForm(
-      body,
-      "mode",
-      encodeJSON("mode", payload.UpdateDocumentFileParams.mode, {
-        explode: true,
-      }),
-    );
+    if (typeof payload.UpdateDocumentFileParams.mode === "object") {
+      appendForm(
+        body,
+        "mode",
+        encodeJSON("mode", payload.UpdateDocumentFileParams.mode, {
+          explode: true,
+        }),
+      );
+    } else {
+      appendForm(body, "mode", payload.UpdateDocumentFileParams.mode);
+    }
   }
 
   const pathParams = {
@@ -138,6 +145,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "UpdateDocumentFile",
     oAuth2Scopes: [],
@@ -158,6 +166,7 @@ async function $do(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -184,20 +193,21 @@ async function $do(
     components.DocumentFileUpdate,
     | errors.HTTPValidationError
     | errors.ErrorMessage
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | RagieError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, components.DocumentFileUpdate$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

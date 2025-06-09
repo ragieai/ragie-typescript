@@ -7,20 +7,20 @@ import { PartitionDetail } from "ragie/models/components";
 
 let value: PartitionDetail = {
   name: "<value>",
-  isDefault: false,
-  limitExceededAt: new Date("2023-05-03T00:00:03.241Z"),
+  isDefault: true,
+  limitExceededAt: new Date("2025-09-13T15:13:01.622Z"),
   limits: {
-    pagesProcessedLimitMonthly: 8331.52,
-    pagesHostedLimitMonthly: 9002.14,
-    pagesProcessedLimitMax: 9246.23,
-    pagesHostedLimitMax: 9599.05,
+    pagesProcessedLimitMonthly: 9255.76,
+    pagesHostedLimitMonthly: null,
+    pagesProcessedLimitMax: 2806.97,
+    pagesHostedLimitMax: 1160.63,
   },
   stats: {
-    pagesProcessedMonthly: 4315.89,
-    pagesHostedMonthly: 5076.26,
-    pagesProcessedTotal: 9301.51,
-    pagesHostedTotal: 6751.33,
-    documentCount: 624393,
+    pagesProcessedMonthly: 9246.23,
+    pagesHostedMonthly: 9599.05,
+    pagesProcessedTotal: 4315.89,
+    pagesHostedTotal: 5076.26,
+    documentCount: 930151,
   },
 };
 ```

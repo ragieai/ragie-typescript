@@ -180,7 +180,6 @@ async function run() {
     file: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -279,7 +278,6 @@ async function run() {
     file: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -291,61 +289,45 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `create` method may throw the following errors:
+[`RagieError`](./src/models/errors/ragieerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Error Type                 | Status Code        | Content Type     |
-| -------------------------- | ------------------ | ---------------- |
-| errors.HTTPValidationError | 422                | application/json |
-| errors.ErrorMessage        | 400, 401, 402, 429 | application/json |
-| errors.SDKError            | 4XX, 5XX           | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
-
+### Example
 ```typescript
 import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
-import {
-  ErrorMessage,
-  HTTPValidationError,
-  SDKValidationError,
-} from "ragie/models/errors";
+import * as errors from "ragie/models/errors";
 
 const ragie = new Ragie({
   auth: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  let result;
   try {
-    result = await ragie.documents.create({
+    const result = await ragie.documents.create({
       file: await openAsBlob("example.file"),
     });
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof HTTPValidationError): {
-        // Handle err.data$: HTTPValidationErrorData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ErrorMessage): {
-        // Handle err.data$: ErrorMessageData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
+  } catch (error) {
+    // The base class for HTTP error responses
+    if (error instanceof errors.RagieError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.HTTPValidationError) {
+        console.log(error.data$.detail); // ValidationError[]
       }
     }
   }
@@ -355,17 +337,30 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+**Primary errors:**
+* [`RagieError`](./src/models/errors/ragieerror.ts): The base class for HTTP error responses.
+  * [`ErrorMessage`](docs/models/errors/errormessage.md): Unauthorized.
+  * [`HTTPValidationError`](docs/models/errors/httpvalidationerror.md): Validation Error. Status code `422`. *
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors (6)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`RagieError`](./src/models/errors/ragieerror.ts)**:
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -388,7 +383,6 @@ async function run() {
     file: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -471,7 +465,6 @@ async function run() {
     file: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -510,7 +503,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -542,7 +534,6 @@ async function run() {
     file: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -581,7 +572,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -613,7 +603,6 @@ async function run() {
     file: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -705,7 +694,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }

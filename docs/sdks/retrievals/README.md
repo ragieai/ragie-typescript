@@ -23,11 +23,11 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.retrievals.retrieve({
     query: "What is the best pizza place in SF?",
+    rerank: true,
     maxChunksPerDocument: 0,
     partition: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -51,18 +51,16 @@ const ragie = new RagieCore({
 async function run() {
   const res = await retrievalsRetrieve(ragie, {
     query: "What is the best pizza place in SF?",
+    rerank: true,
     maxChunksPerDocument: 0,
     partition: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("retrievalsRetrieve failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
