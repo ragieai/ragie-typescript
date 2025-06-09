@@ -1,11 +1,12 @@
-speakeasyVersion: 1.546.1
+speakeasyVersion: 1.558.0
 sources:
     local:
         sourceNamespace: local
-        sourceRevisionDigest: sha256:2a24058a1165507629ac601dcf654236367d325400cd8bf25d71635266b164dc
-        sourceBlobDigest: sha256:94d9bc45794caabdeb08dc4d73ad5f18fabe58538f46bf2b80cc9f872fa9cc1a
+        sourceRevisionDigest: sha256:305f16d4d65ffd06cd9f1b523cf836f08cd5d99119202e2c1a486e4195bed38a
+        sourceBlobDigest: sha256:c636714cbfb74a8211ea69bb6f914a6f3b93df34de0dafd17f49a4c670f84329
         tags:
             - latest
+            - 1.0.0
     ragie.ai_spec:
         sourceNamespace: ragie-ai-spec
         sourceRevisionDigest: sha256:10a0e07c612b57962ee039df1d8369436ef07e9241a35cc4bf85721f740240e0
@@ -29,11 +30,15 @@ workflow:
         local:
             inputs:
                 - location: http://localhost:8000/openapi.json
+            overlays:
+                - location: .speakeasy/remove-webhooks.overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/local
         ragie.ai_spec:
             inputs:
                 - location: https://api.ragie.ai/openapi.json
+            overlays:
+                - location: .speakeasy/remove-webhooks.overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/ragie-ai-spec
     targets:
