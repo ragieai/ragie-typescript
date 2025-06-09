@@ -1,9 +1,9 @@
-speakeasyVersion: 1.558.0
+speakeasyVersion: 1.558.1
 sources:
     local:
         sourceNamespace: local
-        sourceRevisionDigest: sha256:305f16d4d65ffd06cd9f1b523cf836f08cd5d99119202e2c1a486e4195bed38a
-        sourceBlobDigest: sha256:c636714cbfb74a8211ea69bb6f914a6f3b93df34de0dafd17f49a4c670f84329
+        sourceRevisionDigest: sha256:8035337fd661cbe3b3d0b8212425a547ba869b3eb637950dd3bc8c41b385ea20
+        sourceBlobDigest: sha256:93dc5f95e26766dd15b312de29ef31e457c2dbc07161c722ffed6ee76d6d6ada
         tags:
             - latest
             - 1.0.0

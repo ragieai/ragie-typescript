@@ -19,6 +19,9 @@ targets:
     ragie:
         target: typescript
         source: ragie.ai_spec
+        options:
+            sdkClassName: Ragie
+            packageName: ragie        
         publish:
             npm:
                 token: $npm_token
