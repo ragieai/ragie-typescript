@@ -2,7 +2,7 @@ speakeasyVersion: 1.558.1
 sources:
     local:
         sourceNamespace: local
-        sourceRevisionDigest: sha256:afb615a0859d961a3a1b9e321309ebf458eb003c699eaa04225b119941746601
+        sourceRevisionDigest: sha256:8035337fd661cbe3b3d0b8212425a547ba869b3eb637950dd3bc8c41b385ea20
         sourceBlobDigest: sha256:93dc5f95e26766dd15b312de29ef31e457c2dbc07161c722ffed6ee76d6d6ada
         tags:
             - latest
@@ -16,13 +16,6 @@ sources:
             - speakeasy-sdk-regen-1745626915
             - 1.0.0
 targets:
-    local:
-        source: local
-        sourceNamespace: local
-        sourceRevisionDigest: sha256:1fac9c91a6dd2fac7f6cb4f1e36ffda84363a41b9c825a416cab5715f7bcf3d0
-        sourceBlobDigest: sha256:93dc5f95e26766dd15b312de29ef31e457c2dbc07161c722ffed6ee76d6d6ada
-        codeSamplesNamespace: local-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:705d68aefe53c5718283c4fd1d578b9fb76284d9109bc3f89d27f1decade30be
     ragie:
         source: ragie.ai_spec
         sourceNamespace: ragie-ai-spec
