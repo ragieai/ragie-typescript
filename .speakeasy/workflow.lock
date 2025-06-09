@@ -2,8 +2,8 @@ speakeasyVersion: 1.558.0
 sources:
     local:
         sourceNamespace: local
-        sourceRevisionDigest: sha256:305f16d4d65ffd06cd9f1b523cf836f08cd5d99119202e2c1a486e4195bed38a
-        sourceBlobDigest: sha256:c636714cbfb74a8211ea69bb6f914a6f3b93df34de0dafd17f49a4c670f84329
+        sourceRevisionDigest: sha256:1fac9c91a6dd2fac7f6cb4f1e36ffda84363a41b9c825a416cab5715f7bcf3d0
+        sourceBlobDigest: sha256:93dc5f95e26766dd15b312de29ef31e457c2dbc07161c722ffed6ee76d6d6ada
         tags:
             - latest
             - 1.0.0
@@ -16,6 +16,13 @@ sources:
             - speakeasy-sdk-regen-1745626915
             - 1.0.0
 targets:
+    local:
+        source: local
+        sourceNamespace: local
+        sourceRevisionDigest: sha256:1fac9c91a6dd2fac7f6cb4f1e36ffda84363a41b9c825a416cab5715f7bcf3d0
+        sourceBlobDigest: sha256:93dc5f95e26766dd15b312de29ef31e457c2dbc07161c722ffed6ee76d6d6ada
+        codeSamplesNamespace: local-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:705d68aefe53c5718283c4fd1d578b9fb76284d9109bc3f89d27f1decade30be
     ragie:
         source: ragie.ai_spec
         sourceNamespace: ragie-ai-spec
@@ -42,6 +49,16 @@ workflow:
             registry:
                 location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/ragie-ai-spec
     targets:
+        local:
+            target: typescript
+            source: local
+            output: ./
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/ragie-ai/ragie-ai/local-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false
         ragie:
             target: typescript
             source: ragie.ai_spec
