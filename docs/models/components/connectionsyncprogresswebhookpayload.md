@@ -11,16 +11,18 @@ let value: ConnectionSyncProgressWebhookPayload = {
   partition: "<value>",
   connectionMetadata: {
     "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
-  createCount: 931246,
-  createdCount: 778083,
-  updateContentCount: 195425,
-  updatedContentCount: 721162,
-  updateMetadataCount: 897540,
-  updatedMetadataCount: 627520,
-  deleteCount: 603451,
-  deletedCount: 975724,
-  erroredCount: 896780,
+  createCount: 778083,
+  createdCount: 195425,
+  updateContentCount: 721162,
+  updatedContentCount: 897540,
+  updateMetadataCount: 627520,
+  updatedMetadataCount: 603451,
+  deleteCount: 975724,
+  deletedCount: 896780,
+  erroredCount: 59173,
 };
 ```
 

@@ -8,7 +8,7 @@ import { GetDocumentChunkContentRequest } from "ragie/models/operations";
 let value: GetDocumentChunkContentRequest = {
   documentId: "00000000-0000-0000-0000-000000000000",
   chunkId: "00000000-0000-0000-0000-000000000000",
-  mediaType: "video/mp4",
+  mediaType: "text/plain",
   partition: "acme_customer_id",
 };
 ```

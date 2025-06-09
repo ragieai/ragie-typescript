@@ -12,6 +12,7 @@ let value: ConnectionLimitExceededWebhook = {
     partition: "<value>",
     connectionMetadata: {
       "key": "<value>",
+      "key1": "<value>",
     },
   },
 };

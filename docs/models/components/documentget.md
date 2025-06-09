@@ -11,13 +11,9 @@ let value: DocumentGet = {
   createdAt: new Date("2023-10-09T13:06:45.255Z"),
   updatedAt: new Date("2023-09-27T05:53:58.801Z"),
   name: "<value>",
-  metadata: {
-    "key": "<value>",
-  },
+  metadata: {},
   partition: "<value>",
-  errors: [
-    "<value>",
-  ],
+  errors: [],
 };
 ```
 

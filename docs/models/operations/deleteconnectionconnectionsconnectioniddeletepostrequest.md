@@ -7,9 +7,6 @@ import { DeleteConnectionConnectionsConnectionIdDeletePostRequest } from "ragie/
 
 let value: DeleteConnectionConnectionsConnectionIdDeletePostRequest = {
   connectionId: "b3d2511b-a01f-4a2c-908e-9d95aa4e35c2",
-  deleteConnectionPayload: {
-    keepFiles: false,
-  },
 };
 ```
 

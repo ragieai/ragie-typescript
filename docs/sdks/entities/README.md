@@ -28,7 +28,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.listInstructions();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -51,15 +50,12 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await entitiesListInstructions(ragie);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("entitiesListInstructions failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -100,6 +96,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.entities.createInstruction({
     name: "Find all pizzas",
+    scope: "document",
     prompt: "Find all pizzas described in the text.",
     entitySchema: {
       "key": "<value>",
@@ -116,7 +113,6 @@ async function run() {
     partition: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -140,6 +136,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await entitiesCreateInstruction(ragie, {
     name: "Find all pizzas",
+    scope: "document",
     prompt: "Find all pizzas described in the text.",
     entitySchema: {
       "key": "<value>",
@@ -155,15 +152,12 @@ async function run() {
     },
     partition: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("entitiesCreateInstruction failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -211,7 +205,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -239,15 +232,12 @@ async function run() {
       active: true,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("entitiesUpdateInstruction failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -292,7 +282,6 @@ async function run() {
     instructionId: "00000000-0000-0000-0000-000000000000",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -317,15 +306,12 @@ async function run() {
   const res = await entitiesDelete(ragie, {
     instructionId: "00000000-0000-0000-0000-000000000000",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("entitiesDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -372,7 +358,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -399,16 +384,13 @@ async function run() {
     instructionId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("entitiesListByInstruction failed:", res.error);
   }
 }
 
@@ -456,7 +438,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -483,16 +464,13 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("entitiesListByDocument failed:", res.error);
   }
 }
 

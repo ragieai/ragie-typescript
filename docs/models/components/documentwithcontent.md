@@ -11,9 +11,7 @@ let value: DocumentWithContent = {
   createdAt: new Date("2024-04-08T17:54:19.683Z"),
   updatedAt: new Date("2023-08-05T03:50:53.816Z"),
   name: "<value>",
-  metadata: {
-    "key": 839455,
-  },
+  metadata: {},
   partition: "<value>",
   content: "<value>",
 };

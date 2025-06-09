@@ -7,7 +7,7 @@ import { EntityList } from "ragie/models/components";
 
 let value: EntityList = {
   pagination: {
-    totalCount: 927373,
+    totalCount: 878808,
   },
   entities: [
     {
@@ -18,6 +18,8 @@ let value: EntityList = {
       documentId: "14c44960-afe8-438b-9693-ca254f118f78",
       data: {
         "key": "<value>",
+        "key1": "<value>",
+        "key2": "<value>",
       },
     },
   ],

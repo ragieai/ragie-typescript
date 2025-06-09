@@ -6,9 +6,11 @@
 import { CreateDocumentRawParams } from "ragie/models/components";
 
 let value: CreateDocumentRawParams = {
-  partition: null,
+  partition: "<value>",
   data: {
     "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
 };
 ```

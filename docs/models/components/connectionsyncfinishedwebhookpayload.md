@@ -11,6 +11,7 @@ let value: ConnectionSyncFinishedWebhookPayload = {
   partition: "<value>",
   connectionMetadata: {
     "key": "<value>",
+    "key1": "<value>",
   },
 };
 ```

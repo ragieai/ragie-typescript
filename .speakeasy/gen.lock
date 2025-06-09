@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 82b07985769a2ad6233321e611515382
+  docChecksum: 5431c153355ceae949070d67bf9e2572
   docVersion: 1.0.0
-  speakeasyVersion: 1.555.0
-  generationVersion: 2.618.0
-  releaseVersion: 1.12.0
-  configChecksum: ec924b0fc3d8d5c2e7e3529fd9f7163c
+  speakeasyVersion: 1.558.1
+  generationVersion: 2.623.4
+  releaseVersion: 1.12.1
+  configChecksum: 1c56f01fc5c33ac4fbe8c344fc009590
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -33,7 +33,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.8
+    unions: 2.85.9
     uploadStreams: 0.1.0
     webhooks: 1.5.0
 generatedFiles:
@@ -400,6 +400,8 @@ generatedFiles:
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/httpvalidationerror.ts
   - src/models/errors/index.ts
+  - src/models/errors/ragieerror.ts
+  - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/deleteconnectionconnectionsconnectioniddeletepost.ts
@@ -456,7 +458,7 @@ examples:
   CreateDocument:
     speakeasy-default-create-document:
       requestBody:
-        multipart/form-data: {"file": {"": "x-file: example.file"}}
+        multipart/form-data: {"file": "x-file: example.file"}
       responses:
         "201":
           application/json: {"status": "<value>", "id": "514e493d-a037-48f4-af3c-12b09e8c8d24", "created_at": "2024-03-25T07:46:04.132Z", "updated_at": "2025-11-04T23:57:42.637Z", "name": "<value>", "metadata": {}, "partition": "<value>"}
@@ -537,7 +539,7 @@ examples:
         header:
           partition: "acme_customer_id"
       requestBody:
-        multipart/form-data: {"file": {"": "x-file: example.file"}}
+        multipart/form-data: {"file": "x-file: example.file"}
       responses:
         "200":
           application/json: {"status": "<value>"}

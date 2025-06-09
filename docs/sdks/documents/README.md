@@ -41,7 +41,6 @@ async function run() {
     file: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -67,15 +66,12 @@ async function run() {
   const res = await documentsCreate(ragie, {
     file: await openAsBlob("example.file"),
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -122,7 +118,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -149,16 +144,13 @@ async function run() {
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("documentsList failed:", res.error);
   }
 }
 
@@ -205,7 +197,6 @@ async function run() {
     data: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -231,15 +222,12 @@ async function run() {
     partition: "<value>",
     data: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsCreateRaw failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -285,7 +273,6 @@ async function run() {
     url: "https://plain-cleaner.com/",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -311,15 +298,12 @@ async function run() {
     partition: "<value>",
     url: "https://plain-cleaner.com/",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsCreateDocumentFromUrl failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -365,7 +349,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -391,15 +374,12 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -445,7 +425,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -471,15 +450,12 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -529,7 +505,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -559,15 +534,12 @@ async function run() {
       file: await openAsBlob("example.file"),
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsUpdateFile failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -616,7 +588,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -645,15 +616,12 @@ async function run() {
       data: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsUpdateRaw failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -702,7 +670,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -731,15 +698,12 @@ async function run() {
       url: "https://sarcastic-colon.org",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsUpdateDocumentFromUrl failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -797,7 +761,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -835,15 +798,12 @@ async function run() {
       },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsPatchMetadata failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -891,7 +851,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -919,15 +878,12 @@ async function run() {
     endIndex: 5,
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsGetChunks failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -974,7 +930,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1001,15 +956,12 @@ async function run() {
     chunkId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsGetChunk failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1057,7 +1009,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1085,15 +1036,12 @@ async function run() {
     mediaType: "text/plain",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsGetChunkContent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1140,7 +1088,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1167,15 +1114,12 @@ async function run() {
     mediaType: "text/plain",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsGetContent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1221,7 +1165,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1247,15 +1190,12 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsGetSource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1301,7 +1241,6 @@ async function run() {
     partition: "acme_customer_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1327,15 +1266,12 @@ async function run() {
     documentId: "00000000-0000-0000-0000-000000000000",
     partition: "acme_customer_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("documentsGetSummary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

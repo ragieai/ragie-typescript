@@ -10,9 +10,7 @@ let value: DocumentDeleteWebhook = {
   payload: {
     documentId: "<id>",
     partition: "<value>",
-    metadata: {
-      "key": "<value>",
-    },
+    metadata: {},
     externalId: "<id>",
     name: "<value>",
     connectionId: "<id>",

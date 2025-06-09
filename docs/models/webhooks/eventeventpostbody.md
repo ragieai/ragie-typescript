@@ -11,9 +11,7 @@ const value: components.DocumentUpdateWebhook = {
   payload: {
     documentId: "<id>",
     partition: "<value>",
-    metadata: {
-      "key": "<value>",
-    },
+    metadata: {},
     externalId: "<id>",
     name: "<value>",
     connectionId: "<id>",
@@ -31,9 +29,7 @@ const value: components.DocumentDeleteWebhook = {
   payload: {
     documentId: "<id>",
     partition: "<value>",
-    metadata: {
-      "key": "<value>",
-    },
+    metadata: {},
     externalId: "<id>",
     name: "<value>",
     connectionId: "<id>",
@@ -53,6 +49,7 @@ const value: components.EntityExtractedWebhook = {
     instructionId: "<id>",
     documentMetadata: {
       "key": "<value>",
+      "key1": "<value>",
     },
     documentExternalId: "<id>",
     documentName: "<value>",
@@ -60,6 +57,7 @@ const value: components.EntityExtractedWebhook = {
     syncId: "<id>",
     data: {
       "key": "<value>",
+      "key1": "<value>",
     },
   },
 };
@@ -76,11 +74,13 @@ const value: components.ConnectionSyncStartedWebhook = {
     partition: "<value>",
     connectionMetadata: {
       "key": "<value>",
+      "key1": "<value>",
+      "key2": "<value>",
     },
-    createCount: 159743,
-    updateContentCount: 417561,
-    updateMetadataCount: 198947,
-    deleteCount: 728065,
+    createCount: 577742,
+    updateContentCount: 206968,
+    updateMetadataCount: 339797,
+    deleteCount: 556910,
   },
 };
 ```
@@ -97,15 +97,15 @@ const value: components.ConnectionSyncProgressWebhook = {
     connectionMetadata: {
       "key": "<value>",
     },
-    createCount: 416878,
-    createdCount: 692852,
-    updateContentCount: 497232,
-    updatedContentCount: 108222,
-    updateMetadataCount: 854921,
-    updatedMetadataCount: 183861,
-    deleteCount: 347596,
-    deletedCount: 617608,
-    erroredCount: 45704,
+    createCount: 757125,
+    createdCount: 233157,
+    updateContentCount: 260501,
+    updatedContentCount: 43790,
+    updateMetadataCount: 120497,
+    updatedMetadataCount: 989841,
+    deleteCount: 381029,
+    deletedCount: 504776,
+    erroredCount: 701098,
   },
 };
 ```
@@ -119,9 +119,7 @@ const value: components.ConnectionSyncFinishedWebhook = {
     connectionId: "<id>",
     syncId: "<id>",
     partition: "<value>",
-    connectionMetadata: {
-      "key": "<value>",
-    },
+    connectionMetadata: {},
   },
 };
 ```
@@ -136,6 +134,7 @@ const value: components.ConnectionLimitExceededWebhook = {
     partition: "<value>",
     connectionMetadata: {
       "key": "<value>",
+      "key1": "<value>",
     },
   },
 };
@@ -148,7 +147,7 @@ const value: components.PartitionLimitExceededWebhook = {
   nonce: "<value>",
   payload: {
     partition: "<value>",
-    limitType: "pages_processed_limit_monthly",
+    limitType: "pages_hosted_limit_monthly",
   },
 };
 ```

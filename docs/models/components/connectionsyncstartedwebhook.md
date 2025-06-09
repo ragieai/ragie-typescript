@@ -13,11 +13,13 @@ let value: ConnectionSyncStartedWebhook = {
     partition: "<value>",
     connectionMetadata: {
       "key": "<value>",
+      "key1": "<value>",
+      "key2": "<value>",
     },
-    createCount: 906164,
-    updateContentCount: 577742,
-    updateMetadataCount: 206968,
-    deleteCount: 339797,
+    createCount: 577742,
+    updateContentCount: 206968,
+    updateMetadataCount: 339797,
+    deleteCount: 556910,
   },
 };
 ```

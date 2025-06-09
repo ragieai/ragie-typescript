@@ -13,6 +13,7 @@ let value: EntityExtractedWebhook = {
     instructionId: "<id>",
     documentMetadata: {
       "key": "<value>",
+      "key1": "<value>",
     },
     documentExternalId: "<id>",
     documentName: "<value>",
@@ -20,6 +21,7 @@ let value: EntityExtractedWebhook = {
     syncId: "<id>",
     data: {
       "key": "<value>",
+      "key1": "<value>",
     },
   },
 };

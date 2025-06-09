@@ -10,6 +10,7 @@ let value: DocumentUpdateWebhookPayload = {
   partition: "<value>",
   metadata: {
     "key": "<value>",
+    "key1": "<value>",
   },
   externalId: "<id>",
   name: "<value>",

@@ -8,12 +8,7 @@ import { DocumentChunk } from "ragie/models/components";
 let value: DocumentChunk = {
   id: "acc9963a-0538-46b3-957f-f757d942f89b",
   text: "<value>",
-  links: {
-    "key": {
-      href: "<value>",
-      type: "<value>",
-    },
-  },
+  links: {},
 };
 ```
 
