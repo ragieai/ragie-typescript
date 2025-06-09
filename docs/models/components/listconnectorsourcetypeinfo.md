@@ -8,10 +8,10 @@ import { ListConnectorSourceTypeInfo } from "ragie/models/components";
 let value: ListConnectorSourceTypeInfo = {
   connectors: [
     {
-      sourceType: "slack",
-      displayName: "Malcolm_Maggio",
-      iconUrl: "https://true-legging.info",
-      docsUrl: "https://rectangular-best-seller.info",
+      sourceType: "jira",
+      displayName: "Esmeralda.Von",
+      iconUrl: "https://miserable-help.org",
+      docsUrl: "https://blushing-hutch.net",
     },
   ],
 };

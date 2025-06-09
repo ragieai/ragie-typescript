@@ -35,7 +35,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -61,16 +60,13 @@ async function run() {
   const res = await connectionsList(ragie, {
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("connectionsList failed:", res.error);
   }
 }
 
@@ -117,7 +113,6 @@ async function run() {
     pageLimit: 1000,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -143,15 +138,12 @@ async function run() {
     redirectUri: "https://babyish-rationale.biz/",
     pageLimit: 1000,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsCreateOAuthRedirectUrl failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -194,7 +186,6 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.connections.listConnectionSourceTypes();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -217,15 +208,12 @@ const ragie = new RagieCore({
 
 async function run() {
   const res = await connectionsListConnectionSourceTypes(ragie);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsListConnectionSourceTypes failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -271,7 +259,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -299,15 +286,12 @@ async function run() {
       enabled: true,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsSetEnabled failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -356,7 +340,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -385,15 +368,12 @@ async function run() {
       pageLimit: 1000,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -438,7 +418,6 @@ async function run() {
     connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -463,15 +442,12 @@ async function run() {
   const res = await connectionsGet(ragie, {
     connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -516,7 +492,6 @@ async function run() {
     connectionId: "1568dd0e-2d57-45b1-a9f4-9d646aec54a2",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -541,15 +516,12 @@ async function run() {
   const res = await connectionsGetStats(ragie, {
     connectionId: "1568dd0e-2d57-45b1-a9f4-9d646aec54a2",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsGetStats failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -597,7 +569,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -625,15 +596,12 @@ async function run() {
       pageLimit: 1000,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsSetLimits failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -681,7 +649,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -709,15 +676,12 @@ async function run() {
       keepFiles: true,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -762,7 +726,6 @@ async function run() {
     connectionId: "cf2b9381-3cee-4449-b7d1-9eb470186924",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -787,15 +750,12 @@ async function run() {
   const res = await connectionsSync(ragie, {
     connectionId: "cf2b9381-3cee-4449-b7d1-9eb470186924",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsSync failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
