@@ -26,36 +26,44 @@ class DequoteBodyStringHook implements BeforeRequestHook {
   constructor(
     private readonly operationId: string,
     private readonly fields: string[] = [],
-  ) { }
+  ) {}
 
-  async beforeRequest(hookCtx: BeforeRequestContext, request: Request) {
-    if (hookCtx.operationID !== this.operationId) return request;
+  async beforeRequest(ctx: BeforeRequestContext, req: Request) {
+    if (ctx.operationID !== this.operationId) return req;
 
-    // Keep the original request/body safe
-    const clonedRequest = request.clone();
-    const formData = await clonedRequest.formData();
+    // Read body once
+    const fd = await req.clone().formData();
+    let touched = false;
 
-    let modified = false;
-    for (const field of this.fields) {
-      console.log("field", field);
-      if (!formData.has(field)) continue;
-      const originalValue = formData.get(field)?.toString();
-
-      if (!originalValue) continue;
-
-      const isQuoteWrapped =
-        originalValue.startsWith('"') && originalValue.endsWith('"');
-
-      if (!isQuoteWrapped) continue;
-
-      formData.set(field, originalValue.slice(1, -1));
-      modified = true;
+    for (const name of this.fields) {
+      for (const val of fd.getAll(name)) {
+        if (typeof val !== "string") continue; // skip File/Blob parts
+        if (val.startsWith('"') && val.endsWith('"')) {
+          fd.set(name, val.slice(1, -1));
+          touched = true;
+        }
+      }
     }
 
-    // If the body was modified, we need to remove the Content-Type header
-    // so the browser can set it correctly for FormData
-    if (modified) request.headers.delete("Content-Type");
+    if (!touched) return req; // nothing changed
 
-    return new Request(request, { body: formData });
+    // Re-create headers *without* the stale boundary token
+    const headers = new Headers(req.headers);
+    headers.delete("Content-Type"); // let fetch add a new one
+
+    // Build a fresh Request so body & header are in sync
+    return new Request(req.url, {
+      method: req.method,
+      headers,
+      body: fd,
+      credentials: req.credentials,
+      mode: req.mode,
+      redirect: req.redirect,
+      referrer: req.referrer,
+      referrerPolicy: req.referrerPolicy,
+      integrity: req.integrity,
+      keepalive: req.keepalive,
+      signal: req.signal,
+    });
   }
 }
