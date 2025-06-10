@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.558.1
   generationVersion: 2.623.4
-  releaseVersion: 1.11.1
-  configChecksum: a2040351b3fb6e2f983d3f3f6a7aa44c
+  releaseVersion: 1.11.2
+  configChecksum: 336966a43a5bf2ce271c1d514fae1c82
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
