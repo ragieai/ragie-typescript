@@ -7,7 +7,7 @@ import { ValidationError } from "ragie/models/components";
 
 let value: ValidationError = {
   loc: [
-    598752,
+    929957,
   ],
   msg: "<value>",
   type: "<value>",

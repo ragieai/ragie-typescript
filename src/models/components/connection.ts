@@ -11,7 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectionMetadata = string | number | boolean | Array<string>;
 
-export type Source = string | Array<string>;
+export type Source = string | Array<string> | { [k: string]: any };
 
 export const DisabledBySystemReason = {
   ConnectionOverTotalPageLimit: "connection_over_total_page_limit",
@@ -26,7 +26,7 @@ export type Connection = {
   metadata: { [k: string]: string | number | boolean | Array<string> };
   type: string;
   name: string;
-  source: string | Array<string> | null;
+  source: string | Array<string> | { [k: string]: any } | null;
   enabled: boolean;
   disabledBySystemReason: DisabledBySystemReason | null;
   lastSyncedAt?: Date | null | undefined;
@@ -90,17 +90,17 @@ export function connectionMetadataFromJSON(
 
 /** @internal */
 export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.array(z.string())]);
+  .union([z.string(), z.array(z.string()), z.record(z.any())]);
 
 /** @internal */
-export type Source$Outbound = string | Array<string>;
+export type Source$Outbound = string | Array<string> | { [k: string]: any };
 
 /** @internal */
 export const Source$outboundSchema: z.ZodType<
   Source$Outbound,
   z.ZodTypeDef,
   Source
-> = z.union([z.string(), z.array(z.string())]);
+> = z.union([z.string(), z.array(z.string()), z.record(z.any())]);
 
 /**
  * @internal
@@ -164,7 +164,9 @@ export const Connection$inboundSchema: z.ZodType<
   ),
   type: z.string(),
   name: z.string(),
-  source: z.nullable(z.union([z.string(), z.array(z.string())])),
+  source: z.nullable(
+    z.union([z.string(), z.array(z.string()), z.record(z.any())]),
+  ),
   enabled: z.boolean(),
   disabled_by_system_reason: z.nullable(DisabledBySystemReason$inboundSchema),
   last_synced_at: z.nullable(
@@ -193,7 +195,7 @@ export type Connection$Outbound = {
   metadata: { [k: string]: string | number | boolean | Array<string> };
   type: string;
   name: string;
-  source: string | Array<string> | null;
+  source: string | Array<string> | { [k: string]: any } | null;
   enabled: boolean;
   disabled_by_system_reason: string | null;
   last_synced_at?: string | null | undefined;
@@ -217,7 +219,9 @@ export const Connection$outboundSchema: z.ZodType<
   ),
   type: z.string(),
   name: z.string(),
-  source: z.nullable(z.union([z.string(), z.array(z.string())])),
+  source: z.nullable(
+    z.union([z.string(), z.array(z.string()), z.record(z.any())]),
+  ),
   enabled: z.boolean(),
   disabledBySystemReason: z.nullable(DisabledBySystemReason$outboundSchema),
   lastSyncedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

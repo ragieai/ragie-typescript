@@ -3,24 +3,27 @@
  */
 
 import * as z from "zod";
+import { RagieError } from "./ragieerror.js";
 
 export type ErrorMessageData = {
   detail: string;
 };
 
-export class ErrorMessage extends Error {
+export class ErrorMessage extends RagieError {
   detail: string;
 
   /** The original data that was passed to this error instance. */
   data$: ErrorMessageData;
 
-  constructor(err: ErrorMessageData) {
+  constructor(
+    err: ErrorMessageData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.detail = err.detail;
 
     this.name = "ErrorMessage";
@@ -34,9 +37,16 @@ export const ErrorMessage$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   detail: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ErrorMessage(v);
+    return new ErrorMessage(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

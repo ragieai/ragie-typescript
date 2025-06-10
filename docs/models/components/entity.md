@@ -13,6 +13,7 @@ let value: Entity = {
   documentId: "a19e9595-6772-4b9a-bcda-14fc052e995c",
   data: {
     "key": "<value>",
+    "key1": "<value>",
   },
 };
 ```
