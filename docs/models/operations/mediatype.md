@@ -7,7 +7,7 @@ The desired media type of the content to return described as a mime type. An err
 ```typescript
 import { MediaType } from "ragie/models/operations";
 
-let value: MediaType = "video/mp4";
+let value: MediaType = "text/plain";
 ```
 
 ## Values

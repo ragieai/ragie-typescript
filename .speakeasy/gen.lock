@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: e96990103b98a2e048512029c82fc4a4
+  docChecksum: 5431c153355ceae949070d67bf9e2572
   docVersion: 1.0.0
-  speakeasyVersion: 1.546.1
-  generationVersion: 2.604.2
-  releaseVersion: 1.9.0
-  configChecksum: e355f20311e52c699ff3a7f6128438a9
+  speakeasyVersion: 1.558.1
+  generationVersion: 2.623.4
+  releaseVersion: 1.11.0
+  configChecksum: ae9c3b71575c0854228ebbd60ef59d3b
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,12 +14,13 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.8
+    core: 3.21.10
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
+    examples: 2.81.5
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -31,9 +32,10 @@ features:
     pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.2.0
-    unions: 2.85.8
+    sdkHooks: 0.3.0
+    unions: 2.85.9
     uploadStreams: 0.1.0
+    webhooks: 1.5.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -48,10 +50,18 @@ generatedFiles:
   - docs/models/components/connection.md
   - docs/models/components/connectionbase.md
   - docs/models/components/connectionbasemetadata.md
+  - docs/models/components/connectionlimitexceededwebhook.md
+  - docs/models/components/connectionlimitexceededwebhookpayload.md
   - docs/models/components/connectionlimitparams.md
   - docs/models/components/connectionlist.md
   - docs/models/components/connectionmetadata.md
   - docs/models/components/connectionstats.md
+  - docs/models/components/connectionsyncfinishedwebhook.md
+  - docs/models/components/connectionsyncfinishedwebhookpayload.md
+  - docs/models/components/connectionsyncprogresswebhook.md
+  - docs/models/components/connectionsyncprogresswebhookpayload.md
+  - docs/models/components/connectionsyncstartedwebhook.md
+  - docs/models/components/connectionsyncstartedwebhookpayload.md
   - docs/models/components/connectorsource.md
   - docs/models/components/connectorsourcetypeinfo.md
   - docs/models/components/createdocumentfromurlparams.md
@@ -71,6 +81,8 @@ generatedFiles:
   - docs/models/components/documentchunkdetail.md
   - docs/models/components/documentchunklist.md
   - docs/models/components/documentdelete.md
+  - docs/models/components/documentdeletewebhook.md
+  - docs/models/components/documentdeletewebhookpayload.md
   - docs/models/components/documentfileupdate.md
   - docs/models/components/documentget.md
   - docs/models/components/documentgetmetadata.md
@@ -80,13 +92,18 @@ generatedFiles:
   - docs/models/components/documentmetadataupdatemetadata.md
   - docs/models/components/documentrawupdate.md
   - docs/models/components/documentsummary.md
+  - docs/models/components/documentupdatewebhook.md
+  - docs/models/components/documentupdatewebhookpayload.md
   - docs/models/components/documenturlupdate.md
   - docs/models/components/documentwithcontent.md
   - docs/models/components/documentwithcontentmetadata.md
   - docs/models/components/entity.md
+  - docs/models/components/entityextractedwebhook.md
+  - docs/models/components/entityextractedwebhookpayload.md
   - docs/models/components/entitylist.md
   - docs/models/components/filet.md
   - docs/models/components/instruction.md
+  - docs/models/components/limittype.md
   - docs/models/components/link.md
   - docs/models/components/listconnectorsourcetypeinfo.md
   - docs/models/components/loc.md
@@ -109,6 +126,8 @@ generatedFiles:
   - docs/models/components/pagination.md
   - docs/models/components/partition.md
   - docs/models/components/partitiondetail.md
+  - docs/models/components/partitionlimitexceededwebhook.md
+  - docs/models/components/partitionlimitexceededwebhookpayload.md
   - docs/models/components/partitionlimitparams.md
   - docs/models/components/partitionlimits.md
   - docs/models/components/partitionlist.md
@@ -185,6 +204,7 @@ generatedFiles:
   - docs/models/operations/updatedocumentfromurlrequest.md
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
+  - docs/models/webhooks/eventeventpostbody.md
   - docs/sdks/connections/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/entities/README.md
@@ -306,9 +326,17 @@ generatedFiles:
   - src/models/components/audiomodalitydata.ts
   - src/models/components/connection.ts
   - src/models/components/connectionbase.ts
+  - src/models/components/connectionlimitexceededwebhook.ts
+  - src/models/components/connectionlimitexceededwebhookpayload.ts
   - src/models/components/connectionlimitparams.ts
   - src/models/components/connectionlist.ts
   - src/models/components/connectionstats.ts
+  - src/models/components/connectionsyncfinishedwebhook.ts
+  - src/models/components/connectionsyncfinishedwebhookpayload.ts
+  - src/models/components/connectionsyncprogresswebhook.ts
+  - src/models/components/connectionsyncprogresswebhookpayload.ts
+  - src/models/components/connectionsyncstartedwebhook.ts
+  - src/models/components/connectionsyncstartedwebhookpayload.ts
   - src/models/components/connectorsource.ts
   - src/models/components/connectorsourcetypeinfo.ts
   - src/models/components/createdocumentfromurlparams.ts
@@ -322,15 +350,21 @@ generatedFiles:
   - src/models/components/documentchunkdetail.ts
   - src/models/components/documentchunklist.ts
   - src/models/components/documentdelete.ts
+  - src/models/components/documentdeletewebhook.ts
+  - src/models/components/documentdeletewebhookpayload.ts
   - src/models/components/documentfileupdate.ts
   - src/models/components/documentget.ts
   - src/models/components/documentlist.ts
   - src/models/components/documentmetadataupdate.ts
   - src/models/components/documentrawupdate.ts
   - src/models/components/documentsummary.ts
+  - src/models/components/documentupdatewebhook.ts
+  - src/models/components/documentupdatewebhookpayload.ts
   - src/models/components/documenturlupdate.ts
   - src/models/components/documentwithcontent.ts
   - src/models/components/entity.ts
+  - src/models/components/entityextractedwebhook.ts
+  - src/models/components/entityextractedwebhookpayload.ts
   - src/models/components/entitylist.ts
   - src/models/components/index.ts
   - src/models/components/instruction.ts
@@ -342,6 +376,8 @@ generatedFiles:
   - src/models/components/pagination.ts
   - src/models/components/partition.ts
   - src/models/components/partitiondetail.ts
+  - src/models/components/partitionlimitexceededwebhook.ts
+  - src/models/components/partitionlimitexceededwebhookpayload.ts
   - src/models/components/partitionlimitparams.ts
   - src/models/components/partitionlimits.ts
   - src/models/components/partitionlist.ts
@@ -364,6 +400,8 @@ generatedFiles:
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/httpvalidationerror.ts
   - src/models/errors/index.ts
+  - src/models/errors/ragieerror.ts
+  - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/deleteconnectionconnectionsconnectioniddeletepost.ts
@@ -396,6 +434,8 @@ generatedFiles:
   - src/models/operations/updatedocumentfromurl.ts
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
+  - src/models/webhooks/eventeventpost.ts
+  - src/models/webhooks/index.ts
   - src/sdk/connections.ts
   - src/sdk/documents.ts
   - src/sdk/entities.ts
@@ -412,12 +452,13 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/webhooks.ts
   - tsconfig.json
 examples:
   CreateDocument:
     speakeasy-default-create-document:
       requestBody:
-        multipart/form-data: {"file": {"": "x-file: example.file"}}
+        multipart/form-data: {"file": "x-file: example.file"}
       responses:
         "201":
           application/json: {"status": "<value>", "id": "514e493d-a037-48f4-af3c-12b09e8c8d24", "created_at": "2024-03-25T07:46:04.132Z", "updated_at": "2025-11-04T23:57:42.637Z", "name": "<value>", "metadata": {}, "partition": "<value>"}
@@ -431,6 +472,7 @@ examples:
         query:
           page_size: 10
           filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}"
+          random: 30797
         header:
           partition: "acme_customer_id"
       responses:
@@ -498,7 +540,7 @@ examples:
         header:
           partition: "acme_customer_id"
       requestBody:
-        multipart/form-data: {"file": {"": "x-file: example.file"}}
+        multipart/form-data: {"file": "x-file: example.file"}
       responses:
         "200":
           application/json: {"status": "<value>"}
@@ -563,6 +605,7 @@ examples:
           start_index: 3
           end_index: 5
           page_size: 10
+          random: 944463
         header:
           partition: "acme_customer_id"
       responses:
@@ -594,7 +637,7 @@ examples:
           document_id: "00000000-0000-0000-0000-000000000000"
           chunk_id: "00000000-0000-0000-0000-000000000000"
         query:
-          media_type: "video/mp4"
+          media_type: "text/plain"
           download: false
         header:
           partition: "acme_customer_id"
@@ -611,7 +654,7 @@ examples:
         path:
           document_id: "00000000-0000-0000-0000-000000000000"
         query:
-          media_type: "video/mp4"
+          media_type: "text/plain"
           download: false
         header:
           partition: "acme_customer_id"
@@ -712,6 +755,7 @@ examples:
           instruction_id: "00000000-0000-0000-0000-000000000000"
         query:
           page_size: 10
+          random: 393037
         header:
           partition: "acme_customer_id"
       responses:
@@ -728,6 +772,7 @@ examples:
           document_id: "00000000-0000-0000-0000-000000000000"
         query:
           page_size: 10
+          random: 309348
         header:
           partition: "acme_customer_id"
       responses:
@@ -743,6 +788,7 @@ examples:
         query:
           page_size: 10
           filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}"
+          random: 375666
       responses:
         "200":
           application/json: {"pagination": {"total_count": 375666}, "connections": [{"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}]}
@@ -865,6 +911,7 @@ examples:
       parameters:
         query:
           page_size: 10
+          random: 816318
       responses:
         "200":
           application/json: {"pagination": {"total_count": 816318}, "partitions": [{"name": "<value>", "is_default": true, "limit_exceeded_at": "2023-01-29T08:25:20.822Z", "limits": {"pages_processed_limit_monthly": 13.73, "pages_hosted_limit_monthly": 112.66, "pages_processed_limit_max": 2218.53, "pages_hosted_limit_max": 8228.05}}]}
@@ -921,5 +968,14 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+  eventevent_post:
+    speakeasy-default-eventevent-post:
+      requestBody:
+        application/json: {"nonce": "<value>", "type": "partition_limit_exceeded", "payload": {"partition": "<value>", "limit_type": "pages_hosted_limit_monthly"}}
+      responses:
+        "200":
+          application/json: "<value>"
+        "422":
+          application/json: {}
 examplesVersion: 1.0.2
 generatedTests: {}

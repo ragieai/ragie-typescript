@@ -1,6 +1,6 @@
 {
   "name": "ragie",
-  "version": "1.9.0",
+  "version": "1.11.0",
   "author": "Speakeasy",
   "bin": {
     "mcp": "bin/mcp-server.js"
@@ -36,7 +36,7 @@
     "globals": "^15.14.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.22.0",
-    "zod": "^3.23.4"
+    "zod": "^3.25.17"
   },
   "dependencies": {
     

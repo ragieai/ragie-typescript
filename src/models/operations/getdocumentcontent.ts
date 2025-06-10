@@ -38,6 +38,7 @@ export type GetDocumentContentRequest = {
    * An optional partition to scope the request to. If omitted, accounts created after 1/9/2025 will have the request scoped to the default partition, while older accounts will have the request scoped to all partitions. Older accounts may opt in to strict partition scoping by contacting support@ragie.ai. Older accounts using the partitions feature are strongly recommended to scope the request to a partition.
    */
   partition?: string | null | undefined;
+  range?: string | null | undefined;
 };
 
 /** @internal */
@@ -116,6 +117,7 @@ export const GetDocumentContentRequest$inboundSchema: z.ZodType<
   media_type: z.nullable(z.union([One$inboundSchema, z.string()])).optional(),
   download: z.boolean().default(false),
   partition: z.nullable(z.string()).optional(),
+  range: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "document_id": "documentId",
@@ -129,6 +131,7 @@ export type GetDocumentContentRequest$Outbound = {
   media_type?: string | string | null | undefined;
   download: boolean;
   partition?: string | null | undefined;
+  range?: string | null | undefined;
 };
 
 /** @internal */
@@ -141,6 +144,7 @@ export const GetDocumentContentRequest$outboundSchema: z.ZodType<
   mediaType: z.nullable(z.union([One$outboundSchema, z.string()])).optional(),
   download: z.boolean().default(false),
   partition: z.nullable(z.string()).optional(),
+  range: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     documentId: "document_id",

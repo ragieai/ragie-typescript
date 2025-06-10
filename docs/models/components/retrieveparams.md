@@ -7,8 +7,9 @@ import { RetrieveParams } from "ragie/models/components";
 
 let value: RetrieveParams = {
   query: "What is the best pizza place in SF?",
+  rerank: true,
   maxChunksPerDocument: 0,
-  partition: null,
+  partition: "<value>",
 };
 ```
 

@@ -10,9 +10,11 @@ let value: Instruction = {
   createdAt: new Date("2024-06-29T04:14:18.600Z"),
   updatedAt: new Date("2023-10-20T20:22:48.983Z"),
   name: "Find all pizzas",
+  scope: "document",
   prompt: "Find all pizzas described in the text.",
   entitySchema: {
     "key": "<value>",
+    "key1": "<value>",
   },
   filter: {
     "toppings": {
@@ -22,7 +24,7 @@ let value: Instruction = {
       ],
     },
   },
-  partition: null,
+  partition: "<value>",
 };
 ```
 

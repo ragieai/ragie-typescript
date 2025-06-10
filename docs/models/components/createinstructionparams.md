@@ -7,6 +7,7 @@ import { CreateInstructionParams } from "ragie/models/components";
 
 let value: CreateInstructionParams = {
   name: "Find all pizzas",
+  scope: "document",
   prompt: "Find all pizzas described in the text.",
   entitySchema: {
     "key": "<value>",
@@ -19,7 +20,7 @@ let value: CreateInstructionParams = {
       ],
     },
   },
-  partition: null,
+  partition: "<value>",
 };
 ```
 
