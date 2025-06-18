@@ -4,7 +4,7 @@
 
 import { RagieCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -115,6 +115,10 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "partition": encodeSimple("partition", payload?.partition, {
+      explode: false,
+      charEncoding: "none",
+    }),
   }));
 
   const secConfig = await extractSecurity(client._options.auth);

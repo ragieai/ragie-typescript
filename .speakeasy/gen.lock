@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 6024c3a306879455cf21adecd405a351
+  docChecksum: 913571bdaa597ce6ffe8a2e7b9b5e3b0
   docVersion: 1.0.0
-  speakeasyVersion: 1.558.1
-  generationVersion: 2.623.4
-  releaseVersion: 1.11.3
-  configChecksum: 30d1235fe6bc9aa5e639a78fa2a342d9
+  speakeasyVersion: 1.564.0
+  generationVersion: 2.630.8
+  releaseVersion: 1.11.4
+  configChecksum: 279a5acc6ecc9054733c6f60e3f613f0
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
-    core: 3.21.10
+    constsAndDefaults: 0.1.12
+    core: 3.21.11
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
@@ -33,7 +33,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.9
+    unions: 2.85.10
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -751,6 +751,8 @@ examples:
           page_size: 10
           filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}"
           random: 375666
+        header:
+          partition: "acme_customer_id"
       responses:
         "200":
           application/json: {"pagination": {"total_count": 375666}, "connections": [{"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}]}

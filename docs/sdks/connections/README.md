@@ -32,6 +32,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.connections.list({
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
   for await (const page of result) {
@@ -59,6 +60,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await connectionsList(ragie, {
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
   if (res.ok) {
     const { value: result } = res;
