@@ -21,7 +21,7 @@ generation:
     oAuth2PasswordEnabled: false
   sdkHooksConfigAccess: true
 typescript:
-  version: 1.11.3
+  version: 1.11.4
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -30,6 +30,7 @@ typescript:
   author: Speakeasy
   baseErrorName: RagieError
   clientServerStatusCodesAsErrors: true
+  constFieldsAlwaysOptional: true
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
   enableMCPServer: true
