@@ -22,6 +22,10 @@ export type ListConnectionsConnectionsGetRequest = {
    * The metadata search filter. Returns only items which match the filter. The following filter operators are supported: $eq - Equal to (number, string, boolean), $ne - Not equal to (number, string, boolean), $gt - Greater than (number), $gte - Greater than or equal to (number), $lt - Less than (number), $lte - Less than or equal to (number), $in - In array (string or number), $nin - Not in array (string or number). The operators can be combined with AND and OR. Read [Metadata & Filters guide](https://docs.ragie.ai/docs/metadata-filters) for more details and examples.
    */
   filter?: string | null | undefined;
+  /**
+   * An optional partition to scope the request to. If omitted, the request will be scoped to the default partition.
+   */
+  partition?: string | null | undefined;
 };
 
 export type ListConnectionsConnectionsGetResponse = {
@@ -37,6 +41,7 @@ export const ListConnectionsConnectionsGetRequest$inboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   page_size: z.number().int().default(10),
   filter: z.nullable(z.string()).optional(),
+  partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "page_size": "pageSize",
@@ -48,6 +53,7 @@ export type ListConnectionsConnectionsGetRequest$Outbound = {
   cursor?: string | null | undefined;
   page_size: number;
   filter?: string | null | undefined;
+  partition?: string | null | undefined;
 };
 
 /** @internal */
@@ -59,6 +65,7 @@ export const ListConnectionsConnectionsGetRequest$outboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   pageSize: z.number().int().default(10),
   filter: z.nullable(z.string()).optional(),
+  partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     pageSize: "page_size",
