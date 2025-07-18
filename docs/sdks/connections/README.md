@@ -5,6 +5,7 @@
 
 ### Available Operations
 
+* [createConnection](#createconnection) - Create Connection
 * [list](#list) - List Connections
 * [createOAuthRedirectUrl](#createoauthredirecturl) - Create Oauth Redirect Url
 * [listConnectionSourceTypes](#listconnectionsourcetypes) - List Connection Source Types
@@ -15,6 +16,104 @@
 * [setLimits](#setlimits) - Set Connection Limits
 * [delete](#delete) - Delete Connection
 * [sync](#sync) - Sync Connection
+
+## createConnection
+
+Create a connection. This is only for non-oauth connections such as S3 compatible connections, Freshdesk, and Zendesk.
+
+### Example Usage
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.connections.createConnection({
+    partitionStrategy: {},
+    pageLimit: null,
+    config: null,
+    connection: {
+      provider: "gcs",
+      data: {
+        bucket: "<value>",
+      },
+      credentials: {
+        "key": "<value>",
+        "key1": "<value>",
+      },
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { connectionsCreateConnection } from "ragie/funcs/connectionsCreateConnection.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await connectionsCreateConnection(ragie, {
+    partitionStrategy: {},
+    pageLimit: null,
+    config: null,
+    connection: {
+      provider: "gcs",
+      data: {
+        bucket: "<value>",
+      },
+      credentials: {
+        "key": "<value>",
+        "key1": "<value>",
+      },
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsCreateConnection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.PublicCreateConnection](../../models/components/publiccreateconnection.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.Connection](../../models/components/connection.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## list
 
@@ -32,6 +131,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.connections.list({
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
   for await (const page of result) {
@@ -59,6 +159,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await connectionsList(ragie, {
     filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
   if (res.ok) {
     const { value: result } = res;

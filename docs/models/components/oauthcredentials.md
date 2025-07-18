@@ -1,0 +1,23 @@
+# OAuthCredentials
+
+## Example Usage
+
+```typescript
+import { OAuthCredentials } from "ragie/models/components";
+
+let value: OAuthCredentials = {
+  provider: "hubspot",
+  name: "<value>",
+  clientId: "<id>",
+  clientSecret: "<value>",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                           | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `provider`                                                                                                                                                                      | [components.Provider](../../models/components/provider.md)                                                                                                                      | :heavy_check_mark:                                                                                                                                                              | N/A                                                                                                                                                                             |
+| `name`                                                                                                                                                                          | *string*                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                              | The unique name of your authenticator, used to identify it and distinguish it from others. This name must be unique. Attempting to reuse the same name will result in an error. |
+| `clientId`                                                                                                                                                                      | *string*                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                              | N/A                                                                                                                                                                             |
+| `clientSecret`                                                                                                                                                                  | *string*                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                              | N/A                                                                                                                                                                             |

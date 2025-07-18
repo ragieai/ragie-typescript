@@ -17,7 +17,10 @@ import {
 export type Partition = {
   name: string;
   isDefault: boolean;
-  limitExceededAt: Date | null;
+  /**
+   * Timestamp when the partition exceeded its limits, if applicable.
+   */
+  limitExceededAt?: Date | null | undefined;
   limits: PartitionLimits;
 };
 
@@ -31,7 +34,7 @@ export const Partition$inboundSchema: z.ZodType<
   is_default: z.boolean(),
   limit_exceeded_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ),
+  ).optional(),
   limits: PartitionLimits$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -44,7 +47,7 @@ export const Partition$inboundSchema: z.ZodType<
 export type Partition$Outbound = {
   name: string;
   is_default: boolean;
-  limit_exceeded_at: string | null;
+  limit_exceeded_at?: string | null | undefined;
   limits: PartitionLimits$Outbound;
 };
 
@@ -56,7 +59,8 @@ export const Partition$outboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
   isDefault: z.boolean(),
-  limitExceededAt: z.nullable(z.date().transform(v => v.toISOString())),
+  limitExceededAt: z.nullable(z.date().transform(v => v.toISOString()))
+    .optional(),
   limits: PartitionLimits$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

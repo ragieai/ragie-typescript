@@ -422,6 +422,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.documents.delete({
     documentId: "00000000-0000-0000-0000-000000000000",
+    async: false,
     partition: "acme_customer_id",
   });
 
@@ -448,6 +449,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await documentsDelete(ragie, {
     documentId: "00000000-0000-0000-0000-000000000000",
+    async: false,
     partition: "acme_customer_id",
   });
   if (res.ok) {
@@ -820,7 +822,7 @@ run();
 
 ### Response
 
-**Promise\<[components.DocumentMetadataUpdate](../../models/components/documentmetadataupdate.md)\>**
+**Promise\<[operations.PatchDocumentMetadataResponsePatchdocumentmetadata](../../models/operations/patchdocumentmetadataresponsepatchdocumentmetadata.md)\>**
 
 ### Errors
 

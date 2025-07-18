@@ -1,31 +1,32 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 6024c3a306879455cf21adecd405a351
+  docChecksum: 6da8f8819dd3380752205904712b0599
   docVersion: 1.0.0
-  speakeasyVersion: 1.558.1
-  generationVersion: 2.623.4
-  releaseVersion: 1.11.1
-  configChecksum: a2040351b3fb6e2f983d3f3f6a7aa44c
+  speakeasyVersion: 1.582.0
+  generationVersion: 2.657.1
+  releaseVersion: 1.14.0
+  configChecksum: 548d30dda217fe90b3ec31c587f2d7ba
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
-    core: 3.21.10
+    constsAndDefaults: 0.1.12
+    core: 3.21.14
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    examples: 2.81.5
+    examples: 2.82.1
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
-    mcpServer: 0.9.2
+    groups: 2.81.2
+    mcpServer: 0.9.3
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
@@ -33,7 +34,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.9
+    unions: 2.85.11
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -45,7 +46,25 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
+  - docs/models/components/accesstokencredentials.md
+  - docs/models/components/asyncdocumentmetadataupdate.md
   - docs/models/components/audiomodalitydata.md
+  - docs/models/components/authenticatorconfluenceconnection.md
+  - docs/models/components/authenticatordropboxconnection.md
+  - docs/models/components/authenticatorgmailconnection.md
+  - docs/models/components/authenticatorgoogledriveconnection.md
+  - docs/models/components/authenticatorhubspotconnection.md
+  - docs/models/components/authenticatorjiraconnection.md
+  - docs/models/components/authenticatorlist.md
+  - docs/models/components/authenticatornotionconnection.md
+  - docs/models/components/authenticatoronedriveconnection.md
+  - docs/models/components/authenticatorsalesforceconnection.md
+  - docs/models/components/authenticatorsharepointconnection.md
+  - docs/models/components/authenticatorslackconnection.md
+  - docs/models/components/backblazecredentials.md
+  - docs/models/components/basegetauthenticator.md
+  - docs/models/components/bucketdata.md
+  - docs/models/components/confluencedata.md
   - docs/models/components/connection.md
   - docs/models/components/connectionbase.md
   - docs/models/components/connectionbasemetadata.md
@@ -55,6 +74,9 @@ generatedFiles:
   - docs/models/components/connectionstats.md
   - docs/models/components/connectorsource.md
   - docs/models/components/connectorsourcetypeinfo.md
+  - docs/models/components/createauthenticatorconnection.md
+  - docs/models/components/createauthenticatorconnectionconnection.md
+  - docs/models/components/createauthenticatorconnectionmetadata.md
   - docs/models/components/createdocumentfromurlparams.md
   - docs/models/components/createdocumentfromurlparamsmetadata.md
   - docs/models/components/createdocumentfromurlparamsmode.md
@@ -87,7 +109,15 @@ generatedFiles:
   - docs/models/components/entity.md
   - docs/models/components/entitylist.md
   - docs/models/components/filet.md
+  - docs/models/components/folderdata.md
+  - docs/models/components/freshdeskcredentials.md
+  - docs/models/components/freshdeskdata.md
+  - docs/models/components/gmaildata.md
+  - docs/models/components/googlefolderdata.md
+  - docs/models/components/hubspotdata.md
   - docs/models/components/instruction.md
+  - docs/models/components/intercomcredentials.md
+  - docs/models/components/intercomdata.md
   - docs/models/components/link.md
   - docs/models/components/listconnectorsourcetypeinfo.md
   - docs/models/components/loc.md
@@ -99,6 +129,8 @@ generatedFiles:
   - docs/models/components/mode2.md
   - docs/models/components/modestatic.md
   - docs/models/components/modevideo.md
+  - docs/models/components/oauthcredentials.md
+  - docs/models/components/oauthrefreshtokencredentials.md
   - docs/models/components/oauthurlcreate.md
   - docs/models/components/oauthurlcreatemetadata.md
   - docs/models/components/oauthurlcreatemode.md
@@ -107,6 +139,7 @@ generatedFiles:
   - docs/models/components/one.md
   - docs/models/components/one1.md
   - docs/models/components/one2.md
+  - docs/models/components/onedrivedata.md
   - docs/models/components/pagination.md
   - docs/models/components/partition.md
   - docs/models/components/partitiondetail.md
@@ -117,18 +150,34 @@ generatedFiles:
   - docs/models/components/partitionstrategy.md
   - docs/models/components/partitionstrategy1.md
   - docs/models/components/patchdocumentmetadataparams.md
+  - docs/models/components/provider.md
+  - docs/models/components/publicbackblazeconnection.md
+  - docs/models/components/publiccreateconnection.md
+  - docs/models/components/publiccreateconnectionconnection.md
+  - docs/models/components/publiccreateconnectionmetadata.md
+  - docs/models/components/publicfreshdeskconnection.md
+  - docs/models/components/publicgcsconnection.md
+  - docs/models/components/publicintercomconnection.md
+  - docs/models/components/publics3compatibleconnection.md
+  - docs/models/components/publiczendeskconnection.md
   - docs/models/components/reason.md
   - docs/models/components/responseok.md
   - docs/models/components/retrieval.md
   - docs/models/components/retrieveparams.md
+  - docs/models/components/s3compatiblecredentials.md
   - docs/models/components/scope.md
   - docs/models/components/scoredchunk.md
   - docs/models/components/security.md
   - docs/models/components/setconnectionenabledpayload.md
+  - docs/models/components/sharepointdata.md
+  - docs/models/components/sharepointfiledata.md
+  - docs/models/components/sharepointsitedata.md
+  - docs/models/components/slackdata.md
   - docs/models/components/source.md
   - docs/models/components/static.md
   - docs/models/components/theme.md
   - docs/models/components/two.md
+  - docs/models/components/type.md
   - docs/models/components/updatedocumentfileparams.md
   - docs/models/components/updatedocumentfileparams11.md
   - docs/models/components/updatedocumentfileparams12.md
@@ -147,8 +196,13 @@ generatedFiles:
   - docs/models/components/video.md
   - docs/models/components/videomodalitydata.md
   - docs/models/components/wordtimestamp.md
+  - docs/models/components/zendeskcredentials.md
+  - docs/models/components/zendeskdata.md
   - docs/models/errors/errormessage.md
   - docs/models/errors/httpvalidationerror.md
+  - docs/models/operations/createauthenticatorconnectionrequest.md
+  - docs/models/operations/createauthenticatorpayload.md
+  - docs/models/operations/deleteauthenticatorconnectionrequest.md
   - docs/models/operations/deleteconnectionconnectionsconnectioniddeletepostrequest.md
   - docs/models/operations/deletedocumentrequest.md
   - docs/models/operations/deleteinstructionrequest.md
@@ -163,6 +217,8 @@ generatedFiles:
   - docs/models/operations/getdocumentsourcerequest.md
   - docs/models/operations/getdocumentsummaryrequest.md
   - docs/models/operations/getpartitionpartitionspartitionidgetrequest.md
+  - docs/models/operations/listauthenticatorsrequest.md
+  - docs/models/operations/listauthenticatorsresponse.md
   - docs/models/operations/listconnectionsconnectionsgetrequest.md
   - docs/models/operations/listconnectionsconnectionsgetresponse.md
   - docs/models/operations/listdocumentsrequest.md
@@ -176,6 +232,7 @@ generatedFiles:
   - docs/models/operations/mediatype.md
   - docs/models/operations/one.md
   - docs/models/operations/patchdocumentmetadatarequest.md
+  - docs/models/operations/patchdocumentmetadataresponsepatchdocumentmetadata.md
   - docs/models/operations/queryparammediatype.md
   - docs/models/operations/setconnectionenabledconnectionsconnectionidenabledputrequest.md
   - docs/models/operations/setconnectionlimitsconnectionsconnectionidlimitputrequest.md
@@ -186,6 +243,7 @@ generatedFiles:
   - docs/models/operations/updatedocumentfromurlrequest.md
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
+  - docs/sdks/authenticators/README.md
   - docs/sdks/connections/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/entities/README.md
@@ -193,9 +251,18 @@ generatedFiles:
   - docs/sdks/ragie/README.md
   - docs/sdks/retrievals/README.md
   - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/documentsCreate.example.ts
+  - examples/package.json
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/authenticatorsCreate.ts
+  - src/funcs/authenticatorsCreateAuthenticatorConnection.ts
+  - src/funcs/authenticatorsDeleteAuthenticatorConnection.ts
+  - src/funcs/authenticatorsList.ts
+  - src/funcs/connectionsCreateConnection.ts
   - src/funcs/connectionsCreateOAuthRedirectUrl.ts
   - src/funcs/connectionsDelete.ts
   - src/funcs/connectionsGet.ts
@@ -266,6 +333,11 @@ generatedFiles:
   - src/mcp-server/server.ts
   - src/mcp-server/shared.ts
   - src/mcp-server/tools.ts
+  - src/mcp-server/tools/authenticatorsCreate.ts
+  - src/mcp-server/tools/authenticatorsCreateAuthenticatorConnection.ts
+  - src/mcp-server/tools/authenticatorsDeleteAuthenticatorConnection.ts
+  - src/mcp-server/tools/authenticatorsList.ts
+  - src/mcp-server/tools/connectionsCreateConnection.ts
   - src/mcp-server/tools/connectionsCreateOAuthRedirectUrl.ts
   - src/mcp-server/tools/connectionsDelete.ts
   - src/mcp-server/tools/connectionsGet.ts
@@ -304,7 +376,25 @@ generatedFiles:
   - src/mcp-server/tools/partitionsList.ts
   - src/mcp-server/tools/partitionsSetLimits.ts
   - src/mcp-server/tools/retrievalsRetrieve.ts
+  - src/models/components/accesstokencredentials.ts
+  - src/models/components/asyncdocumentmetadataupdate.ts
   - src/models/components/audiomodalitydata.ts
+  - src/models/components/authenticatorconfluenceconnection.ts
+  - src/models/components/authenticatordropboxconnection.ts
+  - src/models/components/authenticatorgmailconnection.ts
+  - src/models/components/authenticatorgoogledriveconnection.ts
+  - src/models/components/authenticatorhubspotconnection.ts
+  - src/models/components/authenticatorjiraconnection.ts
+  - src/models/components/authenticatorlist.ts
+  - src/models/components/authenticatornotionconnection.ts
+  - src/models/components/authenticatoronedriveconnection.ts
+  - src/models/components/authenticatorsalesforceconnection.ts
+  - src/models/components/authenticatorsharepointconnection.ts
+  - src/models/components/authenticatorslackconnection.ts
+  - src/models/components/backblazecredentials.ts
+  - src/models/components/basegetauthenticator.ts
+  - src/models/components/bucketdata.ts
+  - src/models/components/confluencedata.ts
   - src/models/components/connection.ts
   - src/models/components/connectionbase.ts
   - src/models/components/connectionlimitparams.ts
@@ -312,6 +402,7 @@ generatedFiles:
   - src/models/components/connectionstats.ts
   - src/models/components/connectorsource.ts
   - src/models/components/connectorsourcetypeinfo.ts
+  - src/models/components/createauthenticatorconnection.ts
   - src/models/components/createdocumentfromurlparams.ts
   - src/models/components/createdocumentparams.ts
   - src/models/components/createdocumentrawparams.ts
@@ -333,13 +424,24 @@ generatedFiles:
   - src/models/components/documentwithcontent.ts
   - src/models/components/entity.ts
   - src/models/components/entitylist.ts
+  - src/models/components/folderdata.ts
+  - src/models/components/freshdeskcredentials.ts
+  - src/models/components/freshdeskdata.ts
+  - src/models/components/gmaildata.ts
+  - src/models/components/googlefolderdata.ts
+  - src/models/components/hubspotdata.ts
   - src/models/components/index.ts
   - src/models/components/instruction.ts
+  - src/models/components/intercomcredentials.ts
+  - src/models/components/intercomdata.ts
   - src/models/components/link.ts
   - src/models/components/listconnectorsourcetypeinfo.ts
   - src/models/components/mediamodeparam.ts
+  - src/models/components/oauthcredentials.ts
+  - src/models/components/oauthrefreshtokencredentials.ts
   - src/models/components/oauthurlcreate.ts
   - src/models/components/oauthurlresponse.ts
+  - src/models/components/onedrivedata.ts
   - src/models/components/pagination.ts
   - src/models/components/partition.ts
   - src/models/components/partitiondetail.ts
@@ -348,12 +450,24 @@ generatedFiles:
   - src/models/components/partitionlist.ts
   - src/models/components/partitionstats.ts
   - src/models/components/patchdocumentmetadataparams.ts
+  - src/models/components/publicbackblazeconnection.ts
+  - src/models/components/publiccreateconnection.ts
+  - src/models/components/publicfreshdeskconnection.ts
+  - src/models/components/publicgcsconnection.ts
+  - src/models/components/publicintercomconnection.ts
+  - src/models/components/publics3compatibleconnection.ts
+  - src/models/components/publiczendeskconnection.ts
   - src/models/components/responseok.ts
   - src/models/components/retrieval.ts
   - src/models/components/retrieveparams.ts
+  - src/models/components/s3compatiblecredentials.ts
   - src/models/components/scoredchunk.ts
   - src/models/components/security.ts
   - src/models/components/setconnectionenabledpayload.ts
+  - src/models/components/sharepointdata.ts
+  - src/models/components/sharepointfiledata.ts
+  - src/models/components/sharepointsitedata.ts
+  - src/models/components/slackdata.ts
   - src/models/components/updatedocumentfileparams.ts
   - src/models/components/updatedocumentfromurlparams.ts
   - src/models/components/updatedocumentrawparams.ts
@@ -361,6 +475,8 @@ generatedFiles:
   - src/models/components/validationerror.ts
   - src/models/components/videomodalitydata.ts
   - src/models/components/wordtimestamp.ts
+  - src/models/components/zendeskcredentials.ts
+  - src/models/components/zendeskdata.ts
   - src/models/errors/errormessage.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/httpvalidationerror.ts
@@ -369,6 +485,9 @@ generatedFiles:
   - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/createauthenticator.ts
+  - src/models/operations/createauthenticatorconnection.ts
+  - src/models/operations/deleteauthenticatorconnection.ts
   - src/models/operations/deleteconnectionconnectionsconnectioniddeletepost.ts
   - src/models/operations/deletedocument.ts
   - src/models/operations/deleteinstruction.ts
@@ -384,6 +503,7 @@ generatedFiles:
   - src/models/operations/getdocumentsummary.ts
   - src/models/operations/getpartitionpartitionspartitionidget.ts
   - src/models/operations/index.ts
+  - src/models/operations/listauthenticators.ts
   - src/models/operations/listconnectionsconnectionsget.ts
   - src/models/operations/listdocuments.ts
   - src/models/operations/listentitiesbydocument.ts
@@ -399,6 +519,7 @@ generatedFiles:
   - src/models/operations/updatedocumentfromurl.ts
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
+  - src/sdk/authenticators.ts
   - src/sdk/connections.ts
   - src/sdk/documents.ts
   - src/sdk/entities.ts
@@ -485,6 +606,8 @@ examples:
       parameters:
         path:
           document_id: "00000000-0000-0000-0000-000000000000"
+        query:
+          async: false
         header:
           partition: "acme_customer_id"
       responses:
@@ -550,7 +673,7 @@ examples:
         header:
           partition: "acme_customer_id"
       requestBody:
-        application/json: {"metadata": {"classified": "null (setting null deletes key from metadata)", "editors": ["Alice", "Bob"], "published": true, "articleCount": 42, "title": "declassified report"}}
+        application/json: {"metadata": {"classified": "null (setting null deletes key from metadata)", "editors": ["Alice", "Bob"], "published": true, "articleCount": 42, "title": "declassified report"}, "async": false}
       responses:
         "200":
           application/json: {"metadata": {"editors": ["Alice", "Bob"], "title": "declassified report", "unchanged_key": "unchanged_value", "updated_at": 1714491736216}}
@@ -751,6 +874,8 @@ examples:
           page_size: 10
           filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}"
           random: 375666
+        header:
+          partition: "acme_customer_id"
       responses:
         "200":
           application/json: {"pagination": {"total_count": 375666}, "connections": [{"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}, {"id": "86eb76f6-18c1-4463-a0c4-716c0f51cbac", "created_at": "2024-10-03T02:23:05.181Z", "updated_at": "2024-01-16T09:52:56.471Z", "metadata": {"key": ["<value 1>", "<value 2>", "<value 3>"], "key1": ["<value 1>", "<value 2>", "<value 3>"], "key2": true}, "type": "<value>", "name": "<value>", "source": "<value>", "enabled": true, "disabled_by_system_reason": "authentication_failed", "page_limit": 209439, "disabled_by_system": false}]}
@@ -884,10 +1009,10 @@ examples:
   create_partition_partitions_post:
     speakeasy-default-create-partition-partitions-post:
       requestBody:
-        application/json: {"name": "<value>", "pages_hosted_limit_monthly": 1000, "pages_processed_limit_monthly": 1000, "pages_hosted_limit_max": 1000, "pages_processed_limit_max": 1000}
+        application/json: {"name": "<value>", "pages_hosted_limit_monthly": 1000, "pages_processed_limit_monthly": 1000, "pages_hosted_limit_max": 1000, "pages_processed_limit_max": 1000, "audio_processed_limit_monthly": 60, "audio_processed_limit_max": 60, "video_processed_limit_monthly": 60, "video_processed_limit_max": 60, "media_streamed_limit_monthly": 1024, "media_streamed_limit_max": 1024, "media_hosted_limit_monthly": 1024, "media_hosted_limit_max": 1024}
       responses:
         "200":
-          application/json: {"name": "<value>", "is_default": false, "limit_exceeded_at": "2024-01-16T14:27:53.935Z", "limits": {"pages_processed_limit_monthly": 5303.15, "pages_hosted_limit_monthly": 7057.63, "pages_processed_limit_max": 1488.26, "pages_hosted_limit_max": 3860.18}}
+          application/json: {"name": "<value>", "is_default": false, "limit_exceeded_at": "2025-06-11T12:00:00Z", "limits": {"pages_processed_limit_monthly": 1000, "pages_hosted_limit_monthly": 1000, "pages_processed_limit_max": 1000, "pages_hosted_limit_max": 1000, "video_processed_limit_monthly": 60, "video_processed_limit_max": 60, "audio_processed_limit_monthly": 60, "audio_processed_limit_max": 60, "media_streamed_limit_monthly": 1024, "media_streamed_limit_max": 1024, "media_hosted_limit_monthly": 1024, "media_hosted_limit_max": 1024}}
         "422":
           application/json: {}
         "401":
@@ -899,7 +1024,7 @@ examples:
           partition_id: "<id>"
       responses:
         "200":
-          application/json: {"name": "<value>", "is_default": true, "limit_exceeded_at": "2025-03-13T22:34:27.195Z", "limits": {"pages_processed_limit_monthly": 8934.44, "pages_hosted_limit_monthly": 1377.51, "pages_processed_limit_max": 5054.99, "pages_hosted_limit_max": 5073.22}, "stats": {"pages_processed_monthly": 8083.81, "pages_hosted_monthly": 3060.13, "pages_processed_total": 65.72, "pages_hosted_total": 7144.35, "document_count": 801056}}
+          application/json: {"name": "<value>", "is_default": true, "limit_exceeded_at": "2025-06-11T12:00:00Z", "limits": {"pages_processed_limit_monthly": 1000, "pages_hosted_limit_monthly": 1000, "pages_processed_limit_max": 1000, "pages_hosted_limit_max": 1000, "video_processed_limit_monthly": 60, "video_processed_limit_max": 60, "audio_processed_limit_monthly": 60, "audio_processed_limit_max": 60, "media_streamed_limit_monthly": 1024, "media_streamed_limit_max": 1024, "media_hosted_limit_monthly": 1024, "media_hosted_limit_max": 1024}, "stats": {"pages_processed_monthly": 1000, "pages_hosted_monthly": 1000, "pages_processed_total": 1000, "pages_hosted_total": 1000, "document_count": 1000, "video_processed_monthly": 60, "video_processed_total": 60, "audio_processed_monthly": 60, "audio_processed_total": 60, "media_streamed_monthly": 1024, "media_streamed_total": 1024, "media_hosted_monthly": 1024, "media_hosted_total": 1024}}
         "422":
           application/json: {}
         "401":
@@ -922,10 +1047,10 @@ examples:
         path:
           partition_id: "<id>"
       requestBody:
-        application/json: {"pages_hosted_limit_monthly": 1000, "pages_processed_limit_monthly": 1000, "pages_hosted_limit_max": 1000, "pages_processed_limit_max": 1000}
+        application/json: {"pages_hosted_limit_monthly": 1000, "pages_processed_limit_monthly": 1000, "pages_hosted_limit_max": 1000, "pages_processed_limit_max": 1000, "video_processed_limit_monthly": 3600, "video_processed_limit_max": 3600, "audio_processed_limit_monthly": 3600, "audio_processed_limit_max": 3600, "media_streamed_limit_monthly": 1024, "media_streamed_limit_max": 1024, "media_hosted_limit_monthly": 1024, "media_hosted_limit_max": 1024}
       responses:
         "200":
-          application/json: {"name": "<value>", "is_default": true, "limit_exceeded_at": "2024-11-01T21:01:15.346Z", "limits": {"pages_processed_limit_monthly": 8386.93, "pages_hosted_limit_monthly": 5996.32, "pages_processed_limit_max": 2850.42, "pages_hosted_limit_max": 4665.02}, "stats": {"pages_processed_monthly": 7494.45, "pages_hosted_monthly": 5737.57, "pages_processed_total": 27.55, "pages_hosted_total": 2366.15, "document_count": 706713}}
+          application/json: {"name": "<value>", "is_default": true, "limit_exceeded_at": "2025-06-11T12:00:00Z", "limits": {"pages_processed_limit_monthly": 1000, "pages_hosted_limit_monthly": 1000, "pages_processed_limit_max": 1000, "pages_hosted_limit_max": 1000, "video_processed_limit_monthly": 60, "video_processed_limit_max": 60, "audio_processed_limit_monthly": 60, "audio_processed_limit_max": 60, "media_streamed_limit_monthly": 1024, "media_streamed_limit_max": 1024, "media_hosted_limit_monthly": 1024, "media_hosted_limit_max": 1024}, "stats": {"pages_processed_monthly": 1000, "pages_hosted_monthly": 1000, "pages_processed_total": 1000, "pages_hosted_total": 1000, "document_count": 1000, "video_processed_monthly": 60, "video_processed_total": 60, "audio_processed_monthly": 60, "audio_processed_total": 60, "media_streamed_monthly": 1024, "media_streamed_total": 1024, "media_hosted_monthly": 1024, "media_hosted_total": 1024}}
         "422":
           application/json: {}
         "401":
@@ -939,5 +1064,65 @@ examples:
           application/json: "<value>"
         "422":
           application/json: {}
+  CreateConnection:
+    speakeasy-default-create-connection:
+      requestBody:
+        application/json: {"partition_strategy": {}, "page_limit": null, "config": null, "connection": {"provider": "gcs", "data": {"bucket": "<value>"}, "credentials": {"key": "<value>", "key1": "<value>"}}}
+      responses:
+        "201":
+          application/json: {"id": "da70984e-94d6-41d3-8e1f-f5b07380320f", "created_at": "2025-09-01T08:43:13.460Z", "updated_at": "2025-01-25T11:55:52.101Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": {"key": "<value>", "key1": "<value>"}, "enabled": false, "disabled_by_system_reason": "authentication_failed", "page_limit": 278994, "disabled_by_system": false}
+        "422":
+          application/json: {}
+        "400":
+          application/json: {"detail": "<value>"}
+  CreateAuthenticator:
+    speakeasy-default-create-authenticator:
+      requestBody:
+        application/json: {"provider": "atlassian", "name": "<value>", "client_id": "<id>", "client_secret": "<value>"}
+      responses:
+        "201":
+          application/json: {"provider": "<value>", "name": "<value>", "id": "97e98621-97b6-4d39-80e4-2be4978c4d5f"}
+        "422":
+          application/json: {}
+        "400":
+          application/json: {"detail": "<value>"}
+  ListAuthenticators:
+    speakeasy-default-list-authenticators:
+      parameters:
+        query:
+          page_size: 10
+      responses:
+        "200":
+          application/json: {"pagination": {"total_count": 822626}, "authenticators": []}
+        "422":
+          application/json: {}
+        "400":
+          application/json: {"detail": "<value>"}
+  CreateAuthenticatorConnection:
+    speakeasy-default-create-authenticator-connection:
+      parameters:
+        path:
+          authenticator_id: "84b0792c-1330-4854-b4f2-5d9c7bf9a385"
+      requestBody:
+        application/json: {"partition_strategy": {}, "page_limit": null, "config": null, "connection": {"provider": "dropbox", "data": {"folder_id": "<id>", "folder_name": "<value>"}, "email": "Aliyah_Feest59@yahoo.com", "credentials": {"refresh_token": "<value>"}}}
+      responses:
+        "201":
+          application/json: {"id": "b8fdca74-a155-4691-a241-f52935516d24", "created_at": "2024-10-12T00:52:42.659Z", "updated_at": "2024-03-31T18:08:45.116Z", "metadata": {"key": true}, "type": "<value>", "name": "<value>", "source": ["<value 1>", "<value 2>"], "enabled": true, "disabled_by_system_reason": "connection_over_total_page_limit", "page_limit": 115226, "disabled_by_system": false}
+        "422":
+          application/json: {}
+        "400":
+          application/json: {"detail": "<value>"}
+  DeleteAuthenticatorConnection:
+    speakeasy-default-delete-authenticator-connection:
+      parameters:
+        path:
+          authenticator_id: "6737a874-c5c2-4d13-8234-8119b200a2b0"
+      responses:
+        "200":
+          application/json: {"message": "ok"}
+        "422":
+          application/json: {}
+        "400":
+          application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}

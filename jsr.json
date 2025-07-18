@@ -2,7 +2,7 @@
 
 {
   "name": "ragie",
-  "version": "1.11.1",
+  "version": "1.14.0",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

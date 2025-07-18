@@ -9,11 +9,58 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PartitionStats = {
+  /**
+   * Number of pages processed in the current month in this partition.
+   */
   pagesProcessedMonthly: number;
+  /**
+   * Number of hosted pages added in the current month in this partition.
+   */
   pagesHostedMonthly: number;
+  /**
+   * Total number of pages processed in this partition.
+   */
   pagesProcessedTotal: number;
+  /**
+   * Total number of hosted pages in this partition.
+   */
   pagesHostedTotal: number;
+  /**
+   * Total number of documents, inclusive of all files types, in this partition.
+   */
   documentCount: number;
+  /**
+   * Total number of seconds of video processed in the current month in this partition.
+   */
+  videoProcessedMonthly: number;
+  /**
+   * Total number of seconds of video processed in this partition.
+   */
+  videoProcessedTotal: number;
+  /**
+   * Total number of seconds of audio processed in the current month in this partition.
+   */
+  audioProcessedMonthly: number;
+  /**
+   * Total number of seconds of audio processed in this partition.
+   */
+  audioProcessedTotal: number;
+  /**
+   * Total number of MBs streamed in the current month in this partition.
+   */
+  mediaStreamedMonthly: number;
+  /**
+   * Total number of MBs streamed in this partition.
+   */
+  mediaStreamedTotal: number;
+  /**
+   * Total number of MBs hosted in the current month in this partition.
+   */
+  mediaHostedMonthly: number;
+  /**
+   * Total number of MBs hosted in this partition.
+   */
+  mediaHostedTotal: number;
 };
 
 /** @internal */
@@ -27,6 +74,14 @@ export const PartitionStats$inboundSchema: z.ZodType<
   pages_processed_total: z.number(),
   pages_hosted_total: z.number(),
   document_count: z.number().int(),
+  video_processed_monthly: z.number(),
+  video_processed_total: z.number(),
+  audio_processed_monthly: z.number(),
+  audio_processed_total: z.number(),
+  media_streamed_monthly: z.number(),
+  media_streamed_total: z.number(),
+  media_hosted_monthly: z.number(),
+  media_hosted_total: z.number(),
 }).transform((v) => {
   return remap$(v, {
     "pages_processed_monthly": "pagesProcessedMonthly",
@@ -34,6 +89,14 @@ export const PartitionStats$inboundSchema: z.ZodType<
     "pages_processed_total": "pagesProcessedTotal",
     "pages_hosted_total": "pagesHostedTotal",
     "document_count": "documentCount",
+    "video_processed_monthly": "videoProcessedMonthly",
+    "video_processed_total": "videoProcessedTotal",
+    "audio_processed_monthly": "audioProcessedMonthly",
+    "audio_processed_total": "audioProcessedTotal",
+    "media_streamed_monthly": "mediaStreamedMonthly",
+    "media_streamed_total": "mediaStreamedTotal",
+    "media_hosted_monthly": "mediaHostedMonthly",
+    "media_hosted_total": "mediaHostedTotal",
   });
 });
 
@@ -44,6 +107,14 @@ export type PartitionStats$Outbound = {
   pages_processed_total: number;
   pages_hosted_total: number;
   document_count: number;
+  video_processed_monthly: number;
+  video_processed_total: number;
+  audio_processed_monthly: number;
+  audio_processed_total: number;
+  media_streamed_monthly: number;
+  media_streamed_total: number;
+  media_hosted_monthly: number;
+  media_hosted_total: number;
 };
 
 /** @internal */
@@ -57,6 +128,14 @@ export const PartitionStats$outboundSchema: z.ZodType<
   pagesProcessedTotal: z.number(),
   pagesHostedTotal: z.number(),
   documentCount: z.number().int(),
+  videoProcessedMonthly: z.number(),
+  videoProcessedTotal: z.number(),
+  audioProcessedMonthly: z.number(),
+  audioProcessedTotal: z.number(),
+  mediaStreamedMonthly: z.number(),
+  mediaStreamedTotal: z.number(),
+  mediaHostedMonthly: z.number(),
+  mediaHostedTotal: z.number(),
 }).transform((v) => {
   return remap$(v, {
     pagesProcessedMonthly: "pages_processed_monthly",
@@ -64,6 +143,14 @@ export const PartitionStats$outboundSchema: z.ZodType<
     pagesProcessedTotal: "pages_processed_total",
     pagesHostedTotal: "pages_hosted_total",
     documentCount: "document_count",
+    videoProcessedMonthly: "video_processed_monthly",
+    videoProcessedTotal: "video_processed_total",
+    audioProcessedMonthly: "audio_processed_monthly",
+    audioProcessedTotal: "audio_processed_total",
+    mediaStreamedMonthly: "media_streamed_monthly",
+    mediaStreamedTotal: "media_streamed_total",
+    mediaHostedMonthly: "media_hosted_monthly",
+    mediaHostedTotal: "media_hosted_total",
   });
 });
 
