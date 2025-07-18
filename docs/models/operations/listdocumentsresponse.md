@@ -5,7 +5,14 @@
 ```typescript
 import { ListDocumentsResponse } from "ragie/models/operations";
 
-let value: ListDocumentsResponse = {};
+let value: ListDocumentsResponse = {
+  result: {
+    pagination: {
+      totalCount: 878808,
+    },
+    documents: [],
+  },
+};
 ```
 
 ## Fields

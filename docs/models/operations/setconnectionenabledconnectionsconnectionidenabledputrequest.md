@@ -7,6 +7,9 @@ import { SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest } from "ra
 
 let value: SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest = {
   connectionId: "608db777-52fa-4e85-883c-349b059581ac",
+  setConnectionEnabledPayload: {
+    enabled: false,
+  },
 };
 ```
 

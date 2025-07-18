@@ -5,7 +5,14 @@
 ```typescript
 import { ListEntitiesByInstructionResponse } from "ragie/models/operations";
 
-let value: ListEntitiesByInstructionResponse = {};
+let value: ListEntitiesByInstructionResponse = {
+  result: {
+    pagination: {
+      totalCount: 878808,
+    },
+    entities: [],
+  },
+};
 ```
 
 ## Fields

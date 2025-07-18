@@ -105,6 +105,14 @@ async function run() {
     pagesProcessedLimitMonthly: 1000,
     pagesHostedLimitMax: 1000,
     pagesProcessedLimitMax: 1000,
+    audioProcessedLimitMonthly: 60,
+    audioProcessedLimitMax: 60,
+    videoProcessedLimitMonthly: 60,
+    videoProcessedLimitMax: 60,
+    mediaStreamedLimitMonthly: 1024,
+    mediaStreamedLimitMax: 1024,
+    mediaHostedLimitMonthly: 1024,
+    mediaHostedLimitMax: 1024,
   });
 
   console.log(result);
@@ -134,6 +142,14 @@ async function run() {
     pagesProcessedLimitMonthly: 1000,
     pagesHostedLimitMax: 1000,
     pagesProcessedLimitMax: 1000,
+    audioProcessedLimitMonthly: 60,
+    audioProcessedLimitMax: 60,
+    videoProcessedLimitMonthly: 60,
+    videoProcessedLimitMax: 60,
+    mediaStreamedLimitMonthly: 1024,
+    mediaStreamedLimitMax: 1024,
+    mediaHostedLimitMonthly: 1024,
+    mediaHostedLimitMax: 1024,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -336,6 +352,14 @@ async function run() {
       pagesProcessedLimitMonthly: 1000,
       pagesHostedLimitMax: 1000,
       pagesProcessedLimitMax: 1000,
+      videoProcessedLimitMonthly: 3600,
+      videoProcessedLimitMax: 3600,
+      audioProcessedLimitMonthly: 3600,
+      audioProcessedLimitMax: 3600,
+      mediaStreamedLimitMonthly: 1024,
+      mediaStreamedLimitMax: 1024,
+      mediaHostedLimitMonthly: 1024,
+      mediaHostedLimitMax: 1024,
     },
   });
 
@@ -367,6 +391,14 @@ async function run() {
       pagesProcessedLimitMonthly: 1000,
       pagesHostedLimitMax: 1000,
       pagesProcessedLimitMax: 1000,
+      videoProcessedLimitMonthly: 3600,
+      videoProcessedLimitMax: 3600,
+      audioProcessedLimitMonthly: 3600,
+      audioProcessedLimitMax: 3600,
+      mediaStreamedLimitMonthly: 1024,
+      mediaStreamedLimitMax: 1024,
+      mediaHostedLimitMonthly: 1024,
+      mediaHostedLimitMax: 1024,
     },
   });
   if (res.ok) {

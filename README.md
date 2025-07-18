@@ -165,7 +165,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
-### Example
+### Example 1
 
 ```typescript
 import { openAsBlob } from "node:fs";
@@ -186,6 +186,100 @@ async function run() {
 run();
 
 ```
+
+### Example 2
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.connections.createConnection({
+    partitionStrategy: {},
+    pageLimit: null,
+    config: null,
+    connection: {
+      provider: "gcs",
+      data: {
+        bucket: "<value>",
+      },
+      credentials: {
+        "key": "<value>",
+        "key1": "<value>",
+      },
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+
+```
+
+### Example 3
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.authenticators.create({
+    provider: "atlassian",
+    name: "<value>",
+    clientId: "<id>",
+    clientSecret: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+
+```
+
+### Example 4
+
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.authenticators.createAuthenticatorConnection({
+    authenticatorId: "84b0792c-1330-4854-b4f2-5d9c7bf9a385",
+    createAuthenticatorConnection: {
+      partitionStrategy: {},
+      pageLimit: null,
+      config: null,
+      connection: {
+        provider: "dropbox",
+        data: {
+          folderId: "<id>",
+          folderName: "<value>",
+        },
+        email: "Aliyah_Feest59@yahoo.com",
+        credentials: {
+          refreshToken: "<value>",
+        },
+      },
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+
+```
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -194,8 +288,16 @@ run();
 <details open>
 <summary>Available methods</summary>
 
+### [authenticators](docs/sdks/authenticators/README.md)
+
+* [create](docs/sdks/authenticators/README.md#create) - Create Authenticator
+* [list](docs/sdks/authenticators/README.md#list) - List Authenticators
+* [createAuthenticatorConnection](docs/sdks/authenticators/README.md#createauthenticatorconnection) - Create Authenticator Connection
+* [deleteAuthenticatorConnection](docs/sdks/authenticators/README.md#deleteauthenticatorconnection) - Delete Authenticator
+
 ### [connections](docs/sdks/connections/README.md)
 
+* [createConnection](docs/sdks/connections/README.md#createconnection) - Create Connection
 * [list](docs/sdks/connections/README.md#list) - List Connections
 * [createOAuthRedirectUrl](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 * [listConnectionSourceTypes](docs/sdks/connections/README.md#listconnectionsourcetypes) - List Connection Source Types
@@ -340,8 +442,8 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`RagieError`](./src/models/errors/ragieerror.ts): The base class for HTTP error responses.
-  * [`ErrorMessage`](docs/models/errors/errormessage.md): Unauthorized.
-  * [`HTTPValidationError`](docs/models/errors/httpvalidationerror.md): Validation Error. Status code `422`. *
+  * [`ErrorMessage`](./src/models/errors/errormessage.ts): Unauthorized.
+  * [`HTTPValidationError`](./src/models/errors/httpvalidationerror.ts): Validation Error. Status code `422`. *
 
 <details><summary>Less common errors (6)</summary>
 
@@ -626,6 +728,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`authenticatorsCreate`](docs/sdks/authenticators/README.md#create) - Create Authenticator
+- [`authenticatorsCreateAuthenticatorConnection`](docs/sdks/authenticators/README.md#createauthenticatorconnection) - Create Authenticator Connection
+- [`authenticatorsDeleteAuthenticatorConnection`](docs/sdks/authenticators/README.md#deleteauthenticatorconnection) - Delete Authenticator
+- [`authenticatorsList`](docs/sdks/authenticators/README.md#list) - List Authenticators
+- [`connectionsCreateConnection`](docs/sdks/connections/README.md#createconnection) - Create Connection
 - [`connectionsCreateOAuthRedirectUrl`](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 - [`connectionsDelete`](docs/sdks/connections/README.md#delete) - Delete Connection
 - [`connectionsGet`](docs/sdks/connections/README.md#get) - Get Connection

@@ -13,6 +13,11 @@ import {
 } from "./resources.js";
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
+import { tool$authenticatorsCreate } from "./tools/authenticatorsCreate.js";
+import { tool$authenticatorsCreateAuthenticatorConnection } from "./tools/authenticatorsCreateAuthenticatorConnection.js";
+import { tool$authenticatorsDeleteAuthenticatorConnection } from "./tools/authenticatorsDeleteAuthenticatorConnection.js";
+import { tool$authenticatorsList } from "./tools/authenticatorsList.js";
+import { tool$connectionsCreateConnection } from "./tools/connectionsCreateConnection.js";
 import { tool$connectionsCreateOAuthRedirectUrl } from "./tools/connectionsCreateOAuthRedirectUrl.js";
 import { tool$connectionsDelete } from "./tools/connectionsDelete.js";
 import { tool$connectionsGet } from "./tools/connectionsGet.js";
@@ -62,7 +67,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.11.4",
+    version: "1.12.0",
   });
 
   const client = new RagieCore({
@@ -115,6 +120,7 @@ export function createMCPServer(deps: {
   tool(tool$entitiesDelete);
   tool(tool$entitiesListByInstruction);
   tool(tool$entitiesListByDocument);
+  tool(tool$connectionsCreateConnection);
   tool(tool$connectionsList);
   tool(tool$connectionsCreateOAuthRedirectUrl);
   tool(tool$connectionsListConnectionSourceTypes);
@@ -130,6 +136,10 @@ export function createMCPServer(deps: {
   tool(tool$partitionsGet);
   tool(tool$partitionsDelete);
   tool(tool$partitionsSetLimits);
+  tool(tool$authenticatorsCreate);
+  tool(tool$authenticatorsList);
+  tool(tool$authenticatorsCreateAuthenticatorConnection);
+  tool(tool$authenticatorsDeleteAuthenticatorConnection);
 
   return server;
 }

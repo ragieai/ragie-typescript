@@ -3,6 +3,7 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
+import { Authenticators } from "./authenticators.js";
 import { Connections } from "./connections.js";
 import { Documents } from "./documents.js";
 import { Entities } from "./entities.js";
@@ -33,5 +34,10 @@ export class Ragie extends ClientSDK {
   private _partitions?: Partitions;
   get partitions(): Partitions {
     return (this._partitions ??= new Partitions(this._options));
+  }
+
+  private _authenticators?: Authenticators;
+  get authenticators(): Authenticators {
+    return (this._authenticators ??= new Authenticators(this._options));
   }
 }
