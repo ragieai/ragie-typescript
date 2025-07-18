@@ -7,6 +7,9 @@ import { UpdateInstructionRequest } from "ragie/models/operations";
 
 let value: UpdateInstructionRequest = {
   instructionId: "00000000-0000-0000-0000-000000000000",
+  updateInstructionParams: {
+    active: true,
+  },
 };
 ```
 

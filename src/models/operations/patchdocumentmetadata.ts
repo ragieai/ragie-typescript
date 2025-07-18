@@ -21,6 +21,13 @@ export type PatchDocumentMetadataRequest = {
   patchDocumentMetadataParams: components.PatchDocumentMetadataParams;
 };
 
+/**
+ * Successful Response
+ */
+export type PatchDocumentMetadataResponsePatchdocumentmetadata =
+  | components.DocumentMetadataUpdate
+  | components.AsyncDocumentMetadataUpdate;
+
 /** @internal */
 export const PatchDocumentMetadataRequest$inboundSchema: z.ZodType<
   PatchDocumentMetadataRequest,
@@ -92,5 +99,75 @@ export function patchDocumentMetadataRequestFromJSON(
     jsonString,
     (x) => PatchDocumentMetadataRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'PatchDocumentMetadataRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema:
+  z.ZodType<
+    PatchDocumentMetadataResponsePatchdocumentmetadata,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    components.DocumentMetadataUpdate$inboundSchema,
+    components.AsyncDocumentMetadataUpdate$inboundSchema,
+  ]);
+
+/** @internal */
+export type PatchDocumentMetadataResponsePatchdocumentmetadata$Outbound =
+  | components.DocumentMetadataUpdate$Outbound
+  | components.AsyncDocumentMetadataUpdate$Outbound;
+
+/** @internal */
+export const PatchDocumentMetadataResponsePatchdocumentmetadata$outboundSchema:
+  z.ZodType<
+    PatchDocumentMetadataResponsePatchdocumentmetadata$Outbound,
+    z.ZodTypeDef,
+    PatchDocumentMetadataResponsePatchdocumentmetadata
+  > = z.union([
+    components.DocumentMetadataUpdate$outboundSchema,
+    components.AsyncDocumentMetadataUpdate$outboundSchema,
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PatchDocumentMetadataResponsePatchdocumentmetadata$ {
+  /** @deprecated use `PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema` instead. */
+  export const inboundSchema =
+    PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema;
+  /** @deprecated use `PatchDocumentMetadataResponsePatchdocumentmetadata$outboundSchema` instead. */
+  export const outboundSchema =
+    PatchDocumentMetadataResponsePatchdocumentmetadata$outboundSchema;
+  /** @deprecated use `PatchDocumentMetadataResponsePatchdocumentmetadata$Outbound` instead. */
+  export type Outbound =
+    PatchDocumentMetadataResponsePatchdocumentmetadata$Outbound;
+}
+
+export function patchDocumentMetadataResponsePatchdocumentmetadataToJSON(
+  patchDocumentMetadataResponsePatchdocumentmetadata:
+    PatchDocumentMetadataResponsePatchdocumentmetadata,
+): string {
+  return JSON.stringify(
+    PatchDocumentMetadataResponsePatchdocumentmetadata$outboundSchema.parse(
+      patchDocumentMetadataResponsePatchdocumentmetadata,
+    ),
+  );
+}
+
+export function patchDocumentMetadataResponsePatchdocumentmetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  PatchDocumentMetadataResponsePatchdocumentmetadata,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'PatchDocumentMetadataResponsePatchdocumentmetadata' from JSON`,
   );
 }

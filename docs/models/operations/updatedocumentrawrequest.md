@@ -8,6 +8,9 @@ import { UpdateDocumentRawRequest } from "ragie/models/operations";
 let value: UpdateDocumentRawRequest = {
   documentId: "00000000-0000-0000-0000-000000000000",
   partition: "acme_customer_id",
+  updateDocumentRawParams: {
+    data: "<value>",
+  },
 };
 ```
 

@@ -10,7 +10,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -35,7 +34,7 @@ export function documentsPatchMetadata(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.DocumentMetadataUpdate,
+    operations.PatchDocumentMetadataResponsePatchdocumentmetadata,
     | errors.HTTPValidationError
     | errors.ErrorMessage
     | RagieError
@@ -62,7 +61,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      components.DocumentMetadataUpdate,
+      operations.PatchDocumentMetadataResponsePatchdocumentmetadata,
       | errors.HTTPValidationError
       | errors.ErrorMessage
       | RagieError
@@ -159,7 +158,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.DocumentMetadataUpdate,
+    operations.PatchDocumentMetadataResponsePatchdocumentmetadata,
     | errors.HTTPValidationError
     | errors.ErrorMessage
     | RagieError
@@ -171,7 +170,11 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, components.DocumentMetadataUpdate$inboundSchema),
+    M.json(
+      200,
+      operations
+        .PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema,
+    ),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),

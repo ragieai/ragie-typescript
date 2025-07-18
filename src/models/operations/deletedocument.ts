@@ -14,6 +14,10 @@ export type DeleteDocumentRequest = {
    */
   documentId: string;
   /**
+   * If true, performs document deletion asynchronously
+   */
+  async?: boolean | null | undefined;
+  /**
    * An optional partition to scope the request to. If omitted, accounts created after 1/9/2025 will have the request scoped to the default partition, while older accounts will have the request scoped to all partitions. Older accounts may opt in to strict partition scoping by contacting support@ragie.ai. Older accounts using the partitions feature are strongly recommended to scope the request to a partition.
    */
   partition?: string | null | undefined;
@@ -26,6 +30,7 @@ export const DeleteDocumentRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   document_id: z.string(),
+  async: z.nullable(z.boolean()).optional(),
   partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -36,6 +41,7 @@ export const DeleteDocumentRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type DeleteDocumentRequest$Outbound = {
   document_id: string;
+  async?: boolean | null | undefined;
   partition?: string | null | undefined;
 };
 
@@ -46,6 +52,7 @@ export const DeleteDocumentRequest$outboundSchema: z.ZodType<
   DeleteDocumentRequest
 > = z.object({
   documentId: z.string(),
+  async: z.nullable(z.boolean()).optional(),
   partition: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

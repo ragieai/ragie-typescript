@@ -174,7 +174,7 @@ export class Documents extends ClientSDK {
   async patchMetadata(
     request: operations.PatchDocumentMetadataRequest,
     options?: RequestOptions,
-  ): Promise<components.DocumentMetadataUpdate> {
+  ): Promise<operations.PatchDocumentMetadataResponsePatchdocumentmetadata> {
     return unwrapAsync(documentsPatchMetadata(
       this,
       request,

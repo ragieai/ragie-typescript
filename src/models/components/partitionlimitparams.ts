@@ -9,10 +9,54 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PartitionLimitParams = {
+  /**
+   * Monthly limit of hosted pages added in the current month in the partition.
+   */
   pagesHostedLimitMonthly?: number | null | undefined;
+  /**
+   * Monthly limit, in pages, for processed documents in the partition.
+   */
   pagesProcessedLimitMonthly?: number | null | undefined;
+  /**
+   * Maximum limit, in pages, for hosted documents in the partition.
+   */
   pagesHostedLimitMax?: number | null | undefined;
+  /**
+   * Maximum limit, in pages, for processed documents in the partition.
+   */
   pagesProcessedLimitMax?: number | null | undefined;
+  /**
+   * Monthly limit, in minutes, for video processing in the partition.
+   */
+  videoProcessedLimitMonthly?: number | null | undefined;
+  /**
+   * Maximum limit, in minutes, for video processing in the partition.
+   */
+  videoProcessedLimitMax?: number | null | undefined;
+  /**
+   * Monthly limit, in minutes, for audio processing in the partition.
+   */
+  audioProcessedLimitMonthly?: number | null | undefined;
+  /**
+   * Maximum limit, in minutes, for audio processing in the partition.
+   */
+  audioProcessedLimitMax?: number | null | undefined;
+  /**
+   * Monthly limit, in MBs, for media streamed from the partition.
+   */
+  mediaStreamedLimitMonthly?: number | null | undefined;
+  /**
+   * Maximum limit, in MBs, for media streamed from the partition.
+   */
+  mediaStreamedLimitMax?: number | null | undefined;
+  /**
+   * Monthly limit, in MBs, for media hosted in the partition.
+   */
+  mediaHostedLimitMonthly?: number | null | undefined;
+  /**
+   * Maximum limit, in MBs, for media hosted in the partition.
+   */
+  mediaHostedLimitMax?: number | null | undefined;
 };
 
 /** @internal */
@@ -25,12 +69,28 @@ export const PartitionLimitParams$inboundSchema: z.ZodType<
   pages_processed_limit_monthly: z.nullable(z.number().int()).optional(),
   pages_hosted_limit_max: z.nullable(z.number().int()).optional(),
   pages_processed_limit_max: z.nullable(z.number().int()).optional(),
+  video_processed_limit_monthly: z.nullable(z.number().int()).optional(),
+  video_processed_limit_max: z.nullable(z.number().int()).optional(),
+  audio_processed_limit_monthly: z.nullable(z.number().int()).optional(),
+  audio_processed_limit_max: z.nullable(z.number().int()).optional(),
+  media_streamed_limit_monthly: z.nullable(z.number().int()).optional(),
+  media_streamed_limit_max: z.nullable(z.number().int()).optional(),
+  media_hosted_limit_monthly: z.nullable(z.number().int()).optional(),
+  media_hosted_limit_max: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "pages_hosted_limit_monthly": "pagesHostedLimitMonthly",
     "pages_processed_limit_monthly": "pagesProcessedLimitMonthly",
     "pages_hosted_limit_max": "pagesHostedLimitMax",
     "pages_processed_limit_max": "pagesProcessedLimitMax",
+    "video_processed_limit_monthly": "videoProcessedLimitMonthly",
+    "video_processed_limit_max": "videoProcessedLimitMax",
+    "audio_processed_limit_monthly": "audioProcessedLimitMonthly",
+    "audio_processed_limit_max": "audioProcessedLimitMax",
+    "media_streamed_limit_monthly": "mediaStreamedLimitMonthly",
+    "media_streamed_limit_max": "mediaStreamedLimitMax",
+    "media_hosted_limit_monthly": "mediaHostedLimitMonthly",
+    "media_hosted_limit_max": "mediaHostedLimitMax",
   });
 });
 
@@ -40,6 +100,14 @@ export type PartitionLimitParams$Outbound = {
   pages_processed_limit_monthly?: number | null | undefined;
   pages_hosted_limit_max?: number | null | undefined;
   pages_processed_limit_max?: number | null | undefined;
+  video_processed_limit_monthly?: number | null | undefined;
+  video_processed_limit_max?: number | null | undefined;
+  audio_processed_limit_monthly?: number | null | undefined;
+  audio_processed_limit_max?: number | null | undefined;
+  media_streamed_limit_monthly?: number | null | undefined;
+  media_streamed_limit_max?: number | null | undefined;
+  media_hosted_limit_monthly?: number | null | undefined;
+  media_hosted_limit_max?: number | null | undefined;
 };
 
 /** @internal */
@@ -52,12 +120,28 @@ export const PartitionLimitParams$outboundSchema: z.ZodType<
   pagesProcessedLimitMonthly: z.nullable(z.number().int()).optional(),
   pagesHostedLimitMax: z.nullable(z.number().int()).optional(),
   pagesProcessedLimitMax: z.nullable(z.number().int()).optional(),
+  videoProcessedLimitMonthly: z.nullable(z.number().int()).optional(),
+  videoProcessedLimitMax: z.nullable(z.number().int()).optional(),
+  audioProcessedLimitMonthly: z.nullable(z.number().int()).optional(),
+  audioProcessedLimitMax: z.nullable(z.number().int()).optional(),
+  mediaStreamedLimitMonthly: z.nullable(z.number().int()).optional(),
+  mediaStreamedLimitMax: z.nullable(z.number().int()).optional(),
+  mediaHostedLimitMonthly: z.nullable(z.number().int()).optional(),
+  mediaHostedLimitMax: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     pagesHostedLimitMonthly: "pages_hosted_limit_monthly",
     pagesProcessedLimitMonthly: "pages_processed_limit_monthly",
     pagesHostedLimitMax: "pages_hosted_limit_max",
     pagesProcessedLimitMax: "pages_processed_limit_max",
+    videoProcessedLimitMonthly: "video_processed_limit_monthly",
+    videoProcessedLimitMax: "video_processed_limit_max",
+    audioProcessedLimitMonthly: "audio_processed_limit_monthly",
+    audioProcessedLimitMax: "audio_processed_limit_max",
+    mediaStreamedLimitMonthly: "media_streamed_limit_monthly",
+    mediaStreamedLimitMax: "media_streamed_limit_max",
+    mediaHostedLimitMonthly: "media_hosted_limit_monthly",
+    mediaHostedLimitMax: "media_hosted_limit_max",
   });
 });
 

@@ -13,6 +13,12 @@ export const One = {
   TextPlain: "text/plain",
   AudioMpeg: "audio/mpeg",
   VideoMp4: "video/mp4",
+  ImageWebp: "image/webp",
+  ImageHeic: "image/heic",
+  ImageBmp: "image/bmp",
+  ImagePng: "image/png",
+  ImageJpeg: "image/jpeg",
+  ImageTiff: "image/tiff",
 } as const;
 export type One = ClosedEnum<typeof One>;
 
