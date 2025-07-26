@@ -12,7 +12,8 @@ let value: BucketData = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `bucket`           | *string*           | :heavy_check_mark: | N/A                |
-| `prefix`           | *string*           | :heavy_minus_sign: | N/A                |
+| Field                | Type                 | Required             | Description          |
+| -------------------- | -------------------- | -------------------- | -------------------- |
+| `bucket`             | *string*             | :heavy_check_mark:   | N/A                  |
+| `prefix`             | *string*             | :heavy_minus_sign:   | N/A                  |
+| `importFileMetadata` | *boolean*            | :heavy_minus_sign:   | N/A                  |

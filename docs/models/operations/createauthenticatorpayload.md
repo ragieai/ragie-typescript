@@ -69,11 +69,10 @@ const value: components.OAuthCredentials = {
 };
 ```
 
-### `components.OAuthCredentials`
+### `components.CreateGoogleAuthenticator`
 
 ```typescript
-const value: components.OAuthCredentials = {
-  provider: "hubspot",
+const value: components.CreateGoogleAuthenticator = {
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",
