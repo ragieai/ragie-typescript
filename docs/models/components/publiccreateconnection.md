@@ -12,6 +12,7 @@ let value: PublicCreateConnection = {
   connection: {
     data: {
       bucket: "<value>",
+      importFileMetadata: false,
     },
     credentials: {
       accessKeyId: "<id>",

@@ -8,25 +8,110 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type CreateAuthenticatorPayload = components.OAuthCredentials;
+export type CreateAuthenticatorPayload =
+  | (components.OAuthCredentials & { provider: "atlassian" })
+  | (components.OAuthCredentials & { provider: "dropbox" })
+  | (components.OAuthCredentials & { provider: "microsoft" })
+  | (components.OAuthCredentials & { provider: "salesforce" })
+  | (components.OAuthCredentials & { provider: "slack" })
+  | (components.OAuthCredentials & { provider: "hubspot" })
+  | (components.CreateGoogleAuthenticator & { provider: "google" });
 
 /** @internal */
 export const CreateAuthenticatorPayload$inboundSchema: z.ZodType<
   CreateAuthenticatorPayload,
   z.ZodTypeDef,
   unknown
-> = components.OAuthCredentials$inboundSchema;
+> = z.union([
+  components.OAuthCredentials$inboundSchema.and(
+    z.object({ provider: z.literal("atlassian") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$inboundSchema.and(
+    z.object({ provider: z.literal("dropbox") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$inboundSchema.and(
+    z.object({ provider: z.literal("microsoft") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$inboundSchema.and(
+    z.object({ provider: z.literal("salesforce") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$inboundSchema.and(
+    z.object({ provider: z.literal("slack") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$inboundSchema.and(
+    z.object({ provider: z.literal("hubspot") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.CreateGoogleAuthenticator$inboundSchema.and(
+    z.object({ provider: z.literal("google") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+]);
 
 /** @internal */
 export type CreateAuthenticatorPayload$Outbound =
-  components.OAuthCredentials$Outbound;
+  | (components.OAuthCredentials$Outbound & { provider: "atlassian" })
+  | (components.OAuthCredentials$Outbound & { provider: "dropbox" })
+  | (components.OAuthCredentials$Outbound & { provider: "microsoft" })
+  | (components.OAuthCredentials$Outbound & { provider: "salesforce" })
+  | (components.OAuthCredentials$Outbound & { provider: "slack" })
+  | (components.OAuthCredentials$Outbound & { provider: "hubspot" })
+  | (components.CreateGoogleAuthenticator$Outbound & { provider: "google" });
 
 /** @internal */
 export const CreateAuthenticatorPayload$outboundSchema: z.ZodType<
   CreateAuthenticatorPayload$Outbound,
   z.ZodTypeDef,
   CreateAuthenticatorPayload
-> = components.OAuthCredentials$outboundSchema;
+> = z.union([
+  components.OAuthCredentials$outboundSchema.and(
+    z.object({ provider: z.literal("atlassian") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$outboundSchema.and(
+    z.object({ provider: z.literal("dropbox") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$outboundSchema.and(
+    z.object({ provider: z.literal("microsoft") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$outboundSchema.and(
+    z.object({ provider: z.literal("salesforce") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$outboundSchema.and(
+    z.object({ provider: z.literal("slack") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.OAuthCredentials$outboundSchema.and(
+    z.object({ provider: z.literal("hubspot") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  components.CreateGoogleAuthenticator$outboundSchema.and(
+    z.object({ provider: z.literal("google") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+]);
 
 /**
  * @internal

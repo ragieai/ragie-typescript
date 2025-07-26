@@ -35,6 +35,7 @@ async function run() {
       provider: "gcs",
       data: {
         bucket: "<value>",
+        importFileMetadata: false,
       },
       credentials: {
         "key": "<value>",
