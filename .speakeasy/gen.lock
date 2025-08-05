@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 6da8f8819dd3380752205904712b0599
+  docChecksum: 518f0a46b468354a30aaa303f691963d
   docVersion: 1.0.0
-  speakeasyVersion: 1.583.0
-  generationVersion: 2.658.3
-  releaseVersion: 1.12.0
-  configChecksum: a1a168d161a138acecd90342727e3b34
+  speakeasyVersion: 1.596.1
+  generationVersion: 2.672.0
+  releaseVersion: 1.12.1
+  configChecksum: d52a5ae505c2297adac630142b44f9e9
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.14
+    core: 3.21.19
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     downloadStreams: 0.1.1
@@ -83,6 +83,7 @@ generatedFiles:
   - docs/models/components/createdocumentparams.md
   - docs/models/components/createdocumentrawparams.md
   - docs/models/components/createdocumentrawparamsmetadata.md
+  - docs/models/components/creategoogleauthenticator.md
   - docs/models/components/createinstructionparams.md
   - docs/models/components/createinstructionparamsscope.md
   - docs/models/components/createpartitionparams.md
@@ -406,6 +407,7 @@ generatedFiles:
   - src/models/components/createdocumentfromurlparams.ts
   - src/models/components/createdocumentparams.ts
   - src/models/components/createdocumentrawparams.ts
+  - src/models/components/creategoogleauthenticator.ts
   - src/models/components/createinstructionparams.ts
   - src/models/components/createpartitionparams.ts
   - src/models/components/deleteconnectionpayload.ts
@@ -1067,7 +1069,7 @@ examples:
   CreateConnection:
     speakeasy-default-create-connection:
       requestBody:
-        application/json: {"partition_strategy": {}, "page_limit": null, "config": null, "connection": {"provider": "gcs", "data": {"bucket": "<value>"}, "credentials": {"key": "<value>", "key1": "<value>"}}}
+        application/json: {"partition_strategy": {}, "page_limit": null, "config": null, "connection": {"provider": "gcs", "data": {"bucket": "<value>", "import_file_metadata": false}, "credentials": {"key": "<value>", "key1": "<value>"}}}
       responses:
         "201":
           application/json: {"id": "da70984e-94d6-41d3-8e1f-f5b07380320f", "created_at": "2025-09-01T08:43:13.460Z", "updated_at": "2025-01-25T11:55:52.101Z", "metadata": {}, "type": "<value>", "name": "<value>", "source": {"key": "<value>", "key1": "<value>"}, "enabled": false, "disabled_by_system_reason": "authentication_failed", "page_limit": 278994, "disabled_by_system": false}

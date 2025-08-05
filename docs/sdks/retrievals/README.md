@@ -13,6 +13,7 @@ Retrieve
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="Retrieve" method="post" path="/retrievals" -->
 ```typescript
 import { Ragie } from "ragie";
 
