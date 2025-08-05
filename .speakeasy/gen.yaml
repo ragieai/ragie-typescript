@@ -25,13 +25,13 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.12.0
+  version: 1.12.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON:
-    license: "MIT"
+    license: MIT
   author: Speakeasy
   baseErrorName: RagieError
   clientServerStatusCodesAsErrors: true

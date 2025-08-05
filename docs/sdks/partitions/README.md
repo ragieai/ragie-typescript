@@ -17,6 +17,7 @@ List all partitions sorted by name in ascending order. Results are paginated wit
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_partitions_partitions_get" method="get" path="/partitions" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -91,6 +92,7 @@ Create a new partition. Partitions are used to scope documents, connections, and
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_partition_partitions_post" method="post" path="/partitions" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -189,6 +191,7 @@ Get a partition by its ID. Includes usage information such as the number of docu
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_partition_partitions__partition_id__get" method="get" path="/partitions/{partition_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -263,6 +266,7 @@ Deletes a partition and all of its associated data. This includes connections, d
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_partition_partitions__partition_id__delete" method="delete" path="/partitions/{partition_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -337,6 +341,7 @@ Sets limits on a partition. Limits can be set on the total number of pages a par
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_partition_limits_partitions__partition_id__limits_put" method="put" path="/partitions/{partition_id}/limits" -->
 ```typescript
 import { Ragie } from "ragie";
 

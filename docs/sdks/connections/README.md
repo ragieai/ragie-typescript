@@ -23,6 +23,7 @@ Create a connection. This is only for non-oauth connections such as S3 compatibl
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateConnection" method="post" path="/connection" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -39,6 +40,7 @@ async function run() {
       provider: "gcs",
       data: {
         bucket: "<value>",
+        importFileMetadata: false,
       },
       credentials: {
         "key": "<value>",
@@ -76,6 +78,7 @@ async function run() {
       provider: "gcs",
       data: {
         bucket: "<value>",
+        importFileMetadata: false,
       },
       credentials: {
         "key": "<value>",
@@ -121,6 +124,7 @@ List all connections sorted by created_at in descending order. Results are pagin
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_connections_connections_get" method="get" path="/connections" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -201,6 +205,7 @@ Creates a redirect url to redirect the user to when initializing an embedded con
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_oauth_redirect_url_connections_oauth_post" method="post" path="/connections/oauth" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -277,6 +282,7 @@ List available connection source types like 'google_drive' and 'notion' along wi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_connection_source_types_connections_source_type_get" method="get" path="/connections/source-type" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -345,6 +351,7 @@ Enable or disable the connection. A disabled connection won't sync.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_connection_enabled_connections__connection_id__enabled_put" method="put" path="/connections/{connection_id}/enabled" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -425,6 +432,7 @@ Updates a connections metadata or mode. These changes will be seen after the nex
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_connection_connections__connection_id__put" method="put" path="/connections/{connection_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -507,6 +515,7 @@ Get a connection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_connection_connections__connection_id__get" method="get" path="/connections/{connection_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -581,6 +590,7 @@ Lists connection stats: total documents active documents, total active pages.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_connection_stats_connections__connection_id__stats_get" method="get" path="/connections/{connection_id}/stats" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -655,6 +665,7 @@ Sets limits on a connection. Limits can be set on the total number of pages a co
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_connection_limits_connections__connection_id__limit_put" method="put" path="/connections/{connection_id}/limit" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -735,6 +746,7 @@ Schedules a connection to be deleted. You can choose to keep the files from the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_connection_connections__connection_id__delete_post" method="post" path="/connections/{connection_id}/delete" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -815,6 +827,7 @@ Schedules a connector to sync as soon as possible.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SyncConnection" method="post" path="/connections/{connection_id}/sync" -->
 ```typescript
 import { Ragie } from "ragie";
 

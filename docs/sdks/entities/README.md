@@ -18,6 +18,7 @@ List all instructions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListInstructions" method="get" path="/instructions" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -86,6 +87,7 @@ Create a new instruction. Instructions are applied to documents as they are crea
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateInstruction" method="post" path="/instructions" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -190,6 +192,7 @@ Update Instruction
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateInstruction" method="put" path="/instructions/{instruction_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -270,6 +273,7 @@ Delete an instruction. This will delete the instruction and all entities generat
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="DeleteInstruction" method="delete" path="/instructions/{instruction_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -344,6 +348,7 @@ Get Instruction Extracted Entities
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListEntitiesByInstruction" method="get" path="/instructions/{instruction_id}/entities" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -424,6 +429,7 @@ Get Document Extracted Entities
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListEntitiesByDocument" method="get" path="/documents/{document_id}/entities" -->
 ```typescript
 import { Ragie } from "ragie";
 

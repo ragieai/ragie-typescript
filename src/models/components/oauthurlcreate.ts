@@ -60,6 +60,7 @@ export type OAuthUrlCreate = {
    * Optional config per connector
    */
   config?: { [k: string]: any } | undefined;
+  authenticatorId?: string | null | undefined;
 };
 
 /** @internal */
@@ -224,11 +225,13 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   theme: z.nullable(Theme$inboundSchema).optional(),
   page_limit: z.nullable(z.number().int()).optional(),
   config: z.record(z.any()).optional(),
+  authenticator_id: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "redirect_uri": "redirectUri",
     "source_type": "sourceType",
     "page_limit": "pageLimit",
+    "authenticator_id": "authenticatorId",
   });
 });
 
@@ -244,6 +247,7 @@ export type OAuthUrlCreate$Outbound = {
   theme?: string | null | undefined;
   page_limit?: number | null | undefined;
   config?: { [k: string]: any } | undefined;
+  authenticator_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -267,11 +271,13 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   theme: z.nullable(Theme$outboundSchema).optional(),
   pageLimit: z.nullable(z.number().int()).optional(),
   config: z.record(z.any()).optional(),
+  authenticatorId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     redirectUri: "redirect_uri",
     sourceType: "source_type",
     pageLimit: "page_limit",
+    authenticatorId: "authenticator_id",
   });
 });
 

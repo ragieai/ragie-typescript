@@ -11,5 +11,5 @@ let value: Provider = "dropbox";
 ## Values
 
 ```typescript
-"atlassian" | "dropbox" | "google" | "microsoft" | "salesforce" | "slack" | "hubspot"
+"atlassian" | "dropbox" | "microsoft" | "salesforce" | "slack" | "hubspot"
 ```

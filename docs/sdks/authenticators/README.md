@@ -16,6 +16,7 @@ Create White labeled connector credentials
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateAuthenticator" method="post" path="/authenticators" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -96,6 +97,7 @@ List all authenticators sorted by created_at in descending order. Results are pa
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListAuthenticators" method="get" path="/authenticators" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -170,6 +172,7 @@ Create a connector for a given authenticator. This requires credentials dependen
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateAuthenticatorConnection" method="post" path="/authenticators/{authenticator_id}/connection" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -276,6 +279,7 @@ Delete an authenticator. This requires all connections created by that authentic
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="DeleteAuthenticatorConnection" method="delete" path="/authenticators/{authenticator_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 

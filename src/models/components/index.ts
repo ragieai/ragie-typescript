@@ -32,6 +32,7 @@ export * from "./createauthenticatorconnection.js";
 export * from "./createdocumentfromurlparams.js";
 export * from "./createdocumentparams.js";
 export * from "./createdocumentrawparams.js";
+export * from "./creategoogleauthenticator.js";
 export * from "./createinstructionparams.js";
 export * from "./createpartitionparams.js";
 export * from "./deleteconnectionpayload.js";
