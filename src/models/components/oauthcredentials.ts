@@ -12,7 +12,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const Provider = {
   Atlassian: "atlassian",
   Dropbox: "dropbox",
-  Google: "google",
   Microsoft: "microsoft",
   Salesforce: "salesforce",
   Slack: "slack",
@@ -28,6 +27,7 @@ export type OAuthCredentials = {
   name: string;
   clientId: string;
   clientSecret: string;
+  domain?: string | null | undefined;
 };
 
 /** @internal */
@@ -59,6 +59,7 @@ export const OAuthCredentials$inboundSchema: z.ZodType<
   name: z.string(),
   client_id: z.string(),
   client_secret: z.string(),
+  domain: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "client_id": "clientId",
@@ -72,6 +73,7 @@ export type OAuthCredentials$Outbound = {
   name: string;
   client_id: string;
   client_secret: string;
+  domain?: string | null | undefined;
 };
 
 /** @internal */
@@ -84,6 +86,7 @@ export const OAuthCredentials$outboundSchema: z.ZodType<
   name: z.string(),
   clientId: z.string(),
   clientSecret: z.string(),
+  domain: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     clientId: "client_id",

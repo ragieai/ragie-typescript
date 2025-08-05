@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -10,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type BucketData = {
   bucket: string;
   prefix?: string | null | undefined;
+  importFileMetadata?: boolean | undefined;
 };
 
 /** @internal */
@@ -20,12 +22,18 @@ export const BucketData$inboundSchema: z.ZodType<
 > = z.object({
   bucket: z.string(),
   prefix: z.nullable(z.string()).optional(),
+  import_file_metadata: z.boolean().default(false),
+}).transform((v) => {
+  return remap$(v, {
+    "import_file_metadata": "importFileMetadata",
+  });
 });
 
 /** @internal */
 export type BucketData$Outbound = {
   bucket: string;
   prefix?: string | null | undefined;
+  import_file_metadata: boolean;
 };
 
 /** @internal */
@@ -36,6 +44,11 @@ export const BucketData$outboundSchema: z.ZodType<
 > = z.object({
   bucket: z.string(),
   prefix: z.nullable(z.string()).optional(),
+  importFileMetadata: z.boolean().default(false),
+}).transform((v) => {
+  return remap$(v, {
+    importFileMetadata: "import_file_metadata",
+  });
 });
 
 /**

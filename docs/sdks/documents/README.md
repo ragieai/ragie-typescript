@@ -28,6 +28,7 @@ On ingest, the document goes through a series of steps before it is ready for re
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateDocument" method="post" path="/documents" -->
 ```typescript
 import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
@@ -104,6 +105,7 @@ List all documents sorted by created_at in descending order. Results are paginat
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListDocuments" method="get" path="/documents" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -184,6 +186,7 @@ Ingest a document as raw text. On ingest, the document goes through a series of 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateDocumentRaw" method="post" path="/documents/raw" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -260,6 +263,7 @@ Ingest a document from a publicly accessible URL. On ingest, the document goes t
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateDocumentFromUrl" method="post" path="/documents/url" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -336,6 +340,7 @@ Get Document
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDocument" method="get" path="/documents/{document_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -412,6 +417,7 @@ Delete Document
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="DeleteDocument" method="delete" path="/documents/{document_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -490,6 +496,7 @@ Update Document File
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateDocumentFile" method="put" path="/documents/{document_id}/file" -->
 ```typescript
 import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
@@ -574,6 +581,7 @@ Update Document Raw
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateDocumentRaw" method="put" path="/documents/{document_id}/raw" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -656,6 +664,7 @@ Updates a document from a publicly accessible URL. On ingest, the document goes 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateDocumentFromUrl" method="put" path="/documents/{document_id}/url" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -738,6 +747,7 @@ Patch Document Metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="PatchDocumentMetadata" method="patch" path="/documents/{document_id}/metadata" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -838,6 +848,7 @@ List all document chunks sorted by index in ascending order. May be limited to a
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDocumentChunks" method="get" path="/documents/{document_id}/chunks" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -918,6 +929,7 @@ Gets a document chunk by its document and chunk ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDocumentChunk" method="get" path="/documents/{document_id}/chunks/{chunk_id}" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -996,6 +1008,7 @@ Returns the content of a document chunk in the requested format. Can be used to 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDocumentChunkContent" method="get" path="/documents/{document_id}/chunks/{chunk_id}/content" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -1076,6 +1089,7 @@ Get the content of a document. The `media_type` parameter can be used to request
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDocumentContent" method="get" path="/documents/{document_id}/content" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -1154,6 +1168,7 @@ Get the source file of a document. The source file is the original file that was
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDocumentSource" method="get" path="/documents/{document_id}/source" -->
 ```typescript
 import { Ragie } from "ragie";
 
@@ -1230,6 +1245,7 @@ Get a LLM generated summary of the document. The summary is created when the doc
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDocumentSummary" method="get" path="/documents/{document_id}/summary" -->
 ```typescript
 import { Ragie } from "ragie";
 
