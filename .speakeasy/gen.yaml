@@ -30,7 +30,8 @@ typescript:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON:
+    license: "MIT"
   author: Speakeasy
   baseErrorName: RagieError
   clientServerStatusCodesAsErrors: true
@@ -61,5 +62,3 @@ typescript:
   responseFormat: flat
   templateVersion: v2
   useIndexModules: true
-  additionalPackageJSON:
-    license: "MIT"
