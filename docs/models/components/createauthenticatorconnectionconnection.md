@@ -3,36 +3,20 @@
 
 ## Supported Types
 
-### `components.AuthenticatorHubspotConnection`
+### `components.AuthenticatorConfluenceConnection`
 
 ```typescript
-const value: components.AuthenticatorHubspotConnection = {
-  data: {
-    companies: true,
-    contacts: false,
-    contactNotes: true,
-    deals: true,
-    dealNotes: false,
-    emails: true,
-    tasks: true,
-  },
-  hubId: "<id>",
-  hubDomain: "<value>",
+const value: components.AuthenticatorConfluenceConnection = {
+  data: [
+    {
+      resourceId: "<id>",
+      spaceId: 163212,
+      spaceKey: "<value>",
+      spaceName: "<value>",
+    },
+  ],
   credentials: {
     refreshToken: "<value>",
-  },
-};
-```
-
-### `components.AuthenticatorNotionConnection`
-
-```typescript
-const value: components.AuthenticatorNotionConnection = {
-  workspaceId: "<id>",
-  workspaceName: "<value>",
-  userEmail: "<value>",
-  credentials: {
-    accessToken: "<value>",
   },
 };
 ```
@@ -72,6 +56,50 @@ const value: components.AuthenticatorGoogleDriveConnection = {
   email: "Mallory43@hotmail.com",
   credentials: {
     refreshToken: "<value>",
+  },
+};
+```
+
+### `components.AuthenticatorHubspotConnection`
+
+```typescript
+const value: components.AuthenticatorHubspotConnection = {
+  data: {
+    companies: true,
+    contacts: false,
+    contactNotes: true,
+    deals: true,
+    dealNotes: false,
+    emails: true,
+    tasks: true,
+  },
+  hubId: "<id>",
+  hubDomain: "<value>",
+  credentials: {
+    refreshToken: "<value>",
+  },
+};
+```
+
+### `components.AuthenticatorJiraConnection`
+
+```typescript
+const value: components.AuthenticatorJiraConnection = {
+  credentials: {
+    refreshToken: "<value>",
+  },
+};
+```
+
+### `components.AuthenticatorNotionConnection`
+
+```typescript
+const value: components.AuthenticatorNotionConnection = {
+  workspaceId: "<id>",
+  workspaceName: "<value>",
+  userEmail: "<value>",
+  credentials: {
+    accessToken: "<value>",
   },
 };
 ```
@@ -133,34 +161,6 @@ const value: components.AuthenticatorSlackConnection = {
   userEmail: "<value>",
   credentials: {
     accessToken: "<value>",
-  },
-};
-```
-
-### `components.AuthenticatorConfluenceConnection`
-
-```typescript
-const value: components.AuthenticatorConfluenceConnection = {
-  data: [
-    {
-      resourceId: "<id>",
-      spaceId: 163212,
-      spaceKey: "<value>",
-      spaceName: "<value>",
-    },
-  ],
-  credentials: {
-    refreshToken: "<value>",
-  },
-};
-```
-
-### `components.AuthenticatorJiraConnection`
-
-```typescript
-const value: components.AuthenticatorJiraConnection = {
-  credentials: {
-    refreshToken: "<value>",
   },
 };
 ```

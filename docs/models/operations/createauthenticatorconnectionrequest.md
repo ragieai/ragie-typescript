@@ -12,14 +12,17 @@ let value: CreateAuthenticatorConnectionRequest = {
     pageLimit: null,
     config: null,
     connection: {
-      data: [
-        {
-          id: "<id>",
-          name: "<value>",
-          mimeType: "<value>",
-        },
-      ],
-      email: "Florencio.Hansen@hotmail.com",
+      data: {
+        companies: true,
+        contacts: false,
+        contactNotes: true,
+        deals: true,
+        dealNotes: false,
+        emails: true,
+        tasks: true,
+      },
+      hubId: "<id>",
+      hubDomain: "<value>",
       credentials: {
         refreshToken: "<value>",
       },
