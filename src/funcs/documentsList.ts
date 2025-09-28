@@ -157,7 +157,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "402", "404", "422", "429", "4XX", "5XX"],
+    errorCodes: ["401", "402", "404", "422", "429", "4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -188,6 +188,7 @@ async function $do(
     }),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
+    M.jsonErr(500, errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });
@@ -221,6 +222,9 @@ async function $do(
   } => {
     const nextCursor = dlv(responseData, "pagination.next_cursor");
     if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
       return { next: () => null };
     }
 

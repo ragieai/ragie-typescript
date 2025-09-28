@@ -67,7 +67,7 @@ export type CreateDocumentParams = {
    *
    * @remarks
    * Images: `.png` `.webp` `.jpg` `.jpeg` `.tiff` `.bmp` `.heic`
-   * Documents: `.csv` `.doc` `.docx` `.epub` `.epub+zip` `.odt` `.pdf` `.ppt` `.pptx` `.tsv` `.xlsx` `.xls`.
+   * Documents: `.csv` `.doc` `.docx` `.epub` `.epub+zip` `.odt` `.pdf` `.ppt` `.pptx` `.tsv` `.xlsx` `.xls`. PDF files over 2000 pages are not supported in hi_res mode.
    */
   file: FileT | Blob;
   /**

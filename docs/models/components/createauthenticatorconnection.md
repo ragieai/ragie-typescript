@@ -10,10 +10,11 @@ let value: CreateAuthenticatorConnection = {
   pageLimit: null,
   config: null,
   connection: {
+    workspaceId: "<id>",
+    workspaceName: "<value>",
     userEmail: "<value>",
-    url: "https://snarling-feather.biz/",
     credentials: {
-      refreshToken: "<value>",
+      accessToken: "<value>",
     },
   },
 };

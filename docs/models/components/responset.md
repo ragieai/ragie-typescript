@@ -1,0 +1,51 @@
+# ResponseT
+
+## Example Usage
+
+```typescript
+import { ResponseT } from "ragie/models/components";
+
+let value: ResponseT = {
+  id: "<id>",
+  createdAt: 398693,
+  status: "failed",
+  output: [],
+  tools: [],
+  reasoning: {
+    effort: "medium",
+  },
+  usage: {
+    inputTokens: 368645,
+    outputTokens: 730033,
+    totalTokens: 568773,
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `id`                                                                                             | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `object`                                                                                         | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `createdAt`                                                                                      | *number*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `status`                                                                                         | [components.Status](../../models/components/status.md)                                           | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `error`                                                                                          | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `incompleteDetails`                                                                              | *any*                                                                                            | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `instructions`                                                                                   | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `maxOutputTokens`                                                                                | *any*                                                                                            | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `model`                                                                                          | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `output`                                                                                         | [components.ResponseOutput](../../models/components/responseoutput.md)[]                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `outputParsed`                                                                                   | [components.FinalAnswer](../../models/components/finalanswer.md)                                 | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `tools`                                                                                          | [components.Tool](../../models/components/tool.md)[]                                             | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `reasoning`                                                                                      | [components.Reasoning](../../models/components/reasoning.md)                                     | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `parallelToolCalls`                                                                              | *boolean*                                                                                        | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `store`                                                                                          | *boolean*                                                                                        | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `temperature`                                                                                    | *number*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `previousResponseId`                                                                             | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `toolChoice`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `topP`                                                                                           | *number*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `truncation`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `usage`                                                                                          | [components.RagieApiSchemaResponseUsage](../../models/components/ragieapischemaresponseusage.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `user`                                                                                           | *any*                                                                                            | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `metadata`                                                                                       | Record<string, *any*>                                                                            | :heavy_minus_sign:                                                                               | N/A                                                                                              |

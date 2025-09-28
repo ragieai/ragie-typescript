@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the ragie SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx documentsCreate.ts
+ * npm run build && npx tsx documentsCreate.example.ts
  */
 
 import { openAsBlob } from "node:fs";
@@ -19,7 +19,7 @@ const ragie = new Ragie({
 });
 
 async function main() {
-  const result = await ragie.create({
+  const result = await ragie.documents.create({
     file: await openAsBlob("example.file"),
   });
 

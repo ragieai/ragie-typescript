@@ -6,14 +6,7 @@
 import { PublicIntercomConnection } from "ragie/models/components";
 
 let value: PublicIntercomConnection = {
-  data: {
-    admins: false,
-    tickets: true,
-    contacts: false,
-    ticketAttachments: true,
-    ticketComments: true,
-    ticketNotes: true,
-  },
+  data: {},
   credentials: {
     accessToken: "<value>",
     appName: "<value>",

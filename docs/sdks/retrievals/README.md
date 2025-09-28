@@ -86,4 +86,5 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

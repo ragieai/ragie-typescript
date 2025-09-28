@@ -15,7 +15,7 @@ export const tool$documentsUpdateDocumentFromUrl: ToolDefinition<typeof args> =
     name: "documents-update-document-from-url",
     description: `Update Document Url
 
-Updates a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [\`pending\`, \`partitioning\`, \`partitioned\`, \`refined\`, \`chunked\`, \`indexed\`, \`summary_indexed\`, \`keyword_indexed\`, \`ready\`, \`failed\`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in \`indexed\` state. However the summary will only be available once the state has changed to \`summary_indexed\` or \`ready\`.`,
+Updates a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [\`pending\`, \`partitioning\`, \`partitioned\`, \`refined\`, \`chunked\`, \`indexed\`, \`summary_indexed\`, \`keyword_indexed\`, \`ready\`, \`failed\`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in \`indexed\` state. However the summary will only be available once the state has changed to \`summary_indexed\` or \`ready\`. PDF files over 2000 pages are not supported in hi_res mode.`,
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] = await documentsUpdateDocumentFromUrl(

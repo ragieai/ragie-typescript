@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create Document From Url
  *
  * @remarks
- * Ingest a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
+ * Ingest a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`. PDF files over 2000 pages are not supported in hi_res mode.
  */
 export function documentsCreateDocumentFromUrl(
   client: RagieCore,
@@ -134,7 +134,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "402", "422", "429", "4XX", "5XX"],
+    errorCodes: ["400", "401", "402", "422", "429", "4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -163,6 +163,7 @@ async function $do(
     M.json(201, components.Document$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.jsonErr([400, 401, 402, 429], errors.ErrorMessage$inboundSchema),
+    M.jsonErr(500, errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

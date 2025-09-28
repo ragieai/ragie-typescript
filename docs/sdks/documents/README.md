@@ -97,6 +97,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## list
@@ -178,6 +179,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createRaw
@@ -255,11 +257,12 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createDocumentFromUrl
 
-Ingest a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
+Ingest a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`. PDF files over 2000 pages are not supported in hi_res mode.
 
 ### Example Usage
 
@@ -332,6 +335,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
@@ -409,6 +413,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -488,6 +493,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateFile
@@ -573,6 +579,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateRaw
@@ -656,11 +663,12 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateDocumentFromUrl
 
-Updates a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
+Updates a document from a publicly accessible URL. On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`. PDF files over 2000 pages are not supported in hi_res mode.
 
 ### Example Usage
 
@@ -739,6 +747,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## patchMetadata
@@ -840,6 +849,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getChunks
@@ -921,6 +931,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getChunk
@@ -1000,6 +1011,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getChunkContent
@@ -1081,6 +1093,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getContent
@@ -1160,6 +1173,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getSource
@@ -1237,6 +1251,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getSummary
@@ -1314,4 +1329,5 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 404, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

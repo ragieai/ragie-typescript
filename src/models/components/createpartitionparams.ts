@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type MetadataSchema = string | number | boolean | Array<string> | {
+  [k: string]: any;
+};
+
 export type CreatePartitionParams = {
   name: string;
   /**
@@ -58,7 +62,79 @@ export type CreatePartitionParams = {
    * Maximum limit, in MBs, for media hosted in the partition.
    */
   mediaHostedLimitMax?: number | null | undefined;
+  /**
+   * Metadata schema for the partition.
+   */
+  metadataSchema?:
+    | {
+      [k: string]: string | number | boolean | Array<string> | {
+        [k: string]: any;
+      };
+    }
+    | null
+    | undefined;
 };
+
+/** @internal */
+export const MetadataSchema$inboundSchema: z.ZodType<
+  MetadataSchema,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.boolean(),
+  z.array(z.string()),
+  z.record(z.any()),
+]);
+
+/** @internal */
+export type MetadataSchema$Outbound =
+  | string
+  | number
+  | boolean
+  | Array<string>
+  | { [k: string]: any };
+
+/** @internal */
+export const MetadataSchema$outboundSchema: z.ZodType<
+  MetadataSchema$Outbound,
+  z.ZodTypeDef,
+  MetadataSchema
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.boolean(),
+  z.array(z.string()),
+  z.record(z.any()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MetadataSchema$ {
+  /** @deprecated use `MetadataSchema$inboundSchema` instead. */
+  export const inboundSchema = MetadataSchema$inboundSchema;
+  /** @deprecated use `MetadataSchema$outboundSchema` instead. */
+  export const outboundSchema = MetadataSchema$outboundSchema;
+  /** @deprecated use `MetadataSchema$Outbound` instead. */
+  export type Outbound = MetadataSchema$Outbound;
+}
+
+export function metadataSchemaToJSON(metadataSchema: MetadataSchema): string {
+  return JSON.stringify(MetadataSchema$outboundSchema.parse(metadataSchema));
+}
+
+export function metadataSchemaFromJSON(
+  jsonString: string,
+): SafeParseResult<MetadataSchema, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MetadataSchema$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MetadataSchema' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreatePartitionParams$inboundSchema: z.ZodType<
@@ -79,6 +155,17 @@ export const CreatePartitionParams$inboundSchema: z.ZodType<
   media_streamed_limit_max: z.nullable(z.number().int()).optional(),
   media_hosted_limit_monthly: z.nullable(z.number().int()).optional(),
   media_hosted_limit_max: z.nullable(z.number().int()).optional(),
+  metadata_schema: z.nullable(
+    z.record(
+      z.union([
+        z.string(),
+        z.number().int(),
+        z.boolean(),
+        z.array(z.string()),
+        z.record(z.any()),
+      ]),
+    ),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "pages_hosted_limit_monthly": "pagesHostedLimitMonthly",
@@ -93,6 +180,7 @@ export const CreatePartitionParams$inboundSchema: z.ZodType<
     "media_streamed_limit_max": "mediaStreamedLimitMax",
     "media_hosted_limit_monthly": "mediaHostedLimitMonthly",
     "media_hosted_limit_max": "mediaHostedLimitMax",
+    "metadata_schema": "metadataSchema",
   });
 });
 
@@ -111,6 +199,14 @@ export type CreatePartitionParams$Outbound = {
   media_streamed_limit_max?: number | null | undefined;
   media_hosted_limit_monthly?: number | null | undefined;
   media_hosted_limit_max?: number | null | undefined;
+  metadata_schema?:
+    | {
+      [k: string]: string | number | boolean | Array<string> | {
+        [k: string]: any;
+      };
+    }
+    | null
+    | undefined;
 };
 
 /** @internal */
@@ -132,6 +228,17 @@ export const CreatePartitionParams$outboundSchema: z.ZodType<
   mediaStreamedLimitMax: z.nullable(z.number().int()).optional(),
   mediaHostedLimitMonthly: z.nullable(z.number().int()).optional(),
   mediaHostedLimitMax: z.nullable(z.number().int()).optional(),
+  metadataSchema: z.nullable(
+    z.record(
+      z.union([
+        z.string(),
+        z.number().int(),
+        z.boolean(),
+        z.array(z.string()),
+        z.record(z.any()),
+      ]),
+    ),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     pagesHostedLimitMonthly: "pages_hosted_limit_monthly",
@@ -146,6 +253,7 @@ export const CreatePartitionParams$outboundSchema: z.ZodType<
     mediaStreamedLimitMax: "media_streamed_limit_max",
     mediaHostedLimitMonthly: "media_hosted_limit_monthly",
     mediaHostedLimitMax: "media_hosted_limit_max",
+    metadataSchema: "metadata_schema",
   });
 });
 

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 518f0a46b468354a30aaa303f691963d
+  docChecksum: 6393a636aa9daa2d4e107ee87ca507d2
   docVersion: 1.0.0
-  speakeasyVersion: 1.598.0
-  generationVersion: 2.674.1
-  releaseVersion: 1.12.1
-  configChecksum: a09709b4c1cf802e81b40e7d4be440be
+  speakeasyVersion: 1.631.3
+  generationVersion: 2.716.14
+  releaseVersion: 1.12.2
+  configChecksum: b920e24863d813f260c3462544299c92
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,14 +14,14 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.19
+    core: 3.21.25
     defaultEnabledRetries: 0.1.0
-    devContainers: 2.90.0
+    devContainers: 2.90.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    examples: 2.82.1
-    globalSecurity: 2.82.13
+    examples: 2.82.3
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
@@ -34,7 +34,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.11
+    unions: 2.85.12
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -47,6 +47,9 @@ generatedFiles:
   - USAGE.md
   - docs/lib/utils/retryconfig.md
   - docs/models/components/accesstokencredentials.md
+  - docs/models/components/agenthoppsmodelsmodelsusage.md
+  - docs/models/components/answer.md
+  - docs/models/components/answerstep.md
   - docs/models/components/asyncdocumentmetadataupdate.md
   - docs/models/components/audiomodalitydata.md
   - docs/models/components/authenticatorconfluenceconnection.md
@@ -64,6 +67,8 @@ generatedFiles:
   - docs/models/components/backblazecredentials.md
   - docs/models/components/basegetauthenticator.md
   - docs/models/components/bucketdata.md
+  - docs/models/components/codeinterpreterevidence.md
+  - docs/models/components/codestep.md
   - docs/models/components/confluencedata.md
   - docs/models/components/connection.md
   - docs/models/components/connectionbase.md
@@ -107,15 +112,20 @@ generatedFiles:
   - docs/models/components/documenturlupdate.md
   - docs/models/components/documentwithcontent.md
   - docs/models/components/documentwithcontentmetadata.md
+  - docs/models/components/effort.md
   - docs/models/components/entity.md
   - docs/models/components/entitylist.md
+  - docs/models/components/evaluatedanswerstep.md
+  - docs/models/components/evidence.md
   - docs/models/components/filet.md
+  - docs/models/components/finalanswer.md
   - docs/models/components/folderdata.md
   - docs/models/components/freshdeskcredentials.md
   - docs/models/components/freshdeskdata.md
   - docs/models/components/gmaildata.md
   - docs/models/components/googlefolderdata.md
   - docs/models/components/hubspotdata.md
+  - docs/models/components/inputtokendetails.md
   - docs/models/components/instruction.md
   - docs/models/components/intercomcredentials.md
   - docs/models/components/intercomdata.md
@@ -124,10 +134,12 @@ generatedFiles:
   - docs/models/components/loc.md
   - docs/models/components/mediamodeparam.md
   - docs/models/components/metadata.md
+  - docs/models/components/metadataschema.md
   - docs/models/components/modalitydata.md
   - docs/models/components/mode.md
   - docs/models/components/mode1.md
   - docs/models/components/mode2.md
+  - docs/models/components/modelusage.md
   - docs/models/components/modestatic.md
   - docs/models/components/modevideo.md
   - docs/models/components/oauthcredentials.md
@@ -141,6 +153,7 @@ generatedFiles:
   - docs/models/components/one1.md
   - docs/models/components/one2.md
   - docs/models/components/onedrivedata.md
+  - docs/models/components/outputtokendetails.md
   - docs/models/components/pagination.md
   - docs/models/components/partition.md
   - docs/models/components/partitiondetail.md
@@ -151,6 +164,7 @@ generatedFiles:
   - docs/models/components/partitionstrategy.md
   - docs/models/components/partitionstrategy1.md
   - docs/models/components/patchdocumentmetadataparams.md
+  - docs/models/components/planstep.md
   - docs/models/components/provider.md
   - docs/models/components/publicbackblazeconnection.md
   - docs/models/components/publiccreateconnection.md
@@ -161,13 +175,23 @@ generatedFiles:
   - docs/models/components/publicintercomconnection.md
   - docs/models/components/publics3compatibleconnection.md
   - docs/models/components/publiczendeskconnection.md
+  - docs/models/components/ragieapischemaresponseusage.md
+  - docs/models/components/ragieevidence.md
   - docs/models/components/reason.md
+  - docs/models/components/reasoning.md
+  - docs/models/components/requestt.md
+  - docs/models/components/responsecontent.md
   - docs/models/components/responseok.md
+  - docs/models/components/responseoutput.md
+  - docs/models/components/responset.md
   - docs/models/components/retrieval.md
   - docs/models/components/retrieveparams.md
   - docs/models/components/s3compatiblecredentials.md
   - docs/models/components/scope.md
   - docs/models/components/scoredchunk.md
+  - docs/models/components/search.md
+  - docs/models/components/searchresultlink.md
+  - docs/models/components/searchstep.md
   - docs/models/components/security.md
   - docs/models/components/setconnectionenabledpayload.md
   - docs/models/components/sharepointdata.md
@@ -176,7 +200,11 @@ generatedFiles:
   - docs/models/components/slackdata.md
   - docs/models/components/source.md
   - docs/models/components/static.md
+  - docs/models/components/status.md
+  - docs/models/components/steps.md
+  - docs/models/components/surrenderstep.md
   - docs/models/components/theme.md
+  - docs/models/components/tool.md
   - docs/models/components/two.md
   - docs/models/components/type.md
   - docs/models/components/updatedocumentfileparams.md
@@ -218,6 +246,7 @@ generatedFiles:
   - docs/models/operations/getdocumentsourcerequest.md
   - docs/models/operations/getdocumentsummaryrequest.md
   - docs/models/operations/getpartitionpartitionspartitionidgetrequest.md
+  - docs/models/operations/getresponseresponsesresponseidgetrequest.md
   - docs/models/operations/listauthenticatorsrequest.md
   - docs/models/operations/listauthenticatorsresponse.md
   - docs/models/operations/listconnectionsconnectionsgetrequest.md
@@ -250,6 +279,7 @@ generatedFiles:
   - docs/sdks/entities/README.md
   - docs/sdks/partitions/README.md
   - docs/sdks/ragie/README.md
+  - docs/sdks/responses/README.md
   - docs/sdks/retrievals/README.md
   - eslint.config.mjs
   - examples/.env.template
@@ -301,6 +331,8 @@ generatedFiles:
   - src/funcs/partitionsGet.ts
   - src/funcs/partitionsList.ts
   - src/funcs/partitionsSetLimits.ts
+  - src/funcs/responsesCreate.ts
+  - src/funcs/responsesGet.ts
   - src/funcs/retrievalsRetrieve.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -376,8 +408,13 @@ generatedFiles:
   - src/mcp-server/tools/partitionsGet.ts
   - src/mcp-server/tools/partitionsList.ts
   - src/mcp-server/tools/partitionsSetLimits.ts
+  - src/mcp-server/tools/responsesCreate.ts
+  - src/mcp-server/tools/responsesGet.ts
   - src/mcp-server/tools/retrievalsRetrieve.ts
   - src/models/components/accesstokencredentials.ts
+  - src/models/components/agenthoppsmodelsmodelsusage.ts
+  - src/models/components/answer.ts
+  - src/models/components/answerstep.ts
   - src/models/components/asyncdocumentmetadataupdate.ts
   - src/models/components/audiomodalitydata.ts
   - src/models/components/authenticatorconfluenceconnection.ts
@@ -395,6 +432,8 @@ generatedFiles:
   - src/models/components/backblazecredentials.ts
   - src/models/components/basegetauthenticator.ts
   - src/models/components/bucketdata.ts
+  - src/models/components/codeinterpreterevidence.ts
+  - src/models/components/codestep.ts
   - src/models/components/confluencedata.ts
   - src/models/components/connection.ts
   - src/models/components/connectionbase.ts
@@ -426,6 +465,8 @@ generatedFiles:
   - src/models/components/documentwithcontent.ts
   - src/models/components/entity.ts
   - src/models/components/entitylist.ts
+  - src/models/components/evaluatedanswerstep.ts
+  - src/models/components/finalanswer.ts
   - src/models/components/folderdata.ts
   - src/models/components/freshdeskcredentials.ts
   - src/models/components/freshdeskdata.ts
@@ -433,17 +474,20 @@ generatedFiles:
   - src/models/components/googlefolderdata.ts
   - src/models/components/hubspotdata.ts
   - src/models/components/index.ts
+  - src/models/components/inputtokendetails.ts
   - src/models/components/instruction.ts
   - src/models/components/intercomcredentials.ts
   - src/models/components/intercomdata.ts
   - src/models/components/link.ts
   - src/models/components/listconnectorsourcetypeinfo.ts
   - src/models/components/mediamodeparam.ts
+  - src/models/components/modelusage.ts
   - src/models/components/oauthcredentials.ts
   - src/models/components/oauthrefreshtokencredentials.ts
   - src/models/components/oauthurlcreate.ts
   - src/models/components/oauthurlresponse.ts
   - src/models/components/onedrivedata.ts
+  - src/models/components/outputtokendetails.ts
   - src/models/components/pagination.ts
   - src/models/components/partition.ts
   - src/models/components/partitiondetail.ts
@@ -452,6 +496,7 @@ generatedFiles:
   - src/models/components/partitionlist.ts
   - src/models/components/partitionstats.ts
   - src/models/components/patchdocumentmetadataparams.ts
+  - src/models/components/planstep.ts
   - src/models/components/publicbackblazeconnection.ts
   - src/models/components/publiccreateconnection.ts
   - src/models/components/publicfreshdeskconnection.ts
@@ -459,17 +504,29 @@ generatedFiles:
   - src/models/components/publicintercomconnection.ts
   - src/models/components/publics3compatibleconnection.ts
   - src/models/components/publiczendeskconnection.ts
+  - src/models/components/ragieapischemaresponseusage.ts
+  - src/models/components/ragieevidence.ts
+  - src/models/components/reasoning.ts
+  - src/models/components/request.ts
+  - src/models/components/response.ts
+  - src/models/components/responsecontent.ts
   - src/models/components/responseok.ts
+  - src/models/components/responseoutput.ts
   - src/models/components/retrieval.ts
   - src/models/components/retrieveparams.ts
   - src/models/components/s3compatiblecredentials.ts
   - src/models/components/scoredchunk.ts
+  - src/models/components/search.ts
+  - src/models/components/searchresultlink.ts
+  - src/models/components/searchstep.ts
   - src/models/components/security.ts
   - src/models/components/setconnectionenabledpayload.ts
   - src/models/components/sharepointdata.ts
   - src/models/components/sharepointfiledata.ts
   - src/models/components/sharepointsitedata.ts
   - src/models/components/slackdata.ts
+  - src/models/components/surrenderstep.ts
+  - src/models/components/tool.ts
   - src/models/components/updatedocumentfileparams.ts
   - src/models/components/updatedocumentfromurlparams.ts
   - src/models/components/updatedocumentrawparams.ts
@@ -504,6 +561,7 @@ generatedFiles:
   - src/models/operations/getdocumentsource.ts
   - src/models/operations/getdocumentsummary.ts
   - src/models/operations/getpartitionpartitionspartitionidget.ts
+  - src/models/operations/getresponseresponsesresponseidget.ts
   - src/models/operations/index.ts
   - src/models/operations/listauthenticators.ts
   - src/models/operations/listconnectionsconnectionsget.ts
@@ -527,6 +585,7 @@ generatedFiles:
   - src/sdk/entities.ts
   - src/sdk/index.ts
   - src/sdk/partitions.ts
+  - src/sdk/responses.ts
   - src/sdk/retrievals.ts
   - src/sdk/sdk.ts
   - src/types/async.ts
@@ -551,6 +610,8 @@ examples:
           application/json: {}
         "400":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   ListDocuments:
     speakeasy-default-list-documents:
       parameters:
@@ -567,6 +628,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   CreateDocumentRaw:
     speakeasy-default-create-document-raw:
       requestBody:
@@ -578,6 +641,8 @@ examples:
           application/json: {}
         "400":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   CreateDocumentFromUrl:
     speakeasy-default-create-document-from-url:
       requestBody:
@@ -588,6 +653,8 @@ examples:
         "422":
           application/json: {}
         "400":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   GetDocument:
     speakeasy-default-get-document:
@@ -602,6 +669,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   DeleteDocument:
     speakeasy-default-delete-document:
@@ -619,6 +688,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   UpdateDocumentFile:
     speakeasy-default-update-document-file:
       parameters:
@@ -634,6 +705,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   UpdateDocumentRaw:
     speakeasy-default-update-document-raw:
@@ -651,6 +724,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   UpdateDocumentFromUrl:
     speakeasy-default-update-document-from-url:
       parameters:
@@ -667,6 +742,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   PatchDocumentMetadata:
     speakeasy-default-patch-document-metadata:
       parameters:
@@ -682,6 +759,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   GetDocumentChunks:
     speakeasy-default-get-document-chunks:
@@ -702,6 +781,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   GetDocumentChunk:
     speakeasy-default-get-document-chunk:
       parameters:
@@ -716,6 +797,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   GetDocumentChunkContent:
     speakeasy-default-get-document-chunk-content:
@@ -735,6 +818,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   GetDocumentContent:
     speakeasy-default-get-document-content:
       parameters:
@@ -752,6 +837,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   GetDocumentSource:
     speakeasy-default-get-document-source:
       parameters:
@@ -765,6 +852,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   GetDocumentSummary:
     speakeasy-default-get-document-summary:
@@ -780,6 +869,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   Retrieve:
     speakeasy-default-retrieve:
       requestBody:
@@ -791,12 +882,16 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   ListInstructions:
     speakeasy-default-list-instructions:
       responses:
         "200":
           application/json: [{"id": "12ebb70a-aa29-40e5-96de-61266e1691e4", "created_at": "2024-02-04T20:59:56.577Z", "updated_at": "2023-07-11T02:23:54.004Z", "name": "Find all pizzas", "active": true, "scope": "document", "prompt": "Find all pizzas described in the text.", "entity_schema": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "filter": {"toppings": {"$in": ["pizza", "mushrooms"]}}, "partition": "<value>"}]
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   CreateInstruction:
     speakeasy-default-create-instruction:
@@ -808,6 +903,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   UpdateInstruction:
     speakeasy-default-update-instruction:
@@ -823,6 +920,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   DeleteInstruction:
     speakeasy-default-delete-instruction:
       parameters:
@@ -834,6 +933,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   ListEntitiesByInstruction:
     speakeasy-default-list-entities-by-instruction:
@@ -852,6 +953,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   ListEntitiesByDocument:
     speakeasy-default-list-entities-by-document:
       parameters:
@@ -869,6 +972,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   list_connections_connections_get:
     speakeasy-default-list-connections-connections-get:
       parameters:
@@ -885,6 +990,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   create_oauth_redirect_url_connections_oauth_post:
     speakeasy-default-create-oauth-redirect-url-connections-oauth-post:
       requestBody:
@@ -896,12 +1003,16 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   list_connection_source_types_connections_source_type_get:
     speakeasy-default-list-connection-source-types-connections-source-type-get:
       responses:
         "200":
           application/json: {"connectors": []}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   set_connection_enabled_connections__connection_id__enabled_put:
     speakeasy-default-set-connection-enabled-connections-connection-id-enabled-put:
@@ -917,6 +1028,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   update_connection_connections__connection_id__put:
     speakeasy-default-update-connection-connections-connection-id-put:
       parameters:
@@ -931,6 +1044,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   get_connection_connections__connection_id__get:
     speakeasy-default-get-connection-connections-connection-id-get:
       parameters:
@@ -943,6 +1058,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   get_connection_stats_connections__connection_id__stats_get:
     speakeasy-default-get-connection-stats-connections-connection-id-stats-get:
       parameters:
@@ -954,6 +1071,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   set_connection_limits_connections__connection_id__limit_put:
     speakeasy-default-set-connection-limits-connections-connection-id-limit-put:
@@ -969,6 +1088,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   delete_connection_connections__connection_id__delete_post:
     speakeasy-default-delete-connection-connections-connection-id-delete-post:
       parameters:
@@ -983,6 +1104,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   SyncConnection:
     speakeasy-default-sync-connection:
       parameters:
@@ -994,6 +1117,8 @@ examples:
         "422":
           application/json: {}
         "400":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   list_partitions_partitions_get:
     speakeasy-default-list-partitions-partitions-get:
@@ -1008,6 +1133,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   create_partition_partitions_post:
     speakeasy-default-create-partition-partitions-post:
       requestBody:
@@ -1018,6 +1145,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   get_partition_partitions__partition_id__get:
     speakeasy-default-get-partition-partitions-partition-id-get:
@@ -1031,6 +1160,8 @@ examples:
           application/json: {}
         "401":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   delete_partition_partitions__partition_id__delete:
     speakeasy-default-delete-partition-partitions-partition-id-delete:
       parameters:
@@ -1042,6 +1173,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   set_partition_limits_partitions__partition_id__limits_put:
     speakeasy-default-set-partition-limits-partitions-partition-id-limits-put:
@@ -1056,6 +1189,8 @@ examples:
         "422":
           application/json: {}
         "401":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   eventevent_post:
     speakeasy-default-eventevent-post:
@@ -1077,6 +1212,8 @@ examples:
           application/json: {}
         "400":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   CreateAuthenticator:
     speakeasy-default-create-authenticator:
       requestBody:
@@ -1087,6 +1224,8 @@ examples:
         "422":
           application/json: {}
         "400":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   ListAuthenticators:
     speakeasy-default-list-authenticators:
@@ -1099,6 +1238,8 @@ examples:
         "422":
           application/json: {}
         "400":
+          application/json: {"detail": "<value>"}
+        "500":
           application/json: {"detail": "<value>"}
   CreateAuthenticatorConnection:
     speakeasy-default-create-authenticator-connection:
@@ -1114,6 +1255,8 @@ examples:
           application/json: {}
         "400":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
   DeleteAuthenticatorConnection:
     speakeasy-default-delete-authenticator-connection:
       parameters:
@@ -1126,5 +1269,35 @@ examples:
           application/json: {}
         "400":
           application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_response_responses_post:
+    speakeasy-default-create-response-responses-post:
+      requestBody:
+        application/json: {"input": "<value>", "model": "deep-search", "stream": false}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "object": "response", "created_at": 258706, "status": "failed", "model": "deep-search", "output": [{"type": "message", "id": "<id>", "role": "assistant", "content": []}], "tools": [], "reasoning": {"effort": "low"}, "parallel_tool_calls": false, "store": false, "temperature": 1, "tool_choice": "auto", "top_p": 1, "truncation": "disabled", "usage": {"input_tokens": 380786, "output_tokens": 308643, "total_tokens": 600651}}
+        "422":
+          application/json: {}
+        "401":
+          application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_response_responses__response_id__get:
+    speakeasy-default-get-response-responses-response-id-get:
+      parameters:
+        path:
+          response_id: "e613d0b7-4c9a-45ed-b32c-302d7f1c5daf"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "object": "response", "created_at": 950639, "status": "completed", "model": "deep-search", "output": [], "tools": [], "reasoning": {"effort": "low"}, "parallel_tool_calls": false, "store": false, "temperature": 1, "tool_choice": "auto", "top_p": 1, "truncation": "disabled", "usage": {"input_tokens": 999680, "output_tokens": 47937, "total_tokens": 672223}}
+        "422":
+          application/json: {}
+        "401":
+          application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.responses.create()`: **Added**\n* `ragie.responses.get()`: **Added**\n* `ragie.documents.list()`:  `error.status[500]` **Added**\n* `ragie.documents.create()`:  `error.status[500]` **Added**\n* `ragie.documents.createRaw()`:  `error.status[500]` **Added**\n* `ragie.documents.createDocumentFromUrl()`:  `error.status[500]` **Added**\n* `ragie.documents.get()`:  `error.status[500]` **Added**\n* `ragie.documents.delete()`:  `error.status[500]` **Added**\n* `ragie.documents.updateFile()`:  `error.status[500]` **Added**\n* `ragie.documents.updateRaw()`:  `error.status[500]` **Added**\n* `ragie.documents.updateDocumentFromUrl()`:  `error.status[500]` **Added**\n* `ragie.documents.patchMetadata()`:  `error.status[500]` **Added**\n* `ragie.documents.getChunks()`:  `error.status[500]` **Added**\n* `ragie.documents.getChunk()`:  `error.status[500]` **Added**\n* `ragie.documents.getChunkContent()`:  `error.status[500]` **Added**\n* `ragie.documents.getContent()`:  `error.status[500]` **Added**\n* `ragie.documents.getSource()`:  `error.status[500]` **Added**\n* `ragie.documents.getSummary()`:  `error.status[500]` **Added**\n* `ragie.retrievals.retrieve()`:  `error.status[500]` **Added**\n* `ragie.entities.listInstructions()`:  `error.status[500]` **Added**\n* `ragie.entities.createInstruction()`:  `error.status[500]` **Added**\n* `ragie.entities.updateInstruction()`:  `error.status[500]` **Added**\n* `ragie.entities.delete()`:  `error.status[500]` **Added**\n* `ragie.entities.listByInstruction()`:  `error.status[500]` **Added**\n* `ragie.entities.listByDocument()`:  `error.status[500]` **Added**\n* `ragie.connections.createConnection()`: \n  *  `request.connection.[intercom].data` **Changed**\n  *  `error.status[500]` **Added**\n* `ragie.connections.list()`:  `error.status[500]` **Added**\n* `ragie.connections.createOAuthRedirectUrl()`:  `error.status[500]` **Added**\n* `ragie.connections.listConnectionSourceTypes()`:  `error.status[500]` **Added**\n* `ragie.connections.setEnabled()`:  `error.status[500]` **Added**\n* `ragie.connections.get()`:  `error.status[500]` **Added**\n* `ragie.connections.update()`:  `error.status[500]` **Added**\n* `ragie.connections.getStats()`:  `error.status[500]` **Added**\n* `ragie.connections.setLimits()`:  `error.status[500]` **Added**\n* `ragie.connections.delete()`:  `error.status[500]` **Added**\n* `ragie.connections.sync()`:  `error.status[500]` **Added**\n* `ragie.partitions.list()`:  `error.status[500]` **Added**\n* `ragie.partitions.create()`: \n  *  `request.metadataSchema` **Added**\n  *  `error.status[500]` **Added**\n* `ragie.partitions.get()`:  `error.status[500]` **Added**\n* `ragie.partitions.delete()`:  `error.status[500]` **Added**\n* `ragie.partitions.setLimits()`:  `error.status[500]` **Added**\n* `ragie.authenticators.list()`:  `error.status[500]` **Added**\n* `ragie.authenticators.create()`:  `error.status[500]` **Added**\n* `ragie.authenticators.createAuthenticatorConnection()`:  `error.status[500]` **Added**\n* `ragie.authenticators.deleteAuthenticatorConnection()`:  `error.status[500]` **Added**\n"

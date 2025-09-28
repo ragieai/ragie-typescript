@@ -19,6 +19,7 @@ export * from "./getdocumentcontent.js";
 export * from "./getdocumentsource.js";
 export * from "./getdocumentsummary.js";
 export * from "./getpartitionpartitionspartitionidget.js";
+export * from "./getresponseresponsesresponseidget.js";
 export * from "./listauthenticators.js";
 export * from "./listconnectionsconnectionsget.js";
 export * from "./listdocuments.js";
