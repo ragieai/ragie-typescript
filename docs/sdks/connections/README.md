@@ -116,6 +116,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## list
@@ -197,6 +198,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createOAuthRedirectUrl
@@ -274,6 +276,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listConnectionSourceTypes
@@ -343,6 +346,7 @@ run();
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | errors.ErrorMessage | 401, 402, 429       | application/json    |
+| errors.ErrorMessage | 500                 | application/json    |
 | errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## setEnabled
@@ -424,6 +428,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## update
@@ -507,6 +512,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
@@ -582,6 +588,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getStats
@@ -657,6 +664,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## setLimits
@@ -738,6 +746,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -819,6 +828,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## sync
@@ -894,4 +904,5 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

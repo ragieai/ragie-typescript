@@ -89,6 +89,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## list
@@ -164,6 +165,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createAuthenticatorConnection
@@ -271,6 +273,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## deleteAuthenticatorConnection
@@ -346,4 +349,5 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 400, 401, 402, 429         | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

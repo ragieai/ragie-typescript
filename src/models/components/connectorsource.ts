@@ -22,6 +22,7 @@ export const ConnectorSource = {
   S3: "s3",
   Gcs: "gcs",
   Hubspot: "hubspot",
+  Webcrawler: "webcrawler",
   Zendesk: "zendesk",
 } as const;
 export type ConnectorSource = ClosedEnum<typeof ConnectorSource>;

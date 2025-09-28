@@ -3,22 +3,6 @@
 
 ## Supported Types
 
-### `components.PublicFreshdeskConnection`
-
-```typescript
-const value: components.PublicFreshdeskConnection = {
-  data: {
-    tickets: true,
-    articles: false,
-  },
-  userEmail: "<value>",
-  credentials: {
-    domain: "impossible-cd.net",
-    apiKey: "<value>",
-  },
-};
-```
-
 ### `components.PublicBackblazeConnection`
 
 ```typescript
@@ -31,6 +15,22 @@ const value: components.PublicBackblazeConnection = {
     applicationKey: "<value>",
     region: "<value>",
     endpoint: "<value>",
+  },
+};
+```
+
+### `components.PublicFreshdeskConnection`
+
+```typescript
+const value: components.PublicFreshdeskConnection = {
+  data: {
+    tickets: true,
+    articles: false,
+  },
+  userEmail: "<value>",
+  credentials: {
+    domain: "impossible-cd.net",
+    apiKey: "<value>",
   },
 };
 ```
@@ -54,14 +54,7 @@ const value: components.PublicGCSConnection = {
 
 ```typescript
 const value: components.PublicIntercomConnection = {
-  data: {
-    admins: false,
-    tickets: true,
-    contacts: false,
-    ticketAttachments: true,
-    ticketComments: true,
-    ticketNotes: true,
-  },
+  data: {},
   credentials: {
     accessToken: "<value>",
     appName: "<value>",

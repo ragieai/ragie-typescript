@@ -144,7 +144,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "402", "404", "422", "429", "4XX", "5XX"],
+    errorCodes: ["401", "402", "404", "422", "429", "4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -173,6 +173,7 @@ async function $do(
     M.json(200, components.DocumentSummary$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.jsonErr([401, 402, 404, 429], errors.ErrorMessage$inboundSchema),
+    M.jsonErr(500, errors.ErrorMessage$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

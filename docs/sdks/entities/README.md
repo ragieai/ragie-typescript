@@ -79,6 +79,7 @@ run();
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | errors.ErrorMessage | 401, 402, 429       | application/json    |
+| errors.ErrorMessage | 500                 | application/json    |
 | errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## createInstruction
@@ -184,6 +185,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateInstruction
@@ -265,6 +267,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -340,6 +343,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listByInstruction
@@ -421,6 +425,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listByDocument
@@ -502,4 +507,5 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

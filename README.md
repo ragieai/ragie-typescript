@@ -64,10 +64,7 @@ bun add ragie
 ### Yarn
 
 ```bash
-yarn add ragie zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add ragie
 ```
 
 
@@ -347,6 +344,11 @@ run();
 * [setLimits](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
 
 
+### [responses](docs/sdks/responses/README.md)
+
+* [create](docs/sdks/responses/README.md#create) - Create Response
+* [get](docs/sdks/responses/README.md#get) - Get Response
+
 ### [retrievals](docs/sdks/retrievals/README.md)
 
 * [retrieve](docs/sdks/retrievals/README.md#retrieve) - Retrieve
@@ -539,7 +541,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Ragie({ httpClient });
+const sdk = new Ragie({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -771,6 +773,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`partitionsGet`](docs/sdks/partitions/README.md#get) - Get Partition
 - [`partitionsList`](docs/sdks/partitions/README.md#list) - List Partitions
 - [`partitionsSetLimits`](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
+- [`responsesCreate`](docs/sdks/responses/README.md#create) - Create Response
+- [`responsesGet`](docs/sdks/responses/README.md#get) - Get Response
 - [`retrievalsRetrieve`](docs/sdks/retrievals/README.md#retrieve) - Retrieve
 
 </details>

@@ -9,12 +9,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntercomData = {
-  admins: boolean;
-  tickets: boolean;
-  contacts: boolean;
-  ticketAttachments: boolean;
-  ticketComments: boolean;
-  ticketNotes: boolean;
+  articlesHelpCenter?: boolean | undefined;
+  admins?: boolean | undefined;
+  contacts?: boolean | undefined;
+  conversations?: boolean | undefined;
+  conversationAttachments?: boolean | undefined;
+  conversationNotes?: boolean | undefined;
+  tickets?: boolean | undefined;
+  ticketAttachments?: boolean | undefined;
+  ticketComments?: boolean | undefined;
+  ticketNotes?: boolean | undefined;
+  filterUserId?: string | null | undefined;
 };
 
 /** @internal */
@@ -23,28 +28,42 @@ export const IntercomData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  admins: z.boolean(),
-  tickets: z.boolean(),
-  contacts: z.boolean(),
-  ticket_attachments: z.boolean(),
-  ticket_comments: z.boolean(),
-  ticket_notes: z.boolean(),
+  articles_help_center: z.boolean().default(false),
+  admins: z.boolean().default(false),
+  contacts: z.boolean().default(false),
+  conversations: z.boolean().default(false),
+  conversation_attachments: z.boolean().default(false),
+  conversation_notes: z.boolean().default(false),
+  tickets: z.boolean().default(false),
+  ticket_attachments: z.boolean().default(false),
+  ticket_comments: z.boolean().default(false),
+  ticket_notes: z.boolean().default(false),
+  filter_user_id: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "articles_help_center": "articlesHelpCenter",
+    "conversation_attachments": "conversationAttachments",
+    "conversation_notes": "conversationNotes",
     "ticket_attachments": "ticketAttachments",
     "ticket_comments": "ticketComments",
     "ticket_notes": "ticketNotes",
+    "filter_user_id": "filterUserId",
   });
 });
 
 /** @internal */
 export type IntercomData$Outbound = {
+  articles_help_center: boolean;
   admins: boolean;
-  tickets: boolean;
   contacts: boolean;
+  conversations: boolean;
+  conversation_attachments: boolean;
+  conversation_notes: boolean;
+  tickets: boolean;
   ticket_attachments: boolean;
   ticket_comments: boolean;
   ticket_notes: boolean;
+  filter_user_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -53,17 +72,26 @@ export const IntercomData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   IntercomData
 > = z.object({
-  admins: z.boolean(),
-  tickets: z.boolean(),
-  contacts: z.boolean(),
-  ticketAttachments: z.boolean(),
-  ticketComments: z.boolean(),
-  ticketNotes: z.boolean(),
+  articlesHelpCenter: z.boolean().default(false),
+  admins: z.boolean().default(false),
+  contacts: z.boolean().default(false),
+  conversations: z.boolean().default(false),
+  conversationAttachments: z.boolean().default(false),
+  conversationNotes: z.boolean().default(false),
+  tickets: z.boolean().default(false),
+  ticketAttachments: z.boolean().default(false),
+  ticketComments: z.boolean().default(false),
+  ticketNotes: z.boolean().default(false),
+  filterUserId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    articlesHelpCenter: "articles_help_center",
+    conversationAttachments: "conversation_attachments",
+    conversationNotes: "conversation_notes",
     ticketAttachments: "ticket_attachments",
     ticketComments: "ticket_comments",
     ticketNotes: "ticket_notes",
+    filterUserId: "filter_user_id",
   });
 });
 

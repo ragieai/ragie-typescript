@@ -8,6 +8,7 @@ import { Connections } from "./connections.js";
 import { Documents } from "./documents.js";
 import { Entities } from "./entities.js";
 import { Partitions } from "./partitions.js";
+import { Responses } from "./responses.js";
 import { Retrievals } from "./retrievals.js";
 
 export class Ragie extends ClientSDK {
@@ -39,5 +40,10 @@ export class Ragie extends ClientSDK {
   private _authenticators?: Authenticators;
   get authenticators(): Authenticators {
     return (this._authenticators ??= new Authenticators(this._options));
+  }
+
+  private _responses?: Responses;
+  get responses(): Responses {
+    return (this._responses ??= new Responses(this._options));
   }
 }
