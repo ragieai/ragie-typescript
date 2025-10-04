@@ -83,6 +83,7 @@ import {
 export type CreateAuthenticatorConnectionMetadata =
   | string
   | number
+  | number
   | boolean
   | Array<string>;
 
@@ -108,7 +109,7 @@ export type CreateAuthenticatorConnection = {
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
    */
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   connection:
     | (AuthenticatorHubspotConnection & { provider: "hubspot" })
@@ -129,11 +130,18 @@ export const CreateAuthenticatorConnectionMetadata$inboundSchema: z.ZodType<
   CreateAuthenticatorConnectionMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type CreateAuthenticatorConnectionMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -143,7 +151,13 @@ export const CreateAuthenticatorConnectionMetadata$outboundSchema: z.ZodType<
   CreateAuthenticatorConnectionMetadata$Outbound,
   z.ZodTypeDef,
   CreateAuthenticatorConnectionMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -374,7 +388,13 @@ export const CreateAuthenticatorConnection$inboundSchema: z.ZodType<
   page_limit: z.nullable(z.number().int()).optional(),
   config: z.nullable(z.record(z.any())).optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   connection: z.union([
     AuthenticatorHubspotConnection$inboundSchema.and(
@@ -447,7 +467,7 @@ export type CreateAuthenticatorConnection$Outbound = {
   page_limit?: number | null | undefined;
   config?: { [k: string]: any } | null | undefined;
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   connection:
     | (AuthenticatorHubspotConnection$Outbound & { provider: "hubspot" })
@@ -476,7 +496,13 @@ export const CreateAuthenticatorConnection$outboundSchema: z.ZodType<
   pageLimit: z.nullable(z.number().int()).optional(),
   config: z.nullable(z.record(z.any())).optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   connection: z.union([
     AuthenticatorHubspotConnection$outboundSchema.and(

@@ -10,6 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type DocumentMetadataUpdateMetadata =
   | string
   | number
+  | number
   | boolean
   | Array<string>;
 
@@ -17,7 +18,7 @@ export type DocumentMetadataUpdate = {
   /**
    * The full document metadata inclusive of the update.
    */
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
 };
 
 /** @internal */
@@ -25,11 +26,18 @@ export const DocumentMetadataUpdateMetadata$inboundSchema: z.ZodType<
   DocumentMetadataUpdateMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type DocumentMetadataUpdateMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -39,7 +47,13 @@ export const DocumentMetadataUpdateMetadata$outboundSchema: z.ZodType<
   DocumentMetadataUpdateMetadata$Outbound,
   z.ZodTypeDef,
   DocumentMetadataUpdateMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -81,13 +95,19 @@ export const DocumentMetadataUpdate$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
 });
 
 /** @internal */
 export type DocumentMetadataUpdate$Outbound = {
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
 };
 
 /** @internal */
@@ -97,7 +117,13 @@ export const DocumentMetadataUpdate$outboundSchema: z.ZodType<
   DocumentMetadataUpdate
 > = z.object({
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
 });
 
