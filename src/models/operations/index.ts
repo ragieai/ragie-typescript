@@ -9,6 +9,8 @@ export * from "./deleteconnectionconnectionsconnectioniddeletepost.js";
 export * from "./deletedocument.js";
 export * from "./deleteinstruction.js";
 export * from "./deletepartitionpartitionspartitioniddelete.js";
+export * from "./disablemcppartitionspartitionidmcpdelete.js";
+export * from "./enablemcppartitionspartitionidmcppost.js";
 export * from "./getconnectionconnectionsconnectionidget.js";
 export * from "./getconnectionstatsconnectionsconnectionidstatsget.js";
 export * from "./getdocument.js";

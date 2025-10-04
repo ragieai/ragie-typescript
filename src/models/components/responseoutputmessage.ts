@@ -13,7 +13,7 @@ import {
   ResponseContent$outboundSchema,
 } from "./responsecontent.js";
 
-export type ResponseOutput = {
+export type ResponseOutputMessage = {
   type?: "message" | undefined;
   id: string;
   role?: "assistant" | undefined;
@@ -21,8 +21,8 @@ export type ResponseOutput = {
 };
 
 /** @internal */
-export const ResponseOutput$inboundSchema: z.ZodType<
-  ResponseOutput,
+export const ResponseOutputMessage$inboundSchema: z.ZodType<
+  ResponseOutputMessage,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -33,7 +33,7 @@ export const ResponseOutput$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ResponseOutput$Outbound = {
+export type ResponseOutputMessage$Outbound = {
   type: "message";
   id: string;
   role: "assistant";
@@ -41,10 +41,10 @@ export type ResponseOutput$Outbound = {
 };
 
 /** @internal */
-export const ResponseOutput$outboundSchema: z.ZodType<
-  ResponseOutput$Outbound,
+export const ResponseOutputMessage$outboundSchema: z.ZodType<
+  ResponseOutputMessage$Outbound,
   z.ZodTypeDef,
-  ResponseOutput
+  ResponseOutputMessage
 > = z.object({
   type: z.literal("message").default("message" as const),
   id: z.string(),
@@ -56,25 +56,29 @@ export const ResponseOutput$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ResponseOutput$ {
-  /** @deprecated use `ResponseOutput$inboundSchema` instead. */
-  export const inboundSchema = ResponseOutput$inboundSchema;
-  /** @deprecated use `ResponseOutput$outboundSchema` instead. */
-  export const outboundSchema = ResponseOutput$outboundSchema;
-  /** @deprecated use `ResponseOutput$Outbound` instead. */
-  export type Outbound = ResponseOutput$Outbound;
+export namespace ResponseOutputMessage$ {
+  /** @deprecated use `ResponseOutputMessage$inboundSchema` instead. */
+  export const inboundSchema = ResponseOutputMessage$inboundSchema;
+  /** @deprecated use `ResponseOutputMessage$outboundSchema` instead. */
+  export const outboundSchema = ResponseOutputMessage$outboundSchema;
+  /** @deprecated use `ResponseOutputMessage$Outbound` instead. */
+  export type Outbound = ResponseOutputMessage$Outbound;
 }
 
-export function responseOutputToJSON(responseOutput: ResponseOutput): string {
-  return JSON.stringify(ResponseOutput$outboundSchema.parse(responseOutput));
+export function responseOutputMessageToJSON(
+  responseOutputMessage: ResponseOutputMessage,
+): string {
+  return JSON.stringify(
+    ResponseOutputMessage$outboundSchema.parse(responseOutputMessage),
+  );
 }
 
-export function responseOutputFromJSON(
+export function responseOutputMessageFromJSON(
   jsonString: string,
-): SafeParseResult<ResponseOutput, SDKValidationError> {
+): SafeParseResult<ResponseOutputMessage, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ResponseOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResponseOutput' from JSON`,
+    (x) => ResponseOutputMessage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseOutputMessage' from JSON`,
   );
 }

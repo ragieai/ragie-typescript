@@ -27,6 +27,18 @@ const value: components.SearchStep = {
 };
 ```
 
+### `components.SearchStepWithQueryDetails`
+
+```typescript
+const value: components.SearchStepWithQueryDetails = {
+  think: "<value>",
+  currentQuestion: "<value>",
+  search: {
+    searchRequests: [],
+  },
+};
+```
+
 ### `components.PlanStep`
 
 ```typescript

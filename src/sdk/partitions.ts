@@ -4,6 +4,8 @@
 
 import { partitionsCreate } from "../funcs/partitionsCreate.js";
 import { partitionsDelete } from "../funcs/partitionsDelete.js";
+import { partitionsDisableMcp } from "../funcs/partitionsDisableMcp.js";
+import { partitionsEnableMcp } from "../funcs/partitionsEnableMcp.js";
 import { partitionsGet } from "../funcs/partitionsGet.js";
 import { partitionsList } from "../funcs/partitionsList.js";
 import { partitionsSetLimits } from "../funcs/partitionsSetLimits.js";
@@ -81,6 +83,40 @@ export class Partitions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<{ [k: string]: string }> {
     return unwrapAsync(partitionsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Enable Mcp
+   *
+   * @remarks
+   * Enables context-aware descriptions for a partition. This will allow the automatically generate a desccription for based on the documents in the partition.
+   */
+  async enableMcp(
+    request: operations.EnableMcpPartitionsPartitionIdMcpPostRequest,
+    options?: RequestOptions,
+  ): Promise<any> {
+    return unwrapAsync(partitionsEnableMcp(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Disable Mcp
+   *
+   * @remarks
+   * Disables context-aware descriptions for a partition. This will stop automatically generating descriptions for the partition.
+   */
+  async disableMcp(
+    request: operations.DisableMcpPartitionsPartitionIdMcpDeleteRequest,
+    options?: RequestOptions,
+  ): Promise<any> {
+    return unwrapAsync(partitionsDisableMcp(
       this,
       request,
       options,

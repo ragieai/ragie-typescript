@@ -9,7 +9,12 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type ConnectionMetadata = string | number | boolean | Array<string>;
+export type ConnectionMetadata =
+  | string
+  | number
+  | number
+  | boolean
+  | Array<string>;
 
 export type Source = string | Array<string> | { [k: string]: any };
 
@@ -23,7 +28,7 @@ export type Connection = {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
   type: string;
   name: string;
   source: string | Array<string> | { [k: string]: any } | null;
@@ -41,11 +46,18 @@ export const ConnectionMetadata$inboundSchema: z.ZodType<
   ConnectionMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type ConnectionMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -55,7 +67,13 @@ export const ConnectionMetadata$outboundSchema: z.ZodType<
   ConnectionMetadata$Outbound,
   z.ZodTypeDef,
   ConnectionMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -160,7 +178,13 @@ export const Connection$inboundSchema: z.ZodType<
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
   type: z.string(),
   name: z.string(),
@@ -192,7 +216,7 @@ export type Connection$Outbound = {
   id: string;
   created_at: string;
   updated_at: string;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
   type: string;
   name: string;
   source: string | Array<string> | { [k: string]: any } | null;
@@ -215,7 +239,13 @@ export const Connection$outboundSchema: z.ZodType<
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
   type: z.string(),
   name: z.string(),

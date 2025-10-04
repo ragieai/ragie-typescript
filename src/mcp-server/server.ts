@@ -52,6 +52,8 @@ import { tool$entitiesListInstructions } from "./tools/entitiesListInstructions.
 import { tool$entitiesUpdateInstruction } from "./tools/entitiesUpdateInstruction.js";
 import { tool$partitionsCreate } from "./tools/partitionsCreate.js";
 import { tool$partitionsDelete } from "./tools/partitionsDelete.js";
+import { tool$partitionsDisableMcp } from "./tools/partitionsDisableMcp.js";
+import { tool$partitionsEnableMcp } from "./tools/partitionsEnableMcp.js";
 import { tool$partitionsGet } from "./tools/partitionsGet.js";
 import { tool$partitionsList } from "./tools/partitionsList.js";
 import { tool$partitionsSetLimits } from "./tools/partitionsSetLimits.js";
@@ -69,7 +71,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.12.2",
+    version: "1.13.0",
   });
 
   const client = new RagieCore({
@@ -137,6 +139,8 @@ export function createMCPServer(deps: {
   tool(tool$partitionsCreate);
   tool(tool$partitionsGet);
   tool(tool$partitionsDelete);
+  tool(tool$partitionsEnableMcp);
+  tool(tool$partitionsDisableMcp);
   tool(tool$partitionsSetLimits);
   tool(tool$authenticatorsCreate);
   tool(tool$authenticatorsList);

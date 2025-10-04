@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 6393a636aa9daa2d4e107ee87ca507d2
+  docChecksum: 5ab58b0b1e8c1a05745f268317506b6a
   docVersion: 1.0.0
-  speakeasyVersion: 1.631.3
-  generationVersion: 2.716.14
-  releaseVersion: 1.12.2
-  configChecksum: b920e24863d813f260c3462544299c92
+  speakeasyVersion: 1.634.2
+  generationVersion: 2.721.3
+  releaseVersion: 1.13.0
+  configChecksum: 7f9304b6d6b34f62cb69f263021eb8bd
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.25
+    core: 3.21.26
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -34,7 +34,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.12
+    unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -68,6 +68,9 @@ generatedFiles:
   - docs/models/components/basegetauthenticator.md
   - docs/models/components/bucketdata.md
   - docs/models/components/codeinterpreterevidence.md
+  - docs/models/components/codeinterpreteroutput.md
+  - docs/models/components/codeinterpreteroutputlogs.md
+  - docs/models/components/codeinterpreteroutputstatus.md
   - docs/models/components/codestep.md
   - docs/models/components/confluencedata.md
   - docs/models/components/connection.md
@@ -117,6 +120,9 @@ generatedFiles:
   - docs/models/components/entitylist.md
   - docs/models/components/evaluatedanswerstep.md
   - docs/models/components/evidence.md
+  - docs/models/components/filesearchoutput.md
+  - docs/models/components/filesearchoutputstatus.md
+  - docs/models/components/filesearchresult.md
   - docs/models/components/filet.md
   - docs/models/components/finalanswer.md
   - docs/models/components/folderdata.md
@@ -153,6 +159,7 @@ generatedFiles:
   - docs/models/components/one1.md
   - docs/models/components/one2.md
   - docs/models/components/onedrivedata.md
+  - docs/models/components/output.md
   - docs/models/components/outputtokendetails.md
   - docs/models/components/pagination.md
   - docs/models/components/partition.md
@@ -175,14 +182,19 @@ generatedFiles:
   - docs/models/components/publicintercomconnection.md
   - docs/models/components/publics3compatibleconnection.md
   - docs/models/components/publiczendeskconnection.md
+  - docs/models/components/querydetails.md
   - docs/models/components/ragieapischemaresponseusage.md
   - docs/models/components/ragieevidence.md
   - docs/models/components/reason.md
   - docs/models/components/reasoning.md
+  - docs/models/components/reasoningoutput.md
+  - docs/models/components/reasoningoutputstatus.md
+  - docs/models/components/reasoningsummary.md
+  - docs/models/components/reasoningtext.md
   - docs/models/components/requestt.md
   - docs/models/components/responsecontent.md
   - docs/models/components/responseok.md
-  - docs/models/components/responseoutput.md
+  - docs/models/components/responseoutputmessage.md
   - docs/models/components/responset.md
   - docs/models/components/retrieval.md
   - docs/models/components/retrieveparams.md
@@ -190,8 +202,10 @@ generatedFiles:
   - docs/models/components/scope.md
   - docs/models/components/scoredchunk.md
   - docs/models/components/search.md
+  - docs/models/components/searcheffort.md
   - docs/models/components/searchresultlink.md
   - docs/models/components/searchstep.md
+  - docs/models/components/searchstepwithquerydetails.md
   - docs/models/components/security.md
   - docs/models/components/setconnectionenabledpayload.md
   - docs/models/components/sharepointdata.md
@@ -236,6 +250,8 @@ generatedFiles:
   - docs/models/operations/deletedocumentrequest.md
   - docs/models/operations/deleteinstructionrequest.md
   - docs/models/operations/deletepartitionpartitionspartitioniddeleterequest.md
+  - docs/models/operations/disablemcppartitionspartitionidmcpdeleterequest.md
+  - docs/models/operations/enablemcppartitionspartitionidmcppostrequest.md
   - docs/models/operations/getconnectionconnectionsconnectionidgetrequest.md
   - docs/models/operations/getconnectionstatsconnectionsconnectionidstatsgetrequest.md
   - docs/models/operations/getdocumentchunkcontentrequest.md
@@ -274,6 +290,7 @@ generatedFiles:
   - docs/models/operations/updatedocumentrawrequest.md
   - docs/models/operations/updateinstructionrequest.md
   - docs/sdks/authenticators/README.md
+  - docs/sdks/beta/README.md
   - docs/sdks/connections/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/entities/README.md
@@ -328,6 +345,8 @@ generatedFiles:
   - src/funcs/entitiesUpdateInstruction.ts
   - src/funcs/partitionsCreate.ts
   - src/funcs/partitionsDelete.ts
+  - src/funcs/partitionsDisableMcp.ts
+  - src/funcs/partitionsEnableMcp.ts
   - src/funcs/partitionsGet.ts
   - src/funcs/partitionsList.ts
   - src/funcs/partitionsSetLimits.ts
@@ -405,6 +424,8 @@ generatedFiles:
   - src/mcp-server/tools/entitiesUpdateInstruction.ts
   - src/mcp-server/tools/partitionsCreate.ts
   - src/mcp-server/tools/partitionsDelete.ts
+  - src/mcp-server/tools/partitionsDisableMcp.ts
+  - src/mcp-server/tools/partitionsEnableMcp.ts
   - src/mcp-server/tools/partitionsGet.ts
   - src/mcp-server/tools/partitionsList.ts
   - src/mcp-server/tools/partitionsSetLimits.ts
@@ -433,6 +454,8 @@ generatedFiles:
   - src/models/components/basegetauthenticator.ts
   - src/models/components/bucketdata.ts
   - src/models/components/codeinterpreterevidence.ts
+  - src/models/components/codeinterpreteroutput.ts
+  - src/models/components/codeinterpreteroutputlogs.ts
   - src/models/components/codestep.ts
   - src/models/components/confluencedata.ts
   - src/models/components/connection.ts
@@ -466,6 +489,8 @@ generatedFiles:
   - src/models/components/entity.ts
   - src/models/components/entitylist.ts
   - src/models/components/evaluatedanswerstep.ts
+  - src/models/components/filesearchoutput.ts
+  - src/models/components/filesearchresult.ts
   - src/models/components/finalanswer.ts
   - src/models/components/folderdata.ts
   - src/models/components/freshdeskcredentials.ts
@@ -504,21 +529,27 @@ generatedFiles:
   - src/models/components/publicintercomconnection.ts
   - src/models/components/publics3compatibleconnection.ts
   - src/models/components/publiczendeskconnection.ts
+  - src/models/components/querydetails.ts
   - src/models/components/ragieapischemaresponseusage.ts
   - src/models/components/ragieevidence.ts
   - src/models/components/reasoning.ts
+  - src/models/components/reasoningoutput.ts
+  - src/models/components/reasoningsummary.ts
+  - src/models/components/reasoningtext.ts
   - src/models/components/request.ts
   - src/models/components/response.ts
   - src/models/components/responsecontent.ts
   - src/models/components/responseok.ts
-  - src/models/components/responseoutput.ts
+  - src/models/components/responseoutputmessage.ts
   - src/models/components/retrieval.ts
   - src/models/components/retrieveparams.ts
   - src/models/components/s3compatiblecredentials.ts
   - src/models/components/scoredchunk.ts
   - src/models/components/search.ts
+  - src/models/components/searcheffort.ts
   - src/models/components/searchresultlink.ts
   - src/models/components/searchstep.ts
+  - src/models/components/searchstepwithquerydetails.ts
   - src/models/components/security.ts
   - src/models/components/setconnectionenabledpayload.ts
   - src/models/components/sharepointdata.ts
@@ -551,6 +582,8 @@ generatedFiles:
   - src/models/operations/deletedocument.ts
   - src/models/operations/deleteinstruction.ts
   - src/models/operations/deletepartitionpartitionspartitioniddelete.ts
+  - src/models/operations/disablemcppartitionspartitionidmcpdelete.ts
+  - src/models/operations/enablemcppartitionspartitionidmcppost.ts
   - src/models/operations/getconnectionconnectionsconnectionidget.ts
   - src/models/operations/getconnectionstatsconnectionsconnectionidstatsget.ts
   - src/models/operations/getdocument.ts
@@ -580,6 +613,7 @@ generatedFiles:
   - src/models/operations/updatedocumentraw.ts
   - src/models/operations/updateinstruction.ts
   - src/sdk/authenticators.ts
+  - src/sdk/beta.ts
   - src/sdk/connections.ts
   - src/sdk/documents.ts
   - src/sdk/entities.ts
@@ -1298,6 +1332,34 @@ examples:
           application/json: {"detail": "<value>"}
         "500":
           application/json: {"detail": "<value>"}
+  enable_mcp_partitions__partition_id__mcp_post:
+    speakeasy-default-enable-mcp-partitions-partition-id-mcp-post:
+      parameters:
+        path:
+          partition_id: "<id>"
+      responses:
+        "200":
+          application/json: "<value>"
+        "422":
+          application/json: {}
+        "401":
+          application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
+  disable_mcp_partitions__partition_id__mcp_delete:
+    speakeasy-default-disable-mcp-partitions-partition-id-mcp-delete:
+      parameters:
+        path:
+          partition_id: "<id>"
+      responses:
+        "200":
+          application/json: "<value>"
+        "422":
+          application/json: {}
+        "401":
+          application/json: {"detail": "<value>"}
+        "500":
+          application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.responses.create()`: **Added**\n* `ragie.responses.get()`: **Added**\n* `ragie.documents.list()`:  `error.status[500]` **Added**\n* `ragie.documents.create()`:  `error.status[500]` **Added**\n* `ragie.documents.createRaw()`:  `error.status[500]` **Added**\n* `ragie.documents.createDocumentFromUrl()`:  `error.status[500]` **Added**\n* `ragie.documents.get()`:  `error.status[500]` **Added**\n* `ragie.documents.delete()`:  `error.status[500]` **Added**\n* `ragie.documents.updateFile()`:  `error.status[500]` **Added**\n* `ragie.documents.updateRaw()`:  `error.status[500]` **Added**\n* `ragie.documents.updateDocumentFromUrl()`:  `error.status[500]` **Added**\n* `ragie.documents.patchMetadata()`:  `error.status[500]` **Added**\n* `ragie.documents.getChunks()`:  `error.status[500]` **Added**\n* `ragie.documents.getChunk()`:  `error.status[500]` **Added**\n* `ragie.documents.getChunkContent()`:  `error.status[500]` **Added**\n* `ragie.documents.getContent()`:  `error.status[500]` **Added**\n* `ragie.documents.getSource()`:  `error.status[500]` **Added**\n* `ragie.documents.getSummary()`:  `error.status[500]` **Added**\n* `ragie.retrievals.retrieve()`:  `error.status[500]` **Added**\n* `ragie.entities.listInstructions()`:  `error.status[500]` **Added**\n* `ragie.entities.createInstruction()`:  `error.status[500]` **Added**\n* `ragie.entities.updateInstruction()`:  `error.status[500]` **Added**\n* `ragie.entities.delete()`:  `error.status[500]` **Added**\n* `ragie.entities.listByInstruction()`:  `error.status[500]` **Added**\n* `ragie.entities.listByDocument()`:  `error.status[500]` **Added**\n* `ragie.connections.createConnection()`: \n  *  `request.connection.[intercom].data` **Changed**\n  *  `error.status[500]` **Added**\n* `ragie.connections.list()`:  `error.status[500]` **Added**\n* `ragie.connections.createOAuthRedirectUrl()`:  `error.status[500]` **Added**\n* `ragie.connections.listConnectionSourceTypes()`:  `error.status[500]` **Added**\n* `ragie.connections.setEnabled()`:  `error.status[500]` **Added**\n* `ragie.connections.get()`:  `error.status[500]` **Added**\n* `ragie.connections.update()`:  `error.status[500]` **Added**\n* `ragie.connections.getStats()`:  `error.status[500]` **Added**\n* `ragie.connections.setLimits()`:  `error.status[500]` **Added**\n* `ragie.connections.delete()`:  `error.status[500]` **Added**\n* `ragie.connections.sync()`:  `error.status[500]` **Added**\n* `ragie.partitions.list()`:  `error.status[500]` **Added**\n* `ragie.partitions.create()`: \n  *  `request.metadataSchema` **Added**\n  *  `error.status[500]` **Added**\n* `ragie.partitions.get()`:  `error.status[500]` **Added**\n* `ragie.partitions.delete()`:  `error.status[500]` **Added**\n* `ragie.partitions.setLimits()`:  `error.status[500]` **Added**\n* `ragie.authenticators.list()`:  `error.status[500]` **Added**\n* `ragie.authenticators.create()`:  `error.status[500]` **Added**\n* `ragie.authenticators.createAuthenticatorConnection()`:  `error.status[500]` **Added**\n* `ragie.authenticators.deleteAuthenticatorConnection()`:  `error.status[500]` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.responses.create()`:  `response` **Changed** **Breaking** :warning:\n* `ragie.responses.get()`:  `response` **Changed** **Breaking** :warning:\n* `ragie.documents.getContent()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.createConnection()`: \n  *  `request.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.list()`:  `response.documents.[].metadata.{}.[number]` **Added**\n* `ragie.documents.create()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.createRaw()`: \n  *  `request.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.createDocumentFromUrl()`: \n  *  `request.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.get()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.patchMetadata()`:  `response.[documentmetadataupdate].metadata.{}.[number]` **Added**\n* `ragie.partitions.enableMcp()`: **Added**\n* `ragie.beta.disableMcp()`: **Added**\n* `ragie.connections.list()`:  `response.connections.[].metadata.{}.[number]` **Added**\n* `ragie.connections.createOAuthRedirectUrl()`: \n  *  `request.metadata.{}.[number]` **Added**\n* `ragie.connections.setEnabled()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.get()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.update()`: \n  *  `request.connectionBase.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.setLimits()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.authenticators.createAuthenticatorConnection()`: \n  *  `request.createAuthenticatorConnection.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.beta.enableMcp()`: **Added**\n* `ragie.partitions.disableMcp()`: **Added**\n"

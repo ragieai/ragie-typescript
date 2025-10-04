@@ -8,7 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type DocumentMetadata = string | number | boolean | Array<string>;
+export type DocumentMetadata =
+  | string
+  | number
+  | number
+  | boolean
+  | Array<string>;
 
 export type Document = {
   status: string;
@@ -16,7 +21,7 @@ export type Document = {
   createdAt: Date;
   updatedAt: Date;
   name: string;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
   partition: string;
   chunkCount?: number | null | undefined;
   externalId?: string | null | undefined;
@@ -28,11 +33,18 @@ export const DocumentMetadata$inboundSchema: z.ZodType<
   DocumentMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type DocumentMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -42,7 +54,13 @@ export const DocumentMetadata$outboundSchema: z.ZodType<
   DocumentMetadata$Outbound,
   z.ZodTypeDef,
   DocumentMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -87,7 +105,13 @@ export const Document$inboundSchema: z.ZodType<
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   name: z.string(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
   partition: z.string(),
   chunk_count: z.nullable(z.number().int()).optional(),
@@ -110,7 +134,7 @@ export type Document$Outbound = {
   created_at: string;
   updated_at: string;
   name: string;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
   partition: string;
   chunk_count?: number | null | undefined;
   external_id?: string | null | undefined;
@@ -129,7 +153,13 @@ export const Document$outboundSchema: z.ZodType<
   updatedAt: z.date().transform(v => v.toISOString()),
   name: z.string(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
   partition: z.string(),
   chunkCount: z.nullable(z.number().int()).optional(),

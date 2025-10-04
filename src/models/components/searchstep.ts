@@ -15,7 +15,7 @@ import {
 } from "./search.js";
 
 export type SearchStep = {
-  type?: "search" | undefined;
+  type?: "base_search" | undefined;
   think: string;
   currentQuestion: string;
   search: Search;
@@ -27,7 +27,7 @@ export const SearchStep$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("search").default("search"),
+  type: z.literal("base_search").default("base_search"),
   think: z.string(),
   current_question: z.string(),
   search: Search$inboundSchema,
@@ -39,7 +39,7 @@ export const SearchStep$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SearchStep$Outbound = {
-  type: "search";
+  type: "base_search";
   think: string;
   current_question: string;
   search: Search$Outbound;
@@ -51,7 +51,7 @@ export const SearchStep$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SearchStep
 > = z.object({
-  type: z.literal("search").default("search" as const),
+  type: z.literal("base_search").default("base_search" as const),
   think: z.string(),
   currentQuestion: z.string(),
   search: Search$outboundSchema,

@@ -55,6 +55,12 @@ import {
   SearchStep$outboundSchema,
 } from "./searchstep.js";
 import {
+  SearchStepWithQueryDetails,
+  SearchStepWithQueryDetails$inboundSchema,
+  SearchStepWithQueryDetails$Outbound,
+  SearchStepWithQueryDetails$outboundSchema,
+} from "./searchstepwithquerydetails.js";
+import {
   SurrenderStep,
   SurrenderStep$inboundSchema,
   SurrenderStep$Outbound,
@@ -67,6 +73,7 @@ export type Steps =
   | EvaluatedAnswerStep
   | AnswerStep
   | SearchStep
+  | SearchStepWithQueryDetails
   | CodeStep
   | SurrenderStep
   | PlanStep;
@@ -88,6 +95,7 @@ export type FinalAnswer = {
       | EvaluatedAnswerStep
       | AnswerStep
       | SearchStep
+      | SearchStepWithQueryDetails
       | CodeStep
       | SurrenderStep
       | PlanStep
@@ -154,6 +162,7 @@ export const Steps$inboundSchema: z.ZodType<Steps, z.ZodTypeDef, unknown> = z
     EvaluatedAnswerStep$inboundSchema,
     AnswerStep$inboundSchema,
     SearchStep$inboundSchema,
+    SearchStepWithQueryDetails$inboundSchema,
     CodeStep$inboundSchema,
     SurrenderStep$inboundSchema,
     PlanStep$inboundSchema,
@@ -164,6 +173,7 @@ export type Steps$Outbound =
   | EvaluatedAnswerStep$Outbound
   | AnswerStep$Outbound
   | SearchStep$Outbound
+  | SearchStepWithQueryDetails$Outbound
   | CodeStep$Outbound
   | SurrenderStep$Outbound
   | PlanStep$Outbound;
@@ -177,6 +187,7 @@ export const Steps$outboundSchema: z.ZodType<
   EvaluatedAnswerStep$outboundSchema,
   AnswerStep$outboundSchema,
   SearchStep$outboundSchema,
+  SearchStepWithQueryDetails$outboundSchema,
   CodeStep$outboundSchema,
   SurrenderStep$outboundSchema,
   PlanStep$outboundSchema,
@@ -227,6 +238,7 @@ export const FinalAnswer$inboundSchema: z.ZodType<
       EvaluatedAnswerStep$inboundSchema,
       AnswerStep$inboundSchema,
       SearchStep$inboundSchema,
+      SearchStepWithQueryDetails$inboundSchema,
       CodeStep$inboundSchema,
       SurrenderStep$inboundSchema,
       PlanStep$inboundSchema,
@@ -246,6 +258,7 @@ export type FinalAnswer$Outbound = {
       | EvaluatedAnswerStep$Outbound
       | AnswerStep$Outbound
       | SearchStep$Outbound
+      | SearchStepWithQueryDetails$Outbound
       | CodeStep$Outbound
       | SurrenderStep$Outbound
       | PlanStep$Outbound
@@ -272,6 +285,7 @@ export const FinalAnswer$outboundSchema: z.ZodType<
       EvaluatedAnswerStep$outboundSchema,
       AnswerStep$outboundSchema,
       SearchStep$outboundSchema,
+      SearchStepWithQueryDetails$outboundSchema,
       CodeStep$outboundSchema,
       SurrenderStep$outboundSchema,
       PlanStep$outboundSchema,

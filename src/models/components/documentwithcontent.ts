@@ -11,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type DocumentWithContentMetadata =
   | string
   | number
+  | number
   | boolean
   | Array<string>;
 
@@ -20,7 +21,7 @@ export type DocumentWithContent = {
   createdAt: Date;
   updatedAt: Date;
   name: string;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
   partition: string;
   chunkCount?: number | null | undefined;
   externalId?: string | null | undefined;
@@ -33,11 +34,18 @@ export const DocumentWithContentMetadata$inboundSchema: z.ZodType<
   DocumentWithContentMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type DocumentWithContentMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -47,7 +55,13 @@ export const DocumentWithContentMetadata$outboundSchema: z.ZodType<
   DocumentWithContentMetadata$Outbound,
   z.ZodTypeDef,
   DocumentWithContentMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -94,7 +108,13 @@ export const DocumentWithContent$inboundSchema: z.ZodType<
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   name: z.string(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
   partition: z.string(),
   chunk_count: z.nullable(z.number().int()).optional(),
@@ -118,7 +138,7 @@ export type DocumentWithContent$Outbound = {
   created_at: string;
   updated_at: string;
   name: string;
-  metadata: { [k: string]: string | number | boolean | Array<string> };
+  metadata: { [k: string]: string | number | number | boolean | Array<string> };
   partition: string;
   chunk_count?: number | null | undefined;
   external_id?: string | null | undefined;
@@ -138,7 +158,13 @@ export const DocumentWithContent$outboundSchema: z.ZodType<
   updatedAt: z.date().transform(v => v.toISOString()),
   name: z.string(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ),
   partition: z.string(),
   chunkCount: z.nullable(z.number().int()).optional(),

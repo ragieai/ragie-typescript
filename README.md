@@ -293,6 +293,11 @@ run();
 * [createAuthenticatorConnection](docs/sdks/authenticators/README.md#createauthenticatorconnection) - Create Authenticator Connection
 * [deleteAuthenticatorConnection](docs/sdks/authenticators/README.md#deleteauthenticatorconnection) - Delete Authenticator
 
+### [beta](docs/sdks/beta/README.md)
+
+* [enableMcp](docs/sdks/beta/README.md#enablemcp) - Enable Mcp
+* [disableMcp](docs/sdks/beta/README.md#disablemcp) - Disable Mcp
+
 ### [connections](docs/sdks/connections/README.md)
 
 * [createConnection](docs/sdks/connections/README.md#createconnection) - Create Connection
@@ -341,6 +346,8 @@ run();
 * [create](docs/sdks/partitions/README.md#create) - Create Partition
 * [get](docs/sdks/partitions/README.md#get) - Get Partition
 * [delete](docs/sdks/partitions/README.md#delete) - Delete Partition
+* [enableMcp](docs/sdks/partitions/README.md#enablemcp) - Enable Mcp
+* [disableMcp](docs/sdks/partitions/README.md#disablemcp) - Disable Mcp
 * [setLimits](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
 
 
@@ -445,7 +452,7 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`RagieError`](./src/models/errors/ragieerror.ts): The base class for HTTP error responses.
-  * [`ErrorMessage`](./src/models/errors/errormessage.ts): Unauthorized.
+  * [`ErrorMessage`](./src/models/errors/errormessage.ts): Unauthorized. *
   * [`HTTPValidationError`](./src/models/errors/httpvalidationerror.ts): Validation Error. Status code `422`. *
 
 <details><summary>Less common errors (6)</summary>
@@ -770,6 +777,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`entitiesUpdateInstruction`](docs/sdks/entities/README.md#updateinstruction) - Update Instruction
 - [`partitionsCreate`](docs/sdks/partitions/README.md#create) - Create Partition
 - [`partitionsDelete`](docs/sdks/partitions/README.md#delete) - Delete Partition
+- [`partitionsDisableMcp`](docs/sdks/beta/README.md#disablemcp) - Disable Mcp
+- [`partitionsDisableMcp`](docs/sdks/partitions/README.md#disablemcp) - Disable Mcp
+- [`partitionsEnableMcp`](docs/sdks/beta/README.md#enablemcp) - Enable Mcp
+- [`partitionsEnableMcp`](docs/sdks/partitions/README.md#enablemcp) - Enable Mcp
 - [`partitionsGet`](docs/sdks/partitions/README.md#get) - Get Partition
 - [`partitionsList`](docs/sdks/partitions/README.md#list) - List Partitions
 - [`partitionsSetLimits`](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
