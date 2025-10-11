@@ -4,7 +4,11 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { RequestHandlerExtra } from "@modelcontextprotocol/sdk/shared/protocol.js";
-import { GetPromptResult } from "@modelcontextprotocol/sdk/types.js";
+import {
+  GetPromptResult,
+  ServerRequest,
+  ServerNotification,
+} from "@modelcontextprotocol/sdk/types.js";
 import {
   objectOutputType,
   ZodOptional,
@@ -24,28 +28,29 @@ export type PromptArgsRawShape = {
 };
 
 export type PromptDefinition<
-  Args extends undefined | PromptArgsRawShape = undefined,
-> = Args extends PromptArgsRawShape ? {
-    name: string;
-    description?: string;
-    scopes?: MCPScope[];
-    args: Args;
-    prompt: (
-      client: RagieCore,
-      args: objectOutputType<Args, ZodTypeAny>,
-      extra: RequestHandlerExtra,
-    ) => GetPromptResult | Promise<GetPromptResult>;
-  }
+  Args extends undefined | PromptArgsRawShape = undefined
+> = Args extends PromptArgsRawShape
+  ? {
+      name: string;
+      description?: string;
+      scopes?: MCPScope[];
+      args: Args;
+      prompt: (
+        client: RagieCore,
+        args: objectOutputType<Args, ZodTypeAny>,
+        extra: RequestHandlerExtra<ServerRequest, ServerNotification>
+      ) => GetPromptResult | Promise<GetPromptResult>;
+    }
   : {
-    name: string;
-    description?: string;
-    scopes?: MCPScope[];
-    args?: undefined;
-    prompt: (
-      client: RagieCore,
-      extra: RequestHandlerExtra,
-    ) => GetPromptResult | Promise<GetPromptResult>;
-  };
+      name: string;
+      description?: string;
+      scopes?: MCPScope[];
+      args?: undefined;
+      prompt: (
+        client: RagieCore,
+        extra: RequestHandlerExtra<ServerRequest, ServerNotification>
+      ) => GetPromptResult | Promise<GetPromptResult>;
+    };
 
 // Optional function to assist with formatting prompt results
 export async function formatResult(value: string): Promise<GetPromptResult> {
@@ -66,12 +71,12 @@ export function createRegisterPrompt(
   logger: ConsoleLogger,
   server: McpServer,
   sdk: RagieCore,
-  allowedScopes: Set<MCPScope>,
+  allowedScopes: Set<MCPScope>
 ): <A extends PromptArgsRawShape | undefined>(
-  prompt: PromptDefinition<A>,
+  prompt: PromptDefinition<A>
 ) => void {
   return <A extends PromptArgsRawShape | undefined>(
-    prompt: PromptDefinition<A>,
+    prompt: PromptDefinition<A>
   ): void => {
     const scopes = prompt.scopes ?? [];
     if (allowedScopes.size > 0 && scopes.length === 0) {
@@ -79,8 +84,8 @@ export function createRegisterPrompt(
     }
 
     if (
-      allowedScopes.size > 0
-      && !scopes.every((s: MCPScope) => allowedScopes.has(s))
+      allowedScopes.size > 0 &&
+      !scopes.every((s: MCPScope) => allowedScopes.has(s))
     ) {
       return;
     }
@@ -91,21 +96,17 @@ export function createRegisterPrompt(
           prompt.name,
           prompt.description,
           prompt.args,
-          async (args, ctx) => prompt.prompt(sdk, args, ctx),
+          async (args, ctx) => prompt.prompt(sdk, args, ctx)
         );
       } else {
-        server.prompt(
-          prompt.name,
-          prompt.args,
-          async (args, ctx) => prompt.prompt(sdk, args, ctx),
+        server.prompt(prompt.name, prompt.args, async (args, ctx) =>
+          prompt.prompt(sdk, args, ctx)
         );
       }
     } else {
       if (prompt.description) {
-        server.prompt(
-          prompt.name,
-          prompt.description,
-          async (ctx) => prompt.prompt(sdk, ctx),
+        server.prompt(prompt.name, prompt.description, async (ctx) =>
+          prompt.prompt(sdk, ctx)
         );
       } else {
         server.prompt(prompt.name, async (ctx) => prompt.prompt(sdk, ctx));

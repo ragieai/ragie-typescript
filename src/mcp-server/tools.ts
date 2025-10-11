@@ -4,7 +4,11 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { RequestHandlerExtra } from "@modelcontextprotocol/sdk/shared/protocol.js";
-import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
+import {
+  CallToolResult,
+  ServerRequest,
+  ServerNotification,
+} from "@modelcontextprotocol/sdk/types.js";
 import { objectOutputType, ZodRawShape, ZodTypeAny } from "zod";
 import { RagieCore } from "../core.js";
 import { ConsoleLogger } from "./console-logger.js";
@@ -12,32 +16,33 @@ import { MCPScope } from "./scopes.js";
 import { isAsyncIterable, isBinaryData, valueToBase64 } from "./shared.js";
 
 export type ToolDefinition<Args extends undefined | ZodRawShape = undefined> =
-  Args extends ZodRawShape ? {
-      name: string;
-      description: string;
-      scopes?: MCPScope[];
-      args: Args;
-      tool: (
-        client: RagieCore,
-        args: objectOutputType<Args, ZodTypeAny>,
-        extra: RequestHandlerExtra,
-      ) => CallToolResult | Promise<CallToolResult>;
-    }
+  Args extends ZodRawShape
+    ? {
+        name: string;
+        description: string;
+        scopes?: MCPScope[];
+        args: Args;
+        tool: (
+          client: RagieCore,
+          args: objectOutputType<Args, ZodTypeAny>,
+          extra: RequestHandlerExtra<ServerRequest, ServerNotification>
+        ) => CallToolResult | Promise<CallToolResult>;
+      }
     : {
-      name: string;
-      description: string;
-      scopes?: MCPScope[];
-      args?: undefined;
-      tool: (
-        client: RagieCore,
-        extra: RequestHandlerExtra,
-      ) => CallToolResult | Promise<CallToolResult>;
-    };
+        name: string;
+        description: string;
+        scopes?: MCPScope[];
+        args?: undefined;
+        tool: (
+          client: RagieCore,
+          extra: RequestHandlerExtra<ServerRequest, ServerNotification>
+        ) => CallToolResult | Promise<CallToolResult>;
+      };
 
 // Optional function to assist with formatting tool results
 export async function formatResult(
   value: unknown,
-  init: { response?: Response | undefined },
+  init: { response?: Response | undefined }
 ): Promise<CallToolResult> {
   if (typeof value === "undefined") {
     return { content: [] };
@@ -50,23 +55,24 @@ export async function formatResult(
   if (contentType.search(/\bjson\b/g)) {
     content = [{ type: "text", text: JSON.stringify(value) }];
   } else if (
-    contentType.startsWith("text/event-stream")
-    && isAsyncIterable(value)
+    contentType.startsWith("text/event-stream") &&
+    isAsyncIterable(value)
   ) {
     content = await consumeSSE(value);
   } else if (contentType.startsWith("text/") && typeof value === "string") {
     content = [{ type: "text", text: value }];
   } else if (isBinaryData(value) && contentType.startsWith("image/")) {
     const data = await valueToBase64(value);
-    content = data == null
-      ? []
-      : [{ type: "image", data, mimeType: contentType }];
+    content =
+      data == null ? [] : [{ type: "image", data, mimeType: contentType }];
   } else {
     return {
-      content: [{
-        type: "text",
-        text: `Unsupported content type: "${contentType}"`,
-      }],
+      content: [
+        {
+          type: "text",
+          text: `Unsupported content type: "${contentType}"`,
+        },
+      ],
       isError: true,
     };
   }
@@ -75,7 +81,7 @@ export async function formatResult(
 }
 
 async function consumeSSE(
-  value: AsyncIterable<unknown>,
+  value: AsyncIterable<unknown>
 ): Promise<CallToolResult["content"]> {
   const content: CallToolResult["content"] = [];
 
@@ -95,7 +101,7 @@ export function createRegisterTool(
   server: McpServer,
   sdk: RagieCore,
   allowedScopes: Set<MCPScope>,
-  allowedTools?: Set<string>,
+  allowedTools?: Set<string>
 ): <A extends ZodRawShape | undefined>(tool: ToolDefinition<A>) => void {
   return <A extends ZodRawShape | undefined>(tool: ToolDefinition<A>): void => {
     if (allowedTools && !allowedTools.has(tool.name)) {
@@ -108,8 +114,8 @@ export function createRegisterTool(
     }
 
     if (
-      allowedScopes.size > 0
-      && !scopes.every((s: MCPScope) => allowedScopes.has(s))
+      allowedScopes.size > 0 &&
+      !scopes.every((s: MCPScope) => allowedScopes.has(s))
     ) {
       return;
     }
