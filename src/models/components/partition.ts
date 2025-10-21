@@ -14,6 +14,10 @@ import {
   PartitionLimits$outboundSchema,
 } from "./partitionlimits.js";
 
+export type MetadataSchema = string | number | boolean | Array<string> | {
+  [k: string]: any;
+};
+
 export type Partition = {
   name: string;
   isDefault: boolean;
@@ -21,8 +25,76 @@ export type Partition = {
    * Timestamp when the partition exceeded its limits, if applicable.
    */
   limitExceededAt?: Date | null | undefined;
+  description: string | null;
+  contextAware: boolean;
+  metadataSchema: {
+    [k: string]: string | number | boolean | Array<string> | {
+      [k: string]: any;
+    };
+  } | null;
   limits: PartitionLimits;
 };
+
+/** @internal */
+export const MetadataSchema$inboundSchema: z.ZodType<
+  MetadataSchema,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.boolean(),
+  z.array(z.string()),
+  z.record(z.any()),
+]);
+
+/** @internal */
+export type MetadataSchema$Outbound =
+  | string
+  | number
+  | boolean
+  | Array<string>
+  | { [k: string]: any };
+
+/** @internal */
+export const MetadataSchema$outboundSchema: z.ZodType<
+  MetadataSchema$Outbound,
+  z.ZodTypeDef,
+  MetadataSchema
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.boolean(),
+  z.array(z.string()),
+  z.record(z.any()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MetadataSchema$ {
+  /** @deprecated use `MetadataSchema$inboundSchema` instead. */
+  export const inboundSchema = MetadataSchema$inboundSchema;
+  /** @deprecated use `MetadataSchema$outboundSchema` instead. */
+  export const outboundSchema = MetadataSchema$outboundSchema;
+  /** @deprecated use `MetadataSchema$Outbound` instead. */
+  export type Outbound = MetadataSchema$Outbound;
+}
+
+export function metadataSchemaToJSON(metadataSchema: MetadataSchema): string {
+  return JSON.stringify(MetadataSchema$outboundSchema.parse(metadataSchema));
+}
+
+export function metadataSchemaFromJSON(
+  jsonString: string,
+): SafeParseResult<MetadataSchema, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MetadataSchema$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MetadataSchema' from JSON`,
+  );
+}
 
 /** @internal */
 export const Partition$inboundSchema: z.ZodType<
@@ -35,11 +107,26 @@ export const Partition$inboundSchema: z.ZodType<
   limit_exceeded_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
+  description: z.nullable(z.string()),
+  context_aware: z.boolean(),
+  metadata_schema: z.nullable(
+    z.record(
+      z.union([
+        z.string(),
+        z.number().int(),
+        z.boolean(),
+        z.array(z.string()),
+        z.record(z.any()),
+      ]),
+    ),
+  ),
   limits: PartitionLimits$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "is_default": "isDefault",
     "limit_exceeded_at": "limitExceededAt",
+    "context_aware": "contextAware",
+    "metadata_schema": "metadataSchema",
   });
 });
 
@@ -48,6 +135,13 @@ export type Partition$Outbound = {
   name: string;
   is_default: boolean;
   limit_exceeded_at?: string | null | undefined;
+  description: string | null;
+  context_aware: boolean;
+  metadata_schema: {
+    [k: string]: string | number | boolean | Array<string> | {
+      [k: string]: any;
+    };
+  } | null;
   limits: PartitionLimits$Outbound;
 };
 
@@ -61,11 +155,26 @@ export const Partition$outboundSchema: z.ZodType<
   isDefault: z.boolean(),
   limitExceededAt: z.nullable(z.date().transform(v => v.toISOString()))
     .optional(),
+  description: z.nullable(z.string()),
+  contextAware: z.boolean(),
+  metadataSchema: z.nullable(
+    z.record(
+      z.union([
+        z.string(),
+        z.number().int(),
+        z.boolean(),
+        z.array(z.string()),
+        z.record(z.any()),
+      ]),
+    ),
+  ),
   limits: PartitionLimits$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     isDefault: "is_default",
     limitExceededAt: "limit_exceeded_at",
+    contextAware: "context_aware",
+    metadataSchema: "metadata_schema",
   });
 });
 

@@ -55,6 +55,7 @@ import { tool$partitionsDelete } from "./tools/partitionsDelete.js";
 import { tool$partitionsGet } from "./tools/partitionsGet.js";
 import { tool$partitionsList } from "./tools/partitionsList.js";
 import { tool$partitionsSetLimits } from "./tools/partitionsSetLimits.js";
+import { tool$partitionsUpdate } from "./tools/partitionsUpdate.js";
 import { tool$responsesCreate } from "./tools/responsesCreate.js";
 import { tool$responsesGet } from "./tools/responsesGet.js";
 import { tool$retrievalsRetrieve } from "./tools/retrievalsRetrieve.js";
@@ -69,7 +70,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.12.2",
+    version: "1.13.0",
   });
 
   const client = new RagieCore({
@@ -136,6 +137,7 @@ export function createMCPServer(deps: {
   tool(tool$partitionsList);
   tool(tool$partitionsCreate);
   tool(tool$partitionsGet);
+  tool(tool$partitionsUpdate);
   tool(tool$partitionsDelete);
   tool(tool$partitionsSetLimits);
   tool(tool$authenticatorsCreate);

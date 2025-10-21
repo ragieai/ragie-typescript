@@ -20,6 +20,13 @@ import {
   PartitionStats$outboundSchema,
 } from "./partitionstats.js";
 
+export type PartitionDetailMetadataSchema =
+  | string
+  | number
+  | boolean
+  | Array<string>
+  | { [k: string]: any };
+
 export type PartitionDetail = {
   name: string;
   isDefault: boolean;
@@ -27,9 +34,83 @@ export type PartitionDetail = {
    * Timestamp when the partition exceeded its limits, if applicable.
    */
   limitExceededAt?: Date | null | undefined;
+  description: string | null;
+  contextAware: boolean;
+  metadataSchema: {
+    [k: string]: string | number | boolean | Array<string> | {
+      [k: string]: any;
+    };
+  } | null;
   limits: PartitionLimits;
   stats: PartitionStats;
 };
+
+/** @internal */
+export const PartitionDetailMetadataSchema$inboundSchema: z.ZodType<
+  PartitionDetailMetadataSchema,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.boolean(),
+  z.array(z.string()),
+  z.record(z.any()),
+]);
+
+/** @internal */
+export type PartitionDetailMetadataSchema$Outbound =
+  | string
+  | number
+  | boolean
+  | Array<string>
+  | { [k: string]: any };
+
+/** @internal */
+export const PartitionDetailMetadataSchema$outboundSchema: z.ZodType<
+  PartitionDetailMetadataSchema$Outbound,
+  z.ZodTypeDef,
+  PartitionDetailMetadataSchema
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.boolean(),
+  z.array(z.string()),
+  z.record(z.any()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PartitionDetailMetadataSchema$ {
+  /** @deprecated use `PartitionDetailMetadataSchema$inboundSchema` instead. */
+  export const inboundSchema = PartitionDetailMetadataSchema$inboundSchema;
+  /** @deprecated use `PartitionDetailMetadataSchema$outboundSchema` instead. */
+  export const outboundSchema = PartitionDetailMetadataSchema$outboundSchema;
+  /** @deprecated use `PartitionDetailMetadataSchema$Outbound` instead. */
+  export type Outbound = PartitionDetailMetadataSchema$Outbound;
+}
+
+export function partitionDetailMetadataSchemaToJSON(
+  partitionDetailMetadataSchema: PartitionDetailMetadataSchema,
+): string {
+  return JSON.stringify(
+    PartitionDetailMetadataSchema$outboundSchema.parse(
+      partitionDetailMetadataSchema,
+    ),
+  );
+}
+
+export function partitionDetailMetadataSchemaFromJSON(
+  jsonString: string,
+): SafeParseResult<PartitionDetailMetadataSchema, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PartitionDetailMetadataSchema$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PartitionDetailMetadataSchema' from JSON`,
+  );
+}
 
 /** @internal */
 export const PartitionDetail$inboundSchema: z.ZodType<
@@ -42,12 +123,27 @@ export const PartitionDetail$inboundSchema: z.ZodType<
   limit_exceeded_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
+  description: z.nullable(z.string()),
+  context_aware: z.boolean(),
+  metadata_schema: z.nullable(
+    z.record(
+      z.union([
+        z.string(),
+        z.number().int(),
+        z.boolean(),
+        z.array(z.string()),
+        z.record(z.any()),
+      ]),
+    ),
+  ),
   limits: PartitionLimits$inboundSchema,
   stats: PartitionStats$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "is_default": "isDefault",
     "limit_exceeded_at": "limitExceededAt",
+    "context_aware": "contextAware",
+    "metadata_schema": "metadataSchema",
   });
 });
 
@@ -56,6 +152,13 @@ export type PartitionDetail$Outbound = {
   name: string;
   is_default: boolean;
   limit_exceeded_at?: string | null | undefined;
+  description: string | null;
+  context_aware: boolean;
+  metadata_schema: {
+    [k: string]: string | number | boolean | Array<string> | {
+      [k: string]: any;
+    };
+  } | null;
   limits: PartitionLimits$Outbound;
   stats: PartitionStats$Outbound;
 };
@@ -70,12 +173,27 @@ export const PartitionDetail$outboundSchema: z.ZodType<
   isDefault: z.boolean(),
   limitExceededAt: z.nullable(z.date().transform(v => v.toISOString()))
     .optional(),
+  description: z.nullable(z.string()),
+  contextAware: z.boolean(),
+  metadataSchema: z.nullable(
+    z.record(
+      z.union([
+        z.string(),
+        z.number().int(),
+        z.boolean(),
+        z.array(z.string()),
+        z.record(z.any()),
+      ]),
+    ),
+  ),
   limits: PartitionLimits$outboundSchema,
   stats: PartitionStats$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     isDefault: "is_default",
     limitExceededAt: "limit_exceeded_at",
+    contextAware: "context_aware",
+    metadataSchema: "metadata_schema",
   });
 });
 

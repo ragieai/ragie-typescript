@@ -18,6 +18,7 @@ export type EvaluatedAnswerStep = {
   type?: "evaluated_answer" | undefined;
   think: string;
   currentQuestion: string;
+  errored?: boolean | undefined;
   answer: Answer;
   /**
    * A list of questions ids that are no longer relevant to the current answer referenced by their IDs.
@@ -36,6 +37,7 @@ export const EvaluatedAnswerStep$inboundSchema: z.ZodType<
   type: z.literal("evaluated_answer").default("evaluated_answer"),
   think: z.string(),
   current_question: z.string(),
+  errored: z.boolean().default(false),
   answer: Answer$inboundSchema,
   other_resolved_question_ids: z.array(z.string()).optional(),
   eval_passed: z.boolean(),
@@ -54,6 +56,7 @@ export type EvaluatedAnswerStep$Outbound = {
   type: "evaluated_answer";
   think: string;
   current_question: string;
+  errored: boolean;
   answer: Answer$Outbound;
   other_resolved_question_ids?: Array<string> | undefined;
   eval_passed: boolean;
@@ -69,6 +72,7 @@ export const EvaluatedAnswerStep$outboundSchema: z.ZodType<
   type: z.literal("evaluated_answer").default("evaluated_answer" as const),
   think: z.string(),
   currentQuestion: z.string(),
+  errored: z.boolean().default(false),
   answer: Answer$outboundSchema,
   otherResolvedQuestionIds: z.array(z.string()).optional(),
   evalPassed: z.boolean(),

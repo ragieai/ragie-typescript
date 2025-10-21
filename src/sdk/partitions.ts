@@ -7,6 +7,7 @@ import { partitionsDelete } from "../funcs/partitionsDelete.js";
 import { partitionsGet } from "../funcs/partitionsGet.js";
 import { partitionsList } from "../funcs/partitionsList.js";
 import { partitionsSetLimits } from "../funcs/partitionsSetLimits.js";
+import { partitionsUpdate } from "../funcs/partitionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -64,6 +65,23 @@ export class Partitions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.PartitionDetail> {
     return unwrapAsync(partitionsGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update Partition
+   *
+   * @remarks
+   * Updates a partition. This includes the partition's description and metadata schema.
+   */
+  async update(
+    request: operations.UpdatePartitionPartitionsPartitionIdPatchRequest,
+    options?: RequestOptions,
+  ): Promise<components.PartitionDetail> {
+    return unwrapAsync(partitionsUpdate(
       this,
       request,
       options,

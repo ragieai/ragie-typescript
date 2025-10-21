@@ -18,6 +18,7 @@ export type AnswerStep = {
   type?: "answer" | undefined;
   think: string;
   currentQuestion: string;
+  errored?: boolean | undefined;
   /**
    * A list of question ids that are no longer relevant to the current answer referenced by their IDs.
    */
@@ -34,6 +35,7 @@ export const AnswerStep$inboundSchema: z.ZodType<
   type: z.literal("answer").default("answer"),
   think: z.string(),
   current_question: z.string(),
+  errored: z.boolean().default(false),
   other_resolved_question_ids: z.array(z.string()).optional(),
   answer: Answer$inboundSchema,
 }).transform((v) => {
@@ -48,6 +50,7 @@ export type AnswerStep$Outbound = {
   type: "answer";
   think: string;
   current_question: string;
+  errored: boolean;
   other_resolved_question_ids?: Array<string> | undefined;
   answer: Answer$Outbound;
 };
@@ -61,6 +64,7 @@ export const AnswerStep$outboundSchema: z.ZodType<
   type: z.literal("answer").default("answer" as const),
   think: z.string(),
   currentQuestion: z.string(),
+  errored: z.boolean().default(false),
   otherResolvedQuestionIds: z.array(z.string()).optional(),
   answer: Answer$outboundSchema,
 }).transform((v) => {

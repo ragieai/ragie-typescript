@@ -17,7 +17,7 @@ let value: DocumentList = {
       updatedAt: new Date("2023-01-05T00:35:31.377Z"),
       name: "<value>",
       metadata: {
-        "key": [],
+        "key": true,
       },
       partition: "<value>",
     },

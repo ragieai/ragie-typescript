@@ -15,9 +15,10 @@ import {
 } from "./search.js";
 
 export type SearchStep = {
-  type?: "search" | undefined;
+  type?: "base_search" | undefined;
   think: string;
   currentQuestion: string;
+  errored?: boolean | undefined;
   search: Search;
 };
 
@@ -27,9 +28,10 @@ export const SearchStep$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("search").default("search"),
+  type: z.literal("base_search").default("base_search"),
   think: z.string(),
   current_question: z.string(),
+  errored: z.boolean().default(false),
   search: Search$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -39,9 +41,10 @@ export const SearchStep$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SearchStep$Outbound = {
-  type: "search";
+  type: "base_search";
   think: string;
   current_question: string;
+  errored: boolean;
   search: Search$Outbound;
 };
 
@@ -51,9 +54,10 @@ export const SearchStep$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SearchStep
 > = z.object({
-  type: z.literal("search").default("search" as const),
+  type: z.literal("base_search").default("base_search" as const),
   think: z.string(),
   currentQuestion: z.string(),
+  errored: z.boolean().default(false),
   search: Search$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

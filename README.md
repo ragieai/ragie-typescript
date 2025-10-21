@@ -340,9 +340,9 @@ run();
 * [list](docs/sdks/partitions/README.md#list) - List Partitions
 * [create](docs/sdks/partitions/README.md#create) - Create Partition
 * [get](docs/sdks/partitions/README.md#get) - Get Partition
+* [update](docs/sdks/partitions/README.md#update) - Update Partition
 * [delete](docs/sdks/partitions/README.md#delete) - Delete Partition
 * [setLimits](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
-
 
 ### [responses](docs/sdks/responses/README.md)
 
@@ -773,6 +773,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`partitionsGet`](docs/sdks/partitions/README.md#get) - Get Partition
 - [`partitionsList`](docs/sdks/partitions/README.md#list) - List Partitions
 - [`partitionsSetLimits`](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
+- [`partitionsUpdate`](docs/sdks/partitions/README.md#update) - Update Partition
 - [`responsesCreate`](docs/sdks/responses/README.md#create) - Create Response
 - [`responsesGet`](docs/sdks/responses/README.md#get) - Get Response
 - [`retrievalsRetrieve`](docs/sdks/retrievals/README.md#retrieve) - Retrieve

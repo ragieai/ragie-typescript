@@ -9,6 +9,18 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  CodeInterpreterOutput,
+  CodeInterpreterOutput$inboundSchema,
+  CodeInterpreterOutput$Outbound,
+  CodeInterpreterOutput$outboundSchema,
+} from "./codeinterpreteroutput.js";
+import {
+  FileSearchOutput,
+  FileSearchOutput$inboundSchema,
+  FileSearchOutput$Outbound,
+  FileSearchOutput$outboundSchema,
+} from "./filesearchoutput.js";
+import {
   FinalAnswer,
   FinalAnswer$inboundSchema,
   FinalAnswer$Outbound,
@@ -27,11 +39,17 @@ import {
   Reasoning$outboundSchema,
 } from "./reasoning.js";
 import {
-  ResponseOutput,
-  ResponseOutput$inboundSchema,
-  ResponseOutput$Outbound,
-  ResponseOutput$outboundSchema,
-} from "./responseoutput.js";
+  ReasoningOutput,
+  ReasoningOutput$inboundSchema,
+  ReasoningOutput$Outbound,
+  ReasoningOutput$outboundSchema,
+} from "./reasoningoutput.js";
+import {
+  ResponseOutputMessage,
+  ResponseOutputMessage$inboundSchema,
+  ResponseOutputMessage$Outbound,
+  ResponseOutputMessage$outboundSchema,
+} from "./responseoutputmessage.js";
 import {
   Tool,
   Tool$inboundSchema,
@@ -43,8 +61,15 @@ export const Status = {
   Completed: "completed",
   Failed: "failed",
   InProgress: "in_progress",
+  Cancelled: "cancelled",
 } as const;
 export type Status = ClosedEnum<typeof Status>;
+
+export type Output =
+  | ReasoningOutput
+  | CodeInterpreterOutput
+  | FileSearchOutput
+  | ResponseOutputMessage;
 
 export type ResponseT = {
   id: string;
@@ -56,7 +81,12 @@ export type ResponseT = {
   instructions?: string | null | undefined;
   maxOutputTokens?: any | null | undefined;
   model?: "deep-search" | undefined;
-  output: Array<ResponseOutput>;
+  output: Array<
+    | ReasoningOutput
+    | CodeInterpreterOutput
+    | FileSearchOutput
+    | ResponseOutputMessage
+  >;
   outputParsed?: FinalAnswer | null | undefined;
   tools: Array<Tool>;
   reasoning: Reasoning;
@@ -92,6 +122,61 @@ export namespace Status$ {
 }
 
 /** @internal */
+export const Output$inboundSchema: z.ZodType<Output, z.ZodTypeDef, unknown> = z
+  .union([
+    ReasoningOutput$inboundSchema,
+    CodeInterpreterOutput$inboundSchema,
+    FileSearchOutput$inboundSchema,
+    ResponseOutputMessage$inboundSchema,
+  ]);
+
+/** @internal */
+export type Output$Outbound =
+  | ReasoningOutput$Outbound
+  | CodeInterpreterOutput$Outbound
+  | FileSearchOutput$Outbound
+  | ResponseOutputMessage$Outbound;
+
+/** @internal */
+export const Output$outboundSchema: z.ZodType<
+  Output$Outbound,
+  z.ZodTypeDef,
+  Output
+> = z.union([
+  ReasoningOutput$outboundSchema,
+  CodeInterpreterOutput$outboundSchema,
+  FileSearchOutput$outboundSchema,
+  ResponseOutputMessage$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Output$ {
+  /** @deprecated use `Output$inboundSchema` instead. */
+  export const inboundSchema = Output$inboundSchema;
+  /** @deprecated use `Output$outboundSchema` instead. */
+  export const outboundSchema = Output$outboundSchema;
+  /** @deprecated use `Output$Outbound` instead. */
+  export type Outbound = Output$Outbound;
+}
+
+export function outputToJSON(output: Output): string {
+  return JSON.stringify(Output$outboundSchema.parse(output));
+}
+
+export function outputFromJSON(
+  jsonString: string,
+): SafeParseResult<Output, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Output$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Output' from JSON`,
+  );
+}
+
+/** @internal */
 export const ResponseT$inboundSchema: z.ZodType<
   ResponseT,
   z.ZodTypeDef,
@@ -106,7 +191,14 @@ export const ResponseT$inboundSchema: z.ZodType<
   instructions: z.nullable(z.string()).optional(),
   max_output_tokens: z.nullable(z.any()).optional(),
   model: z.literal("deep-search").default("deep-search"),
-  output: z.array(ResponseOutput$inboundSchema),
+  output: z.array(
+    z.union([
+      ReasoningOutput$inboundSchema,
+      CodeInterpreterOutput$inboundSchema,
+      FileSearchOutput$inboundSchema,
+      ResponseOutputMessage$inboundSchema,
+    ]),
+  ),
   output_parsed: z.nullable(FinalAnswer$inboundSchema).optional(),
   tools: z.array(Tool$inboundSchema),
   reasoning: Reasoning$inboundSchema,
@@ -144,7 +236,12 @@ export type ResponseT$Outbound = {
   instructions?: string | null | undefined;
   max_output_tokens?: any | null | undefined;
   model: "deep-search";
-  output: Array<ResponseOutput$Outbound>;
+  output: Array<
+    | ReasoningOutput$Outbound
+    | CodeInterpreterOutput$Outbound
+    | FileSearchOutput$Outbound
+    | ResponseOutputMessage$Outbound
+  >;
   output_parsed?: FinalAnswer$Outbound | null | undefined;
   tools: Array<Tool$Outbound>;
   reasoning: Reasoning$Outbound;
@@ -175,7 +272,14 @@ export const ResponseT$outboundSchema: z.ZodType<
   instructions: z.nullable(z.string()).optional(),
   maxOutputTokens: z.nullable(z.any()).optional(),
   model: z.literal("deep-search").default("deep-search" as const),
-  output: z.array(ResponseOutput$outboundSchema),
+  output: z.array(
+    z.union([
+      ReasoningOutput$outboundSchema,
+      CodeInterpreterOutput$outboundSchema,
+      FileSearchOutput$outboundSchema,
+      ResponseOutputMessage$outboundSchema,
+    ]),
+  ),
   outputParsed: z.nullable(FinalAnswer$outboundSchema).optional(),
   tools: z.array(Tool$outboundSchema),
   reasoning: Reasoning$outboundSchema,
