@@ -11,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type CreateDocumentRawParamsMetadata =
   | string
   | number
+  | number
   | boolean
   | Array<string>;
 
@@ -28,7 +29,7 @@ export type CreateDocumentRawParams = {
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
    */
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   /**
    * An optional identifier for the document. A common value might be an id in an external system or the URL where the source file may be found.
@@ -49,11 +50,18 @@ export const CreateDocumentRawParamsMetadata$inboundSchema: z.ZodType<
   CreateDocumentRawParamsMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type CreateDocumentRawParamsMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -63,7 +71,13 @@ export const CreateDocumentRawParamsMetadata$outboundSchema: z.ZodType<
   CreateDocumentRawParamsMetadata$Outbound,
   z.ZodTypeDef,
   CreateDocumentRawParamsMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -144,7 +158,13 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string().optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   external_id: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
@@ -159,7 +179,7 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
 export type CreateDocumentRawParams$Outbound = {
   name?: string | undefined;
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   external_id?: string | null | undefined;
   partition?: string | undefined;
@@ -174,7 +194,13 @@ export const CreateDocumentRawParams$outboundSchema: z.ZodType<
 > = z.object({
   name: z.string().optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   externalId: z.nullable(z.string()).optional(),
   partition: z.string().optional(),

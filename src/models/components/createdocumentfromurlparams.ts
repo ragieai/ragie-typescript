@@ -18,6 +18,7 @@ import {
 export type CreateDocumentFromUrlParamsMetadata =
   | string
   | number
+  | number
   | boolean
   | Array<string>;
 
@@ -30,7 +31,7 @@ export type Mode1 = ClosedEnum<typeof Mode1>;
 /**
  * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  To process all media types at the highest quality, use `'all'`.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }  Highest quality processing for all media types     "all"
  */
-export type CreateDocumentFromUrlParamsMode = MediaModeParam | Mode1;
+export type CreateDocumentFromUrlParamsMode = Mode1 | MediaModeParam;
 
 export type CreateDocumentFromUrlParams = {
   name?: string | undefined;
@@ -38,12 +39,12 @@ export type CreateDocumentFromUrlParams = {
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
    */
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   /**
    * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  To process all media types at the highest quality, use `'all'`.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }  Highest quality processing for all media types     "all"
    */
-  mode?: MediaModeParam | Mode1 | undefined;
+  mode?: Mode1 | MediaModeParam | undefined;
   /**
    * An optional identifier for the document. A common value might be an id in an external system or the URL where the source file may be found.
    */
@@ -63,11 +64,18 @@ export const CreateDocumentFromUrlParamsMetadata$inboundSchema: z.ZodType<
   CreateDocumentFromUrlParamsMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type CreateDocumentFromUrlParamsMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -77,7 +85,13 @@ export const CreateDocumentFromUrlParamsMetadata$outboundSchema: z.ZodType<
   CreateDocumentFromUrlParamsMetadata$Outbound,
   z.ZodTypeDef,
   CreateDocumentFromUrlParamsMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -140,19 +154,19 @@ export const CreateDocumentFromUrlParamsMode$inboundSchema: z.ZodType<
   CreateDocumentFromUrlParamsMode,
   z.ZodTypeDef,
   unknown
-> = z.union([MediaModeParam$inboundSchema, Mode1$inboundSchema]);
+> = z.union([Mode1$inboundSchema, MediaModeParam$inboundSchema]);
 
 /** @internal */
 export type CreateDocumentFromUrlParamsMode$Outbound =
-  | MediaModeParam$Outbound
-  | string;
+  | string
+  | MediaModeParam$Outbound;
 
 /** @internal */
 export const CreateDocumentFromUrlParamsMode$outboundSchema: z.ZodType<
   CreateDocumentFromUrlParamsMode$Outbound,
   z.ZodTypeDef,
   CreateDocumentFromUrlParamsMode
-> = z.union([MediaModeParam$outboundSchema, Mode1$outboundSchema]);
+> = z.union([Mode1$outboundSchema, MediaModeParam$outboundSchema]);
 
 /**
  * @internal
@@ -195,9 +209,15 @@ export const CreateDocumentFromUrlParams$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string().optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
-  mode: z.union([MediaModeParam$inboundSchema, Mode1$inboundSchema]).optional(),
+  mode: z.union([Mode1$inboundSchema, MediaModeParam$inboundSchema]).optional(),
   external_id: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
   url: z.string(),
@@ -211,9 +231,9 @@ export const CreateDocumentFromUrlParams$inboundSchema: z.ZodType<
 export type CreateDocumentFromUrlParams$Outbound = {
   name?: string | undefined;
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
-  mode?: MediaModeParam$Outbound | string | undefined;
+  mode?: string | MediaModeParam$Outbound | undefined;
   external_id?: string | null | undefined;
   partition?: string | undefined;
   url: string;
@@ -227,9 +247,15 @@ export const CreateDocumentFromUrlParams$outboundSchema: z.ZodType<
 > = z.object({
   name: z.string().optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
-  mode: z.union([MediaModeParam$outboundSchema, Mode1$outboundSchema])
+  mode: z.union([Mode1$outboundSchema, MediaModeParam$outboundSchema])
     .optional(),
   externalId: z.nullable(z.string()).optional(),
   partition: z.string().optional(),

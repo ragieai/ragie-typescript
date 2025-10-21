@@ -36,3 +36,4 @@ export * from "./updatedocumentfile.js";
 export * from "./updatedocumentfromurl.js";
 export * from "./updatedocumentraw.js";
 export * from "./updateinstruction.js";
+export * from "./updatepartitionpartitionspartitionidpatch.js";

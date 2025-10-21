@@ -8,12 +8,19 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type MetadataSchema = string | number | boolean | Array<string> | {
-  [k: string]: any;
-};
+export type CreatePartitionParamsMetadataSchema =
+  | string
+  | number
+  | boolean
+  | Array<string>
+  | { [k: string]: any };
 
 export type CreatePartitionParams = {
   name: string;
+  /**
+   * Description of the partition. Automatic description generation can be enabled in the web dashboard.
+   */
+  description?: string | null | undefined;
   /**
    * Monthly limit of hosted pages added in the current month in the partition.
    */
@@ -63,7 +70,7 @@ export type CreatePartitionParams = {
    */
   mediaHostedLimitMax?: number | null | undefined;
   /**
-   * Metadata schema for the partition.
+   * Metadata schema for the partition. This is an optional subset of the metadata of documents in the partition, defined as JSON Schema, that can be used in filter generatation. Providing detailed descriptions of the fields in the schema can be helpful for LLMs generating filters dynamically.
    */
   metadataSchema?:
     | {
@@ -76,8 +83,8 @@ export type CreatePartitionParams = {
 };
 
 /** @internal */
-export const MetadataSchema$inboundSchema: z.ZodType<
-  MetadataSchema,
+export const CreatePartitionParamsMetadataSchema$inboundSchema: z.ZodType<
+  CreatePartitionParamsMetadataSchema,
   z.ZodTypeDef,
   unknown
 > = z.union([
@@ -89,7 +96,7 @@ export const MetadataSchema$inboundSchema: z.ZodType<
 ]);
 
 /** @internal */
-export type MetadataSchema$Outbound =
+export type CreatePartitionParamsMetadataSchema$Outbound =
   | string
   | number
   | boolean
@@ -97,10 +104,10 @@ export type MetadataSchema$Outbound =
   | { [k: string]: any };
 
 /** @internal */
-export const MetadataSchema$outboundSchema: z.ZodType<
-  MetadataSchema$Outbound,
+export const CreatePartitionParamsMetadataSchema$outboundSchema: z.ZodType<
+  CreatePartitionParamsMetadataSchema$Outbound,
   z.ZodTypeDef,
-  MetadataSchema
+  CreatePartitionParamsMetadataSchema
 > = z.union([
   z.string(),
   z.number().int(),
@@ -113,26 +120,35 @@ export const MetadataSchema$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace MetadataSchema$ {
-  /** @deprecated use `MetadataSchema$inboundSchema` instead. */
-  export const inboundSchema = MetadataSchema$inboundSchema;
-  /** @deprecated use `MetadataSchema$outboundSchema` instead. */
-  export const outboundSchema = MetadataSchema$outboundSchema;
-  /** @deprecated use `MetadataSchema$Outbound` instead. */
-  export type Outbound = MetadataSchema$Outbound;
+export namespace CreatePartitionParamsMetadataSchema$ {
+  /** @deprecated use `CreatePartitionParamsMetadataSchema$inboundSchema` instead. */
+  export const inboundSchema =
+    CreatePartitionParamsMetadataSchema$inboundSchema;
+  /** @deprecated use `CreatePartitionParamsMetadataSchema$outboundSchema` instead. */
+  export const outboundSchema =
+    CreatePartitionParamsMetadataSchema$outboundSchema;
+  /** @deprecated use `CreatePartitionParamsMetadataSchema$Outbound` instead. */
+  export type Outbound = CreatePartitionParamsMetadataSchema$Outbound;
 }
 
-export function metadataSchemaToJSON(metadataSchema: MetadataSchema): string {
-  return JSON.stringify(MetadataSchema$outboundSchema.parse(metadataSchema));
+export function createPartitionParamsMetadataSchemaToJSON(
+  createPartitionParamsMetadataSchema: CreatePartitionParamsMetadataSchema,
+): string {
+  return JSON.stringify(
+    CreatePartitionParamsMetadataSchema$outboundSchema.parse(
+      createPartitionParamsMetadataSchema,
+    ),
+  );
 }
 
-export function metadataSchemaFromJSON(
+export function createPartitionParamsMetadataSchemaFromJSON(
   jsonString: string,
-): SafeParseResult<MetadataSchema, SDKValidationError> {
+): SafeParseResult<CreatePartitionParamsMetadataSchema, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => MetadataSchema$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MetadataSchema' from JSON`,
+    (x) =>
+      CreatePartitionParamsMetadataSchema$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePartitionParamsMetadataSchema' from JSON`,
   );
 }
 
@@ -143,6 +159,7 @@ export const CreatePartitionParams$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string(),
+  description: z.nullable(z.string()).optional(),
   pages_hosted_limit_monthly: z.nullable(z.number().int()).optional(),
   pages_processed_limit_monthly: z.nullable(z.number().int()).optional(),
   pages_hosted_limit_max: z.nullable(z.number().int()).optional(),
@@ -187,6 +204,7 @@ export const CreatePartitionParams$inboundSchema: z.ZodType<
 /** @internal */
 export type CreatePartitionParams$Outbound = {
   name: string;
+  description?: string | null | undefined;
   pages_hosted_limit_monthly?: number | null | undefined;
   pages_processed_limit_monthly?: number | null | undefined;
   pages_hosted_limit_max?: number | null | undefined;
@@ -216,6 +234,7 @@ export const CreatePartitionParams$outboundSchema: z.ZodType<
   CreatePartitionParams
 > = z.object({
   name: z.string(),
+  description: z.nullable(z.string()).optional(),
   pagesHostedLimitMonthly: z.nullable(z.number().int()).optional(),
   pagesProcessedLimitMonthly: z.nullable(z.number().int()).optional(),
   pagesHostedLimitMax: z.nullable(z.number().int()).optional(),

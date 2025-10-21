@@ -21,17 +21,22 @@ export const PartitionStrategy1 = {
 } as const;
 export type PartitionStrategy1 = ClosedEnum<typeof PartitionStrategy1>;
 
-export type PartitionStrategy = MediaModeParam | PartitionStrategy1;
+export type PartitionStrategy = PartitionStrategy1 | MediaModeParam;
 
-export type ConnectionBaseMetadata = string | number | boolean | Array<string>;
+export type ConnectionBaseMetadata =
+  | string
+  | number
+  | number
+  | boolean
+  | Array<string>;
 
 export type ConnectionBase = {
-  partitionStrategy: MediaModeParam | PartitionStrategy1;
+  partitionStrategy: PartitionStrategy1 | MediaModeParam;
   /**
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
    */
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   /**
    * The maximum number of pages a connection will sync. The connection will be disabled after this limit is reached. Some in process documents may continue processing. Remove the limit by setting to `null`.
@@ -65,17 +70,17 @@ export const PartitionStrategy$inboundSchema: z.ZodType<
   PartitionStrategy,
   z.ZodTypeDef,
   unknown
-> = z.union([MediaModeParam$inboundSchema, PartitionStrategy1$inboundSchema]);
+> = z.union([PartitionStrategy1$inboundSchema, MediaModeParam$inboundSchema]);
 
 /** @internal */
-export type PartitionStrategy$Outbound = MediaModeParam$Outbound | string;
+export type PartitionStrategy$Outbound = string | MediaModeParam$Outbound;
 
 /** @internal */
 export const PartitionStrategy$outboundSchema: z.ZodType<
   PartitionStrategy$Outbound,
   z.ZodTypeDef,
   PartitionStrategy
-> = z.union([MediaModeParam$outboundSchema, PartitionStrategy1$outboundSchema]);
+> = z.union([PartitionStrategy1$outboundSchema, MediaModeParam$outboundSchema]);
 
 /**
  * @internal
@@ -113,11 +118,18 @@ export const ConnectionBaseMetadata$inboundSchema: z.ZodType<
   ConnectionBaseMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type ConnectionBaseMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -127,7 +139,13 @@ export const ConnectionBaseMetadata$outboundSchema: z.ZodType<
   ConnectionBaseMetadata$Outbound,
   z.ZodTypeDef,
   ConnectionBaseMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -167,11 +185,17 @@ export const ConnectionBase$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   partition_strategy: z.union([
-    MediaModeParam$inboundSchema,
     PartitionStrategy1$inboundSchema,
+    MediaModeParam$inboundSchema,
   ]),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   page_limit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
@@ -183,9 +207,9 @@ export const ConnectionBase$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ConnectionBase$Outbound = {
-  partition_strategy: MediaModeParam$Outbound | string;
+  partition_strategy: string | MediaModeParam$Outbound;
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   page_limit?: number | null | undefined;
 };
@@ -197,11 +221,17 @@ export const ConnectionBase$outboundSchema: z.ZodType<
   ConnectionBase
 > = z.object({
   partitionStrategy: z.union([
-    MediaModeParam$outboundSchema,
     PartitionStrategy1$outboundSchema,
+    MediaModeParam$outboundSchema,
   ]),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   pageLimit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {

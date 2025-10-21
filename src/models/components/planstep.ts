@@ -12,6 +12,7 @@ export type PlanStep = {
   type?: "plan" | undefined;
   think: string;
   currentQuestion: string;
+  errored?: boolean | undefined;
   /**
    * The questions that need to be answered to answer the original question.
    */
@@ -27,6 +28,7 @@ export const PlanStep$inboundSchema: z.ZodType<
   type: z.literal("plan").default("plan"),
   think: z.string(),
   current_question: z.string(),
+  errored: z.boolean().default(false),
   questions_to_answer: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -40,6 +42,7 @@ export type PlanStep$Outbound = {
   type: "plan";
   think: string;
   current_question: string;
+  errored: boolean;
   questions_to_answer?: Array<string> | undefined;
 };
 
@@ -52,6 +55,7 @@ export const PlanStep$outboundSchema: z.ZodType<
   type: z.literal("plan").default("plan" as const),
   think: z.string(),
   currentQuestion: z.string(),
+  errored: z.boolean().default(false),
   questionsToAnswer: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

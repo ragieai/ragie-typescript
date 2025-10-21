@@ -8,7 +8,7 @@ import { ResponseT } from "ragie/models/components";
 let value: ResponseT = {
   id: "<id>",
   createdAt: 398693,
-  status: "failed",
+  status: "in_progress",
   output: [],
   tools: [],
   reasoning: {
@@ -35,7 +35,7 @@ let value: ResponseT = {
 | `instructions`                                                                                   | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `maxOutputTokens`                                                                                | *any*                                                                                            | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `model`                                                                                          | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
-| `output`                                                                                         | [components.ResponseOutput](../../models/components/responseoutput.md)[]                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `output`                                                                                         | *components.Output*[]                                                                            | :heavy_check_mark:                                                                               | N/A                                                                                              |
 | `outputParsed`                                                                                   | [components.FinalAnswer](../../models/components/finalanswer.md)                                 | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `tools`                                                                                          | [components.Tool](../../models/components/tool.md)[]                                             | :heavy_check_mark:                                                                               | N/A                                                                                              |
 | `reasoning`                                                                                      | [components.Reasoning](../../models/components/reasoning.md)                                     | :heavy_check_mark:                                                                               | N/A                                                                                              |

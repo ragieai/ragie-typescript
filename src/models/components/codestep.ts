@@ -12,6 +12,7 @@ export type CodeStep = {
   type?: "code" | undefined;
   think: string;
   currentQuestion: string;
+  errored?: boolean | undefined;
   /**
    * The natural language description of the code issue you need to solve.
    */
@@ -35,6 +36,7 @@ export const CodeStep$inboundSchema: z.ZodType<
   type: z.literal("code").default("code"),
   think: z.string(),
   current_question: z.string(),
+  errored: z.boolean().default(false),
   code_issue: z.string(),
   code: z.string().default(""),
   code_result: z.string().default(""),
@@ -51,6 +53,7 @@ export type CodeStep$Outbound = {
   type: "code";
   think: string;
   current_question: string;
+  errored: boolean;
   code_issue: string;
   code: string;
   code_result: string;
@@ -65,6 +68,7 @@ export const CodeStep$outboundSchema: z.ZodType<
   type: z.literal("code").default("code" as const),
   think: z.string(),
   currentQuestion: z.string(),
+  errored: z.boolean().default(false),
   codeIssue: z.string(),
   code: z.string().default(""),
   codeResult: z.string().default(""),

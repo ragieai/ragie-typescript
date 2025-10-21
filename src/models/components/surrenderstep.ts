@@ -18,6 +18,7 @@ export type SurrenderStep = {
   type?: "surrender" | undefined;
   think: string;
   currentQuestion: string;
+  errored?: boolean | undefined;
   partialAnswer: Answer;
 };
 
@@ -30,6 +31,7 @@ export const SurrenderStep$inboundSchema: z.ZodType<
   type: z.literal("surrender").default("surrender"),
   think: z.string(),
   current_question: z.string(),
+  errored: z.boolean().default(false),
   partial_answer: Answer$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -43,6 +45,7 @@ export type SurrenderStep$Outbound = {
   type: "surrender";
   think: string;
   current_question: string;
+  errored: boolean;
   partial_answer: Answer$Outbound;
 };
 
@@ -55,6 +58,7 @@ export const SurrenderStep$outboundSchema: z.ZodType<
   type: z.literal("surrender").default("surrender" as const),
   think: z.string(),
   currentQuestion: z.string(),
+  errored: z.boolean().default(false),
   partialAnswer: Answer$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

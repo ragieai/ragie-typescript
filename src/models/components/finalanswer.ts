@@ -37,6 +37,12 @@ import {
   EvaluatedAnswerStep$outboundSchema,
 } from "./evaluatedanswerstep.js";
 import {
+  FailedStep,
+  FailedStep$inboundSchema,
+  FailedStep$Outbound,
+  FailedStep$outboundSchema,
+} from "./failedstep.js";
+import {
   PlanStep,
   PlanStep$inboundSchema,
   PlanStep$Outbound,
@@ -55,6 +61,12 @@ import {
   SearchStep$outboundSchema,
 } from "./searchstep.js";
 import {
+  SearchStepWithQueryDetails,
+  SearchStepWithQueryDetails$inboundSchema,
+  SearchStepWithQueryDetails$Outbound,
+  SearchStepWithQueryDetails$outboundSchema,
+} from "./searchstepwithquerydetails.js";
+import {
   SurrenderStep,
   SurrenderStep$inboundSchema,
   SurrenderStep$Outbound,
@@ -67,9 +79,11 @@ export type Steps =
   | EvaluatedAnswerStep
   | AnswerStep
   | SearchStep
+  | SearchStepWithQueryDetails
   | CodeStep
   | SurrenderStep
-  | PlanStep;
+  | PlanStep
+  | FailedStep;
 
 export type FinalAnswer = {
   /**
@@ -88,9 +102,11 @@ export type FinalAnswer = {
       | EvaluatedAnswerStep
       | AnswerStep
       | SearchStep
+      | SearchStepWithQueryDetails
       | CodeStep
       | SurrenderStep
       | PlanStep
+      | FailedStep
     >
     | undefined;
   usage?: AgentHoppsModelsModelsUsage | undefined;
@@ -154,9 +170,11 @@ export const Steps$inboundSchema: z.ZodType<Steps, z.ZodTypeDef, unknown> = z
     EvaluatedAnswerStep$inboundSchema,
     AnswerStep$inboundSchema,
     SearchStep$inboundSchema,
+    SearchStepWithQueryDetails$inboundSchema,
     CodeStep$inboundSchema,
     SurrenderStep$inboundSchema,
     PlanStep$inboundSchema,
+    FailedStep$inboundSchema,
   ]);
 
 /** @internal */
@@ -164,9 +182,11 @@ export type Steps$Outbound =
   | EvaluatedAnswerStep$Outbound
   | AnswerStep$Outbound
   | SearchStep$Outbound
+  | SearchStepWithQueryDetails$Outbound
   | CodeStep$Outbound
   | SurrenderStep$Outbound
-  | PlanStep$Outbound;
+  | PlanStep$Outbound
+  | FailedStep$Outbound;
 
 /** @internal */
 export const Steps$outboundSchema: z.ZodType<
@@ -177,9 +197,11 @@ export const Steps$outboundSchema: z.ZodType<
   EvaluatedAnswerStep$outboundSchema,
   AnswerStep$outboundSchema,
   SearchStep$outboundSchema,
+  SearchStepWithQueryDetails$outboundSchema,
   CodeStep$outboundSchema,
   SurrenderStep$outboundSchema,
   PlanStep$outboundSchema,
+  FailedStep$outboundSchema,
 ]);
 
 /**
@@ -227,9 +249,11 @@ export const FinalAnswer$inboundSchema: z.ZodType<
       EvaluatedAnswerStep$inboundSchema,
       AnswerStep$inboundSchema,
       SearchStep$inboundSchema,
+      SearchStepWithQueryDetails$inboundSchema,
       CodeStep$inboundSchema,
       SurrenderStep$inboundSchema,
       PlanStep$inboundSchema,
+      FailedStep$inboundSchema,
     ]),
   ).optional(),
   usage: AgentHoppsModelsModelsUsage$inboundSchema.optional(),
@@ -246,9 +270,11 @@ export type FinalAnswer$Outbound = {
       | EvaluatedAnswerStep$Outbound
       | AnswerStep$Outbound
       | SearchStep$Outbound
+      | SearchStepWithQueryDetails$Outbound
       | CodeStep$Outbound
       | SurrenderStep$Outbound
       | PlanStep$Outbound
+      | FailedStep$Outbound
     >
     | undefined;
   usage?: AgentHoppsModelsModelsUsage$Outbound | undefined;
@@ -272,9 +298,11 @@ export const FinalAnswer$outboundSchema: z.ZodType<
       EvaluatedAnswerStep$outboundSchema,
       AnswerStep$outboundSchema,
       SearchStep$outboundSchema,
+      SearchStepWithQueryDetails$outboundSchema,
       CodeStep$outboundSchema,
       SurrenderStep$outboundSchema,
       PlanStep$outboundSchema,
+      FailedStep$outboundSchema,
     ]),
   ).optional(),
   usage: AgentHoppsModelsModelsUsage$outboundSchema.optional(),

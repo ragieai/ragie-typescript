@@ -20,7 +20,12 @@ import {
   MediaModeParam$outboundSchema,
 } from "./mediamodeparam.js";
 
-export type OAuthUrlCreateMetadata = string | number | boolean | Array<string>;
+export type OAuthUrlCreateMetadata =
+  | string
+  | number
+  | number
+  | boolean
+  | Array<string>;
 
 export const OAuthUrlCreateMode1 = {
   HiRes: "hi_res",
@@ -28,7 +33,7 @@ export const OAuthUrlCreateMode1 = {
 } as const;
 export type OAuthUrlCreateMode1 = ClosedEnum<typeof OAuthUrlCreateMode1>;
 
-export type OAuthUrlCreateMode = MediaModeParam | OAuthUrlCreateMode1;
+export type OAuthUrlCreateMode = OAuthUrlCreateMode1 | MediaModeParam;
 
 export const Theme = {
   Light: "light",
@@ -45,9 +50,9 @@ export type OAuthUrlCreate = {
    * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
    */
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
-  mode?: MediaModeParam | OAuthUrlCreateMode1 | null | undefined;
+  mode?: OAuthUrlCreateMode1 | MediaModeParam | null | undefined;
   /**
    * Sets the theme of the Ragie Web UI when the user lands there. Can be light, dark, or system to use whatever the system value is. If omitted, system is used.
    */
@@ -68,11 +73,18 @@ export const OAuthUrlCreateMetadata$inboundSchema: z.ZodType<
   OAuthUrlCreateMetadata,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /** @internal */
 export type OAuthUrlCreateMetadata$Outbound =
   | string
+  | number
   | number
   | boolean
   | Array<string>;
@@ -82,7 +94,13 @@ export const OAuthUrlCreateMetadata$outboundSchema: z.ZodType<
   OAuthUrlCreateMetadata$Outbound,
   z.ZodTypeDef,
   OAuthUrlCreateMetadata
-> = z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]);
+> = z.union([
+  z.string(),
+  z.number().int(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+]);
 
 /**
  * @internal
@@ -141,10 +159,10 @@ export const OAuthUrlCreateMode$inboundSchema: z.ZodType<
   OAuthUrlCreateMode,
   z.ZodTypeDef,
   unknown
-> = z.union([MediaModeParam$inboundSchema, OAuthUrlCreateMode1$inboundSchema]);
+> = z.union([OAuthUrlCreateMode1$inboundSchema, MediaModeParam$inboundSchema]);
 
 /** @internal */
-export type OAuthUrlCreateMode$Outbound = MediaModeParam$Outbound | string;
+export type OAuthUrlCreateMode$Outbound = string | MediaModeParam$Outbound;
 
 /** @internal */
 export const OAuthUrlCreateMode$outboundSchema: z.ZodType<
@@ -152,8 +170,8 @@ export const OAuthUrlCreateMode$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   OAuthUrlCreateMode
 > = z.union([
-  MediaModeParam$outboundSchema,
   OAuthUrlCreateMode1$outboundSchema,
+  MediaModeParam$outboundSchema,
 ]);
 
 /**
@@ -217,10 +235,16 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   partition: z.nullable(z.string()).optional(),
   source_type: ConnectorSource$inboundSchema.optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   mode: z.nullable(
-    z.union([MediaModeParam$inboundSchema, OAuthUrlCreateMode1$inboundSchema]),
+    z.union([OAuthUrlCreateMode1$inboundSchema, MediaModeParam$inboundSchema]),
   ).optional(),
   theme: z.nullable(Theme$inboundSchema).optional(),
   page_limit: z.nullable(z.number().int()).optional(),
@@ -241,9 +265,9 @@ export type OAuthUrlCreate$Outbound = {
   partition?: string | null | undefined;
   source_type?: string | undefined;
   metadata?:
-    | { [k: string]: string | number | boolean | Array<string> }
+    | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
-  mode?: MediaModeParam$Outbound | string | null | undefined;
+  mode?: string | MediaModeParam$Outbound | null | undefined;
   theme?: string | null | undefined;
   page_limit?: number | null | undefined;
   config?: { [k: string]: any } | undefined;
@@ -260,12 +284,18 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   partition: z.nullable(z.string()).optional(),
   sourceType: ConnectorSource$outboundSchema.optional(),
   metadata: z.record(
-    z.union([z.string(), z.number().int(), z.boolean(), z.array(z.string())]),
+    z.union([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(z.string()),
+    ]),
   ).optional(),
   mode: z.nullable(
     z.union([
-      MediaModeParam$outboundSchema,
       OAuthUrlCreateMode1$outboundSchema,
+      MediaModeParam$outboundSchema,
     ]),
   ).optional(),
   theme: z.nullable(Theme$outboundSchema).optional(),

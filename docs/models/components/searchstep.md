@@ -21,4 +21,5 @@ let value: SearchStep = {
 | `type`                                                 | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
 | `think`                                                | *string*                                               | :heavy_check_mark:                                     | N/A                                                    |
 | `currentQuestion`                                      | *string*                                               | :heavy_check_mark:                                     | N/A                                                    |
+| `errored`                                              | *boolean*                                              | :heavy_minus_sign:                                     | N/A                                                    |
 | `search`                                               | [components.Search](../../models/components/search.md) | :heavy_check_mark:                                     | N/A                                                    |

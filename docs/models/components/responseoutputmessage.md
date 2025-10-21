@@ -1,17 +1,13 @@
-# ResponseOutput
+# ResponseOutputMessage
 
 ## Example Usage
 
 ```typescript
-import { ResponseOutput } from "ragie/models/components";
+import { ResponseOutputMessage } from "ragie/models/components";
 
-let value: ResponseOutput = {
+let value: ResponseOutputMessage = {
   id: "<id>",
-  content: [
-    {
-      text: "<value>",
-    },
-  ],
+  content: [],
 };
 ```
 

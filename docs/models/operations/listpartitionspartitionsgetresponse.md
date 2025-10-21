@@ -15,6 +15,10 @@ let value: ListPartitionsPartitionsGetResponse = {
         name: "<value>",
         isDefault: true,
         limitExceededAt: new Date("2025-06-11T12:00:00Z"),
+        description:
+          "recklessly because dishonor inasmuch solution worth kaleidoscopic helplessly despite",
+        contextAware: true,
+        metadataSchema: {},
         limits: {
           pagesProcessedLimitMonthly: 1000,
           pagesHostedLimitMonthly: 1000,
