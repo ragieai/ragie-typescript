@@ -11,6 +11,10 @@ let value: AuthenticatorSharepointConnection = {
       id: "<id>",
       name: "<value>",
     },
+    drive: {
+      id: "<id>",
+      name: "<value>",
+    },
     files: [],
   },
   userEmail: "<value>",

@@ -11,7 +11,7 @@ import {
   ZodType,
   ZodTypeAny,
   ZodTypeDef,
-} from "zod";
+} from "zod/v3";
 import { RagieCore } from "../core.js";
 import { ConsoleLogger } from "./console-logger.js";
 import { MCPScope } from "./scopes.js";
