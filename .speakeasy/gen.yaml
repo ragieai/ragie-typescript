@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.13.0
+  version: 1.13.1
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -36,6 +36,7 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON:
     license: MIT
+  additionalScripts: {}
   author: Speakeasy
   baseErrorName: RagieError
   clientServerStatusCodesAsErrors: true
@@ -69,3 +70,4 @@ typescript:
   templateVersion: v2
   usageSDKInitImports: []
   useIndexModules: true
+  zodVersion: v3

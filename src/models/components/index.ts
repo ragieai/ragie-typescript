@@ -123,6 +123,7 @@ export * from "./searchstepwithquerydetails.js";
 export * from "./security.js";
 export * from "./setconnectionenabledpayload.js";
 export * from "./sharepointdata.js";
+export * from "./sharepointdrivedata.js";
 export * from "./sharepointfiledata.js";
 export * from "./sharepointsitedata.js";
 export * from "./slackdata.js";

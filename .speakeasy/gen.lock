@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: bf28c7679ddea849daa903e0993f7d99
+  docChecksum: aa2201ab955d3c1a12f853b9d2ea4458
   docVersion: 1.0.0
-  speakeasyVersion: 1.637.3
-  generationVersion: 2.727.9
-  releaseVersion: 1.13.0
-  configChecksum: 883384930b2a110994ba51878be6cd9e
+  speakeasyVersion: 1.649.0
+  generationVersion: 2.739.1
+  releaseVersion: 1.13.1
+  configChecksum: 326346cdd36abd1426cbe50b514c6630
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.22.0
+    core: 3.26.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -24,7 +24,7 @@ features:
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     groups: 2.81.3
     mcpServer: 0.9.3
     methodArguments: 0.1.2
@@ -212,6 +212,7 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/components/setconnectionenabledpayload.md
   - docs/models/components/sharepointdata.md
+  - docs/models/components/sharepointdrivedata.md
   - docs/models/components/sharepointfiledata.md
   - docs/models/components/sharepointsitedata.md
   - docs/models/components/slackdata.md
@@ -554,6 +555,7 @@ generatedFiles:
   - src/models/components/security.ts
   - src/models/components/setconnectionenabledpayload.ts
   - src/models/components/sharepointdata.ts
+  - src/models/components/sharepointdrivedata.ts
   - src/models/components/sharepointfiledata.ts
   - src/models/components/sharepointsitedata.ts
   - src/models/components/slackdata.ts
@@ -883,6 +885,7 @@ examples:
       responses:
         "200":
           application/octet-stream: "x-file: example.file"
+          '*/*': "x-file: example.file"
         "422":
           application/json: {}
         "401":
@@ -1350,4 +1353,4 @@ examples:
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.responses.create()`:  `response` **Changed** **Breaking** :warning:\n* `ragie.responses.get()`:  `response` **Changed** **Breaking** :warning:\n* `ragie.connections.createOAuthRedirectUrl()`: \n  *  `request.metadata.{}.[number]` **Added**\n* `ragie.connections.setEnabled()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.createDocumentFromUrl()`: \n  *  `request.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.get()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.patchMetadata()`:  `response.[documentmetadataupdate].metadata.{}.[number]` **Added**\n* `ragie.documents.getContent()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.createConnection()`: \n  *  `request.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.list()`:  `response.connections.[].metadata.{}.[number]` **Added**\n* `ragie.partitions.update()`: **Added**\n* `ragie.documents.createRaw()`: \n  *  `request.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.get()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.update()`: \n  *  `request.connectionBase.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.connections.setLimits()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.partitions.list()`:  `response.partitions.[]` **Changed**\n* `ragie.partitions.create()`: \n  *  `request.description` **Added**\n  *  `response` **Changed**\n* `ragie.partitions.get()`:  `response` **Changed**\n* `ragie.partitions.setLimits()`:  `response` **Changed**\n* `ragie.authenticators.createAuthenticatorConnection()`: \n  *  `request.createAuthenticatorConnection.metadata.{}.[number]` **Added**\n  *  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.create()`:  `response.metadata.{}.[number]` **Added**\n* `ragie.documents.list()`:  `response.documents.[].metadata.{}.[number]` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.documents.getSource()`:  `response.status[200]` **Changed** **Breaking** :warning:\n* `ragie.authenticators.createAuthenticatorConnection()`: \n  *  `request.createAuthenticatorConnection.connection.[sharepoint].data` **Changed** **Breaking** :warning:\n"

@@ -10,11 +10,16 @@ let value: SharepointData = {
     id: "<id>",
     name: "<value>",
   },
+  drive: {
+    id: "<id>",
+    name: "<value>",
+  },
   files: [
     {
       id: "<id>",
       name: "<value>",
       type: "folder",
+      driveId: "<id>",
     },
   ],
 };
@@ -25,4 +30,5 @@ let value: SharepointData = {
 | Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `site`                                                                           | [components.SharepointSiteData](../../models/components/sharepointsitedata.md)   | :heavy_check_mark:                                                               | N/A                                                                              |
+| `drive`                                                                          | [components.SharepointDriveData](../../models/components/sharepointdrivedata.md) | :heavy_check_mark:                                                               | N/A                                                                              |
 | `files`                                                                          | [components.SharepointFileData](../../models/components/sharepointfiledata.md)[] | :heavy_check_mark:                                                               | N/A                                                                              |

@@ -1,6 +1,6 @@
 {
   "name": "ragie",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "author": "Speakeasy",
   "license": "MIT",
   "bin": {
@@ -38,6 +38,6 @@
     "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
-    "zod": "^3.20.0"
+    "zod": "^3.25.0 || ^4.0.0"
   }
 }
