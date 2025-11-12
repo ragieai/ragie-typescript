@@ -32,7 +32,6 @@ export const AudioModalityData$inboundSchema: z.ZodType<
     "word_timestamps": "wordTimestamps",
   });
 });
-
 /** @internal */
 export type AudioModalityData$Outbound = {
   type: "audio";
@@ -53,19 +52,6 @@ export const AudioModalityData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AudioModalityData$ {
-  /** @deprecated use `AudioModalityData$inboundSchema` instead. */
-  export const inboundSchema = AudioModalityData$inboundSchema;
-  /** @deprecated use `AudioModalityData$outboundSchema` instead. */
-  export const outboundSchema = AudioModalityData$outboundSchema;
-  /** @deprecated use `AudioModalityData$Outbound` instead. */
-  export type Outbound = AudioModalityData$Outbound;
-}
-
 export function audioModalityDataToJSON(
   audioModalityData: AudioModalityData,
 ): string {
@@ -73,7 +59,6 @@ export function audioModalityDataToJSON(
     AudioModalityData$outboundSchema.parse(audioModalityData),
   );
 }
-
 export function audioModalityDataFromJSON(
   jsonString: string,
 ): SafeParseResult<AudioModalityData, SDKValidationError> {

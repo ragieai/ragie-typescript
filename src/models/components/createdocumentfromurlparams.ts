@@ -71,7 +71,6 @@ export const CreateDocumentFromUrlParamsMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type CreateDocumentFromUrlParamsMetadata$Outbound =
   | string
@@ -93,21 +92,6 @@ export const CreateDocumentFromUrlParamsMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateDocumentFromUrlParamsMetadata$ {
-  /** @deprecated use `CreateDocumentFromUrlParamsMetadata$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateDocumentFromUrlParamsMetadata$inboundSchema;
-  /** @deprecated use `CreateDocumentFromUrlParamsMetadata$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateDocumentFromUrlParamsMetadata$outboundSchema;
-  /** @deprecated use `CreateDocumentFromUrlParamsMetadata$Outbound` instead. */
-  export type Outbound = CreateDocumentFromUrlParamsMetadata$Outbound;
-}
-
 export function createDocumentFromUrlParamsMetadataToJSON(
   createDocumentFromUrlParamsMetadata: CreateDocumentFromUrlParamsMetadata,
 ): string {
@@ -117,7 +101,6 @@ export function createDocumentFromUrlParamsMetadataToJSON(
     ),
   );
 }
-
 export function createDocumentFromUrlParamsMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateDocumentFromUrlParamsMetadata, SDKValidationError> {
@@ -133,21 +116,9 @@ export function createDocumentFromUrlParamsMetadataFromJSON(
 export const Mode1$inboundSchema: z.ZodNativeEnum<typeof Mode1> = z.nativeEnum(
   Mode1,
 );
-
 /** @internal */
 export const Mode1$outboundSchema: z.ZodNativeEnum<typeof Mode1> =
   Mode1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mode1$ {
-  /** @deprecated use `Mode1$inboundSchema` instead. */
-  export const inboundSchema = Mode1$inboundSchema;
-  /** @deprecated use `Mode1$outboundSchema` instead. */
-  export const outboundSchema = Mode1$outboundSchema;
-}
 
 /** @internal */
 export const CreateDocumentFromUrlParamsMode$inboundSchema: z.ZodType<
@@ -155,7 +126,6 @@ export const CreateDocumentFromUrlParamsMode$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([Mode1$inboundSchema, MediaModeParam$inboundSchema]);
-
 /** @internal */
 export type CreateDocumentFromUrlParamsMode$Outbound =
   | string
@@ -168,19 +138,6 @@ export const CreateDocumentFromUrlParamsMode$outboundSchema: z.ZodType<
   CreateDocumentFromUrlParamsMode
 > = z.union([Mode1$outboundSchema, MediaModeParam$outboundSchema]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateDocumentFromUrlParamsMode$ {
-  /** @deprecated use `CreateDocumentFromUrlParamsMode$inboundSchema` instead. */
-  export const inboundSchema = CreateDocumentFromUrlParamsMode$inboundSchema;
-  /** @deprecated use `CreateDocumentFromUrlParamsMode$outboundSchema` instead. */
-  export const outboundSchema = CreateDocumentFromUrlParamsMode$outboundSchema;
-  /** @deprecated use `CreateDocumentFromUrlParamsMode$Outbound` instead. */
-  export type Outbound = CreateDocumentFromUrlParamsMode$Outbound;
-}
-
 export function createDocumentFromUrlParamsModeToJSON(
   createDocumentFromUrlParamsMode: CreateDocumentFromUrlParamsMode,
 ): string {
@@ -190,7 +147,6 @@ export function createDocumentFromUrlParamsModeToJSON(
     ),
   );
 }
-
 export function createDocumentFromUrlParamsModeFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateDocumentFromUrlParamsMode, SDKValidationError> {
@@ -226,7 +182,6 @@ export const CreateDocumentFromUrlParams$inboundSchema: z.ZodType<
     "external_id": "externalId",
   });
 });
-
 /** @internal */
 export type CreateDocumentFromUrlParams$Outbound = {
   name?: string | undefined;
@@ -266,19 +221,6 @@ export const CreateDocumentFromUrlParams$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateDocumentFromUrlParams$ {
-  /** @deprecated use `CreateDocumentFromUrlParams$inboundSchema` instead. */
-  export const inboundSchema = CreateDocumentFromUrlParams$inboundSchema;
-  /** @deprecated use `CreateDocumentFromUrlParams$outboundSchema` instead. */
-  export const outboundSchema = CreateDocumentFromUrlParams$outboundSchema;
-  /** @deprecated use `CreateDocumentFromUrlParams$Outbound` instead. */
-  export type Outbound = CreateDocumentFromUrlParams$Outbound;
-}
-
 export function createDocumentFromUrlParamsToJSON(
   createDocumentFromUrlParams: CreateDocumentFromUrlParams,
 ): string {
@@ -288,7 +230,6 @@ export function createDocumentFromUrlParamsToJSON(
     ),
   );
 }
-
 export function createDocumentFromUrlParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateDocumentFromUrlParams, SDKValidationError> {

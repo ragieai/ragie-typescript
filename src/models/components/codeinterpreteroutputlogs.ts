@@ -24,7 +24,6 @@ export const CodeInterpreterOutputLogs$inboundSchema: z.ZodType<
   logs: z.string(),
   type: z.literal("logs").default("logs"),
 });
-
 /** @internal */
 export type CodeInterpreterOutputLogs$Outbound = {
   logs: string;
@@ -41,19 +40,6 @@ export const CodeInterpreterOutputLogs$outboundSchema: z.ZodType<
   type: z.literal("logs").default("logs" as const),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CodeInterpreterOutputLogs$ {
-  /** @deprecated use `CodeInterpreterOutputLogs$inboundSchema` instead. */
-  export const inboundSchema = CodeInterpreterOutputLogs$inboundSchema;
-  /** @deprecated use `CodeInterpreterOutputLogs$outboundSchema` instead. */
-  export const outboundSchema = CodeInterpreterOutputLogs$outboundSchema;
-  /** @deprecated use `CodeInterpreterOutputLogs$Outbound` instead. */
-  export type Outbound = CodeInterpreterOutputLogs$Outbound;
-}
-
 export function codeInterpreterOutputLogsToJSON(
   codeInterpreterOutputLogs: CodeInterpreterOutputLogs,
 ): string {
@@ -61,7 +47,6 @@ export function codeInterpreterOutputLogsToJSON(
     CodeInterpreterOutputLogs$outboundSchema.parse(codeInterpreterOutputLogs),
   );
 }
-
 export function codeInterpreterOutputLogsFromJSON(
   jsonString: string,
 ): SafeParseResult<CodeInterpreterOutputLogs, SDKValidationError> {

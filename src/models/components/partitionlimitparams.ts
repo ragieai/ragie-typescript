@@ -93,7 +93,6 @@ export const PartitionLimitParams$inboundSchema: z.ZodType<
     "media_hosted_limit_max": "mediaHostedLimitMax",
   });
 });
-
 /** @internal */
 export type PartitionLimitParams$Outbound = {
   pages_hosted_limit_monthly?: number | null | undefined;
@@ -145,19 +144,6 @@ export const PartitionLimitParams$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PartitionLimitParams$ {
-  /** @deprecated use `PartitionLimitParams$inboundSchema` instead. */
-  export const inboundSchema = PartitionLimitParams$inboundSchema;
-  /** @deprecated use `PartitionLimitParams$outboundSchema` instead. */
-  export const outboundSchema = PartitionLimitParams$outboundSchema;
-  /** @deprecated use `PartitionLimitParams$Outbound` instead. */
-  export type Outbound = PartitionLimitParams$Outbound;
-}
-
 export function partitionLimitParamsToJSON(
   partitionLimitParams: PartitionLimitParams,
 ): string {
@@ -165,7 +151,6 @@ export function partitionLimitParamsToJSON(
     PartitionLimitParams$outboundSchema.parse(partitionLimitParams),
   );
 }
-
 export function partitionLimitParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<PartitionLimitParams, SDKValidationError> {

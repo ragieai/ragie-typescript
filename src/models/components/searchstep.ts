@@ -38,7 +38,6 @@ export const SearchStep$inboundSchema: z.ZodType<
     "current_question": "currentQuestion",
   });
 });
-
 /** @internal */
 export type SearchStep$Outbound = {
   type: "base_search";
@@ -65,23 +64,9 @@ export const SearchStep$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchStep$ {
-  /** @deprecated use `SearchStep$inboundSchema` instead. */
-  export const inboundSchema = SearchStep$inboundSchema;
-  /** @deprecated use `SearchStep$outboundSchema` instead. */
-  export const outboundSchema = SearchStep$outboundSchema;
-  /** @deprecated use `SearchStep$Outbound` instead. */
-  export type Outbound = SearchStep$Outbound;
-}
-
 export function searchStepToJSON(searchStep: SearchStep): string {
   return JSON.stringify(SearchStep$outboundSchema.parse(searchStep));
 }
-
 export function searchStepFromJSON(
   jsonString: string,
 ): SafeParseResult<SearchStep, SDKValidationError> {

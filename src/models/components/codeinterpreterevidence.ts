@@ -42,7 +42,6 @@ export const CodeInterpreterEvidence$inboundSchema: z.ZodType<
     "code_result": "codeResult",
   });
 });
-
 /** @internal */
 export type CodeInterpreterEvidence$Outbound = {
   type: "code_interpreter";
@@ -70,19 +69,6 @@ export const CodeInterpreterEvidence$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CodeInterpreterEvidence$ {
-  /** @deprecated use `CodeInterpreterEvidence$inboundSchema` instead. */
-  export const inboundSchema = CodeInterpreterEvidence$inboundSchema;
-  /** @deprecated use `CodeInterpreterEvidence$outboundSchema` instead. */
-  export const outboundSchema = CodeInterpreterEvidence$outboundSchema;
-  /** @deprecated use `CodeInterpreterEvidence$Outbound` instead. */
-  export type Outbound = CodeInterpreterEvidence$Outbound;
-}
-
 export function codeInterpreterEvidenceToJSON(
   codeInterpreterEvidence: CodeInterpreterEvidence,
 ): string {
@@ -90,7 +76,6 @@ export function codeInterpreterEvidenceToJSON(
     CodeInterpreterEvidence$outboundSchema.parse(codeInterpreterEvidence),
   );
 }
-
 export function codeInterpreterEvidenceFromJSON(
   jsonString: string,
 ): SafeParseResult<CodeInterpreterEvidence, SDKValidationError> {

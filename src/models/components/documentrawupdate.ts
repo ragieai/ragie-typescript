@@ -19,7 +19,6 @@ export const DocumentRawUpdate$inboundSchema: z.ZodType<
 > = z.object({
   status: z.string(),
 });
-
 /** @internal */
 export type DocumentRawUpdate$Outbound = {
   status: string;
@@ -34,19 +33,6 @@ export const DocumentRawUpdate$outboundSchema: z.ZodType<
   status: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentRawUpdate$ {
-  /** @deprecated use `DocumentRawUpdate$inboundSchema` instead. */
-  export const inboundSchema = DocumentRawUpdate$inboundSchema;
-  /** @deprecated use `DocumentRawUpdate$outboundSchema` instead. */
-  export const outboundSchema = DocumentRawUpdate$outboundSchema;
-  /** @deprecated use `DocumentRawUpdate$Outbound` instead. */
-  export type Outbound = DocumentRawUpdate$Outbound;
-}
-
 export function documentRawUpdateToJSON(
   documentRawUpdate: DocumentRawUpdate,
 ): string {
@@ -54,7 +40,6 @@ export function documentRawUpdateToJSON(
     DocumentRawUpdate$outboundSchema.parse(documentRawUpdate),
   );
 }
-
 export function documentRawUpdateFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentRawUpdate, SDKValidationError> {

@@ -53,22 +53,10 @@ export type ReasoningOutput = {
 export const ReasoningOutputStatus$inboundSchema: z.ZodNativeEnum<
   typeof ReasoningOutputStatus
 > = z.nativeEnum(ReasoningOutputStatus);
-
 /** @internal */
 export const ReasoningOutputStatus$outboundSchema: z.ZodNativeEnum<
   typeof ReasoningOutputStatus
 > = ReasoningOutputStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReasoningOutputStatus$ {
-  /** @deprecated use `ReasoningOutputStatus$inboundSchema` instead. */
-  export const inboundSchema = ReasoningOutputStatus$inboundSchema;
-  /** @deprecated use `ReasoningOutputStatus$outboundSchema` instead. */
-  export const outboundSchema = ReasoningOutputStatus$outboundSchema;
-}
 
 /** @internal */
 export const ReasoningOutput$inboundSchema: z.ZodType<
@@ -87,7 +75,6 @@ export const ReasoningOutput$inboundSchema: z.ZodType<
     "encrypted_content": "encryptedContent",
   });
 });
-
 /** @internal */
 export type ReasoningOutput$Outbound = {
   id: string;
@@ -116,25 +103,11 @@ export const ReasoningOutput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReasoningOutput$ {
-  /** @deprecated use `ReasoningOutput$inboundSchema` instead. */
-  export const inboundSchema = ReasoningOutput$inboundSchema;
-  /** @deprecated use `ReasoningOutput$outboundSchema` instead. */
-  export const outboundSchema = ReasoningOutput$outboundSchema;
-  /** @deprecated use `ReasoningOutput$Outbound` instead. */
-  export type Outbound = ReasoningOutput$Outbound;
-}
-
 export function reasoningOutputToJSON(
   reasoningOutput: ReasoningOutput,
 ): string {
   return JSON.stringify(ReasoningOutput$outboundSchema.parse(reasoningOutput));
 }
-
 export function reasoningOutputFromJSON(
   jsonString: string,
 ): SafeParseResult<ReasoningOutput, SDKValidationError> {

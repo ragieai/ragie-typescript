@@ -47,7 +47,6 @@ export const CodeStep$inboundSchema: z.ZodType<
     "code_result": "codeResult",
   });
 });
-
 /** @internal */
 export type CodeStep$Outbound = {
   type: "code";
@@ -80,23 +79,9 @@ export const CodeStep$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CodeStep$ {
-  /** @deprecated use `CodeStep$inboundSchema` instead. */
-  export const inboundSchema = CodeStep$inboundSchema;
-  /** @deprecated use `CodeStep$outboundSchema` instead. */
-  export const outboundSchema = CodeStep$outboundSchema;
-  /** @deprecated use `CodeStep$Outbound` instead. */
-  export type Outbound = CodeStep$Outbound;
-}
-
 export function codeStepToJSON(codeStep: CodeStep): string {
   return JSON.stringify(CodeStep$outboundSchema.parse(codeStep));
 }
-
 export function codeStepFromJSON(
   jsonString: string,
 ): SafeParseResult<CodeStep, SDKValidationError> {

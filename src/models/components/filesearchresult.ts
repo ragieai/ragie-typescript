@@ -47,7 +47,6 @@ export const FileSearchResult$inboundSchema: z.ZodType<
     "file_id": "fileId",
   });
 });
-
 /** @internal */
 export type FileSearchResult$Outbound = {
   file_id: string;
@@ -74,19 +73,6 @@ export const FileSearchResult$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileSearchResult$ {
-  /** @deprecated use `FileSearchResult$inboundSchema` instead. */
-  export const inboundSchema = FileSearchResult$inboundSchema;
-  /** @deprecated use `FileSearchResult$outboundSchema` instead. */
-  export const outboundSchema = FileSearchResult$outboundSchema;
-  /** @deprecated use `FileSearchResult$Outbound` instead. */
-  export type Outbound = FileSearchResult$Outbound;
-}
-
 export function fileSearchResultToJSON(
   fileSearchResult: FileSearchResult,
 ): string {
@@ -94,7 +80,6 @@ export function fileSearchResultToJSON(
     FileSearchResult$outboundSchema.parse(fileSearchResult),
   );
 }
-
 export function fileSearchResultFromJSON(
   jsonString: string,
 ): SafeParseResult<FileSearchResult, SDKValidationError> {

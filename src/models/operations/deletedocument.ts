@@ -37,7 +37,6 @@ export const DeleteDocumentRequest$inboundSchema: z.ZodType<
     "document_id": "documentId",
   });
 });
-
 /** @internal */
 export type DeleteDocumentRequest$Outbound = {
   document_id: string;
@@ -60,19 +59,6 @@ export const DeleteDocumentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteDocumentRequest$ {
-  /** @deprecated use `DeleteDocumentRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteDocumentRequest$inboundSchema;
-  /** @deprecated use `DeleteDocumentRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteDocumentRequest$outboundSchema;
-  /** @deprecated use `DeleteDocumentRequest$Outbound` instead. */
-  export type Outbound = DeleteDocumentRequest$Outbound;
-}
-
 export function deleteDocumentRequestToJSON(
   deleteDocumentRequest: DeleteDocumentRequest,
 ): string {
@@ -80,7 +66,6 @@ export function deleteDocumentRequestToJSON(
     DeleteDocumentRequest$outboundSchema.parse(deleteDocumentRequest),
   );
 }
-
 export function deleteDocumentRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteDocumentRequest, SDKValidationError> {

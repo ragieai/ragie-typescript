@@ -39,7 +39,6 @@ export const SurrenderStep$inboundSchema: z.ZodType<
     "partial_answer": "partialAnswer",
   });
 });
-
 /** @internal */
 export type SurrenderStep$Outbound = {
   type: "surrender";
@@ -67,23 +66,9 @@ export const SurrenderStep$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SurrenderStep$ {
-  /** @deprecated use `SurrenderStep$inboundSchema` instead. */
-  export const inboundSchema = SurrenderStep$inboundSchema;
-  /** @deprecated use `SurrenderStep$outboundSchema` instead. */
-  export const outboundSchema = SurrenderStep$outboundSchema;
-  /** @deprecated use `SurrenderStep$Outbound` instead. */
-  export type Outbound = SurrenderStep$Outbound;
-}
-
 export function surrenderStepToJSON(surrenderStep: SurrenderStep): string {
   return JSON.stringify(SurrenderStep$outboundSchema.parse(surrenderStep));
 }
-
 export function surrenderStepFromJSON(
   jsonString: string,
 ): SafeParseResult<SurrenderStep, SDKValidationError> {

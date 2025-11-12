@@ -24,7 +24,6 @@ export const OAuthRefreshTokenCredentials$inboundSchema: z.ZodType<
     "refresh_token": "refreshToken",
   });
 });
-
 /** @internal */
 export type OAuthRefreshTokenCredentials$Outbound = {
   refresh_token: string;
@@ -43,19 +42,6 @@ export const OAuthRefreshTokenCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthRefreshTokenCredentials$ {
-  /** @deprecated use `OAuthRefreshTokenCredentials$inboundSchema` instead. */
-  export const inboundSchema = OAuthRefreshTokenCredentials$inboundSchema;
-  /** @deprecated use `OAuthRefreshTokenCredentials$outboundSchema` instead. */
-  export const outboundSchema = OAuthRefreshTokenCredentials$outboundSchema;
-  /** @deprecated use `OAuthRefreshTokenCredentials$Outbound` instead. */
-  export type Outbound = OAuthRefreshTokenCredentials$Outbound;
-}
-
 export function oAuthRefreshTokenCredentialsToJSON(
   oAuthRefreshTokenCredentials: OAuthRefreshTokenCredentials,
 ): string {
@@ -65,7 +51,6 @@ export function oAuthRefreshTokenCredentialsToJSON(
     ),
   );
 }
-
 export function oAuthRefreshTokenCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<OAuthRefreshTokenCredentials, SDKValidationError> {

@@ -97,7 +97,6 @@ export const PublicCreateConnectionMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type PublicCreateConnectionMetadata$Outbound =
   | string
@@ -119,19 +118,6 @@ export const PublicCreateConnectionMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicCreateConnectionMetadata$ {
-  /** @deprecated use `PublicCreateConnectionMetadata$inboundSchema` instead. */
-  export const inboundSchema = PublicCreateConnectionMetadata$inboundSchema;
-  /** @deprecated use `PublicCreateConnectionMetadata$outboundSchema` instead. */
-  export const outboundSchema = PublicCreateConnectionMetadata$outboundSchema;
-  /** @deprecated use `PublicCreateConnectionMetadata$Outbound` instead. */
-  export type Outbound = PublicCreateConnectionMetadata$Outbound;
-}
-
 export function publicCreateConnectionMetadataToJSON(
   publicCreateConnectionMetadata: PublicCreateConnectionMetadata,
 ): string {
@@ -141,7 +127,6 @@ export function publicCreateConnectionMetadataToJSON(
     ),
   );
 }
-
 export function publicCreateConnectionMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicCreateConnectionMetadata, SDKValidationError> {
@@ -189,7 +174,6 @@ export const PublicCreateConnectionConnection$inboundSchema: z.ZodType<
     })),
   ),
 ]);
-
 /** @internal */
 export type PublicCreateConnectionConnection$Outbound =
   | (PublicFreshdeskConnection$Outbound & { provider: "freshdesk" })
@@ -237,19 +221,6 @@ export const PublicCreateConnectionConnection$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicCreateConnectionConnection$ {
-  /** @deprecated use `PublicCreateConnectionConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicCreateConnectionConnection$inboundSchema;
-  /** @deprecated use `PublicCreateConnectionConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicCreateConnectionConnection$outboundSchema;
-  /** @deprecated use `PublicCreateConnectionConnection$Outbound` instead. */
-  export type Outbound = PublicCreateConnectionConnection$Outbound;
-}
-
 export function publicCreateConnectionConnectionToJSON(
   publicCreateConnectionConnection: PublicCreateConnectionConnection,
 ): string {
@@ -259,7 +230,6 @@ export function publicCreateConnectionConnectionToJSON(
     ),
   );
 }
-
 export function publicCreateConnectionConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicCreateConnectionConnection, SDKValidationError> {
@@ -327,7 +297,6 @@ export const PublicCreateConnection$inboundSchema: z.ZodType<
     "page_limit": "pageLimit",
   });
 });
-
 /** @internal */
 export type PublicCreateConnection$Outbound = {
   partition_strategy: MediaModeParam$Outbound;
@@ -404,19 +373,6 @@ export const PublicCreateConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicCreateConnection$ {
-  /** @deprecated use `PublicCreateConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicCreateConnection$inboundSchema;
-  /** @deprecated use `PublicCreateConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicCreateConnection$outboundSchema;
-  /** @deprecated use `PublicCreateConnection$Outbound` instead. */
-  export type Outbound = PublicCreateConnection$Outbound;
-}
-
 export function publicCreateConnectionToJSON(
   publicCreateConnection: PublicCreateConnection,
 ): string {
@@ -424,7 +380,6 @@ export function publicCreateConnectionToJSON(
     PublicCreateConnection$outboundSchema.parse(publicCreateConnection),
   );
 }
-
 export function publicCreateConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicCreateConnection, SDKValidationError> {

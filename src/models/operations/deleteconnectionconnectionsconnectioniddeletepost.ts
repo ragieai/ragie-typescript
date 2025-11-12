@@ -29,7 +29,6 @@ export const DeleteConnectionConnectionsConnectionIdDeletePostRequest$inboundSch
       "DeleteConnectionPayload": "deleteConnectionPayload",
     });
   });
-
 /** @internal */
 export type DeleteConnectionConnectionsConnectionIdDeletePostRequest$Outbound =
   {
@@ -53,22 +52,6 @@ export const DeleteConnectionConnectionsConnectionIdDeletePostRequest$outboundSc
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteConnectionConnectionsConnectionIdDeletePostRequest$ {
-  /** @deprecated use `DeleteConnectionConnectionsConnectionIdDeletePostRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    DeleteConnectionConnectionsConnectionIdDeletePostRequest$inboundSchema;
-  /** @deprecated use `DeleteConnectionConnectionsConnectionIdDeletePostRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    DeleteConnectionConnectionsConnectionIdDeletePostRequest$outboundSchema;
-  /** @deprecated use `DeleteConnectionConnectionsConnectionIdDeletePostRequest$Outbound` instead. */
-  export type Outbound =
-    DeleteConnectionConnectionsConnectionIdDeletePostRequest$Outbound;
-}
-
 export function deleteConnectionConnectionsConnectionIdDeletePostRequestToJSON(
   deleteConnectionConnectionsConnectionIdDeletePostRequest:
     DeleteConnectionConnectionsConnectionIdDeletePostRequest,
@@ -78,7 +61,6 @@ export function deleteConnectionConnectionsConnectionIdDeletePostRequestToJSON(
       .parse(deleteConnectionConnectionsConnectionIdDeletePostRequest),
   );
 }
-
 export function deleteConnectionConnectionsConnectionIdDeletePostRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

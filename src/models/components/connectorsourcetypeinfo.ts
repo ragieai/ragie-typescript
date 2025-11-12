@@ -38,7 +38,6 @@ export const ConnectorSourceTypeInfo$inboundSchema: z.ZodType<
     "docs_url": "docsUrl",
   });
 });
-
 /** @internal */
 export type ConnectorSourceTypeInfo$Outbound = {
   source_type: string;
@@ -66,19 +65,6 @@ export const ConnectorSourceTypeInfo$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorSourceTypeInfo$ {
-  /** @deprecated use `ConnectorSourceTypeInfo$inboundSchema` instead. */
-  export const inboundSchema = ConnectorSourceTypeInfo$inboundSchema;
-  /** @deprecated use `ConnectorSourceTypeInfo$outboundSchema` instead. */
-  export const outboundSchema = ConnectorSourceTypeInfo$outboundSchema;
-  /** @deprecated use `ConnectorSourceTypeInfo$Outbound` instead. */
-  export type Outbound = ConnectorSourceTypeInfo$Outbound;
-}
-
 export function connectorSourceTypeInfoToJSON(
   connectorSourceTypeInfo: ConnectorSourceTypeInfo,
 ): string {
@@ -86,7 +72,6 @@ export function connectorSourceTypeInfoToJSON(
     ConnectorSourceTypeInfo$outboundSchema.parse(connectorSourceTypeInfo),
   );
 }
-
 export function connectorSourceTypeInfoFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectorSourceTypeInfo, SDKValidationError> {

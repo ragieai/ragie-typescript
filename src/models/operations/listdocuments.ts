@@ -47,7 +47,6 @@ export const ListDocumentsRequest$inboundSchema: z.ZodType<
     "page_size": "pageSize",
   });
 });
-
 /** @internal */
 export type ListDocumentsRequest$Outbound = {
   cursor?: string | null | undefined;
@@ -72,19 +71,6 @@ export const ListDocumentsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListDocumentsRequest$ {
-  /** @deprecated use `ListDocumentsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListDocumentsRequest$inboundSchema;
-  /** @deprecated use `ListDocumentsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListDocumentsRequest$outboundSchema;
-  /** @deprecated use `ListDocumentsRequest$Outbound` instead. */
-  export type Outbound = ListDocumentsRequest$Outbound;
-}
-
 export function listDocumentsRequestToJSON(
   listDocumentsRequest: ListDocumentsRequest,
 ): string {
@@ -92,7 +78,6 @@ export function listDocumentsRequestToJSON(
     ListDocumentsRequest$outboundSchema.parse(listDocumentsRequest),
   );
 }
-
 export function listDocumentsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListDocumentsRequest, SDKValidationError> {
@@ -115,7 +100,6 @@ export const ListDocumentsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListDocumentsResponse$Outbound = {
   Result: components.DocumentList$Outbound;
@@ -134,19 +118,6 @@ export const ListDocumentsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListDocumentsResponse$ {
-  /** @deprecated use `ListDocumentsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListDocumentsResponse$inboundSchema;
-  /** @deprecated use `ListDocumentsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListDocumentsResponse$outboundSchema;
-  /** @deprecated use `ListDocumentsResponse$Outbound` instead. */
-  export type Outbound = ListDocumentsResponse$Outbound;
-}
-
 export function listDocumentsResponseToJSON(
   listDocumentsResponse: ListDocumentsResponse,
 ): string {
@@ -154,7 +125,6 @@ export function listDocumentsResponseToJSON(
     ListDocumentsResponse$outboundSchema.parse(listDocumentsResponse),
   );
 }
-
 export function listDocumentsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListDocumentsResponse, SDKValidationError> {

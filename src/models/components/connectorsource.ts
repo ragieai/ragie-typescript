@@ -31,19 +31,7 @@ export type ConnectorSource = ClosedEnum<typeof ConnectorSource>;
 export const ConnectorSource$inboundSchema: z.ZodNativeEnum<
   typeof ConnectorSource
 > = z.nativeEnum(ConnectorSource);
-
 /** @internal */
 export const ConnectorSource$outboundSchema: z.ZodNativeEnum<
   typeof ConnectorSource
 > = ConnectorSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorSource$ {
-  /** @deprecated use `ConnectorSource$inboundSchema` instead. */
-  export const inboundSchema = ConnectorSource$inboundSchema;
-  /** @deprecated use `ConnectorSource$outboundSchema` instead. */
-  export const outboundSchema = ConnectorSource$outboundSchema;
-}

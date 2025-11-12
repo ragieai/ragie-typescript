@@ -121,7 +121,6 @@ export const Evidence$inboundSchema: z.ZodType<
   RagieEvidence$inboundSchema,
   CodeInterpreterEvidence$inboundSchema,
 ]);
-
 /** @internal */
 export type Evidence$Outbound =
   | RagieEvidence$Outbound
@@ -137,23 +136,9 @@ export const Evidence$outboundSchema: z.ZodType<
   CodeInterpreterEvidence$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Evidence$ {
-  /** @deprecated use `Evidence$inboundSchema` instead. */
-  export const inboundSchema = Evidence$inboundSchema;
-  /** @deprecated use `Evidence$outboundSchema` instead. */
-  export const outboundSchema = Evidence$outboundSchema;
-  /** @deprecated use `Evidence$Outbound` instead. */
-  export type Outbound = Evidence$Outbound;
-}
-
 export function evidenceToJSON(evidence: Evidence): string {
   return JSON.stringify(Evidence$outboundSchema.parse(evidence));
 }
-
 export function evidenceFromJSON(
   jsonString: string,
 ): SafeParseResult<Evidence, SDKValidationError> {
@@ -176,7 +161,6 @@ export const Steps$inboundSchema: z.ZodType<Steps, z.ZodTypeDef, unknown> = z
     PlanStep$inboundSchema,
     FailedStep$inboundSchema,
   ]);
-
 /** @internal */
 export type Steps$Outbound =
   | EvaluatedAnswerStep$Outbound
@@ -204,23 +188,9 @@ export const Steps$outboundSchema: z.ZodType<
   FailedStep$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Steps$ {
-  /** @deprecated use `Steps$inboundSchema` instead. */
-  export const inboundSchema = Steps$inboundSchema;
-  /** @deprecated use `Steps$outboundSchema` instead. */
-  export const outboundSchema = Steps$outboundSchema;
-  /** @deprecated use `Steps$Outbound` instead. */
-  export type Outbound = Steps$Outbound;
-}
-
 export function stepsToJSON(steps: Steps): string {
   return JSON.stringify(Steps$outboundSchema.parse(steps));
 }
-
 export function stepsFromJSON(
   jsonString: string,
 ): SafeParseResult<Steps, SDKValidationError> {
@@ -258,7 +228,6 @@ export const FinalAnswer$inboundSchema: z.ZodType<
   ).optional(),
   usage: AgentHoppsModelsModelsUsage$inboundSchema.optional(),
 });
-
 /** @internal */
 export type FinalAnswer$Outbound = {
   text: string;
@@ -308,23 +277,9 @@ export const FinalAnswer$outboundSchema: z.ZodType<
   usage: AgentHoppsModelsModelsUsage$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FinalAnswer$ {
-  /** @deprecated use `FinalAnswer$inboundSchema` instead. */
-  export const inboundSchema = FinalAnswer$inboundSchema;
-  /** @deprecated use `FinalAnswer$outboundSchema` instead. */
-  export const outboundSchema = FinalAnswer$outboundSchema;
-  /** @deprecated use `FinalAnswer$Outbound` instead. */
-  export type Outbound = FinalAnswer$Outbound;
-}
-
 export function finalAnswerToJSON(finalAnswer: FinalAnswer): string {
   return JSON.stringify(FinalAnswer$outboundSchema.parse(finalAnswer));
 }
-
 export function finalAnswerFromJSON(
   jsonString: string,
 ): SafeParseResult<FinalAnswer, SDKValidationError> {

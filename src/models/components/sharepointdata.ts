@@ -41,7 +41,6 @@ export const SharepointData$inboundSchema: z.ZodType<
   drive: z.nullable(SharepointDriveData$inboundSchema),
   files: z.array(SharepointFileData$inboundSchema),
 });
-
 /** @internal */
 export type SharepointData$Outbound = {
   site: SharepointSiteData$Outbound;
@@ -60,23 +59,9 @@ export const SharepointData$outboundSchema: z.ZodType<
   files: z.array(SharepointFileData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SharepointData$ {
-  /** @deprecated use `SharepointData$inboundSchema` instead. */
-  export const inboundSchema = SharepointData$inboundSchema;
-  /** @deprecated use `SharepointData$outboundSchema` instead. */
-  export const outboundSchema = SharepointData$outboundSchema;
-  /** @deprecated use `SharepointData$Outbound` instead. */
-  export type Outbound = SharepointData$Outbound;
-}
-
 export function sharepointDataToJSON(sharepointData: SharepointData): string {
   return JSON.stringify(SharepointData$outboundSchema.parse(sharepointData));
 }
-
 export function sharepointDataFromJSON(
   jsonString: string,
 ): SafeParseResult<SharepointData, SDKValidationError> {

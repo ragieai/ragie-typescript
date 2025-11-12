@@ -23,7 +23,6 @@ export const ResponseContent$inboundSchema: z.ZodType<
   text: z.string(),
   annotations: z.array(z.record(z.any())).optional(),
 });
-
 /** @internal */
 export type ResponseContent$Outbound = {
   type: "text";
@@ -42,25 +41,11 @@ export const ResponseContent$outboundSchema: z.ZodType<
   annotations: z.array(z.record(z.any())).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseContent$ {
-  /** @deprecated use `ResponseContent$inboundSchema` instead. */
-  export const inboundSchema = ResponseContent$inboundSchema;
-  /** @deprecated use `ResponseContent$outboundSchema` instead. */
-  export const outboundSchema = ResponseContent$outboundSchema;
-  /** @deprecated use `ResponseContent$Outbound` instead. */
-  export type Outbound = ResponseContent$Outbound;
-}
-
 export function responseContentToJSON(
   responseContent: ResponseContent,
 ): string {
   return JSON.stringify(ResponseContent$outboundSchema.parse(responseContent));
 }
-
 export function responseContentFromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseContent, SDKValidationError> {

@@ -31,7 +31,6 @@ export const S3CompatibleCredentials$inboundSchema: z.ZodType<
     "secret_access_key": "secretAccessKey",
   });
 });
-
 /** @internal */
 export type S3CompatibleCredentials$Outbound = {
   access_key_id: string;
@@ -57,19 +56,6 @@ export const S3CompatibleCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace S3CompatibleCredentials$ {
-  /** @deprecated use `S3CompatibleCredentials$inboundSchema` instead. */
-  export const inboundSchema = S3CompatibleCredentials$inboundSchema;
-  /** @deprecated use `S3CompatibleCredentials$outboundSchema` instead. */
-  export const outboundSchema = S3CompatibleCredentials$outboundSchema;
-  /** @deprecated use `S3CompatibleCredentials$Outbound` instead. */
-  export type Outbound = S3CompatibleCredentials$Outbound;
-}
-
 export function s3CompatibleCredentialsToJSON(
   s3CompatibleCredentials: S3CompatibleCredentials,
 ): string {
@@ -77,7 +63,6 @@ export function s3CompatibleCredentialsToJSON(
     S3CompatibleCredentials$outboundSchema.parse(s3CompatibleCredentials),
   );
 }
-
 export function s3CompatibleCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<S3CompatibleCredentials, SDKValidationError> {

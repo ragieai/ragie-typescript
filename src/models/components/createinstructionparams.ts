@@ -55,22 +55,10 @@ export type CreateInstructionParams = {
 export const CreateInstructionParamsScope$inboundSchema: z.ZodNativeEnum<
   typeof CreateInstructionParamsScope
 > = z.nativeEnum(CreateInstructionParamsScope);
-
 /** @internal */
 export const CreateInstructionParamsScope$outboundSchema: z.ZodNativeEnum<
   typeof CreateInstructionParamsScope
 > = CreateInstructionParamsScope$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateInstructionParamsScope$ {
-  /** @deprecated use `CreateInstructionParamsScope$inboundSchema` instead. */
-  export const inboundSchema = CreateInstructionParamsScope$inboundSchema;
-  /** @deprecated use `CreateInstructionParamsScope$outboundSchema` instead. */
-  export const outboundSchema = CreateInstructionParamsScope$outboundSchema;
-}
 
 /** @internal */
 export const CreateInstructionParams$inboundSchema: z.ZodType<
@@ -90,7 +78,6 @@ export const CreateInstructionParams$inboundSchema: z.ZodType<
     "entity_schema": "entitySchema",
   });
 });
-
 /** @internal */
 export type CreateInstructionParams$Outbound = {
   name: string;
@@ -121,19 +108,6 @@ export const CreateInstructionParams$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateInstructionParams$ {
-  /** @deprecated use `CreateInstructionParams$inboundSchema` instead. */
-  export const inboundSchema = CreateInstructionParams$inboundSchema;
-  /** @deprecated use `CreateInstructionParams$outboundSchema` instead. */
-  export const outboundSchema = CreateInstructionParams$outboundSchema;
-  /** @deprecated use `CreateInstructionParams$Outbound` instead. */
-  export type Outbound = CreateInstructionParams$Outbound;
-}
-
 export function createInstructionParamsToJSON(
   createInstructionParams: CreateInstructionParams,
 ): string {
@@ -141,7 +115,6 @@ export function createInstructionParamsToJSON(
     CreateInstructionParams$outboundSchema.parse(createInstructionParams),
   );
 }
-
 export function createInstructionParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateInstructionParams, SDKValidationError> {

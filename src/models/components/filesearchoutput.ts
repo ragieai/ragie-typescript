@@ -41,22 +41,10 @@ export type FileSearchOutput = {
 export const FileSearchOutputStatus$inboundSchema: z.ZodNativeEnum<
   typeof FileSearchOutputStatus
 > = z.nativeEnum(FileSearchOutputStatus);
-
 /** @internal */
 export const FileSearchOutputStatus$outboundSchema: z.ZodNativeEnum<
   typeof FileSearchOutputStatus
 > = FileSearchOutputStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileSearchOutputStatus$ {
-  /** @deprecated use `FileSearchOutputStatus$inboundSchema` instead. */
-  export const inboundSchema = FileSearchOutputStatus$inboundSchema;
-  /** @deprecated use `FileSearchOutputStatus$outboundSchema` instead. */
-  export const outboundSchema = FileSearchOutputStatus$outboundSchema;
-}
 
 /** @internal */
 export const FileSearchOutput$inboundSchema: z.ZodType<
@@ -70,7 +58,6 @@ export const FileSearchOutput$inboundSchema: z.ZodType<
   type: z.literal("file_search_call").default("file_search_call").optional(),
   results: z.array(FileSearchResult$inboundSchema),
 });
-
 /** @internal */
 export type FileSearchOutput$Outbound = {
   id: string;
@@ -93,19 +80,6 @@ export const FileSearchOutput$outboundSchema: z.ZodType<
   results: z.array(FileSearchResult$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileSearchOutput$ {
-  /** @deprecated use `FileSearchOutput$inboundSchema` instead. */
-  export const inboundSchema = FileSearchOutput$inboundSchema;
-  /** @deprecated use `FileSearchOutput$outboundSchema` instead. */
-  export const outboundSchema = FileSearchOutput$outboundSchema;
-  /** @deprecated use `FileSearchOutput$Outbound` instead. */
-  export type Outbound = FileSearchOutput$Outbound;
-}
-
 export function fileSearchOutputToJSON(
   fileSearchOutput: FileSearchOutput,
 ): string {
@@ -113,7 +87,6 @@ export function fileSearchOutputToJSON(
     FileSearchOutput$outboundSchema.parse(fileSearchOutput),
   );
 }
-
 export function fileSearchOutputFromJSON(
   jsonString: string,
 ): SafeParseResult<FileSearchOutput, SDKValidationError> {

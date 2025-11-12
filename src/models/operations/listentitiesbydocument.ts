@@ -48,7 +48,6 @@ export const ListEntitiesByDocumentRequest$inboundSchema: z.ZodType<
     "page_size": "pageSize",
   });
 });
-
 /** @internal */
 export type ListEntitiesByDocumentRequest$Outbound = {
   document_id: string;
@@ -74,19 +73,6 @@ export const ListEntitiesByDocumentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEntitiesByDocumentRequest$ {
-  /** @deprecated use `ListEntitiesByDocumentRequest$inboundSchema` instead. */
-  export const inboundSchema = ListEntitiesByDocumentRequest$inboundSchema;
-  /** @deprecated use `ListEntitiesByDocumentRequest$outboundSchema` instead. */
-  export const outboundSchema = ListEntitiesByDocumentRequest$outboundSchema;
-  /** @deprecated use `ListEntitiesByDocumentRequest$Outbound` instead. */
-  export type Outbound = ListEntitiesByDocumentRequest$Outbound;
-}
-
 export function listEntitiesByDocumentRequestToJSON(
   listEntitiesByDocumentRequest: ListEntitiesByDocumentRequest,
 ): string {
@@ -96,7 +82,6 @@ export function listEntitiesByDocumentRequestToJSON(
     ),
   );
 }
-
 export function listEntitiesByDocumentRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListEntitiesByDocumentRequest, SDKValidationError> {
@@ -119,7 +104,6 @@ export const ListEntitiesByDocumentResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListEntitiesByDocumentResponse$Outbound = {
   Result: components.EntityList$Outbound;
@@ -138,19 +122,6 @@ export const ListEntitiesByDocumentResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEntitiesByDocumentResponse$ {
-  /** @deprecated use `ListEntitiesByDocumentResponse$inboundSchema` instead. */
-  export const inboundSchema = ListEntitiesByDocumentResponse$inboundSchema;
-  /** @deprecated use `ListEntitiesByDocumentResponse$outboundSchema` instead. */
-  export const outboundSchema = ListEntitiesByDocumentResponse$outboundSchema;
-  /** @deprecated use `ListEntitiesByDocumentResponse$Outbound` instead. */
-  export type Outbound = ListEntitiesByDocumentResponse$Outbound;
-}
-
 export function listEntitiesByDocumentResponseToJSON(
   listEntitiesByDocumentResponse: ListEntitiesByDocumentResponse,
 ): string {
@@ -160,7 +131,6 @@ export function listEntitiesByDocumentResponseToJSON(
     ),
   );
 }
-
 export function listEntitiesByDocumentResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListEntitiesByDocumentResponse, SDKValidationError> {

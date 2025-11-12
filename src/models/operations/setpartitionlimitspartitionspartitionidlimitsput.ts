@@ -29,7 +29,6 @@ export const SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$inboundSche
       "PartitionLimitParams": "partitionLimitParams",
     });
   });
-
 /** @internal */
 export type SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$Outbound = {
   partition_id: string;
@@ -52,22 +51,6 @@ export const SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$outboundSch
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$ {
-  /** @deprecated use `SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$inboundSchema;
-  /** @deprecated use `SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$outboundSchema;
-  /** @deprecated use `SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$Outbound` instead. */
-  export type Outbound =
-    SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest$Outbound;
-}
-
 export function setPartitionLimitsPartitionsPartitionIdLimitsPutRequestToJSON(
   setPartitionLimitsPartitionsPartitionIdLimitsPutRequest:
     SetPartitionLimitsPartitionsPartitionIdLimitsPutRequest,
@@ -77,7 +60,6 @@ export function setPartitionLimitsPartitionsPartitionIdLimitsPutRequestToJSON(
       .parse(setPartitionLimitsPartitionsPartitionIdLimitsPutRequest),
   );
 }
-
 export function setPartitionLimitsPartitionsPartitionIdLimitsPutRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

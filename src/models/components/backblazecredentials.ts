@@ -31,7 +31,6 @@ export const BackblazeCredentials$inboundSchema: z.ZodType<
     "application_key": "applicationKey",
   });
 });
-
 /** @internal */
 export type BackblazeCredentials$Outbound = {
   key_id: string;
@@ -57,19 +56,6 @@ export const BackblazeCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BackblazeCredentials$ {
-  /** @deprecated use `BackblazeCredentials$inboundSchema` instead. */
-  export const inboundSchema = BackblazeCredentials$inboundSchema;
-  /** @deprecated use `BackblazeCredentials$outboundSchema` instead. */
-  export const outboundSchema = BackblazeCredentials$outboundSchema;
-  /** @deprecated use `BackblazeCredentials$Outbound` instead. */
-  export type Outbound = BackblazeCredentials$Outbound;
-}
-
 export function backblazeCredentialsToJSON(
   backblazeCredentials: BackblazeCredentials,
 ): string {
@@ -77,7 +63,6 @@ export function backblazeCredentialsToJSON(
     BackblazeCredentials$outboundSchema.parse(backblazeCredentials),
   );
 }
-
 export function backblazeCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<BackblazeCredentials, SDKValidationError> {

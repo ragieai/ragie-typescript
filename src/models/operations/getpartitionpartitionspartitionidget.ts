@@ -25,7 +25,6 @@ export const GetPartitionPartitionsPartitionIdGetRequest$inboundSchema:
       "partition_id": "partitionId",
     });
   });
-
 /** @internal */
 export type GetPartitionPartitionsPartitionIdGetRequest$Outbound = {
   partition_id: string;
@@ -45,21 +44,6 @@ export const GetPartitionPartitionsPartitionIdGetRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPartitionPartitionsPartitionIdGetRequest$ {
-  /** @deprecated use `GetPartitionPartitionsPartitionIdGetRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    GetPartitionPartitionsPartitionIdGetRequest$inboundSchema;
-  /** @deprecated use `GetPartitionPartitionsPartitionIdGetRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    GetPartitionPartitionsPartitionIdGetRequest$outboundSchema;
-  /** @deprecated use `GetPartitionPartitionsPartitionIdGetRequest$Outbound` instead. */
-  export type Outbound = GetPartitionPartitionsPartitionIdGetRequest$Outbound;
-}
-
 export function getPartitionPartitionsPartitionIdGetRequestToJSON(
   getPartitionPartitionsPartitionIdGetRequest:
     GetPartitionPartitionsPartitionIdGetRequest,
@@ -70,7 +54,6 @@ export function getPartitionPartitionsPartitionIdGetRequestToJSON(
     ),
   );
 }
-
 export function getPartitionPartitionsPartitionIdGetRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

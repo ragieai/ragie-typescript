@@ -31,7 +31,6 @@ export const ResponseOutputMessage$inboundSchema: z.ZodType<
   role: z.literal("assistant").default("assistant"),
   content: z.array(ResponseContent$inboundSchema),
 });
-
 /** @internal */
 export type ResponseOutputMessage$Outbound = {
   type: "message";
@@ -52,19 +51,6 @@ export const ResponseOutputMessage$outboundSchema: z.ZodType<
   content: z.array(ResponseContent$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseOutputMessage$ {
-  /** @deprecated use `ResponseOutputMessage$inboundSchema` instead. */
-  export const inboundSchema = ResponseOutputMessage$inboundSchema;
-  /** @deprecated use `ResponseOutputMessage$outboundSchema` instead. */
-  export const outboundSchema = ResponseOutputMessage$outboundSchema;
-  /** @deprecated use `ResponseOutputMessage$Outbound` instead. */
-  export type Outbound = ResponseOutputMessage$Outbound;
-}
-
 export function responseOutputMessageToJSON(
   responseOutputMessage: ResponseOutputMessage,
 ): string {
@@ -72,7 +58,6 @@ export function responseOutputMessageToJSON(
     ResponseOutputMessage$outboundSchema.parse(responseOutputMessage),
   );
 }
-
 export function responseOutputMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseOutputMessage, SDKValidationError> {

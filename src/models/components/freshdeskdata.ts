@@ -21,7 +21,6 @@ export const FreshdeskData$inboundSchema: z.ZodType<
   tickets: z.boolean(),
   articles: z.boolean(),
 });
-
 /** @internal */
 export type FreshdeskData$Outbound = {
   tickets: boolean;
@@ -38,23 +37,9 @@ export const FreshdeskData$outboundSchema: z.ZodType<
   articles: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FreshdeskData$ {
-  /** @deprecated use `FreshdeskData$inboundSchema` instead. */
-  export const inboundSchema = FreshdeskData$inboundSchema;
-  /** @deprecated use `FreshdeskData$outboundSchema` instead. */
-  export const outboundSchema = FreshdeskData$outboundSchema;
-  /** @deprecated use `FreshdeskData$Outbound` instead. */
-  export type Outbound = FreshdeskData$Outbound;
-}
-
 export function freshdeskDataToJSON(freshdeskData: FreshdeskData): string {
   return JSON.stringify(FreshdeskData$outboundSchema.parse(freshdeskData));
 }
-
 export function freshdeskDataFromJSON(
   jsonString: string,
 ): SafeParseResult<FreshdeskData, SDKValidationError> {

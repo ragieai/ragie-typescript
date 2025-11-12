@@ -41,7 +41,6 @@ export const DocumentGetMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type DocumentGetMetadata$Outbound =
   | string
@@ -63,19 +62,6 @@ export const DocumentGetMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentGetMetadata$ {
-  /** @deprecated use `DocumentGetMetadata$inboundSchema` instead. */
-  export const inboundSchema = DocumentGetMetadata$inboundSchema;
-  /** @deprecated use `DocumentGetMetadata$outboundSchema` instead. */
-  export const outboundSchema = DocumentGetMetadata$outboundSchema;
-  /** @deprecated use `DocumentGetMetadata$Outbound` instead. */
-  export type Outbound = DocumentGetMetadata$Outbound;
-}
-
 export function documentGetMetadataToJSON(
   documentGetMetadata: DocumentGetMetadata,
 ): string {
@@ -83,7 +69,6 @@ export function documentGetMetadataToJSON(
     DocumentGetMetadata$outboundSchema.parse(documentGetMetadata),
   );
 }
-
 export function documentGetMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentGetMetadata, SDKValidationError> {
@@ -128,7 +113,6 @@ export const DocumentGet$inboundSchema: z.ZodType<
     "page_count": "pageCount",
   });
 });
-
 /** @internal */
 export type DocumentGet$Outbound = {
   status: string;
@@ -179,23 +163,9 @@ export const DocumentGet$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentGet$ {
-  /** @deprecated use `DocumentGet$inboundSchema` instead. */
-  export const inboundSchema = DocumentGet$inboundSchema;
-  /** @deprecated use `DocumentGet$outboundSchema` instead. */
-  export const outboundSchema = DocumentGet$outboundSchema;
-  /** @deprecated use `DocumentGet$Outbound` instead. */
-  export type Outbound = DocumentGet$Outbound;
-}
-
 export function documentGetToJSON(documentGet: DocumentGet): string {
   return JSON.stringify(DocumentGet$outboundSchema.parse(documentGet));
 }
-
 export function documentGetFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentGet, SDKValidationError> {

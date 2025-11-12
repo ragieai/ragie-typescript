@@ -37,7 +37,6 @@ export const UpdateDocumentFromUrlRequest$inboundSchema: z.ZodType<
     "UpdateDocumentFromUrlParams": "updateDocumentFromUrlParams",
   });
 });
-
 /** @internal */
 export type UpdateDocumentFromUrlRequest$Outbound = {
   document_id: string;
@@ -62,19 +61,6 @@ export const UpdateDocumentFromUrlRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFromUrlRequest$ {
-  /** @deprecated use `UpdateDocumentFromUrlRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFromUrlRequest$inboundSchema;
-  /** @deprecated use `UpdateDocumentFromUrlRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFromUrlRequest$outboundSchema;
-  /** @deprecated use `UpdateDocumentFromUrlRequest$Outbound` instead. */
-  export type Outbound = UpdateDocumentFromUrlRequest$Outbound;
-}
-
 export function updateDocumentFromUrlRequestToJSON(
   updateDocumentFromUrlRequest: UpdateDocumentFromUrlRequest,
 ): string {
@@ -84,7 +70,6 @@ export function updateDocumentFromUrlRequestToJSON(
     ),
   );
 }
-
 export function updateDocumentFromUrlRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFromUrlRequest, SDKValidationError> {

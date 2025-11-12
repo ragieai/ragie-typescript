@@ -21,7 +21,6 @@ export const Search$inboundSchema: z.ZodType<Search, z.ZodTypeDef, unknown> = z
       "search_requests": "searchRequests",
     });
   });
-
 /** @internal */
 export type Search$Outbound = {
   search_requests: Array<string>;
@@ -40,23 +39,9 @@ export const Search$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Search$ {
-  /** @deprecated use `Search$inboundSchema` instead. */
-  export const inboundSchema = Search$inboundSchema;
-  /** @deprecated use `Search$outboundSchema` instead. */
-  export const outboundSchema = Search$outboundSchema;
-  /** @deprecated use `Search$Outbound` instead. */
-  export type Outbound = Search$Outbound;
-}
-
 export function searchToJSON(search: Search): string {
   return JSON.stringify(Search$outboundSchema.parse(search));
 }
-
 export function searchFromJSON(
   jsonString: string,
 ): SafeParseResult<Search, SDKValidationError> {

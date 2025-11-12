@@ -24,7 +24,6 @@ export const ReasoningSummary$inboundSchema: z.ZodType<
   summary: z.string(),
   type: z.literal("summary").default("summary"),
 });
-
 /** @internal */
 export type ReasoningSummary$Outbound = {
   summary: string;
@@ -41,19 +40,6 @@ export const ReasoningSummary$outboundSchema: z.ZodType<
   type: z.literal("summary").default("summary" as const),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReasoningSummary$ {
-  /** @deprecated use `ReasoningSummary$inboundSchema` instead. */
-  export const inboundSchema = ReasoningSummary$inboundSchema;
-  /** @deprecated use `ReasoningSummary$outboundSchema` instead. */
-  export const outboundSchema = ReasoningSummary$outboundSchema;
-  /** @deprecated use `ReasoningSummary$Outbound` instead. */
-  export type Outbound = ReasoningSummary$Outbound;
-}
-
 export function reasoningSummaryToJSON(
   reasoningSummary: ReasoningSummary,
 ): string {
@@ -61,7 +47,6 @@ export function reasoningSummaryToJSON(
     ReasoningSummary$outboundSchema.parse(reasoningSummary),
   );
 }
-
 export function reasoningSummaryFromJSON(
   jsonString: string,
 ): SafeParseResult<ReasoningSummary, SDKValidationError> {

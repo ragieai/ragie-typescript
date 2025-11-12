@@ -19,7 +19,6 @@ export const AsyncDocumentMetadataUpdate$inboundSchema: z.ZodType<
 > = z.object({
   status: z.string(),
 });
-
 /** @internal */
 export type AsyncDocumentMetadataUpdate$Outbound = {
   status: string;
@@ -34,19 +33,6 @@ export const AsyncDocumentMetadataUpdate$outboundSchema: z.ZodType<
   status: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AsyncDocumentMetadataUpdate$ {
-  /** @deprecated use `AsyncDocumentMetadataUpdate$inboundSchema` instead. */
-  export const inboundSchema = AsyncDocumentMetadataUpdate$inboundSchema;
-  /** @deprecated use `AsyncDocumentMetadataUpdate$outboundSchema` instead. */
-  export const outboundSchema = AsyncDocumentMetadataUpdate$outboundSchema;
-  /** @deprecated use `AsyncDocumentMetadataUpdate$Outbound` instead. */
-  export type Outbound = AsyncDocumentMetadataUpdate$Outbound;
-}
-
 export function asyncDocumentMetadataUpdateToJSON(
   asyncDocumentMetadataUpdate: AsyncDocumentMetadataUpdate,
 ): string {
@@ -56,7 +42,6 @@ export function asyncDocumentMetadataUpdateToJSON(
     ),
   );
 }
-
 export function asyncDocumentMetadataUpdateFromJSON(
   jsonString: string,
 ): SafeParseResult<AsyncDocumentMetadataUpdate, SDKValidationError> {

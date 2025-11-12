@@ -24,7 +24,6 @@ export const GetResponseResponsesResponseIdGetRequest$inboundSchema: z.ZodType<
     "response_id": "responseId",
   });
 });
-
 /** @internal */
 export type GetResponseResponsesResponseIdGetRequest$Outbound = {
   response_id: string;
@@ -43,21 +42,6 @@ export const GetResponseResponsesResponseIdGetRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetResponseResponsesResponseIdGetRequest$ {
-  /** @deprecated use `GetResponseResponsesResponseIdGetRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    GetResponseResponsesResponseIdGetRequest$inboundSchema;
-  /** @deprecated use `GetResponseResponsesResponseIdGetRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    GetResponseResponsesResponseIdGetRequest$outboundSchema;
-  /** @deprecated use `GetResponseResponsesResponseIdGetRequest$Outbound` instead. */
-  export type Outbound = GetResponseResponsesResponseIdGetRequest$Outbound;
-}
-
 export function getResponseResponsesResponseIdGetRequestToJSON(
   getResponseResponsesResponseIdGetRequest:
     GetResponseResponsesResponseIdGetRequest,
@@ -68,7 +52,6 @@ export function getResponseResponsesResponseIdGetRequestToJSON(
     ),
   );
 }
-
 export function getResponseResponsesResponseIdGetRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

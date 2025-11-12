@@ -8,12 +8,12 @@ Partition strategy for the document. Different strategies exist for textual, aud
 ### `components.One`
 
 ```typescript
-const value: components.One = "fast";
+const value: components.One = {};
 ```
 
 ### `components.Two`
 
 ```typescript
-const value: components.Two = {};
+const value: components.Two = "fast";
 ```
 

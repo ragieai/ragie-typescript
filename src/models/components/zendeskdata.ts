@@ -19,7 +19,6 @@ export const ZendeskData$inboundSchema: z.ZodType<
 > = z.object({
   articles: z.boolean(),
 });
-
 /** @internal */
 export type ZendeskData$Outbound = {
   articles: boolean;
@@ -34,23 +33,9 @@ export const ZendeskData$outboundSchema: z.ZodType<
   articles: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ZendeskData$ {
-  /** @deprecated use `ZendeskData$inboundSchema` instead. */
-  export const inboundSchema = ZendeskData$inboundSchema;
-  /** @deprecated use `ZendeskData$outboundSchema` instead. */
-  export const outboundSchema = ZendeskData$outboundSchema;
-  /** @deprecated use `ZendeskData$Outbound` instead. */
-  export type Outbound = ZendeskData$Outbound;
-}
-
 export function zendeskDataToJSON(zendeskData: ZendeskData): string {
   return JSON.stringify(ZendeskData$outboundSchema.parse(zendeskData));
 }
-
 export function zendeskDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ZendeskData, SDKValidationError> {

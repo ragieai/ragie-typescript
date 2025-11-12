@@ -41,7 +41,6 @@ export const DocumentWithContentMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type DocumentWithContentMetadata$Outbound =
   | string
@@ -63,19 +62,6 @@ export const DocumentWithContentMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentWithContentMetadata$ {
-  /** @deprecated use `DocumentWithContentMetadata$inboundSchema` instead. */
-  export const inboundSchema = DocumentWithContentMetadata$inboundSchema;
-  /** @deprecated use `DocumentWithContentMetadata$outboundSchema` instead. */
-  export const outboundSchema = DocumentWithContentMetadata$outboundSchema;
-  /** @deprecated use `DocumentWithContentMetadata$Outbound` instead. */
-  export type Outbound = DocumentWithContentMetadata$Outbound;
-}
-
 export function documentWithContentMetadataToJSON(
   documentWithContentMetadata: DocumentWithContentMetadata,
 ): string {
@@ -85,7 +71,6 @@ export function documentWithContentMetadataToJSON(
     ),
   );
 }
-
 export function documentWithContentMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentWithContentMetadata, SDKValidationError> {
@@ -130,7 +115,6 @@ export const DocumentWithContent$inboundSchema: z.ZodType<
     "page_count": "pageCount",
   });
 });
-
 /** @internal */
 export type DocumentWithContent$Outbound = {
   status: string;
@@ -181,19 +165,6 @@ export const DocumentWithContent$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentWithContent$ {
-  /** @deprecated use `DocumentWithContent$inboundSchema` instead. */
-  export const inboundSchema = DocumentWithContent$inboundSchema;
-  /** @deprecated use `DocumentWithContent$outboundSchema` instead. */
-  export const outboundSchema = DocumentWithContent$outboundSchema;
-  /** @deprecated use `DocumentWithContent$Outbound` instead. */
-  export type Outbound = DocumentWithContent$Outbound;
-}
-
 export function documentWithContentToJSON(
   documentWithContent: DocumentWithContent,
 ): string {
@@ -201,7 +172,6 @@ export function documentWithContentToJSON(
     DocumentWithContent$outboundSchema.parse(documentWithContent),
   );
 }
-
 export function documentWithContentFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentWithContent, SDKValidationError> {

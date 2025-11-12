@@ -28,7 +28,6 @@ export const BucketData$inboundSchema: z.ZodType<
     "import_file_metadata": "importFileMetadata",
   });
 });
-
 /** @internal */
 export type BucketData$Outbound = {
   bucket: string;
@@ -51,23 +50,9 @@ export const BucketData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BucketData$ {
-  /** @deprecated use `BucketData$inboundSchema` instead. */
-  export const inboundSchema = BucketData$inboundSchema;
-  /** @deprecated use `BucketData$outboundSchema` instead. */
-  export const outboundSchema = BucketData$outboundSchema;
-  /** @deprecated use `BucketData$Outbound` instead. */
-  export type Outbound = BucketData$Outbound;
-}
-
 export function bucketDataToJSON(bucketData: BucketData): string {
   return JSON.stringify(BucketData$outboundSchema.parse(bucketData));
 }
-
 export function bucketDataFromJSON(
   jsonString: string,
 ): SafeParseResult<BucketData, SDKValidationError> {

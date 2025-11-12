@@ -26,7 +26,6 @@ export const BaseGetAuthenticator$inboundSchema: z.ZodType<
   name: z.string(),
   id: z.string(),
 });
-
 /** @internal */
 export type BaseGetAuthenticator$Outbound = {
   provider: string;
@@ -45,19 +44,6 @@ export const BaseGetAuthenticator$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BaseGetAuthenticator$ {
-  /** @deprecated use `BaseGetAuthenticator$inboundSchema` instead. */
-  export const inboundSchema = BaseGetAuthenticator$inboundSchema;
-  /** @deprecated use `BaseGetAuthenticator$outboundSchema` instead. */
-  export const outboundSchema = BaseGetAuthenticator$outboundSchema;
-  /** @deprecated use `BaseGetAuthenticator$Outbound` instead. */
-  export type Outbound = BaseGetAuthenticator$Outbound;
-}
-
 export function baseGetAuthenticatorToJSON(
   baseGetAuthenticator: BaseGetAuthenticator,
 ): string {
@@ -65,7 +51,6 @@ export function baseGetAuthenticatorToJSON(
     BaseGetAuthenticator$outboundSchema.parse(baseGetAuthenticator),
   );
 }
-
 export function baseGetAuthenticatorFromJSON(
   jsonString: string,
 ): SafeParseResult<BaseGetAuthenticator, SDKValidationError> {

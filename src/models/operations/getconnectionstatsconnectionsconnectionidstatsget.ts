@@ -25,7 +25,6 @@ export const GetConnectionStatsConnectionsConnectionIdStatsGetRequest$inboundSch
       "connection_id": "connectionId",
     });
   });
-
 /** @internal */
 export type GetConnectionStatsConnectionsConnectionIdStatsGetRequest$Outbound =
   {
@@ -46,22 +45,6 @@ export const GetConnectionStatsConnectionsConnectionIdStatsGetRequest$outboundSc
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConnectionStatsConnectionsConnectionIdStatsGetRequest$ {
-  /** @deprecated use `GetConnectionStatsConnectionsConnectionIdStatsGetRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    GetConnectionStatsConnectionsConnectionIdStatsGetRequest$inboundSchema;
-  /** @deprecated use `GetConnectionStatsConnectionsConnectionIdStatsGetRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    GetConnectionStatsConnectionsConnectionIdStatsGetRequest$outboundSchema;
-  /** @deprecated use `GetConnectionStatsConnectionsConnectionIdStatsGetRequest$Outbound` instead. */
-  export type Outbound =
-    GetConnectionStatsConnectionsConnectionIdStatsGetRequest$Outbound;
-}
-
 export function getConnectionStatsConnectionsConnectionIdStatsGetRequestToJSON(
   getConnectionStatsConnectionsConnectionIdStatsGetRequest:
     GetConnectionStatsConnectionsConnectionIdStatsGetRequest,
@@ -71,7 +54,6 @@ export function getConnectionStatsConnectionsConnectionIdStatsGetRequestToJSON(
       .parse(getConnectionStatsConnectionsConnectionIdStatsGetRequest),
   );
 }
-
 export function getConnectionStatsConnectionsConnectionIdStatsGetRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

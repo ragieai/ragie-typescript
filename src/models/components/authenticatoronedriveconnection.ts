@@ -45,7 +45,6 @@ export const AuthenticatorOnedriveConnection$inboundSchema: z.ZodType<
     "user_email": "userEmail",
   });
 });
-
 /** @internal */
 export type AuthenticatorOnedriveConnection$Outbound = {
   provider: "onedrive";
@@ -70,19 +69,6 @@ export const AuthenticatorOnedriveConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorOnedriveConnection$ {
-  /** @deprecated use `AuthenticatorOnedriveConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorOnedriveConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorOnedriveConnection$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorOnedriveConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorOnedriveConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorOnedriveConnection$Outbound;
-}
-
 export function authenticatorOnedriveConnectionToJSON(
   authenticatorOnedriveConnection: AuthenticatorOnedriveConnection,
 ): string {
@@ -92,7 +78,6 @@ export function authenticatorOnedriveConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorOnedriveConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorOnedriveConnection, SDKValidationError> {

@@ -47,7 +47,6 @@ export const MetadataSchema$inboundSchema: z.ZodType<
   z.array(z.string()),
   z.record(z.any()),
 ]);
-
 /** @internal */
 export type MetadataSchema$Outbound =
   | string
@@ -69,23 +68,9 @@ export const MetadataSchema$outboundSchema: z.ZodType<
   z.record(z.any()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MetadataSchema$ {
-  /** @deprecated use `MetadataSchema$inboundSchema` instead. */
-  export const inboundSchema = MetadataSchema$inboundSchema;
-  /** @deprecated use `MetadataSchema$outboundSchema` instead. */
-  export const outboundSchema = MetadataSchema$outboundSchema;
-  /** @deprecated use `MetadataSchema$Outbound` instead. */
-  export type Outbound = MetadataSchema$Outbound;
-}
-
 export function metadataSchemaToJSON(metadataSchema: MetadataSchema): string {
   return JSON.stringify(MetadataSchema$outboundSchema.parse(metadataSchema));
 }
-
 export function metadataSchemaFromJSON(
   jsonString: string,
 ): SafeParseResult<MetadataSchema, SDKValidationError> {
@@ -129,7 +114,6 @@ export const Partition$inboundSchema: z.ZodType<
     "metadata_schema": "metadataSchema",
   });
 });
-
 /** @internal */
 export type Partition$Outbound = {
   name: string;
@@ -178,23 +162,9 @@ export const Partition$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Partition$ {
-  /** @deprecated use `Partition$inboundSchema` instead. */
-  export const inboundSchema = Partition$inboundSchema;
-  /** @deprecated use `Partition$outboundSchema` instead. */
-  export const outboundSchema = Partition$outboundSchema;
-  /** @deprecated use `Partition$Outbound` instead. */
-  export type Outbound = Partition$Outbound;
-}
-
 export function partitionToJSON(partition: Partition): string {
   return JSON.stringify(Partition$outboundSchema.parse(partition));
 }
-
 export function partitionFromJSON(
   jsonString: string,
 ): SafeParseResult<Partition, SDKValidationError> {

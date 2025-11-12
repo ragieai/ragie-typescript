@@ -33,7 +33,6 @@ export const PartitionList$inboundSchema: z.ZodType<
   pagination: Pagination$inboundSchema,
   partitions: z.array(Partition$inboundSchema),
 });
-
 /** @internal */
 export type PartitionList$Outbound = {
   pagination: Pagination$Outbound;
@@ -50,23 +49,9 @@ export const PartitionList$outboundSchema: z.ZodType<
   partitions: z.array(Partition$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PartitionList$ {
-  /** @deprecated use `PartitionList$inboundSchema` instead. */
-  export const inboundSchema = PartitionList$inboundSchema;
-  /** @deprecated use `PartitionList$outboundSchema` instead. */
-  export const outboundSchema = PartitionList$outboundSchema;
-  /** @deprecated use `PartitionList$Outbound` instead. */
-  export type Outbound = PartitionList$Outbound;
-}
-
 export function partitionListToJSON(partitionList: PartitionList): string {
   return JSON.stringify(PartitionList$outboundSchema.parse(partitionList));
 }
-
 export function partitionListFromJSON(
   jsonString: string,
 ): SafeParseResult<PartitionList, SDKValidationError> {

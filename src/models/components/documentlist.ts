@@ -33,7 +33,6 @@ export const DocumentList$inboundSchema: z.ZodType<
   pagination: Pagination$inboundSchema,
   documents: z.array(Document$inboundSchema),
 });
-
 /** @internal */
 export type DocumentList$Outbound = {
   pagination: Pagination$Outbound;
@@ -50,23 +49,9 @@ export const DocumentList$outboundSchema: z.ZodType<
   documents: z.array(Document$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentList$ {
-  /** @deprecated use `DocumentList$inboundSchema` instead. */
-  export const inboundSchema = DocumentList$inboundSchema;
-  /** @deprecated use `DocumentList$outboundSchema` instead. */
-  export const outboundSchema = DocumentList$outboundSchema;
-  /** @deprecated use `DocumentList$Outbound` instead. */
-  export type Outbound = DocumentList$Outbound;
-}
-
 export function documentListToJSON(documentList: DocumentList): string {
   return JSON.stringify(DocumentList$outboundSchema.parse(documentList));
 }
-
 export function documentListFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentList, SDKValidationError> {

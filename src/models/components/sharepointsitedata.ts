@@ -21,7 +21,6 @@ export const SharepointSiteData$inboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
 });
-
 /** @internal */
 export type SharepointSiteData$Outbound = {
   id: string;
@@ -38,19 +37,6 @@ export const SharepointSiteData$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SharepointSiteData$ {
-  /** @deprecated use `SharepointSiteData$inboundSchema` instead. */
-  export const inboundSchema = SharepointSiteData$inboundSchema;
-  /** @deprecated use `SharepointSiteData$outboundSchema` instead. */
-  export const outboundSchema = SharepointSiteData$outboundSchema;
-  /** @deprecated use `SharepointSiteData$Outbound` instead. */
-  export type Outbound = SharepointSiteData$Outbound;
-}
-
 export function sharepointSiteDataToJSON(
   sharepointSiteData: SharepointSiteData,
 ): string {
@@ -58,7 +44,6 @@ export function sharepointSiteDataToJSON(
     SharepointSiteData$outboundSchema.parse(sharepointSiteData),
   );
 }
-
 export function sharepointSiteDataFromJSON(
   jsonString: string,
 ): SafeParseResult<SharepointSiteData, SDKValidationError> {

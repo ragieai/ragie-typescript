@@ -31,7 +31,6 @@ export const WordTimestamp$inboundSchema: z.ZodType<
     "end_time": "endTime",
   });
 });
-
 /** @internal */
 export type WordTimestamp$Outbound = {
   start_time: number;
@@ -57,23 +56,9 @@ export const WordTimestamp$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WordTimestamp$ {
-  /** @deprecated use `WordTimestamp$inboundSchema` instead. */
-  export const inboundSchema = WordTimestamp$inboundSchema;
-  /** @deprecated use `WordTimestamp$outboundSchema` instead. */
-  export const outboundSchema = WordTimestamp$outboundSchema;
-  /** @deprecated use `WordTimestamp$Outbound` instead. */
-  export type Outbound = WordTimestamp$Outbound;
-}
-
 export function wordTimestampToJSON(wordTimestamp: WordTimestamp): string {
   return JSON.stringify(WordTimestamp$outboundSchema.parse(wordTimestamp));
 }
-
 export function wordTimestampFromJSON(
   jsonString: string,
 ): SafeParseResult<WordTimestamp, SDKValidationError> {

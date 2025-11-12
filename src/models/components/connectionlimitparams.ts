@@ -27,7 +27,6 @@ export const ConnectionLimitParams$inboundSchema: z.ZodType<
     "page_limit": "pageLimit",
   });
 });
-
 /** @internal */
 export type ConnectionLimitParams$Outbound = {
   page_limit?: number | null | undefined;
@@ -46,19 +45,6 @@ export const ConnectionLimitParams$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionLimitParams$ {
-  /** @deprecated use `ConnectionLimitParams$inboundSchema` instead. */
-  export const inboundSchema = ConnectionLimitParams$inboundSchema;
-  /** @deprecated use `ConnectionLimitParams$outboundSchema` instead. */
-  export const outboundSchema = ConnectionLimitParams$outboundSchema;
-  /** @deprecated use `ConnectionLimitParams$Outbound` instead. */
-  export type Outbound = ConnectionLimitParams$Outbound;
-}
-
 export function connectionLimitParamsToJSON(
   connectionLimitParams: ConnectionLimitParams,
 ): string {
@@ -66,7 +52,6 @@ export function connectionLimitParamsToJSON(
     ConnectionLimitParams$outboundSchema.parse(connectionLimitParams),
   );
 }
-
 export function connectionLimitParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionLimitParams, SDKValidationError> {

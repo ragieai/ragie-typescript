@@ -33,21 +33,9 @@ export type OAuthCredentials = {
 /** @internal */
 export const Provider$inboundSchema: z.ZodNativeEnum<typeof Provider> = z
   .nativeEnum(Provider);
-
 /** @internal */
 export const Provider$outboundSchema: z.ZodNativeEnum<typeof Provider> =
   Provider$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Provider$ {
-  /** @deprecated use `Provider$inboundSchema` instead. */
-  export const inboundSchema = Provider$inboundSchema;
-  /** @deprecated use `Provider$outboundSchema` instead. */
-  export const outboundSchema = Provider$outboundSchema;
-}
 
 /** @internal */
 export const OAuthCredentials$inboundSchema: z.ZodType<
@@ -66,7 +54,6 @@ export const OAuthCredentials$inboundSchema: z.ZodType<
     "client_secret": "clientSecret",
   });
 });
-
 /** @internal */
 export type OAuthCredentials$Outbound = {
   provider: string;
@@ -94,19 +81,6 @@ export const OAuthCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthCredentials$ {
-  /** @deprecated use `OAuthCredentials$inboundSchema` instead. */
-  export const inboundSchema = OAuthCredentials$inboundSchema;
-  /** @deprecated use `OAuthCredentials$outboundSchema` instead. */
-  export const outboundSchema = OAuthCredentials$outboundSchema;
-  /** @deprecated use `OAuthCredentials$Outbound` instead. */
-  export type Outbound = OAuthCredentials$Outbound;
-}
-
 export function oAuthCredentialsToJSON(
   oAuthCredentials: OAuthCredentials,
 ): string {
@@ -114,7 +88,6 @@ export function oAuthCredentialsToJSON(
     OAuthCredentials$outboundSchema.parse(oAuthCredentials),
   );
 }
-
 export function oAuthCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<OAuthCredentials, SDKValidationError> {

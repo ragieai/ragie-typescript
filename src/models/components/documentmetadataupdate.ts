@@ -33,7 +33,6 @@ export const DocumentMetadataUpdateMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type DocumentMetadataUpdateMetadata$Outbound =
   | string
@@ -55,19 +54,6 @@ export const DocumentMetadataUpdateMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentMetadataUpdateMetadata$ {
-  /** @deprecated use `DocumentMetadataUpdateMetadata$inboundSchema` instead. */
-  export const inboundSchema = DocumentMetadataUpdateMetadata$inboundSchema;
-  /** @deprecated use `DocumentMetadataUpdateMetadata$outboundSchema` instead. */
-  export const outboundSchema = DocumentMetadataUpdateMetadata$outboundSchema;
-  /** @deprecated use `DocumentMetadataUpdateMetadata$Outbound` instead. */
-  export type Outbound = DocumentMetadataUpdateMetadata$Outbound;
-}
-
 export function documentMetadataUpdateMetadataToJSON(
   documentMetadataUpdateMetadata: DocumentMetadataUpdateMetadata,
 ): string {
@@ -77,7 +63,6 @@ export function documentMetadataUpdateMetadataToJSON(
     ),
   );
 }
-
 export function documentMetadataUpdateMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentMetadataUpdateMetadata, SDKValidationError> {
@@ -104,7 +89,6 @@ export const DocumentMetadataUpdate$inboundSchema: z.ZodType<
     ]),
   ),
 });
-
 /** @internal */
 export type DocumentMetadataUpdate$Outbound = {
   metadata: { [k: string]: string | number | number | boolean | Array<string> };
@@ -127,19 +111,6 @@ export const DocumentMetadataUpdate$outboundSchema: z.ZodType<
   ),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentMetadataUpdate$ {
-  /** @deprecated use `DocumentMetadataUpdate$inboundSchema` instead. */
-  export const inboundSchema = DocumentMetadataUpdate$inboundSchema;
-  /** @deprecated use `DocumentMetadataUpdate$outboundSchema` instead. */
-  export const outboundSchema = DocumentMetadataUpdate$outboundSchema;
-  /** @deprecated use `DocumentMetadataUpdate$Outbound` instead. */
-  export type Outbound = DocumentMetadataUpdate$Outbound;
-}
-
 export function documentMetadataUpdateToJSON(
   documentMetadataUpdate: DocumentMetadataUpdate,
 ): string {
@@ -147,7 +118,6 @@ export function documentMetadataUpdateToJSON(
     DocumentMetadataUpdate$outboundSchema.parse(documentMetadataUpdate),
   );
 }
-
 export function documentMetadataUpdateFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentMetadataUpdate, SDKValidationError> {

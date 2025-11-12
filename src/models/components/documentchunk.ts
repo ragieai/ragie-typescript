@@ -33,7 +33,6 @@ export const DocumentChunk$inboundSchema: z.ZodType<
   metadata: z.record(z.any()).optional(),
   links: z.record(Link$inboundSchema),
 });
-
 /** @internal */
 export type DocumentChunk$Outbound = {
   id: string;
@@ -56,23 +55,9 @@ export const DocumentChunk$outboundSchema: z.ZodType<
   links: z.record(Link$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentChunk$ {
-  /** @deprecated use `DocumentChunk$inboundSchema` instead. */
-  export const inboundSchema = DocumentChunk$inboundSchema;
-  /** @deprecated use `DocumentChunk$outboundSchema` instead. */
-  export const outboundSchema = DocumentChunk$outboundSchema;
-  /** @deprecated use `DocumentChunk$Outbound` instead. */
-  export type Outbound = DocumentChunk$Outbound;
-}
-
 export function documentChunkToJSON(documentChunk: DocumentChunk): string {
   return JSON.stringify(DocumentChunk$outboundSchema.parse(documentChunk));
 }
-
 export function documentChunkFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentChunk, SDKValidationError> {

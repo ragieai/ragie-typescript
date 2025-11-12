@@ -19,7 +19,6 @@ export const GmailData$inboundSchema: z.ZodType<
 > = z.object({
   label: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type GmailData$Outbound = {
   label?: string | null | undefined;
@@ -34,23 +33,9 @@ export const GmailData$outboundSchema: z.ZodType<
   label: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GmailData$ {
-  /** @deprecated use `GmailData$inboundSchema` instead. */
-  export const inboundSchema = GmailData$inboundSchema;
-  /** @deprecated use `GmailData$outboundSchema` instead. */
-  export const outboundSchema = GmailData$outboundSchema;
-  /** @deprecated use `GmailData$Outbound` instead. */
-  export type Outbound = GmailData$Outbound;
-}
-
 export function gmailDataToJSON(gmailData: GmailData): string {
   return JSON.stringify(GmailData$outboundSchema.parse(gmailData));
 }
-
 export function gmailDataFromJSON(
   jsonString: string,
 ): SafeParseResult<GmailData, SDKValidationError> {

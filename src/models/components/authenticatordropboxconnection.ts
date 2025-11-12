@@ -40,7 +40,6 @@ export const AuthenticatorDropboxConnection$inboundSchema: z.ZodType<
   email: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,
 });
-
 /** @internal */
 export type AuthenticatorDropboxConnection$Outbound = {
   provider: "dropbox";
@@ -61,19 +60,6 @@ export const AuthenticatorDropboxConnection$outboundSchema: z.ZodType<
   credentials: OAuthRefreshTokenCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorDropboxConnection$ {
-  /** @deprecated use `AuthenticatorDropboxConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorDropboxConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorDropboxConnection$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorDropboxConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorDropboxConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorDropboxConnection$Outbound;
-}
-
 export function authenticatorDropboxConnectionToJSON(
   authenticatorDropboxConnection: AuthenticatorDropboxConnection,
 ): string {
@@ -83,7 +69,6 @@ export function authenticatorDropboxConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorDropboxConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorDropboxConnection, SDKValidationError> {

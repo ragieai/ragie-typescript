@@ -37,7 +37,6 @@ export const HubspotData$inboundSchema: z.ZodType<
     "deal_notes": "dealNotes",
   });
 });
-
 /** @internal */
 export type HubspotData$Outbound = {
   companies: boolean;
@@ -69,23 +68,9 @@ export const HubspotData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HubspotData$ {
-  /** @deprecated use `HubspotData$inboundSchema` instead. */
-  export const inboundSchema = HubspotData$inboundSchema;
-  /** @deprecated use `HubspotData$outboundSchema` instead. */
-  export const outboundSchema = HubspotData$outboundSchema;
-  /** @deprecated use `HubspotData$Outbound` instead. */
-  export type Outbound = HubspotData$Outbound;
-}
-
 export function hubspotDataToJSON(hubspotData: HubspotData): string {
   return JSON.stringify(HubspotData$outboundSchema.parse(hubspotData));
 }
-
 export function hubspotDataFromJSON(
   jsonString: string,
 ): SafeParseResult<HubspotData, SDKValidationError> {

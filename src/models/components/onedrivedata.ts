@@ -30,7 +30,6 @@ export const OnedriveData$inboundSchema: z.ZodType<
     "folder_name": "folderName",
   });
 });
-
 /** @internal */
 export type OnedriveData$Outbound = {
   drive_id: string;
@@ -55,23 +54,9 @@ export const OnedriveData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OnedriveData$ {
-  /** @deprecated use `OnedriveData$inboundSchema` instead. */
-  export const inboundSchema = OnedriveData$inboundSchema;
-  /** @deprecated use `OnedriveData$outboundSchema` instead. */
-  export const outboundSchema = OnedriveData$outboundSchema;
-  /** @deprecated use `OnedriveData$Outbound` instead. */
-  export type Outbound = OnedriveData$Outbound;
-}
-
 export function onedriveDataToJSON(onedriveData: OnedriveData): string {
   return JSON.stringify(OnedriveData$outboundSchema.parse(onedriveData));
 }
-
 export function onedriveDataFromJSON(
   jsonString: string,
 ): SafeParseResult<OnedriveData, SDKValidationError> {

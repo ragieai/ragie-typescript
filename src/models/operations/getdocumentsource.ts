@@ -32,7 +32,6 @@ export const GetDocumentSourceRequest$inboundSchema: z.ZodType<
     "document_id": "documentId",
   });
 });
-
 /** @internal */
 export type GetDocumentSourceRequest$Outbound = {
   document_id: string;
@@ -53,19 +52,6 @@ export const GetDocumentSourceRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetDocumentSourceRequest$ {
-  /** @deprecated use `GetDocumentSourceRequest$inboundSchema` instead. */
-  export const inboundSchema = GetDocumentSourceRequest$inboundSchema;
-  /** @deprecated use `GetDocumentSourceRequest$outboundSchema` instead. */
-  export const outboundSchema = GetDocumentSourceRequest$outboundSchema;
-  /** @deprecated use `GetDocumentSourceRequest$Outbound` instead. */
-  export type Outbound = GetDocumentSourceRequest$Outbound;
-}
-
 export function getDocumentSourceRequestToJSON(
   getDocumentSourceRequest: GetDocumentSourceRequest,
 ): string {
@@ -73,7 +59,6 @@ export function getDocumentSourceRequestToJSON(
     GetDocumentSourceRequest$outboundSchema.parse(getDocumentSourceRequest),
   );
 }
-
 export function getDocumentSourceRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetDocumentSourceRequest, SDKValidationError> {

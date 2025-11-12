@@ -49,21 +49,9 @@ export type GetDocumentContentRequest = {
 
 /** @internal */
 export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
-
 /** @internal */
 export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
   One$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-}
 
 /** @internal */
 export const QueryParamMediaType$inboundSchema: z.ZodType<
@@ -71,7 +59,6 @@ export const QueryParamMediaType$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([One$inboundSchema, z.string()]);
-
 /** @internal */
 export type QueryParamMediaType$Outbound = string | string;
 
@@ -82,19 +69,6 @@ export const QueryParamMediaType$outboundSchema: z.ZodType<
   QueryParamMediaType
 > = z.union([One$outboundSchema, z.string()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParamMediaType$ {
-  /** @deprecated use `QueryParamMediaType$inboundSchema` instead. */
-  export const inboundSchema = QueryParamMediaType$inboundSchema;
-  /** @deprecated use `QueryParamMediaType$outboundSchema` instead. */
-  export const outboundSchema = QueryParamMediaType$outboundSchema;
-  /** @deprecated use `QueryParamMediaType$Outbound` instead. */
-  export type Outbound = QueryParamMediaType$Outbound;
-}
-
 export function queryParamMediaTypeToJSON(
   queryParamMediaType: QueryParamMediaType,
 ): string {
@@ -102,7 +76,6 @@ export function queryParamMediaTypeToJSON(
     QueryParamMediaType$outboundSchema.parse(queryParamMediaType),
   );
 }
-
 export function queryParamMediaTypeFromJSON(
   jsonString: string,
 ): SafeParseResult<QueryParamMediaType, SDKValidationError> {
@@ -130,7 +103,6 @@ export const GetDocumentContentRequest$inboundSchema: z.ZodType<
     "media_type": "mediaType",
   });
 });
-
 /** @internal */
 export type GetDocumentContentRequest$Outbound = {
   document_id: string;
@@ -158,19 +130,6 @@ export const GetDocumentContentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetDocumentContentRequest$ {
-  /** @deprecated use `GetDocumentContentRequest$inboundSchema` instead. */
-  export const inboundSchema = GetDocumentContentRequest$inboundSchema;
-  /** @deprecated use `GetDocumentContentRequest$outboundSchema` instead. */
-  export const outboundSchema = GetDocumentContentRequest$outboundSchema;
-  /** @deprecated use `GetDocumentContentRequest$Outbound` instead. */
-  export type Outbound = GetDocumentContentRequest$Outbound;
-}
-
 export function getDocumentContentRequestToJSON(
   getDocumentContentRequest: GetDocumentContentRequest,
 ): string {
@@ -178,7 +137,6 @@ export function getDocumentContentRequestToJSON(
     GetDocumentContentRequest$outboundSchema.parse(getDocumentContentRequest),
   );
 }
-
 export function getDocumentContentRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetDocumentContentRequest, SDKValidationError> {

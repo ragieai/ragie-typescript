@@ -29,7 +29,6 @@ export const UpdateConnectionConnectionsConnectionIdPutRequest$inboundSchema:
       "ConnectionBase": "connectionBase",
     });
   });
-
 /** @internal */
 export type UpdateConnectionConnectionsConnectionIdPutRequest$Outbound = {
   connection_id: string;
@@ -52,22 +51,6 @@ export const UpdateConnectionConnectionsConnectionIdPutRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateConnectionConnectionsConnectionIdPutRequest$ {
-  /** @deprecated use `UpdateConnectionConnectionsConnectionIdPutRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateConnectionConnectionsConnectionIdPutRequest$inboundSchema;
-  /** @deprecated use `UpdateConnectionConnectionsConnectionIdPutRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateConnectionConnectionsConnectionIdPutRequest$outboundSchema;
-  /** @deprecated use `UpdateConnectionConnectionsConnectionIdPutRequest$Outbound` instead. */
-  export type Outbound =
-    UpdateConnectionConnectionsConnectionIdPutRequest$Outbound;
-}
-
 export function updateConnectionConnectionsConnectionIdPutRequestToJSON(
   updateConnectionConnectionsConnectionIdPutRequest:
     UpdateConnectionConnectionsConnectionIdPutRequest,
@@ -78,7 +61,6 @@ export function updateConnectionConnectionsConnectionIdPutRequestToJSON(
     ),
   );
 }
-
 export function updateConnectionConnectionsConnectionIdPutRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

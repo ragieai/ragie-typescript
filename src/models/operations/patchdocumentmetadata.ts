@@ -44,7 +44,6 @@ export const PatchDocumentMetadataRequest$inboundSchema: z.ZodType<
     "PatchDocumentMetadataParams": "patchDocumentMetadataParams",
   });
 });
-
 /** @internal */
 export type PatchDocumentMetadataRequest$Outbound = {
   document_id: string;
@@ -69,19 +68,6 @@ export const PatchDocumentMetadataRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchDocumentMetadataRequest$ {
-  /** @deprecated use `PatchDocumentMetadataRequest$inboundSchema` instead. */
-  export const inboundSchema = PatchDocumentMetadataRequest$inboundSchema;
-  /** @deprecated use `PatchDocumentMetadataRequest$outboundSchema` instead. */
-  export const outboundSchema = PatchDocumentMetadataRequest$outboundSchema;
-  /** @deprecated use `PatchDocumentMetadataRequest$Outbound` instead. */
-  export type Outbound = PatchDocumentMetadataRequest$Outbound;
-}
-
 export function patchDocumentMetadataRequestToJSON(
   patchDocumentMetadataRequest: PatchDocumentMetadataRequest,
 ): string {
@@ -91,7 +77,6 @@ export function patchDocumentMetadataRequestToJSON(
     ),
   );
 }
-
 export function patchDocumentMetadataRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<PatchDocumentMetadataRequest, SDKValidationError> {
@@ -112,7 +97,6 @@ export const PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema:
     components.DocumentMetadataUpdate$inboundSchema,
     components.AsyncDocumentMetadataUpdate$inboundSchema,
   ]);
-
 /** @internal */
 export type PatchDocumentMetadataResponsePatchdocumentmetadata$Outbound =
   | components.DocumentMetadataUpdate$Outbound
@@ -129,22 +113,6 @@ export const PatchDocumentMetadataResponsePatchdocumentmetadata$outboundSchema:
     components.AsyncDocumentMetadataUpdate$outboundSchema,
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchDocumentMetadataResponsePatchdocumentmetadata$ {
-  /** @deprecated use `PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema` instead. */
-  export const inboundSchema =
-    PatchDocumentMetadataResponsePatchdocumentmetadata$inboundSchema;
-  /** @deprecated use `PatchDocumentMetadataResponsePatchdocumentmetadata$outboundSchema` instead. */
-  export const outboundSchema =
-    PatchDocumentMetadataResponsePatchdocumentmetadata$outboundSchema;
-  /** @deprecated use `PatchDocumentMetadataResponsePatchdocumentmetadata$Outbound` instead. */
-  export type Outbound =
-    PatchDocumentMetadataResponsePatchdocumentmetadata$Outbound;
-}
-
 export function patchDocumentMetadataResponsePatchdocumentmetadataToJSON(
   patchDocumentMetadataResponsePatchdocumentmetadata:
     PatchDocumentMetadataResponsePatchdocumentmetadata,
@@ -155,7 +123,6 @@ export function patchDocumentMetadataResponsePatchdocumentmetadataToJSON(
     ),
   );
 }
-
 export function patchDocumentMetadataResponsePatchdocumentmetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<

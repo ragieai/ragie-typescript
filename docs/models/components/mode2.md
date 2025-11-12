@@ -1,17 +1,17 @@
 # Mode2
 
-## Example Usage
+
+## Supported Types
+
+### `components.UpdateDocumentFileParams21`
 
 ```typescript
-import { Mode2 } from "ragie/models/components";
-
-let value: Mode2 = {};
+const value: components.UpdateDocumentFileParams21 = "hi_res";
 ```
 
-## Fields
+### `components.UpdateDocumentFileParams22`
 
-| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `static`                                                                                                       | [components.UpdateDocumentFileParamsModeStatic](../../models/components/updatedocumentfileparamsmodestatic.md) | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
-| `audio`                                                                                                        | *boolean*                                                                                                      | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
-| `video`                                                                                                        | [components.UpdateDocumentFileParamsModeVideo](../../models/components/updatedocumentfileparamsmodevideo.md)   | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
+```typescript
+const value: components.UpdateDocumentFileParams22 = {};
+```
+

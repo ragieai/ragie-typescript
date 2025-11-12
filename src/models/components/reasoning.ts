@@ -23,21 +23,9 @@ export type Reasoning = {
 /** @internal */
 export const Effort$inboundSchema: z.ZodNativeEnum<typeof Effort> = z
   .nativeEnum(Effort);
-
 /** @internal */
 export const Effort$outboundSchema: z.ZodNativeEnum<typeof Effort> =
   Effort$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Effort$ {
-  /** @deprecated use `Effort$inboundSchema` instead. */
-  export const inboundSchema = Effort$inboundSchema;
-  /** @deprecated use `Effort$outboundSchema` instead. */
-  export const outboundSchema = Effort$outboundSchema;
-}
 
 /** @internal */
 export const Reasoning$inboundSchema: z.ZodType<
@@ -48,7 +36,6 @@ export const Reasoning$inboundSchema: z.ZodType<
   effort: Effort$inboundSchema,
   summary: z.nullable(z.any()).optional(),
 });
-
 /** @internal */
 export type Reasoning$Outbound = {
   effort: string;
@@ -65,23 +52,9 @@ export const Reasoning$outboundSchema: z.ZodType<
   summary: z.nullable(z.any()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Reasoning$ {
-  /** @deprecated use `Reasoning$inboundSchema` instead. */
-  export const inboundSchema = Reasoning$inboundSchema;
-  /** @deprecated use `Reasoning$outboundSchema` instead. */
-  export const outboundSchema = Reasoning$outboundSchema;
-  /** @deprecated use `Reasoning$Outbound` instead. */
-  export type Outbound = Reasoning$Outbound;
-}
-
 export function reasoningToJSON(reasoning: Reasoning): string {
   return JSON.stringify(Reasoning$outboundSchema.parse(reasoning));
 }
-
 export function reasoningFromJSON(
   jsonString: string,
 ): SafeParseResult<Reasoning, SDKValidationError> {

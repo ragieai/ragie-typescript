@@ -26,7 +26,6 @@ export const FreshdeskCredentials$inboundSchema: z.ZodType<
     "api_key": "apiKey",
   });
 });
-
 /** @internal */
 export type FreshdeskCredentials$Outbound = {
   domain: string;
@@ -47,19 +46,6 @@ export const FreshdeskCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FreshdeskCredentials$ {
-  /** @deprecated use `FreshdeskCredentials$inboundSchema` instead. */
-  export const inboundSchema = FreshdeskCredentials$inboundSchema;
-  /** @deprecated use `FreshdeskCredentials$outboundSchema` instead. */
-  export const outboundSchema = FreshdeskCredentials$outboundSchema;
-  /** @deprecated use `FreshdeskCredentials$Outbound` instead. */
-  export type Outbound = FreshdeskCredentials$Outbound;
-}
-
 export function freshdeskCredentialsToJSON(
   freshdeskCredentials: FreshdeskCredentials,
 ): string {
@@ -67,7 +53,6 @@ export function freshdeskCredentialsToJSON(
     FreshdeskCredentials$outboundSchema.parse(freshdeskCredentials),
   );
 }
-
 export function freshdeskCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<FreshdeskCredentials, SDKValidationError> {

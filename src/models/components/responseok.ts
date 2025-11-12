@@ -19,7 +19,6 @@ export const ResponseOK$inboundSchema: z.ZodType<
 > = z.object({
   message: z.string().default("ok"),
 });
-
 /** @internal */
 export type ResponseOK$Outbound = {
   message: string;
@@ -34,23 +33,9 @@ export const ResponseOK$outboundSchema: z.ZodType<
   message: z.string().default("ok"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseOK$ {
-  /** @deprecated use `ResponseOK$inboundSchema` instead. */
-  export const inboundSchema = ResponseOK$inboundSchema;
-  /** @deprecated use `ResponseOK$outboundSchema` instead. */
-  export const outboundSchema = ResponseOK$outboundSchema;
-  /** @deprecated use `ResponseOK$Outbound` instead. */
-  export type Outbound = ResponseOK$Outbound;
-}
-
 export function responseOKToJSON(responseOK: ResponseOK): string {
   return JSON.stringify(ResponseOK$outboundSchema.parse(responseOK));
 }
-
 export function responseOKFromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseOK, SDKValidationError> {

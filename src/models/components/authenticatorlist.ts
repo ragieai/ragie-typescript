@@ -33,7 +33,6 @@ export const AuthenticatorList$inboundSchema: z.ZodType<
   pagination: Pagination$inboundSchema,
   authenticators: z.array(BaseGetAuthenticator$inboundSchema),
 });
-
 /** @internal */
 export type AuthenticatorList$Outbound = {
   pagination: Pagination$Outbound;
@@ -50,19 +49,6 @@ export const AuthenticatorList$outboundSchema: z.ZodType<
   authenticators: z.array(BaseGetAuthenticator$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorList$ {
-  /** @deprecated use `AuthenticatorList$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorList$inboundSchema;
-  /** @deprecated use `AuthenticatorList$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorList$outboundSchema;
-  /** @deprecated use `AuthenticatorList$Outbound` instead. */
-  export type Outbound = AuthenticatorList$Outbound;
-}
-
 export function authenticatorListToJSON(
   authenticatorList: AuthenticatorList,
 ): string {
@@ -70,7 +56,6 @@ export function authenticatorListToJSON(
     AuthenticatorList$outboundSchema.parse(authenticatorList),
   );
 }
-
 export function authenticatorListFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorList, SDKValidationError> {

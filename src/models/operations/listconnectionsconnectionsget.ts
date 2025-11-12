@@ -47,7 +47,6 @@ export const ListConnectionsConnectionsGetRequest$inboundSchema: z.ZodType<
     "page_size": "pageSize",
   });
 });
-
 /** @internal */
 export type ListConnectionsConnectionsGetRequest$Outbound = {
   cursor?: string | null | undefined;
@@ -72,21 +71,6 @@ export const ListConnectionsConnectionsGetRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListConnectionsConnectionsGetRequest$ {
-  /** @deprecated use `ListConnectionsConnectionsGetRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ListConnectionsConnectionsGetRequest$inboundSchema;
-  /** @deprecated use `ListConnectionsConnectionsGetRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ListConnectionsConnectionsGetRequest$outboundSchema;
-  /** @deprecated use `ListConnectionsConnectionsGetRequest$Outbound` instead. */
-  export type Outbound = ListConnectionsConnectionsGetRequest$Outbound;
-}
-
 export function listConnectionsConnectionsGetRequestToJSON(
   listConnectionsConnectionsGetRequest: ListConnectionsConnectionsGetRequest,
 ): string {
@@ -96,7 +80,6 @@ export function listConnectionsConnectionsGetRequestToJSON(
     ),
   );
 }
-
 export function listConnectionsConnectionsGetRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListConnectionsConnectionsGetRequest, SDKValidationError> {
@@ -120,7 +103,6 @@ export const ListConnectionsConnectionsGetResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListConnectionsConnectionsGetResponse$Outbound = {
   Result: components.ConnectionList$Outbound;
@@ -139,21 +121,6 @@ export const ListConnectionsConnectionsGetResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListConnectionsConnectionsGetResponse$ {
-  /** @deprecated use `ListConnectionsConnectionsGetResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ListConnectionsConnectionsGetResponse$inboundSchema;
-  /** @deprecated use `ListConnectionsConnectionsGetResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ListConnectionsConnectionsGetResponse$outboundSchema;
-  /** @deprecated use `ListConnectionsConnectionsGetResponse$Outbound` instead. */
-  export type Outbound = ListConnectionsConnectionsGetResponse$Outbound;
-}
-
 export function listConnectionsConnectionsGetResponseToJSON(
   listConnectionsConnectionsGetResponse: ListConnectionsConnectionsGetResponse,
 ): string {
@@ -163,7 +130,6 @@ export function listConnectionsConnectionsGetResponseToJSON(
     ),
   );
 }
-
 export function listConnectionsConnectionsGetResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListConnectionsConnectionsGetResponse, SDKValidationError> {

@@ -64,16 +64,3 @@ export const ErrorMessage$outboundSchema: z.ZodType<
   .pipe(z.object({
     detail: z.string(),
   }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorMessage$ {
-  /** @deprecated use `ErrorMessage$inboundSchema` instead. */
-  export const inboundSchema = ErrorMessage$inboundSchema;
-  /** @deprecated use `ErrorMessage$outboundSchema` instead. */
-  export const outboundSchema = ErrorMessage$outboundSchema;
-  /** @deprecated use `ErrorMessage$Outbound` instead. */
-  export type Outbound = ErrorMessage$Outbound;
-}

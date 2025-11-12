@@ -99,7 +99,6 @@ export const PartitionStats$inboundSchema: z.ZodType<
     "media_hosted_total": "mediaHostedTotal",
   });
 });
-
 /** @internal */
 export type PartitionStats$Outbound = {
   pages_processed_monthly: number;
@@ -154,23 +153,9 @@ export const PartitionStats$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PartitionStats$ {
-  /** @deprecated use `PartitionStats$inboundSchema` instead. */
-  export const inboundSchema = PartitionStats$inboundSchema;
-  /** @deprecated use `PartitionStats$outboundSchema` instead. */
-  export const outboundSchema = PartitionStats$outboundSchema;
-  /** @deprecated use `PartitionStats$Outbound` instead. */
-  export type Outbound = PartitionStats$Outbound;
-}
-
 export function partitionStatsToJSON(partitionStats: PartitionStats): string {
   return JSON.stringify(PartitionStats$outboundSchema.parse(partitionStats));
 }
-
 export function partitionStatsFromJSON(
   jsonString: string,
 ): SafeParseResult<PartitionStats, SDKValidationError> {

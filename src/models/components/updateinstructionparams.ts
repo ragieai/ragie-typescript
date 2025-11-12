@@ -22,7 +22,6 @@ export const UpdateInstructionParams$inboundSchema: z.ZodType<
 > = z.object({
   active: z.boolean(),
 });
-
 /** @internal */
 export type UpdateInstructionParams$Outbound = {
   active: boolean;
@@ -37,19 +36,6 @@ export const UpdateInstructionParams$outboundSchema: z.ZodType<
   active: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateInstructionParams$ {
-  /** @deprecated use `UpdateInstructionParams$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstructionParams$inboundSchema;
-  /** @deprecated use `UpdateInstructionParams$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstructionParams$outboundSchema;
-  /** @deprecated use `UpdateInstructionParams$Outbound` instead. */
-  export type Outbound = UpdateInstructionParams$Outbound;
-}
-
 export function updateInstructionParamsToJSON(
   updateInstructionParams: UpdateInstructionParams,
 ): string {
@@ -57,7 +43,6 @@ export function updateInstructionParamsToJSON(
     UpdateInstructionParams$outboundSchema.parse(updateInstructionParams),
   );
 }
-
 export function updateInstructionParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateInstructionParams, SDKValidationError> {

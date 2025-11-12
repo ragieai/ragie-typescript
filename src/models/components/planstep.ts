@@ -36,7 +36,6 @@ export const PlanStep$inboundSchema: z.ZodType<
     "questions_to_answer": "questionsToAnswer",
   });
 });
-
 /** @internal */
 export type PlanStep$Outbound = {
   type: "plan";
@@ -64,23 +63,9 @@ export const PlanStep$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PlanStep$ {
-  /** @deprecated use `PlanStep$inboundSchema` instead. */
-  export const inboundSchema = PlanStep$inboundSchema;
-  /** @deprecated use `PlanStep$outboundSchema` instead. */
-  export const outboundSchema = PlanStep$outboundSchema;
-  /** @deprecated use `PlanStep$Outbound` instead. */
-  export type Outbound = PlanStep$Outbound;
-}
-
 export function planStepToJSON(planStep: PlanStep): string {
   return JSON.stringify(PlanStep$outboundSchema.parse(planStep));
 }
-
 export function planStepFromJSON(
   jsonString: string,
 ): SafeParseResult<PlanStep, SDKValidationError> {

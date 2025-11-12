@@ -42,7 +42,6 @@ export const AuthenticatorSalesforceConnection$inboundSchema: z.ZodType<
     "user_email": "userEmail",
   });
 });
-
 /** @internal */
 export type AuthenticatorSalesforceConnection$Outbound = {
   provider: "salesforce";
@@ -67,20 +66,6 @@ export const AuthenticatorSalesforceConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorSalesforceConnection$ {
-  /** @deprecated use `AuthenticatorSalesforceConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorSalesforceConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorSalesforceConnection$outboundSchema` instead. */
-  export const outboundSchema =
-    AuthenticatorSalesforceConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorSalesforceConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorSalesforceConnection$Outbound;
-}
-
 export function authenticatorSalesforceConnectionToJSON(
   authenticatorSalesforceConnection: AuthenticatorSalesforceConnection,
 ): string {
@@ -90,7 +75,6 @@ export function authenticatorSalesforceConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorSalesforceConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorSalesforceConnection, SDKValidationError> {

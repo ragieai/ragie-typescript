@@ -24,7 +24,6 @@ export const InputTokenDetails$inboundSchema: z.ZodType<
     "cached_tokens": "cachedTokens",
   });
 });
-
 /** @internal */
 export type InputTokenDetails$Outbound = {
   cached_tokens: number;
@@ -43,19 +42,6 @@ export const InputTokenDetails$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InputTokenDetails$ {
-  /** @deprecated use `InputTokenDetails$inboundSchema` instead. */
-  export const inboundSchema = InputTokenDetails$inboundSchema;
-  /** @deprecated use `InputTokenDetails$outboundSchema` instead. */
-  export const outboundSchema = InputTokenDetails$outboundSchema;
-  /** @deprecated use `InputTokenDetails$Outbound` instead. */
-  export type Outbound = InputTokenDetails$Outbound;
-}
-
 export function inputTokenDetailsToJSON(
   inputTokenDetails: InputTokenDetails,
 ): string {
@@ -63,7 +49,6 @@ export function inputTokenDetailsToJSON(
     InputTokenDetails$outboundSchema.parse(inputTokenDetails),
   );
 }
-
 export function inputTokenDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<InputTokenDetails, SDKValidationError> {

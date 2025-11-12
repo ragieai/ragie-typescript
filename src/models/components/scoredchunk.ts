@@ -48,7 +48,6 @@ export const ScoredChunk$inboundSchema: z.ZodType<
     "document_metadata": "documentMetadata",
   });
 });
-
 /** @internal */
 export type ScoredChunk$Outbound = {
   text: string;
@@ -85,23 +84,9 @@ export const ScoredChunk$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ScoredChunk$ {
-  /** @deprecated use `ScoredChunk$inboundSchema` instead. */
-  export const inboundSchema = ScoredChunk$inboundSchema;
-  /** @deprecated use `ScoredChunk$outboundSchema` instead. */
-  export const outboundSchema = ScoredChunk$outboundSchema;
-  /** @deprecated use `ScoredChunk$Outbound` instead. */
-  export type Outbound = ScoredChunk$Outbound;
-}
-
 export function scoredChunkToJSON(scoredChunk: ScoredChunk): string {
   return JSON.stringify(ScoredChunk$outboundSchema.parse(scoredChunk));
 }
-
 export function scoredChunkFromJSON(
   jsonString: string,
 ): SafeParseResult<ScoredChunk, SDKValidationError> {

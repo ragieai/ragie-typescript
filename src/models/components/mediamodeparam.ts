@@ -30,41 +30,17 @@ export type MediaModeParam = {
 /** @internal */
 export const Static$inboundSchema: z.ZodNativeEnum<typeof Static> = z
   .nativeEnum(Static);
-
 /** @internal */
 export const Static$outboundSchema: z.ZodNativeEnum<typeof Static> =
   Static$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Static$ {
-  /** @deprecated use `Static$inboundSchema` instead. */
-  export const inboundSchema = Static$inboundSchema;
-  /** @deprecated use `Static$outboundSchema` instead. */
-  export const outboundSchema = Static$outboundSchema;
-}
 
 /** @internal */
 export const Video$inboundSchema: z.ZodNativeEnum<typeof Video> = z.nativeEnum(
   Video,
 );
-
 /** @internal */
 export const Video$outboundSchema: z.ZodNativeEnum<typeof Video> =
   Video$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Video$ {
-  /** @deprecated use `Video$inboundSchema` instead. */
-  export const inboundSchema = Video$inboundSchema;
-  /** @deprecated use `Video$outboundSchema` instead. */
-  export const outboundSchema = Video$outboundSchema;
-}
 
 /** @internal */
 export const MediaModeParam$inboundSchema: z.ZodType<
@@ -76,7 +52,6 @@ export const MediaModeParam$inboundSchema: z.ZodType<
   audio: z.nullable(z.boolean()).optional(),
   video: z.nullable(Video$inboundSchema).optional(),
 });
-
 /** @internal */
 export type MediaModeParam$Outbound = {
   static?: string | null | undefined;
@@ -95,23 +70,9 @@ export const MediaModeParam$outboundSchema: z.ZodType<
   video: z.nullable(Video$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MediaModeParam$ {
-  /** @deprecated use `MediaModeParam$inboundSchema` instead. */
-  export const inboundSchema = MediaModeParam$inboundSchema;
-  /** @deprecated use `MediaModeParam$outboundSchema` instead. */
-  export const outboundSchema = MediaModeParam$outboundSchema;
-  /** @deprecated use `MediaModeParam$Outbound` instead. */
-  export type Outbound = MediaModeParam$Outbound;
-}
-
 export function mediaModeParamToJSON(mediaModeParam: MediaModeParam): string {
   return JSON.stringify(MediaModeParam$outboundSchema.parse(mediaModeParam));
 }
-
 export function mediaModeParamFromJSON(
   jsonString: string,
 ): SafeParseResult<MediaModeParam, SDKValidationError> {

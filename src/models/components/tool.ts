@@ -18,7 +18,6 @@ export const Tool$inboundSchema: z.ZodType<Tool, z.ZodTypeDef, unknown> = z
     type: z.literal("retrieve").default("retrieve").optional(),
     partitions: z.array(z.string()),
   });
-
 /** @internal */
 export type Tool$Outbound = {
   type: "retrieve";
@@ -32,23 +31,9 @@ export const Tool$outboundSchema: z.ZodType<Tool$Outbound, z.ZodTypeDef, Tool> =
     partitions: z.array(z.string()),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Tool$ {
-  /** @deprecated use `Tool$inboundSchema` instead. */
-  export const inboundSchema = Tool$inboundSchema;
-  /** @deprecated use `Tool$outboundSchema` instead. */
-  export const outboundSchema = Tool$outboundSchema;
-  /** @deprecated use `Tool$Outbound` instead. */
-  export type Outbound = Tool$Outbound;
-}
-
 export function toolToJSON(tool: Tool): string {
   return JSON.stringify(Tool$outboundSchema.parse(tool));
 }
-
 export function toolFromJSON(
   jsonString: string,
 ): SafeParseResult<Tool, SDKValidationError> {

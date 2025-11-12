@@ -36,7 +36,6 @@ export const UpdateDocumentRawRequest$inboundSchema: z.ZodType<
     "UpdateDocumentRawParams": "updateDocumentRawParams",
   });
 });
-
 /** @internal */
 export type UpdateDocumentRawRequest$Outbound = {
   document_id: string;
@@ -60,19 +59,6 @@ export const UpdateDocumentRawRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentRawRequest$ {
-  /** @deprecated use `UpdateDocumentRawRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentRawRequest$inboundSchema;
-  /** @deprecated use `UpdateDocumentRawRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentRawRequest$outboundSchema;
-  /** @deprecated use `UpdateDocumentRawRequest$Outbound` instead. */
-  export type Outbound = UpdateDocumentRawRequest$Outbound;
-}
-
 export function updateDocumentRawRequestToJSON(
   updateDocumentRawRequest: UpdateDocumentRawRequest,
 ): string {
@@ -80,7 +66,6 @@ export function updateDocumentRawRequestToJSON(
     UpdateDocumentRawRequest$outboundSchema.parse(updateDocumentRawRequest),
   );
 }
-
 export function updateDocumentRawRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentRawRequest, SDKValidationError> {

@@ -30,7 +30,6 @@ export const FailedStep$inboundSchema: z.ZodType<
     "current_question": "currentQuestion",
   });
 });
-
 /** @internal */
 export type FailedStep$Outbound = {
   type: "failed";
@@ -55,23 +54,9 @@ export const FailedStep$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FailedStep$ {
-  /** @deprecated use `FailedStep$inboundSchema` instead. */
-  export const inboundSchema = FailedStep$inboundSchema;
-  /** @deprecated use `FailedStep$outboundSchema` instead. */
-  export const outboundSchema = FailedStep$outboundSchema;
-  /** @deprecated use `FailedStep$Outbound` instead. */
-  export type Outbound = FailedStep$Outbound;
-}
-
 export function failedStepToJSON(failedStep: FailedStep): string {
   return JSON.stringify(FailedStep$outboundSchema.parse(failedStep));
 }
-
 export function failedStepFromJSON(
   jsonString: string,
 ): SafeParseResult<FailedStep, SDKValidationError> {

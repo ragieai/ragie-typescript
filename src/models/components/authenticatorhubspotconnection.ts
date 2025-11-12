@@ -45,7 +45,6 @@ export const AuthenticatorHubspotConnection$inboundSchema: z.ZodType<
     "hub_domain": "hubDomain",
   });
 });
-
 /** @internal */
 export type AuthenticatorHubspotConnection$Outbound = {
   provider: "hubspot";
@@ -73,19 +72,6 @@ export const AuthenticatorHubspotConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorHubspotConnection$ {
-  /** @deprecated use `AuthenticatorHubspotConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorHubspotConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorHubspotConnection$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorHubspotConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorHubspotConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorHubspotConnection$Outbound;
-}
-
 export function authenticatorHubspotConnectionToJSON(
   authenticatorHubspotConnection: AuthenticatorHubspotConnection,
 ): string {
@@ -95,7 +81,6 @@ export function authenticatorHubspotConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorHubspotConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorHubspotConnection, SDKValidationError> {

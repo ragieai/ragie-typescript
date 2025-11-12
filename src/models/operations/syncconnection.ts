@@ -24,7 +24,6 @@ export const SyncConnectionRequest$inboundSchema: z.ZodType<
     "connection_id": "connectionId",
   });
 });
-
 /** @internal */
 export type SyncConnectionRequest$Outbound = {
   connection_id: string;
@@ -43,19 +42,6 @@ export const SyncConnectionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SyncConnectionRequest$ {
-  /** @deprecated use `SyncConnectionRequest$inboundSchema` instead. */
-  export const inboundSchema = SyncConnectionRequest$inboundSchema;
-  /** @deprecated use `SyncConnectionRequest$outboundSchema` instead. */
-  export const outboundSchema = SyncConnectionRequest$outboundSchema;
-  /** @deprecated use `SyncConnectionRequest$Outbound` instead. */
-  export type Outbound = SyncConnectionRequest$Outbound;
-}
-
 export function syncConnectionRequestToJSON(
   syncConnectionRequest: SyncConnectionRequest,
 ): string {
@@ -63,7 +49,6 @@ export function syncConnectionRequestToJSON(
     SyncConnectionRequest$outboundSchema.parse(syncConnectionRequest),
   );
 }
-
 export function syncConnectionRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<SyncConnectionRequest, SDKValidationError> {

@@ -38,7 +38,6 @@ export const GetDocumentChunkRequest$inboundSchema: z.ZodType<
     "chunk_id": "chunkId",
   });
 });
-
 /** @internal */
 export type GetDocumentChunkRequest$Outbound = {
   document_id: string;
@@ -62,19 +61,6 @@ export const GetDocumentChunkRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetDocumentChunkRequest$ {
-  /** @deprecated use `GetDocumentChunkRequest$inboundSchema` instead. */
-  export const inboundSchema = GetDocumentChunkRequest$inboundSchema;
-  /** @deprecated use `GetDocumentChunkRequest$outboundSchema` instead. */
-  export const outboundSchema = GetDocumentChunkRequest$outboundSchema;
-  /** @deprecated use `GetDocumentChunkRequest$Outbound` instead. */
-  export type Outbound = GetDocumentChunkRequest$Outbound;
-}
-
 export function getDocumentChunkRequestToJSON(
   getDocumentChunkRequest: GetDocumentChunkRequest,
 ): string {
@@ -82,7 +68,6 @@ export function getDocumentChunkRequestToJSON(
     GetDocumentChunkRequest$outboundSchema.parse(getDocumentChunkRequest),
   );
 }
-
 export function getDocumentChunkRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetDocumentChunkRequest, SDKValidationError> {

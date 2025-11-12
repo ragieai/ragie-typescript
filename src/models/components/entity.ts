@@ -47,7 +47,6 @@ export const Entity$inboundSchema: z.ZodType<Entity, z.ZodTypeDef, unknown> = z
       "chunk_id": "chunkId",
     });
   });
-
 /** @internal */
 export type Entity$Outbound = {
   id: string;
@@ -82,23 +81,9 @@ export const Entity$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Entity$ {
-  /** @deprecated use `Entity$inboundSchema` instead. */
-  export const inboundSchema = Entity$inboundSchema;
-  /** @deprecated use `Entity$outboundSchema` instead. */
-  export const outboundSchema = Entity$outboundSchema;
-  /** @deprecated use `Entity$Outbound` instead. */
-  export type Outbound = Entity$Outbound;
-}
-
 export function entityToJSON(entity: Entity): string {
   return JSON.stringify(Entity$outboundSchema.parse(entity));
 }
-
 export function entityFromJSON(
   jsonString: string,
 ): SafeParseResult<Entity, SDKValidationError> {

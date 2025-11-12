@@ -30,7 +30,6 @@ export const CreateAuthenticatorConnectionRequest$inboundSchema: z.ZodType<
     "CreateAuthenticatorConnection": "createAuthenticatorConnection",
   });
 });
-
 /** @internal */
 export type CreateAuthenticatorConnectionRequest$Outbound = {
   authenticator_id: string;
@@ -55,21 +54,6 @@ export const CreateAuthenticatorConnectionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAuthenticatorConnectionRequest$ {
-  /** @deprecated use `CreateAuthenticatorConnectionRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateAuthenticatorConnectionRequest$inboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnectionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAuthenticatorConnectionRequest$outboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnectionRequest$Outbound` instead. */
-  export type Outbound = CreateAuthenticatorConnectionRequest$Outbound;
-}
-
 export function createAuthenticatorConnectionRequestToJSON(
   createAuthenticatorConnectionRequest: CreateAuthenticatorConnectionRequest,
 ): string {
@@ -79,7 +63,6 @@ export function createAuthenticatorConnectionRequestToJSON(
     ),
   );
 }
-
 export function createAuthenticatorConnectionRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateAuthenticatorConnectionRequest, SDKValidationError> {

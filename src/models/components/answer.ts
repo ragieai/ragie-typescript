@@ -24,7 +24,6 @@ export const Answer$inboundSchema: z.ZodType<Answer, z.ZodTypeDef, unknown> = z
     text: z.string(),
     evidence: z.array(z.string()).optional(),
   });
-
 /** @internal */
 export type Answer$Outbound = {
   text: string;
@@ -41,23 +40,9 @@ export const Answer$outboundSchema: z.ZodType<
   evidence: z.array(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Answer$ {
-  /** @deprecated use `Answer$inboundSchema` instead. */
-  export const inboundSchema = Answer$inboundSchema;
-  /** @deprecated use `Answer$outboundSchema` instead. */
-  export const outboundSchema = Answer$outboundSchema;
-  /** @deprecated use `Answer$Outbound` instead. */
-  export type Outbound = Answer$Outbound;
-}
-
 export function answerToJSON(answer: Answer): string {
   return JSON.stringify(Answer$outboundSchema.parse(answer));
 }
-
 export function answerFromJSON(
   jsonString: string,
 ): SafeParseResult<Answer, SDKValidationError> {

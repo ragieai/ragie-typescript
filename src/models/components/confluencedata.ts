@@ -33,7 +33,6 @@ export const ConfluenceData$inboundSchema: z.ZodType<
     "space_name": "spaceName",
   });
 });
-
 /** @internal */
 export type ConfluenceData$Outbound = {
   resource_id: string;
@@ -61,23 +60,9 @@ export const ConfluenceData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConfluenceData$ {
-  /** @deprecated use `ConfluenceData$inboundSchema` instead. */
-  export const inboundSchema = ConfluenceData$inboundSchema;
-  /** @deprecated use `ConfluenceData$outboundSchema` instead. */
-  export const outboundSchema = ConfluenceData$outboundSchema;
-  /** @deprecated use `ConfluenceData$Outbound` instead. */
-  export type Outbound = ConfluenceData$Outbound;
-}
-
 export function confluenceDataToJSON(confluenceData: ConfluenceData): string {
   return JSON.stringify(ConfluenceData$outboundSchema.parse(confluenceData));
 }
-
 export function confluenceDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ConfluenceData, SDKValidationError> {
