@@ -35,7 +35,6 @@ export const PublicZendeskConnection$inboundSchema: z.ZodType<
   data: ZendeskData$inboundSchema,
   credentials: ZendeskCredentials$inboundSchema,
 });
-
 /** @internal */
 export type PublicZendeskConnection$Outbound = {
   provider: "zendesk";
@@ -54,19 +53,6 @@ export const PublicZendeskConnection$outboundSchema: z.ZodType<
   credentials: ZendeskCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicZendeskConnection$ {
-  /** @deprecated use `PublicZendeskConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicZendeskConnection$inboundSchema;
-  /** @deprecated use `PublicZendeskConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicZendeskConnection$outboundSchema;
-  /** @deprecated use `PublicZendeskConnection$Outbound` instead. */
-  export type Outbound = PublicZendeskConnection$Outbound;
-}
-
 export function publicZendeskConnectionToJSON(
   publicZendeskConnection: PublicZendeskConnection,
 ): string {
@@ -74,7 +60,6 @@ export function publicZendeskConnectionToJSON(
     PublicZendeskConnection$outboundSchema.parse(publicZendeskConnection),
   );
 }
-
 export function publicZendeskConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicZendeskConnection, SDKValidationError> {

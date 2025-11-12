@@ -25,7 +25,6 @@ export const UpdateDocumentRawParamsData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.record(z.any())]);
-
 /** @internal */
 export type UpdateDocumentRawParamsData$Outbound = string | {
   [k: string]: any;
@@ -38,19 +37,6 @@ export const UpdateDocumentRawParamsData$outboundSchema: z.ZodType<
   UpdateDocumentRawParamsData
 > = z.union([z.string(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentRawParamsData$ {
-  /** @deprecated use `UpdateDocumentRawParamsData$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentRawParamsData$inboundSchema;
-  /** @deprecated use `UpdateDocumentRawParamsData$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentRawParamsData$outboundSchema;
-  /** @deprecated use `UpdateDocumentRawParamsData$Outbound` instead. */
-  export type Outbound = UpdateDocumentRawParamsData$Outbound;
-}
-
 export function updateDocumentRawParamsDataToJSON(
   updateDocumentRawParamsData: UpdateDocumentRawParamsData,
 ): string {
@@ -60,7 +46,6 @@ export function updateDocumentRawParamsDataToJSON(
     ),
   );
 }
-
 export function updateDocumentRawParamsDataFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentRawParamsData, SDKValidationError> {
@@ -79,7 +64,6 @@ export const UpdateDocumentRawParams$inboundSchema: z.ZodType<
 > = z.object({
   data: z.union([z.string(), z.record(z.any())]),
 });
-
 /** @internal */
 export type UpdateDocumentRawParams$Outbound = {
   data: string | { [k: string]: any };
@@ -94,19 +78,6 @@ export const UpdateDocumentRawParams$outboundSchema: z.ZodType<
   data: z.union([z.string(), z.record(z.any())]),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentRawParams$ {
-  /** @deprecated use `UpdateDocumentRawParams$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentRawParams$inboundSchema;
-  /** @deprecated use `UpdateDocumentRawParams$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentRawParams$outboundSchema;
-  /** @deprecated use `UpdateDocumentRawParams$Outbound` instead. */
-  export type Outbound = UpdateDocumentRawParams$Outbound;
-}
-
 export function updateDocumentRawParamsToJSON(
   updateDocumentRawParams: UpdateDocumentRawParams,
 ): string {
@@ -114,7 +85,6 @@ export function updateDocumentRawParamsToJSON(
     UpdateDocumentRawParams$outboundSchema.parse(updateDocumentRawParams),
   );
 }
-
 export function updateDocumentRawParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentRawParams, SDKValidationError> {

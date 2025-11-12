@@ -28,7 +28,6 @@ export const GoogleFolderData$inboundSchema: z.ZodType<
     "mime_type": "mimeType",
   });
 });
-
 /** @internal */
 export type GoogleFolderData$Outbound = {
   id: string;
@@ -51,19 +50,6 @@ export const GoogleFolderData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GoogleFolderData$ {
-  /** @deprecated use `GoogleFolderData$inboundSchema` instead. */
-  export const inboundSchema = GoogleFolderData$inboundSchema;
-  /** @deprecated use `GoogleFolderData$outboundSchema` instead. */
-  export const outboundSchema = GoogleFolderData$outboundSchema;
-  /** @deprecated use `GoogleFolderData$Outbound` instead. */
-  export type Outbound = GoogleFolderData$Outbound;
-}
-
 export function googleFolderDataToJSON(
   googleFolderData: GoogleFolderData,
 ): string {
@@ -71,7 +57,6 @@ export function googleFolderDataToJSON(
     GoogleFolderData$outboundSchema.parse(googleFolderData),
   );
 }
-
 export function googleFolderDataFromJSON(
   jsonString: string,
 ): SafeParseResult<GoogleFolderData, SDKValidationError> {

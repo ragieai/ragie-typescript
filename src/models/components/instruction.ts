@@ -56,21 +56,9 @@ export type Instruction = {
 export const Scope$inboundSchema: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(
   Scope,
 );
-
 /** @internal */
 export const Scope$outboundSchema: z.ZodNativeEnum<typeof Scope> =
   Scope$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Scope$ {
-  /** @deprecated use `Scope$inboundSchema` instead. */
-  export const inboundSchema = Scope$inboundSchema;
-  /** @deprecated use `Scope$outboundSchema` instead. */
-  export const outboundSchema = Scope$outboundSchema;
-}
 
 /** @internal */
 export const Instruction$inboundSchema: z.ZodType<
@@ -95,7 +83,6 @@ export const Instruction$inboundSchema: z.ZodType<
     "entity_schema": "entitySchema",
   });
 });
-
 /** @internal */
 export type Instruction$Outbound = {
   id: string;
@@ -134,23 +121,9 @@ export const Instruction$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Instruction$ {
-  /** @deprecated use `Instruction$inboundSchema` instead. */
-  export const inboundSchema = Instruction$inboundSchema;
-  /** @deprecated use `Instruction$outboundSchema` instead. */
-  export const outboundSchema = Instruction$outboundSchema;
-  /** @deprecated use `Instruction$Outbound` instead. */
-  export type Outbound = Instruction$Outbound;
-}
-
 export function instructionToJSON(instruction: Instruction): string {
   return JSON.stringify(Instruction$outboundSchema.parse(instruction));
 }
-
 export function instructionFromJSON(
   jsonString: string,
 ): SafeParseResult<Instruction, SDKValidationError> {

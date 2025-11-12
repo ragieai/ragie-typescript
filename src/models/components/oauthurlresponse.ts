@@ -19,7 +19,6 @@ export const OAuthUrlResponse$inboundSchema: z.ZodType<
 > = z.object({
   url: z.string(),
 });
-
 /** @internal */
 export type OAuthUrlResponse$Outbound = {
   url: string;
@@ -34,19 +33,6 @@ export const OAuthUrlResponse$outboundSchema: z.ZodType<
   url: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthUrlResponse$ {
-  /** @deprecated use `OAuthUrlResponse$inboundSchema` instead. */
-  export const inboundSchema = OAuthUrlResponse$inboundSchema;
-  /** @deprecated use `OAuthUrlResponse$outboundSchema` instead. */
-  export const outboundSchema = OAuthUrlResponse$outboundSchema;
-  /** @deprecated use `OAuthUrlResponse$Outbound` instead. */
-  export type Outbound = OAuthUrlResponse$Outbound;
-}
-
 export function oAuthUrlResponseToJSON(
   oAuthUrlResponse: OAuthUrlResponse,
 ): string {
@@ -54,7 +40,6 @@ export function oAuthUrlResponseToJSON(
     OAuthUrlResponse$outboundSchema.parse(oAuthUrlResponse),
   );
 }
-
 export function oAuthUrlResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<OAuthUrlResponse, SDKValidationError> {

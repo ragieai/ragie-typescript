@@ -24,7 +24,6 @@ export const DeleteAuthenticatorConnectionRequest$inboundSchema: z.ZodType<
     "authenticator_id": "authenticatorId",
   });
 });
-
 /** @internal */
 export type DeleteAuthenticatorConnectionRequest$Outbound = {
   authenticator_id: string;
@@ -43,21 +42,6 @@ export const DeleteAuthenticatorConnectionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteAuthenticatorConnectionRequest$ {
-  /** @deprecated use `DeleteAuthenticatorConnectionRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    DeleteAuthenticatorConnectionRequest$inboundSchema;
-  /** @deprecated use `DeleteAuthenticatorConnectionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    DeleteAuthenticatorConnectionRequest$outboundSchema;
-  /** @deprecated use `DeleteAuthenticatorConnectionRequest$Outbound` instead. */
-  export type Outbound = DeleteAuthenticatorConnectionRequest$Outbound;
-}
-
 export function deleteAuthenticatorConnectionRequestToJSON(
   deleteAuthenticatorConnectionRequest: DeleteAuthenticatorConnectionRequest,
 ): string {
@@ -67,7 +51,6 @@ export function deleteAuthenticatorConnectionRequestToJSON(
     ),
   );
 }
-
 export function deleteAuthenticatorConnectionRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteAuthenticatorConnectionRequest, SDKValidationError> {

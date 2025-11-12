@@ -50,7 +50,6 @@ export const EvaluatedAnswerStep$inboundSchema: z.ZodType<
     "eval_reason": "evalReason",
   });
 });
-
 /** @internal */
 export type EvaluatedAnswerStep$Outbound = {
   type: "evaluated_answer";
@@ -86,19 +85,6 @@ export const EvaluatedAnswerStep$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EvaluatedAnswerStep$ {
-  /** @deprecated use `EvaluatedAnswerStep$inboundSchema` instead. */
-  export const inboundSchema = EvaluatedAnswerStep$inboundSchema;
-  /** @deprecated use `EvaluatedAnswerStep$outboundSchema` instead. */
-  export const outboundSchema = EvaluatedAnswerStep$outboundSchema;
-  /** @deprecated use `EvaluatedAnswerStep$Outbound` instead. */
-  export type Outbound = EvaluatedAnswerStep$Outbound;
-}
-
 export function evaluatedAnswerStepToJSON(
   evaluatedAnswerStep: EvaluatedAnswerStep,
 ): string {
@@ -106,7 +92,6 @@ export function evaluatedAnswerStepToJSON(
     EvaluatedAnswerStep$outboundSchema.parse(evaluatedAnswerStep),
   );
 }
-
 export function evaluatedAnswerStepFromJSON(
   jsonString: string,
 ): SafeParseResult<EvaluatedAnswerStep, SDKValidationError> {

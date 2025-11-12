@@ -33,7 +33,6 @@ export const IntercomCredentials$inboundSchema: z.ZodType<
     "user_email": "userEmail",
   });
 });
-
 /** @internal */
 export type IntercomCredentials$Outbound = {
   access_token: string;
@@ -58,19 +57,6 @@ export const IntercomCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntercomCredentials$ {
-  /** @deprecated use `IntercomCredentials$inboundSchema` instead. */
-  export const inboundSchema = IntercomCredentials$inboundSchema;
-  /** @deprecated use `IntercomCredentials$outboundSchema` instead. */
-  export const outboundSchema = IntercomCredentials$outboundSchema;
-  /** @deprecated use `IntercomCredentials$Outbound` instead. */
-  export type Outbound = IntercomCredentials$Outbound;
-}
-
 export function intercomCredentialsToJSON(
   intercomCredentials: IntercomCredentials,
 ): string {
@@ -78,7 +64,6 @@ export function intercomCredentialsToJSON(
     IntercomCredentials$outboundSchema.parse(intercomCredentials),
   );
 }
-
 export function intercomCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<IntercomCredentials, SDKValidationError> {

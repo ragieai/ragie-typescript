@@ -29,7 +29,6 @@ export const UpdatePartitionPartitionsPartitionIdPatchRequest$inboundSchema:
       "UpdatePartitionParams": "updatePartitionParams",
     });
   });
-
 /** @internal */
 export type UpdatePartitionPartitionsPartitionIdPatchRequest$Outbound = {
   partition_id: string;
@@ -52,22 +51,6 @@ export const UpdatePartitionPartitionsPartitionIdPatchRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdatePartitionPartitionsPartitionIdPatchRequest$ {
-  /** @deprecated use `UpdatePartitionPartitionsPartitionIdPatchRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdatePartitionPartitionsPartitionIdPatchRequest$inboundSchema;
-  /** @deprecated use `UpdatePartitionPartitionsPartitionIdPatchRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdatePartitionPartitionsPartitionIdPatchRequest$outboundSchema;
-  /** @deprecated use `UpdatePartitionPartitionsPartitionIdPatchRequest$Outbound` instead. */
-  export type Outbound =
-    UpdatePartitionPartitionsPartitionIdPatchRequest$Outbound;
-}
-
 export function updatePartitionPartitionsPartitionIdPatchRequestToJSON(
   updatePartitionPartitionsPartitionIdPatchRequest:
     UpdatePartitionPartitionsPartitionIdPatchRequest,
@@ -78,7 +61,6 @@ export function updatePartitionPartitionsPartitionIdPatchRequestToJSON(
     ),
   );
 }
-
 export function updatePartitionPartitionsPartitionIdPatchRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

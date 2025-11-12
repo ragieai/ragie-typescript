@@ -28,7 +28,6 @@ export const ZendeskCredentials$inboundSchema: z.ZodType<
     "api_token": "apiToken",
   });
 });
-
 /** @internal */
 export type ZendeskCredentials$Outbound = {
   domain: string;
@@ -51,19 +50,6 @@ export const ZendeskCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ZendeskCredentials$ {
-  /** @deprecated use `ZendeskCredentials$inboundSchema` instead. */
-  export const inboundSchema = ZendeskCredentials$inboundSchema;
-  /** @deprecated use `ZendeskCredentials$outboundSchema` instead. */
-  export const outboundSchema = ZendeskCredentials$outboundSchema;
-  /** @deprecated use `ZendeskCredentials$Outbound` instead. */
-  export type Outbound = ZendeskCredentials$Outbound;
-}
-
 export function zendeskCredentialsToJSON(
   zendeskCredentials: ZendeskCredentials,
 ): string {
@@ -71,7 +57,6 @@ export function zendeskCredentialsToJSON(
     ZendeskCredentials$outboundSchema.parse(zendeskCredentials),
   );
 }
-
 export function zendeskCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<ZendeskCredentials, SDKValidationError> {

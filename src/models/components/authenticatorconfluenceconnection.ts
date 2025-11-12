@@ -35,7 +35,6 @@ export const AuthenticatorConfluenceConnection$inboundSchema: z.ZodType<
   data: z.array(ConfluenceData$inboundSchema),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,
 });
-
 /** @internal */
 export type AuthenticatorConfluenceConnection$Outbound = {
   provider: "confluence";
@@ -54,20 +53,6 @@ export const AuthenticatorConfluenceConnection$outboundSchema: z.ZodType<
   credentials: OAuthRefreshTokenCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorConfluenceConnection$ {
-  /** @deprecated use `AuthenticatorConfluenceConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorConfluenceConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorConfluenceConnection$outboundSchema` instead. */
-  export const outboundSchema =
-    AuthenticatorConfluenceConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorConfluenceConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorConfluenceConnection$Outbound;
-}
-
 export function authenticatorConfluenceConnectionToJSON(
   authenticatorConfluenceConnection: AuthenticatorConfluenceConnection,
 ): string {
@@ -77,7 +62,6 @@ export function authenticatorConfluenceConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorConfluenceConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorConfluenceConnection, SDKValidationError> {

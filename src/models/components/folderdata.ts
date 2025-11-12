@@ -27,7 +27,6 @@ export const FolderData$inboundSchema: z.ZodType<
     "folder_name": "folderName",
   });
 });
-
 /** @internal */
 export type FolderData$Outbound = {
   folder_id: string;
@@ -49,23 +48,9 @@ export const FolderData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FolderData$ {
-  /** @deprecated use `FolderData$inboundSchema` instead. */
-  export const inboundSchema = FolderData$inboundSchema;
-  /** @deprecated use `FolderData$outboundSchema` instead. */
-  export const outboundSchema = FolderData$outboundSchema;
-  /** @deprecated use `FolderData$Outbound` instead. */
-  export type Outbound = FolderData$Outbound;
-}
-
 export function folderDataToJSON(folderData: FolderData): string {
   return JSON.stringify(FolderData$outboundSchema.parse(folderData));
 }
-
 export function folderDataFromJSON(
   jsonString: string,
 ): SafeParseResult<FolderData, SDKValidationError> {

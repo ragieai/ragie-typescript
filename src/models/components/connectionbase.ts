@@ -48,22 +48,10 @@ export type ConnectionBase = {
 export const PartitionStrategy1$inboundSchema: z.ZodNativeEnum<
   typeof PartitionStrategy1
 > = z.nativeEnum(PartitionStrategy1);
-
 /** @internal */
 export const PartitionStrategy1$outboundSchema: z.ZodNativeEnum<
   typeof PartitionStrategy1
 > = PartitionStrategy1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PartitionStrategy1$ {
-  /** @deprecated use `PartitionStrategy1$inboundSchema` instead. */
-  export const inboundSchema = PartitionStrategy1$inboundSchema;
-  /** @deprecated use `PartitionStrategy1$outboundSchema` instead. */
-  export const outboundSchema = PartitionStrategy1$outboundSchema;
-}
 
 /** @internal */
 export const PartitionStrategy$inboundSchema: z.ZodType<
@@ -71,7 +59,6 @@ export const PartitionStrategy$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([PartitionStrategy1$inboundSchema, MediaModeParam$inboundSchema]);
-
 /** @internal */
 export type PartitionStrategy$Outbound = string | MediaModeParam$Outbound;
 
@@ -82,19 +69,6 @@ export const PartitionStrategy$outboundSchema: z.ZodType<
   PartitionStrategy
 > = z.union([PartitionStrategy1$outboundSchema, MediaModeParam$outboundSchema]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PartitionStrategy$ {
-  /** @deprecated use `PartitionStrategy$inboundSchema` instead. */
-  export const inboundSchema = PartitionStrategy$inboundSchema;
-  /** @deprecated use `PartitionStrategy$outboundSchema` instead. */
-  export const outboundSchema = PartitionStrategy$outboundSchema;
-  /** @deprecated use `PartitionStrategy$Outbound` instead. */
-  export type Outbound = PartitionStrategy$Outbound;
-}
-
 export function partitionStrategyToJSON(
   partitionStrategy: PartitionStrategy,
 ): string {
@@ -102,7 +76,6 @@ export function partitionStrategyToJSON(
     PartitionStrategy$outboundSchema.parse(partitionStrategy),
   );
 }
-
 export function partitionStrategyFromJSON(
   jsonString: string,
 ): SafeParseResult<PartitionStrategy, SDKValidationError> {
@@ -125,7 +98,6 @@ export const ConnectionBaseMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type ConnectionBaseMetadata$Outbound =
   | string
@@ -147,19 +119,6 @@ export const ConnectionBaseMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionBaseMetadata$ {
-  /** @deprecated use `ConnectionBaseMetadata$inboundSchema` instead. */
-  export const inboundSchema = ConnectionBaseMetadata$inboundSchema;
-  /** @deprecated use `ConnectionBaseMetadata$outboundSchema` instead. */
-  export const outboundSchema = ConnectionBaseMetadata$outboundSchema;
-  /** @deprecated use `ConnectionBaseMetadata$Outbound` instead. */
-  export type Outbound = ConnectionBaseMetadata$Outbound;
-}
-
 export function connectionBaseMetadataToJSON(
   connectionBaseMetadata: ConnectionBaseMetadata,
 ): string {
@@ -167,7 +126,6 @@ export function connectionBaseMetadataToJSON(
     ConnectionBaseMetadata$outboundSchema.parse(connectionBaseMetadata),
   );
 }
-
 export function connectionBaseMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionBaseMetadata, SDKValidationError> {
@@ -204,7 +162,6 @@ export const ConnectionBase$inboundSchema: z.ZodType<
     "page_limit": "pageLimit",
   });
 });
-
 /** @internal */
 export type ConnectionBase$Outbound = {
   partition_strategy: string | MediaModeParam$Outbound;
@@ -241,23 +198,9 @@ export const ConnectionBase$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionBase$ {
-  /** @deprecated use `ConnectionBase$inboundSchema` instead. */
-  export const inboundSchema = ConnectionBase$inboundSchema;
-  /** @deprecated use `ConnectionBase$outboundSchema` instead. */
-  export const outboundSchema = ConnectionBase$outboundSchema;
-  /** @deprecated use `ConnectionBase$Outbound` instead. */
-  export type Outbound = ConnectionBase$Outbound;
-}
-
 export function connectionBaseToJSON(connectionBase: ConnectionBase): string {
   return JSON.stringify(ConnectionBase$outboundSchema.parse(connectionBase));
 }
-
 export function connectionBaseFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionBase, SDKValidationError> {

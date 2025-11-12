@@ -27,7 +27,6 @@ export const DeleteInstructionRequest$inboundSchema: z.ZodType<
     "instruction_id": "instructionId",
   });
 });
-
 /** @internal */
 export type DeleteInstructionRequest$Outbound = {
   instruction_id: string;
@@ -46,19 +45,6 @@ export const DeleteInstructionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteInstructionRequest$ {
-  /** @deprecated use `DeleteInstructionRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteInstructionRequest$inboundSchema;
-  /** @deprecated use `DeleteInstructionRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteInstructionRequest$outboundSchema;
-  /** @deprecated use `DeleteInstructionRequest$Outbound` instead. */
-  export type Outbound = DeleteInstructionRequest$Outbound;
-}
-
 export function deleteInstructionRequestToJSON(
   deleteInstructionRequest: DeleteInstructionRequest,
 ): string {
@@ -66,7 +52,6 @@ export function deleteInstructionRequestToJSON(
     DeleteInstructionRequest$outboundSchema.parse(deleteInstructionRequest),
   );
 }
-
 export function deleteInstructionRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteInstructionRequest, SDKValidationError> {

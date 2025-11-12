@@ -35,7 +35,6 @@ export const PublicS3CompatibleConnection$inboundSchema: z.ZodType<
   data: BucketData$inboundSchema,
   credentials: S3CompatibleCredentials$inboundSchema,
 });
-
 /** @internal */
 export type PublicS3CompatibleConnection$Outbound = {
   provider: "s3";
@@ -54,19 +53,6 @@ export const PublicS3CompatibleConnection$outboundSchema: z.ZodType<
   credentials: S3CompatibleCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicS3CompatibleConnection$ {
-  /** @deprecated use `PublicS3CompatibleConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicS3CompatibleConnection$inboundSchema;
-  /** @deprecated use `PublicS3CompatibleConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicS3CompatibleConnection$outboundSchema;
-  /** @deprecated use `PublicS3CompatibleConnection$Outbound` instead. */
-  export type Outbound = PublicS3CompatibleConnection$Outbound;
-}
-
 export function publicS3CompatibleConnectionToJSON(
   publicS3CompatibleConnection: PublicS3CompatibleConnection,
 ): string {
@@ -76,7 +62,6 @@ export function publicS3CompatibleConnectionToJSON(
     ),
   );
 }
-
 export function publicS3CompatibleConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicS3CompatibleConnection, SDKValidationError> {

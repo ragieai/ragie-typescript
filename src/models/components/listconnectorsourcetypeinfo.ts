@@ -25,7 +25,6 @@ export const ListConnectorSourceTypeInfo$inboundSchema: z.ZodType<
 > = z.object({
   connectors: z.array(ConnectorSourceTypeInfo$inboundSchema),
 });
-
 /** @internal */
 export type ListConnectorSourceTypeInfo$Outbound = {
   connectors: Array<ConnectorSourceTypeInfo$Outbound>;
@@ -40,19 +39,6 @@ export const ListConnectorSourceTypeInfo$outboundSchema: z.ZodType<
   connectors: z.array(ConnectorSourceTypeInfo$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListConnectorSourceTypeInfo$ {
-  /** @deprecated use `ListConnectorSourceTypeInfo$inboundSchema` instead. */
-  export const inboundSchema = ListConnectorSourceTypeInfo$inboundSchema;
-  /** @deprecated use `ListConnectorSourceTypeInfo$outboundSchema` instead. */
-  export const outboundSchema = ListConnectorSourceTypeInfo$outboundSchema;
-  /** @deprecated use `ListConnectorSourceTypeInfo$Outbound` instead. */
-  export type Outbound = ListConnectorSourceTypeInfo$Outbound;
-}
-
 export function listConnectorSourceTypeInfoToJSON(
   listConnectorSourceTypeInfo: ListConnectorSourceTypeInfo,
 ): string {
@@ -62,7 +48,6 @@ export function listConnectorSourceTypeInfoToJSON(
     ),
   );
 }
-
 export function listConnectorSourceTypeInfoFromJSON(
   jsonString: string,
 ): SafeParseResult<ListConnectorSourceTypeInfo, SDKValidationError> {

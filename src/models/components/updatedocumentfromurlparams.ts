@@ -44,22 +44,10 @@ export type UpdateDocumentFromUrlParams = {
 export const UpdateDocumentFromUrlParamsMode1$inboundSchema: z.ZodNativeEnum<
   typeof UpdateDocumentFromUrlParamsMode1
 > = z.nativeEnum(UpdateDocumentFromUrlParamsMode1);
-
 /** @internal */
 export const UpdateDocumentFromUrlParamsMode1$outboundSchema: z.ZodNativeEnum<
   typeof UpdateDocumentFromUrlParamsMode1
 > = UpdateDocumentFromUrlParamsMode1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFromUrlParamsMode1$ {
-  /** @deprecated use `UpdateDocumentFromUrlParamsMode1$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFromUrlParamsMode1$inboundSchema;
-  /** @deprecated use `UpdateDocumentFromUrlParamsMode1$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFromUrlParamsMode1$outboundSchema;
-}
 
 /** @internal */
 export const UpdateDocumentFromUrlParamsMode$inboundSchema: z.ZodType<
@@ -70,7 +58,6 @@ export const UpdateDocumentFromUrlParamsMode$inboundSchema: z.ZodType<
   UpdateDocumentFromUrlParamsMode1$inboundSchema,
   MediaModeParam$inboundSchema,
 ]);
-
 /** @internal */
 export type UpdateDocumentFromUrlParamsMode$Outbound =
   | string
@@ -86,19 +73,6 @@ export const UpdateDocumentFromUrlParamsMode$outboundSchema: z.ZodType<
   MediaModeParam$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFromUrlParamsMode$ {
-  /** @deprecated use `UpdateDocumentFromUrlParamsMode$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFromUrlParamsMode$inboundSchema;
-  /** @deprecated use `UpdateDocumentFromUrlParamsMode$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFromUrlParamsMode$outboundSchema;
-  /** @deprecated use `UpdateDocumentFromUrlParamsMode$Outbound` instead. */
-  export type Outbound = UpdateDocumentFromUrlParamsMode$Outbound;
-}
-
 export function updateDocumentFromUrlParamsModeToJSON(
   updateDocumentFromUrlParamsMode: UpdateDocumentFromUrlParamsMode,
 ): string {
@@ -108,7 +82,6 @@ export function updateDocumentFromUrlParamsModeToJSON(
     ),
   );
 }
-
 export function updateDocumentFromUrlParamsModeFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFromUrlParamsMode, SDKValidationError> {
@@ -131,7 +104,6 @@ export const UpdateDocumentFromUrlParams$inboundSchema: z.ZodType<
   ]).optional(),
   url: z.string(),
 });
-
 /** @internal */
 export type UpdateDocumentFromUrlParams$Outbound = {
   mode?: string | MediaModeParam$Outbound | undefined;
@@ -151,19 +123,6 @@ export const UpdateDocumentFromUrlParams$outboundSchema: z.ZodType<
   url: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFromUrlParams$ {
-  /** @deprecated use `UpdateDocumentFromUrlParams$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFromUrlParams$inboundSchema;
-  /** @deprecated use `UpdateDocumentFromUrlParams$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFromUrlParams$outboundSchema;
-  /** @deprecated use `UpdateDocumentFromUrlParams$Outbound` instead. */
-  export type Outbound = UpdateDocumentFromUrlParams$Outbound;
-}
-
 export function updateDocumentFromUrlParamsToJSON(
   updateDocumentFromUrlParams: UpdateDocumentFromUrlParams,
 ): string {
@@ -173,7 +132,6 @@ export function updateDocumentFromUrlParamsToJSON(
     ),
   );
 }
-
 export function updateDocumentFromUrlParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFromUrlParams, SDKValidationError> {

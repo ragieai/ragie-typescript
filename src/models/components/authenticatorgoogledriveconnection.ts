@@ -40,7 +40,6 @@ export const AuthenticatorGoogleDriveConnection$inboundSchema: z.ZodType<
   email: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,
 });
-
 /** @internal */
 export type AuthenticatorGoogleDriveConnection$Outbound = {
   provider: "google_drive";
@@ -61,20 +60,6 @@ export const AuthenticatorGoogleDriveConnection$outboundSchema: z.ZodType<
   credentials: OAuthRefreshTokenCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorGoogleDriveConnection$ {
-  /** @deprecated use `AuthenticatorGoogleDriveConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorGoogleDriveConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorGoogleDriveConnection$outboundSchema` instead. */
-  export const outboundSchema =
-    AuthenticatorGoogleDriveConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorGoogleDriveConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorGoogleDriveConnection$Outbound;
-}
-
 export function authenticatorGoogleDriveConnectionToJSON(
   authenticatorGoogleDriveConnection: AuthenticatorGoogleDriveConnection,
 ): string {
@@ -84,7 +69,6 @@ export function authenticatorGoogleDriveConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorGoogleDriveConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorGoogleDriveConnection, SDKValidationError> {

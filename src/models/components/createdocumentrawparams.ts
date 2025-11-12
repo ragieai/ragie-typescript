@@ -57,7 +57,6 @@ export const CreateDocumentRawParamsMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type CreateDocumentRawParamsMetadata$Outbound =
   | string
@@ -79,19 +78,6 @@ export const CreateDocumentRawParamsMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateDocumentRawParamsMetadata$ {
-  /** @deprecated use `CreateDocumentRawParamsMetadata$inboundSchema` instead. */
-  export const inboundSchema = CreateDocumentRawParamsMetadata$inboundSchema;
-  /** @deprecated use `CreateDocumentRawParamsMetadata$outboundSchema` instead. */
-  export const outboundSchema = CreateDocumentRawParamsMetadata$outboundSchema;
-  /** @deprecated use `CreateDocumentRawParamsMetadata$Outbound` instead. */
-  export type Outbound = CreateDocumentRawParamsMetadata$Outbound;
-}
-
 export function createDocumentRawParamsMetadataToJSON(
   createDocumentRawParamsMetadata: CreateDocumentRawParamsMetadata,
 ): string {
@@ -101,7 +87,6 @@ export function createDocumentRawParamsMetadataToJSON(
     ),
   );
 }
-
 export function createDocumentRawParamsMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateDocumentRawParamsMetadata, SDKValidationError> {
@@ -115,7 +100,6 @@ export function createDocumentRawParamsMetadataFromJSON(
 /** @internal */
 export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
   .union([z.string(), z.record(z.any())]);
-
 /** @internal */
 export type Data$Outbound = string | { [k: string]: any };
 
@@ -123,23 +107,9 @@ export type Data$Outbound = string | { [k: string]: any };
 export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
   z.union([z.string(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
-}
-
 export function dataToJSON(data: Data): string {
   return JSON.stringify(Data$outboundSchema.parse(data));
 }
-
 export function dataFromJSON(
   jsonString: string,
 ): SafeParseResult<Data, SDKValidationError> {
@@ -174,7 +144,6 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
     "external_id": "externalId",
   });
 });
-
 /** @internal */
 export type CreateDocumentRawParams$Outbound = {
   name?: string | undefined;
@@ -211,19 +180,6 @@ export const CreateDocumentRawParams$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateDocumentRawParams$ {
-  /** @deprecated use `CreateDocumentRawParams$inboundSchema` instead. */
-  export const inboundSchema = CreateDocumentRawParams$inboundSchema;
-  /** @deprecated use `CreateDocumentRawParams$outboundSchema` instead. */
-  export const outboundSchema = CreateDocumentRawParams$outboundSchema;
-  /** @deprecated use `CreateDocumentRawParams$Outbound` instead. */
-  export type Outbound = CreateDocumentRawParams$Outbound;
-}
-
 export function createDocumentRawParamsToJSON(
   createDocumentRawParams: CreateDocumentRawParams,
 ): string {
@@ -231,7 +187,6 @@ export function createDocumentRawParamsToJSON(
     CreateDocumentRawParams$outboundSchema.parse(createDocumentRawParams),
   );
 }
-
 export function createDocumentRawParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateDocumentRawParams, SDKValidationError> {

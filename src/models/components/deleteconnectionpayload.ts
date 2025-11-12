@@ -24,7 +24,6 @@ export const DeleteConnectionPayload$inboundSchema: z.ZodType<
     "keep_files": "keepFiles",
   });
 });
-
 /** @internal */
 export type DeleteConnectionPayload$Outbound = {
   keep_files: boolean;
@@ -43,19 +42,6 @@ export const DeleteConnectionPayload$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteConnectionPayload$ {
-  /** @deprecated use `DeleteConnectionPayload$inboundSchema` instead. */
-  export const inboundSchema = DeleteConnectionPayload$inboundSchema;
-  /** @deprecated use `DeleteConnectionPayload$outboundSchema` instead. */
-  export const outboundSchema = DeleteConnectionPayload$outboundSchema;
-  /** @deprecated use `DeleteConnectionPayload$Outbound` instead. */
-  export type Outbound = DeleteConnectionPayload$Outbound;
-}
-
 export function deleteConnectionPayloadToJSON(
   deleteConnectionPayload: DeleteConnectionPayload,
 ): string {
@@ -63,7 +49,6 @@ export function deleteConnectionPayloadToJSON(
     DeleteConnectionPayload$outboundSchema.parse(deleteConnectionPayload),
   );
 }
-
 export function deleteConnectionPayloadFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteConnectionPayload, SDKValidationError> {

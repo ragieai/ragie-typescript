@@ -59,7 +59,6 @@ export const CreateAuthenticatorPayload$inboundSchema: z.ZodType<
     })),
   ),
 ]);
-
 /** @internal */
 export type CreateAuthenticatorPayload$Outbound =
   | (components.OAuthCredentials$Outbound & { provider: "atlassian" })
@@ -113,19 +112,6 @@ export const CreateAuthenticatorPayload$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAuthenticatorPayload$ {
-  /** @deprecated use `CreateAuthenticatorPayload$inboundSchema` instead. */
-  export const inboundSchema = CreateAuthenticatorPayload$inboundSchema;
-  /** @deprecated use `CreateAuthenticatorPayload$outboundSchema` instead. */
-  export const outboundSchema = CreateAuthenticatorPayload$outboundSchema;
-  /** @deprecated use `CreateAuthenticatorPayload$Outbound` instead. */
-  export type Outbound = CreateAuthenticatorPayload$Outbound;
-}
-
 export function createAuthenticatorPayloadToJSON(
   createAuthenticatorPayload: CreateAuthenticatorPayload,
 ): string {
@@ -133,7 +119,6 @@ export function createAuthenticatorPayloadToJSON(
     CreateAuthenticatorPayload$outboundSchema.parse(createAuthenticatorPayload),
   );
 }
-
 export function createAuthenticatorPayloadFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateAuthenticatorPayload, SDKValidationError> {

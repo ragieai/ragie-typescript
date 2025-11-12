@@ -30,7 +30,6 @@ export const ModelUsage$inboundSchema: z.ZodType<
     "output_tokens": "outputTokens",
   });
 });
-
 /** @internal */
 export type ModelUsage$Outbound = {
   model_name: string;
@@ -55,23 +54,9 @@ export const ModelUsage$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ModelUsage$ {
-  /** @deprecated use `ModelUsage$inboundSchema` instead. */
-  export const inboundSchema = ModelUsage$inboundSchema;
-  /** @deprecated use `ModelUsage$outboundSchema` instead. */
-  export const outboundSchema = ModelUsage$outboundSchema;
-  /** @deprecated use `ModelUsage$Outbound` instead. */
-  export type Outbound = ModelUsage$Outbound;
-}
-
 export function modelUsageToJSON(modelUsage: ModelUsage): string {
   return JSON.stringify(ModelUsage$outboundSchema.parse(modelUsage));
 }
-
 export function modelUsageFromJSON(
   jsonString: string,
 ): SafeParseResult<ModelUsage, SDKValidationError> {

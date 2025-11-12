@@ -50,7 +50,6 @@ export const IntercomData$inboundSchema: z.ZodType<
     "filter_user_id": "filterUserId",
   });
 });
-
 /** @internal */
 export type IntercomData$Outbound = {
   articles_help_center: boolean;
@@ -95,23 +94,9 @@ export const IntercomData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntercomData$ {
-  /** @deprecated use `IntercomData$inboundSchema` instead. */
-  export const inboundSchema = IntercomData$inboundSchema;
-  /** @deprecated use `IntercomData$outboundSchema` instead. */
-  export const outboundSchema = IntercomData$outboundSchema;
-  /** @deprecated use `IntercomData$Outbound` instead. */
-  export type Outbound = IntercomData$Outbound;
-}
-
 export function intercomDataToJSON(intercomData: IntercomData): string {
   return JSON.stringify(IntercomData$outboundSchema.parse(intercomData));
 }
-
 export function intercomDataFromJSON(
   jsonString: string,
 ): SafeParseResult<IntercomData, SDKValidationError> {

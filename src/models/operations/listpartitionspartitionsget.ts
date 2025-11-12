@@ -37,7 +37,6 @@ export const ListPartitionsPartitionsGetRequest$inboundSchema: z.ZodType<
     "page_size": "pageSize",
   });
 });
-
 /** @internal */
 export type ListPartitionsPartitionsGetRequest$Outbound = {
   cursor?: string | null | undefined;
@@ -58,20 +57,6 @@ export const ListPartitionsPartitionsGetRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPartitionsPartitionsGetRequest$ {
-  /** @deprecated use `ListPartitionsPartitionsGetRequest$inboundSchema` instead. */
-  export const inboundSchema = ListPartitionsPartitionsGetRequest$inboundSchema;
-  /** @deprecated use `ListPartitionsPartitionsGetRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ListPartitionsPartitionsGetRequest$outboundSchema;
-  /** @deprecated use `ListPartitionsPartitionsGetRequest$Outbound` instead. */
-  export type Outbound = ListPartitionsPartitionsGetRequest$Outbound;
-}
-
 export function listPartitionsPartitionsGetRequestToJSON(
   listPartitionsPartitionsGetRequest: ListPartitionsPartitionsGetRequest,
 ): string {
@@ -81,7 +66,6 @@ export function listPartitionsPartitionsGetRequestToJSON(
     ),
   );
 }
-
 export function listPartitionsPartitionsGetRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListPartitionsPartitionsGetRequest, SDKValidationError> {
@@ -105,7 +89,6 @@ export const ListPartitionsPartitionsGetResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListPartitionsPartitionsGetResponse$Outbound = {
   Result: components.PartitionList$Outbound;
@@ -124,21 +107,6 @@ export const ListPartitionsPartitionsGetResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPartitionsPartitionsGetResponse$ {
-  /** @deprecated use `ListPartitionsPartitionsGetResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ListPartitionsPartitionsGetResponse$inboundSchema;
-  /** @deprecated use `ListPartitionsPartitionsGetResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ListPartitionsPartitionsGetResponse$outboundSchema;
-  /** @deprecated use `ListPartitionsPartitionsGetResponse$Outbound` instead. */
-  export type Outbound = ListPartitionsPartitionsGetResponse$Outbound;
-}
-
 export function listPartitionsPartitionsGetResponseToJSON(
   listPartitionsPartitionsGetResponse: ListPartitionsPartitionsGetResponse,
 ): string {
@@ -148,7 +116,6 @@ export function listPartitionsPartitionsGetResponseToJSON(
     ),
   );
 }
-
 export function listPartitionsPartitionsGetResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListPartitionsPartitionsGetResponse, SDKValidationError> {

@@ -45,7 +45,6 @@ export const AuthenticatorSharepointConnection$inboundSchema: z.ZodType<
     "user_email": "userEmail",
   });
 });
-
 /** @internal */
 export type AuthenticatorSharepointConnection$Outbound = {
   provider: "sharepoint";
@@ -70,20 +69,6 @@ export const AuthenticatorSharepointConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorSharepointConnection$ {
-  /** @deprecated use `AuthenticatorSharepointConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorSharepointConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorSharepointConnection$outboundSchema` instead. */
-  export const outboundSchema =
-    AuthenticatorSharepointConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorSharepointConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorSharepointConnection$Outbound;
-}
-
 export function authenticatorSharepointConnectionToJSON(
   authenticatorSharepointConnection: AuthenticatorSharepointConnection,
 ): string {
@@ -93,7 +78,6 @@ export function authenticatorSharepointConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorSharepointConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorSharepointConnection, SDKValidationError> {

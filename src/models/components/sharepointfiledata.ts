@@ -26,21 +26,9 @@ export type SharepointFileData = {
 export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
   Type,
 );
-
 /** @internal */
 export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
   Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
 
 /** @internal */
 export const SharepointFileData$inboundSchema: z.ZodType<
@@ -57,7 +45,6 @@ export const SharepointFileData$inboundSchema: z.ZodType<
     "drive_id": "driveId",
   });
 });
-
 /** @internal */
 export type SharepointFileData$Outbound = {
   id: string;
@@ -82,19 +69,6 @@ export const SharepointFileData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SharepointFileData$ {
-  /** @deprecated use `SharepointFileData$inboundSchema` instead. */
-  export const inboundSchema = SharepointFileData$inboundSchema;
-  /** @deprecated use `SharepointFileData$outboundSchema` instead. */
-  export const outboundSchema = SharepointFileData$outboundSchema;
-  /** @deprecated use `SharepointFileData$Outbound` instead. */
-  export type Outbound = SharepointFileData$Outbound;
-}
-
 export function sharepointFileDataToJSON(
   sharepointFileData: SharepointFileData,
 ): string {
@@ -102,7 +76,6 @@ export function sharepointFileDataToJSON(
     SharepointFileData$outboundSchema.parse(sharepointFileData),
   );
 }
-
 export function sharepointFileDataFromJSON(
   jsonString: string,
 ): SafeParseResult<SharepointFileData, SDKValidationError> {

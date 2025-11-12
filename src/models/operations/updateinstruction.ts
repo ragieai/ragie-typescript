@@ -31,7 +31,6 @@ export const UpdateInstructionRequest$inboundSchema: z.ZodType<
     "UpdateInstructionParams": "updateInstructionParams",
   });
 });
-
 /** @internal */
 export type UpdateInstructionRequest$Outbound = {
   instruction_id: string;
@@ -53,19 +52,6 @@ export const UpdateInstructionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateInstructionRequest$ {
-  /** @deprecated use `UpdateInstructionRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstructionRequest$inboundSchema;
-  /** @deprecated use `UpdateInstructionRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstructionRequest$outboundSchema;
-  /** @deprecated use `UpdateInstructionRequest$Outbound` instead. */
-  export type Outbound = UpdateInstructionRequest$Outbound;
-}
-
 export function updateInstructionRequestToJSON(
   updateInstructionRequest: UpdateInstructionRequest,
 ): string {
@@ -73,7 +59,6 @@ export function updateInstructionRequestToJSON(
     UpdateInstructionRequest$outboundSchema.parse(updateInstructionRequest),
   );
 }
-
 export function updateInstructionRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateInstructionRequest, SDKValidationError> {

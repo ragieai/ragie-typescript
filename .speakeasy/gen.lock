@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: aa2201ab955d3c1a12f853b9d2ea4458
+  docChecksum: 5309ec13a9d589e71546f4fbcbe4f782
   docVersion: 1.0.0
-  speakeasyVersion: 1.649.0
-  generationVersion: 2.739.1
-  releaseVersion: 1.13.1
-  configChecksum: 326346cdd36abd1426cbe50b514c6630
+  speakeasyVersion: 1.655.0
+  generationVersion: 2.751.0
+  releaseVersion: 1.14.0
+  configChecksum: 1e02d2655256e77bfadf422eaea2fdea
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.0
+    core: 3.26.5
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -158,8 +158,6 @@ generatedFiles:
   - docs/models/components/oauthurlcreatemode1.md
   - docs/models/components/oauthurlresponse.md
   - docs/models/components/one.md
-  - docs/models/components/one1.md
-  - docs/models/components/one2.md
   - docs/models/components/onedrivedata.md
   - docs/models/components/output.md
   - docs/models/components/outputtokendetails.md
@@ -224,10 +222,12 @@ generatedFiles:
   - docs/models/components/theme.md
   - docs/models/components/tool.md
   - docs/models/components/two.md
+  - docs/models/components/two1.md
+  - docs/models/components/two2.md
   - docs/models/components/type.md
   - docs/models/components/updatedocumentfileparams.md
-  - docs/models/components/updatedocumentfileparams11.md
-  - docs/models/components/updatedocumentfileparams12.md
+  - docs/models/components/updatedocumentfileparams21.md
+  - docs/models/components/updatedocumentfileparams22.md
   - docs/models/components/updatedocumentfileparamsfile.md
   - docs/models/components/updatedocumentfileparamsmode.md
   - docs/models/components/updatedocumentfileparamsmode1.md
@@ -1353,4 +1353,4 @@ examples:
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.documents.getSource()`:  `response.status[200]` **Changed** **Breaking** :warning:\n* `ragie.authenticators.createAuthenticatorConnection()`: \n  *  `request.createAuthenticatorConnection.connection.[sharepoint].data` **Changed** **Breaking** :warning:\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.documents.create()`: \n  *  `request.mode` **Changed** **Breaking** :warning:\n* `ragie.documents.updateFile()`: \n  *  `request.updateDocumentFileParams.mode` **Changed** **Breaking** :warning:\n"

@@ -35,7 +35,6 @@ export const PublicBackblazeConnection$inboundSchema: z.ZodType<
   data: BucketData$inboundSchema,
   credentials: BackblazeCredentials$inboundSchema,
 });
-
 /** @internal */
 export type PublicBackblazeConnection$Outbound = {
   provider: "backblaze";
@@ -54,19 +53,6 @@ export const PublicBackblazeConnection$outboundSchema: z.ZodType<
   credentials: BackblazeCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicBackblazeConnection$ {
-  /** @deprecated use `PublicBackblazeConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicBackblazeConnection$inboundSchema;
-  /** @deprecated use `PublicBackblazeConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicBackblazeConnection$outboundSchema;
-  /** @deprecated use `PublicBackblazeConnection$Outbound` instead. */
-  export type Outbound = PublicBackblazeConnection$Outbound;
-}
-
 export function publicBackblazeConnectionToJSON(
   publicBackblazeConnection: PublicBackblazeConnection,
 ): string {
@@ -74,7 +60,6 @@ export function publicBackblazeConnectionToJSON(
     PublicBackblazeConnection$outboundSchema.parse(publicBackblazeConnection),
   );
 }
-
 export function publicBackblazeConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicBackblazeConnection, SDKValidationError> {

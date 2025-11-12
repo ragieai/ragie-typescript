@@ -40,7 +40,6 @@ export const AuthenticatorGmailConnection$inboundSchema: z.ZodType<
   email: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,
 });
-
 /** @internal */
 export type AuthenticatorGmailConnection$Outbound = {
   provider: "gmail";
@@ -61,19 +60,6 @@ export const AuthenticatorGmailConnection$outboundSchema: z.ZodType<
   credentials: OAuthRefreshTokenCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorGmailConnection$ {
-  /** @deprecated use `AuthenticatorGmailConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorGmailConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorGmailConnection$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorGmailConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorGmailConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorGmailConnection$Outbound;
-}
-
 export function authenticatorGmailConnectionToJSON(
   authenticatorGmailConnection: AuthenticatorGmailConnection,
 ): string {
@@ -83,7 +69,6 @@ export function authenticatorGmailConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorGmailConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorGmailConnection, SDKValidationError> {

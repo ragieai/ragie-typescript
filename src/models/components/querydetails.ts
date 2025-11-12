@@ -43,7 +43,6 @@ export const QueryDetails$inboundSchema: z.ZodType<
     "search_results": "searchResults",
   });
 });
-
 /** @internal */
 export type QueryDetails$Outbound = {
   query: string;
@@ -70,23 +69,9 @@ export const QueryDetails$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryDetails$ {
-  /** @deprecated use `QueryDetails$inboundSchema` instead. */
-  export const inboundSchema = QueryDetails$inboundSchema;
-  /** @deprecated use `QueryDetails$outboundSchema` instead. */
-  export const outboundSchema = QueryDetails$outboundSchema;
-  /** @deprecated use `QueryDetails$Outbound` instead. */
-  export type Outbound = QueryDetails$Outbound;
-}
-
 export function queryDetailsToJSON(queryDetails: QueryDetails): string {
   return JSON.stringify(QueryDetails$outboundSchema.parse(queryDetails));
 }
-
 export function queryDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<QueryDetails, SDKValidationError> {

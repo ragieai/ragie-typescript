@@ -105,21 +105,9 @@ export type ResponseT = {
 /** @internal */
 export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
   .nativeEnum(Status);
-
 /** @internal */
 export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
   Status$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
-}
 
 /** @internal */
 export const Output$inboundSchema: z.ZodType<Output, z.ZodTypeDef, unknown> = z
@@ -129,7 +117,6 @@ export const Output$inboundSchema: z.ZodType<Output, z.ZodTypeDef, unknown> = z
     FileSearchOutput$inboundSchema,
     ResponseOutputMessage$inboundSchema,
   ]);
-
 /** @internal */
 export type Output$Outbound =
   | ReasoningOutput$Outbound
@@ -149,23 +136,9 @@ export const Output$outboundSchema: z.ZodType<
   ResponseOutputMessage$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Output$ {
-  /** @deprecated use `Output$inboundSchema` instead. */
-  export const inboundSchema = Output$inboundSchema;
-  /** @deprecated use `Output$outboundSchema` instead. */
-  export const outboundSchema = Output$outboundSchema;
-  /** @deprecated use `Output$Outbound` instead. */
-  export type Outbound = Output$Outbound;
-}
-
 export function outputToJSON(output: Output): string {
   return JSON.stringify(Output$outboundSchema.parse(output));
 }
-
 export function outputFromJSON(
   jsonString: string,
 ): SafeParseResult<Output, SDKValidationError> {
@@ -224,7 +197,6 @@ export const ResponseT$inboundSchema: z.ZodType<
     "top_p": "topP",
   });
 });
-
 /** @internal */
 export type ResponseT$Outbound = {
   id: string;
@@ -306,23 +278,9 @@ export const ResponseT$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseT$ {
-  /** @deprecated use `ResponseT$inboundSchema` instead. */
-  export const inboundSchema = ResponseT$inboundSchema;
-  /** @deprecated use `ResponseT$outboundSchema` instead. */
-  export const outboundSchema = ResponseT$outboundSchema;
-  /** @deprecated use `ResponseT$Outbound` instead. */
-  export type Outbound = ResponseT$Outbound;
-}
-
 export function responseToJSON(responseT: ResponseT): string {
   return JSON.stringify(ResponseT$outboundSchema.parse(responseT));
 }
-
 export function responseFromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseT, SDKValidationError> {

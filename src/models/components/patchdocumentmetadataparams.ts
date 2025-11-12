@@ -27,7 +27,6 @@ export const PatchDocumentMetadataParams$inboundSchema: z.ZodType<
   metadata: z.record(z.any()),
   async: z.boolean().default(false),
 });
-
 /** @internal */
 export type PatchDocumentMetadataParams$Outbound = {
   metadata: { [k: string]: any };
@@ -44,19 +43,6 @@ export const PatchDocumentMetadataParams$outboundSchema: z.ZodType<
   async: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchDocumentMetadataParams$ {
-  /** @deprecated use `PatchDocumentMetadataParams$inboundSchema` instead. */
-  export const inboundSchema = PatchDocumentMetadataParams$inboundSchema;
-  /** @deprecated use `PatchDocumentMetadataParams$outboundSchema` instead. */
-  export const outboundSchema = PatchDocumentMetadataParams$outboundSchema;
-  /** @deprecated use `PatchDocumentMetadataParams$Outbound` instead. */
-  export type Outbound = PatchDocumentMetadataParams$Outbound;
-}
-
 export function patchDocumentMetadataParamsToJSON(
   patchDocumentMetadataParams: PatchDocumentMetadataParams,
 ): string {
@@ -66,7 +52,6 @@ export function patchDocumentMetadataParamsToJSON(
     ),
   );
 }
-
 export function patchDocumentMetadataParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<PatchDocumentMetadataParams, SDKValidationError> {

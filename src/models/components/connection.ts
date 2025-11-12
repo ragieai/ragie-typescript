@@ -53,7 +53,6 @@ export const ConnectionMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type ConnectionMetadata$Outbound =
   | string
@@ -75,19 +74,6 @@ export const ConnectionMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionMetadata$ {
-  /** @deprecated use `ConnectionMetadata$inboundSchema` instead. */
-  export const inboundSchema = ConnectionMetadata$inboundSchema;
-  /** @deprecated use `ConnectionMetadata$outboundSchema` instead. */
-  export const outboundSchema = ConnectionMetadata$outboundSchema;
-  /** @deprecated use `ConnectionMetadata$Outbound` instead. */
-  export type Outbound = ConnectionMetadata$Outbound;
-}
-
 export function connectionMetadataToJSON(
   connectionMetadata: ConnectionMetadata,
 ): string {
@@ -95,7 +81,6 @@ export function connectionMetadataToJSON(
     ConnectionMetadata$outboundSchema.parse(connectionMetadata),
   );
 }
-
 export function connectionMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionMetadata, SDKValidationError> {
@@ -109,7 +94,6 @@ export function connectionMetadataFromJSON(
 /** @internal */
 export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> = z
   .union([z.string(), z.array(z.string()), z.record(z.any())]);
-
 /** @internal */
 export type Source$Outbound = string | Array<string> | { [k: string]: any };
 
@@ -120,23 +104,9 @@ export const Source$outboundSchema: z.ZodType<
   Source
 > = z.union([z.string(), z.array(z.string()), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Source$ {
-  /** @deprecated use `Source$inboundSchema` instead. */
-  export const inboundSchema = Source$inboundSchema;
-  /** @deprecated use `Source$outboundSchema` instead. */
-  export const outboundSchema = Source$outboundSchema;
-  /** @deprecated use `Source$Outbound` instead. */
-  export type Outbound = Source$Outbound;
-}
-
 export function sourceToJSON(source: Source): string {
   return JSON.stringify(Source$outboundSchema.parse(source));
 }
-
 export function sourceFromJSON(
   jsonString: string,
 ): SafeParseResult<Source, SDKValidationError> {
@@ -151,22 +121,10 @@ export function sourceFromJSON(
 export const DisabledBySystemReason$inboundSchema: z.ZodNativeEnum<
   typeof DisabledBySystemReason
 > = z.nativeEnum(DisabledBySystemReason);
-
 /** @internal */
 export const DisabledBySystemReason$outboundSchema: z.ZodNativeEnum<
   typeof DisabledBySystemReason
 > = DisabledBySystemReason$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DisabledBySystemReason$ {
-  /** @deprecated use `DisabledBySystemReason$inboundSchema` instead. */
-  export const inboundSchema = DisabledBySystemReason$inboundSchema;
-  /** @deprecated use `DisabledBySystemReason$outboundSchema` instead. */
-  export const outboundSchema = DisabledBySystemReason$outboundSchema;
-}
 
 /** @internal */
 export const Connection$inboundSchema: z.ZodType<
@@ -210,7 +168,6 @@ export const Connection$inboundSchema: z.ZodType<
     "disabled_by_system": "disabledBySystem",
   });
 });
-
 /** @internal */
 export type Connection$Outbound = {
   id: string;
@@ -270,23 +227,9 @@ export const Connection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Connection$ {
-  /** @deprecated use `Connection$inboundSchema` instead. */
-  export const inboundSchema = Connection$inboundSchema;
-  /** @deprecated use `Connection$outboundSchema` instead. */
-  export const outboundSchema = Connection$outboundSchema;
-  /** @deprecated use `Connection$Outbound` instead. */
-  export type Outbound = Connection$Outbound;
-}
-
 export function connectionToJSON(connection: Connection): string {
   return JSON.stringify(Connection$outboundSchema.parse(connection));
 }
-
 export function connectionFromJSON(
   jsonString: string,
 ): SafeParseResult<Connection, SDKValidationError> {

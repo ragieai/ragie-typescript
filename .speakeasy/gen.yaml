@@ -23,12 +23,13 @@ generation:
   sdkHooksConfigAccess: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.13.1
+  version: 1.14.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -37,6 +38,7 @@ typescript:
   additionalPackageJSON:
     license: MIT
   additionalScripts: {}
+  alwaysIncludeInboundAndOutbound: false
   author: Speakeasy
   baseErrorName: RagieError
   clientServerStatusCodesAsErrors: true
@@ -46,6 +48,7 @@ typescript:
   enableMCPServer: true
   enableReactQuery: false
   enumFormat: union
+  exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: body-first
   generateExamples: true
@@ -68,6 +71,7 @@ typescript:
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInitImports: []
   useIndexModules: true
   zodVersion: v3

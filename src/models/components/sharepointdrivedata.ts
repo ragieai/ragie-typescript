@@ -21,7 +21,6 @@ export const SharepointDriveData$inboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
 });
-
 /** @internal */
 export type SharepointDriveData$Outbound = {
   id: string;
@@ -38,19 +37,6 @@ export const SharepointDriveData$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SharepointDriveData$ {
-  /** @deprecated use `SharepointDriveData$inboundSchema` instead. */
-  export const inboundSchema = SharepointDriveData$inboundSchema;
-  /** @deprecated use `SharepointDriveData$outboundSchema` instead. */
-  export const outboundSchema = SharepointDriveData$outboundSchema;
-  /** @deprecated use `SharepointDriveData$Outbound` instead. */
-  export type Outbound = SharepointDriveData$Outbound;
-}
-
 export function sharepointDriveDataToJSON(
   sharepointDriveData: SharepointDriveData,
 ): string {
@@ -58,7 +44,6 @@ export function sharepointDriveDataToJSON(
     SharepointDriveData$outboundSchema.parse(sharepointDriveData),
   );
 }
-
 export function sharepointDriveDataFromJSON(
   jsonString: string,
 ): SafeParseResult<SharepointDriveData, SDKValidationError> {

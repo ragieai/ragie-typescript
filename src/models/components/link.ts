@@ -18,7 +18,6 @@ export const Link$inboundSchema: z.ZodType<Link, z.ZodTypeDef, unknown> = z
     href: z.string(),
     type: z.string(),
   });
-
 /** @internal */
 export type Link$Outbound = {
   href: string;
@@ -32,23 +31,9 @@ export const Link$outboundSchema: z.ZodType<Link$Outbound, z.ZodTypeDef, Link> =
     type: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Link$ {
-  /** @deprecated use `Link$inboundSchema` instead. */
-  export const inboundSchema = Link$inboundSchema;
-  /** @deprecated use `Link$outboundSchema` instead. */
-  export const outboundSchema = Link$outboundSchema;
-  /** @deprecated use `Link$Outbound` instead. */
-  export type Outbound = Link$Outbound;
-}
-
 export function linkToJSON(link: Link): string {
   return JSON.stringify(Link$outboundSchema.parse(link));
 }
-
 export function linkFromJSON(
   jsonString: string,
 ): SafeParseResult<Link, SDKValidationError> {

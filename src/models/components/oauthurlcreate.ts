@@ -80,7 +80,6 @@ export const OAuthUrlCreateMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type OAuthUrlCreateMetadata$Outbound =
   | string
@@ -102,19 +101,6 @@ export const OAuthUrlCreateMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthUrlCreateMetadata$ {
-  /** @deprecated use `OAuthUrlCreateMetadata$inboundSchema` instead. */
-  export const inboundSchema = OAuthUrlCreateMetadata$inboundSchema;
-  /** @deprecated use `OAuthUrlCreateMetadata$outboundSchema` instead. */
-  export const outboundSchema = OAuthUrlCreateMetadata$outboundSchema;
-  /** @deprecated use `OAuthUrlCreateMetadata$Outbound` instead. */
-  export type Outbound = OAuthUrlCreateMetadata$Outbound;
-}
-
 export function oAuthUrlCreateMetadataToJSON(
   oAuthUrlCreateMetadata: OAuthUrlCreateMetadata,
 ): string {
@@ -122,7 +108,6 @@ export function oAuthUrlCreateMetadataToJSON(
     OAuthUrlCreateMetadata$outboundSchema.parse(oAuthUrlCreateMetadata),
   );
 }
-
 export function oAuthUrlCreateMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<OAuthUrlCreateMetadata, SDKValidationError> {
@@ -137,22 +122,10 @@ export function oAuthUrlCreateMetadataFromJSON(
 export const OAuthUrlCreateMode1$inboundSchema: z.ZodNativeEnum<
   typeof OAuthUrlCreateMode1
 > = z.nativeEnum(OAuthUrlCreateMode1);
-
 /** @internal */
 export const OAuthUrlCreateMode1$outboundSchema: z.ZodNativeEnum<
   typeof OAuthUrlCreateMode1
 > = OAuthUrlCreateMode1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthUrlCreateMode1$ {
-  /** @deprecated use `OAuthUrlCreateMode1$inboundSchema` instead. */
-  export const inboundSchema = OAuthUrlCreateMode1$inboundSchema;
-  /** @deprecated use `OAuthUrlCreateMode1$outboundSchema` instead. */
-  export const outboundSchema = OAuthUrlCreateMode1$outboundSchema;
-}
 
 /** @internal */
 export const OAuthUrlCreateMode$inboundSchema: z.ZodType<
@@ -160,7 +133,6 @@ export const OAuthUrlCreateMode$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([OAuthUrlCreateMode1$inboundSchema, MediaModeParam$inboundSchema]);
-
 /** @internal */
 export type OAuthUrlCreateMode$Outbound = string | MediaModeParam$Outbound;
 
@@ -174,19 +146,6 @@ export const OAuthUrlCreateMode$outboundSchema: z.ZodType<
   MediaModeParam$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthUrlCreateMode$ {
-  /** @deprecated use `OAuthUrlCreateMode$inboundSchema` instead. */
-  export const inboundSchema = OAuthUrlCreateMode$inboundSchema;
-  /** @deprecated use `OAuthUrlCreateMode$outboundSchema` instead. */
-  export const outboundSchema = OAuthUrlCreateMode$outboundSchema;
-  /** @deprecated use `OAuthUrlCreateMode$Outbound` instead. */
-  export type Outbound = OAuthUrlCreateMode$Outbound;
-}
-
 export function oAuthUrlCreateModeToJSON(
   oAuthUrlCreateMode: OAuthUrlCreateMode,
 ): string {
@@ -194,7 +153,6 @@ export function oAuthUrlCreateModeToJSON(
     OAuthUrlCreateMode$outboundSchema.parse(oAuthUrlCreateMode),
   );
 }
-
 export function oAuthUrlCreateModeFromJSON(
   jsonString: string,
 ): SafeParseResult<OAuthUrlCreateMode, SDKValidationError> {
@@ -209,21 +167,9 @@ export function oAuthUrlCreateModeFromJSON(
 export const Theme$inboundSchema: z.ZodNativeEnum<typeof Theme> = z.nativeEnum(
   Theme,
 );
-
 /** @internal */
 export const Theme$outboundSchema: z.ZodNativeEnum<typeof Theme> =
   Theme$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Theme$ {
-  /** @deprecated use `Theme$inboundSchema` instead. */
-  export const inboundSchema = Theme$inboundSchema;
-  /** @deprecated use `Theme$outboundSchema` instead. */
-  export const outboundSchema = Theme$outboundSchema;
-}
 
 /** @internal */
 export const OAuthUrlCreate$inboundSchema: z.ZodType<
@@ -258,7 +204,6 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
     "authenticator_id": "authenticatorId",
   });
 });
-
 /** @internal */
 export type OAuthUrlCreate$Outbound = {
   redirect_uri: string;
@@ -311,23 +256,9 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthUrlCreate$ {
-  /** @deprecated use `OAuthUrlCreate$inboundSchema` instead. */
-  export const inboundSchema = OAuthUrlCreate$inboundSchema;
-  /** @deprecated use `OAuthUrlCreate$outboundSchema` instead. */
-  export const outboundSchema = OAuthUrlCreate$outboundSchema;
-  /** @deprecated use `OAuthUrlCreate$Outbound` instead. */
-  export type Outbound = OAuthUrlCreate$Outbound;
-}
-
 export function oAuthUrlCreateToJSON(oAuthUrlCreate: OAuthUrlCreate): string {
   return JSON.stringify(OAuthUrlCreate$outboundSchema.parse(oAuthUrlCreate));
 }
-
 export function oAuthUrlCreateFromJSON(
   jsonString: string,
 ): SafeParseResult<OAuthUrlCreate, SDKValidationError> {

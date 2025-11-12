@@ -24,7 +24,6 @@ export const ReasoningText$inboundSchema: z.ZodType<
   text: z.string(),
   type: z.literal("reasoning_text").default("reasoning_text"),
 });
-
 /** @internal */
 export type ReasoningText$Outbound = {
   text: string;
@@ -41,23 +40,9 @@ export const ReasoningText$outboundSchema: z.ZodType<
   type: z.literal("reasoning_text").default("reasoning_text" as const),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReasoningText$ {
-  /** @deprecated use `ReasoningText$inboundSchema` instead. */
-  export const inboundSchema = ReasoningText$inboundSchema;
-  /** @deprecated use `ReasoningText$outboundSchema` instead. */
-  export const outboundSchema = ReasoningText$outboundSchema;
-  /** @deprecated use `ReasoningText$Outbound` instead. */
-  export type Outbound = ReasoningText$Outbound;
-}
-
 export function reasoningTextToJSON(reasoningText: ReasoningText): string {
   return JSON.stringify(ReasoningText$outboundSchema.parse(reasoningText));
 }
-
 export function reasoningTextFromJSON(
   jsonString: string,
 ): SafeParseResult<ReasoningText, SDKValidationError> {

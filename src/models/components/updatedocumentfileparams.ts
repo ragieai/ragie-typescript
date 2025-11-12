@@ -9,6 +9,18 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type UpdateDocumentFileParams22 = {};
+
+export const UpdateDocumentFileParams21 = {
+  HiRes: "hi_res",
+  Fast: "fast",
+} as const;
+export type UpdateDocumentFileParams21 = ClosedEnum<
+  typeof UpdateDocumentFileParams21
+>;
+
+export type Mode2 = UpdateDocumentFileParams21 | UpdateDocumentFileParams22;
+
 export const UpdateDocumentFileParamsModeStatic = {
   HiRes: "hi_res",
   Fast: "fast",
@@ -26,33 +38,19 @@ export type UpdateDocumentFileParamsModeVideo = ClosedEnum<
   typeof UpdateDocumentFileParamsModeVideo
 >;
 
-export type Mode2 = {
+export type UpdateDocumentFileParamsMode1 = {
   static?: UpdateDocumentFileParamsModeStatic | null | undefined;
   audio?: boolean | null | undefined;
   video?: UpdateDocumentFileParamsModeVideo | null | undefined;
 };
 
-export type UpdateDocumentFileParams12 = {};
-
-export const UpdateDocumentFileParams11 = {
-  HiRes: "hi_res",
-  Fast: "fast",
-} as const;
-export type UpdateDocumentFileParams11 = ClosedEnum<
-  typeof UpdateDocumentFileParams11
->;
-
-export type UpdateDocumentFileParamsMode1 =
-  | UpdateDocumentFileParams11
-  | UpdateDocumentFileParams12;
-
 /**
  * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  To process all media types at the highest quality, use `'all'`.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }  Highest quality processing for all media types     "all"
  */
 export type UpdateDocumentFileParamsMode =
-  | UpdateDocumentFileParams11
-  | UpdateDocumentFileParams12
-  | Mode2;
+  | UpdateDocumentFileParamsMode1
+  | UpdateDocumentFileParams21
+  | UpdateDocumentFileParams22;
 
 export type UpdateDocumentFileParamsFile = {
   fileName: string;
@@ -64,9 +62,9 @@ export type UpdateDocumentFileParams = {
    * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  To process all media types at the highest quality, use `'all'`.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }  Highest quality processing for all media types     "all"
    */
   mode?:
-    | UpdateDocumentFileParams11
-    | UpdateDocumentFileParams12
-    | Mode2
+    | UpdateDocumentFileParamsMode1
+    | UpdateDocumentFileParams21
+    | UpdateDocumentFileParams22
     | undefined;
   /**
    * The binary file to upload, extract, and index for retrieval. The following file types are supported: Plain Text: `.eml` `.html` `.json` `.md` `.msg` `.rst` `.rtf` `.txt` `.xml`
@@ -79,96 +77,69 @@ export type UpdateDocumentFileParams = {
 };
 
 /** @internal */
-export const UpdateDocumentFileParamsModeStatic$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFileParamsModeStatic
-> = z.nativeEnum(UpdateDocumentFileParamsModeStatic);
+export const UpdateDocumentFileParams22$inboundSchema: z.ZodType<
+  UpdateDocumentFileParams22,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+/** @internal */
+export type UpdateDocumentFileParams22$Outbound = {};
 
 /** @internal */
-export const UpdateDocumentFileParamsModeStatic$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFileParamsModeStatic
-> = UpdateDocumentFileParamsModeStatic$inboundSchema;
+export const UpdateDocumentFileParams22$outboundSchema: z.ZodType<
+  UpdateDocumentFileParams22$Outbound,
+  z.ZodTypeDef,
+  UpdateDocumentFileParams22
+> = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParamsModeStatic$ {
-  /** @deprecated use `UpdateDocumentFileParamsModeStatic$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParamsModeStatic$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsModeStatic$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateDocumentFileParamsModeStatic$outboundSchema;
+export function updateDocumentFileParams22ToJSON(
+  updateDocumentFileParams22: UpdateDocumentFileParams22,
+): string {
+  return JSON.stringify(
+    UpdateDocumentFileParams22$outboundSchema.parse(updateDocumentFileParams22),
+  );
+}
+export function updateDocumentFileParams22FromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateDocumentFileParams22, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateDocumentFileParams22$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDocumentFileParams22' from JSON`,
+  );
 }
 
 /** @internal */
-export const UpdateDocumentFileParamsModeVideo$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFileParamsModeVideo
-> = z.nativeEnum(UpdateDocumentFileParamsModeVideo);
-
+export const UpdateDocumentFileParams21$inboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFileParams21
+> = z.nativeEnum(UpdateDocumentFileParams21);
 /** @internal */
-export const UpdateDocumentFileParamsModeVideo$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFileParamsModeVideo
-> = UpdateDocumentFileParamsModeVideo$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParamsModeVideo$ {
-  /** @deprecated use `UpdateDocumentFileParamsModeVideo$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParamsModeVideo$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsModeVideo$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateDocumentFileParamsModeVideo$outboundSchema;
-}
+export const UpdateDocumentFileParams21$outboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFileParams21
+> = UpdateDocumentFileParams21$inboundSchema;
 
 /** @internal */
 export const Mode2$inboundSchema: z.ZodType<Mode2, z.ZodTypeDef, unknown> = z
-  .object({
-    static: z.nullable(UpdateDocumentFileParamsModeStatic$inboundSchema)
-      .optional(),
-    audio: z.nullable(z.boolean()).optional(),
-    video: z.nullable(UpdateDocumentFileParamsModeVideo$inboundSchema)
-      .optional(),
-  });
-
+  .union([
+    UpdateDocumentFileParams21$inboundSchema,
+    z.lazy(() => UpdateDocumentFileParams22$inboundSchema),
+  ]);
 /** @internal */
-export type Mode2$Outbound = {
-  static?: string | null | undefined;
-  audio?: boolean | null | undefined;
-  video?: string | null | undefined;
-};
+export type Mode2$Outbound = string | UpdateDocumentFileParams22$Outbound;
 
 /** @internal */
 export const Mode2$outboundSchema: z.ZodType<
   Mode2$Outbound,
   z.ZodTypeDef,
   Mode2
-> = z.object({
-  static: z.nullable(UpdateDocumentFileParamsModeStatic$outboundSchema)
-    .optional(),
-  audio: z.nullable(z.boolean()).optional(),
-  video: z.nullable(UpdateDocumentFileParamsModeVideo$outboundSchema)
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mode2$ {
-  /** @deprecated use `Mode2$inboundSchema` instead. */
-  export const inboundSchema = Mode2$inboundSchema;
-  /** @deprecated use `Mode2$outboundSchema` instead. */
-  export const outboundSchema = Mode2$outboundSchema;
-  /** @deprecated use `Mode2$Outbound` instead. */
-  export type Outbound = Mode2$Outbound;
-}
+> = z.union([
+  UpdateDocumentFileParams21$outboundSchema,
+  z.lazy(() => UpdateDocumentFileParams22$outboundSchema),
+]);
 
 export function mode2ToJSON(mode2: Mode2): string {
   return JSON.stringify(Mode2$outboundSchema.parse(mode2));
 }
-
 export function mode2FromJSON(
   jsonString: string,
 ): SafeParseResult<Mode2, SDKValidationError> {
@@ -180,111 +151,53 @@ export function mode2FromJSON(
 }
 
 /** @internal */
-export const UpdateDocumentFileParams12$inboundSchema: z.ZodType<
-  UpdateDocumentFileParams12,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
+export const UpdateDocumentFileParamsModeStatic$inboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFileParamsModeStatic
+> = z.nativeEnum(UpdateDocumentFileParamsModeStatic);
+/** @internal */
+export const UpdateDocumentFileParamsModeStatic$outboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFileParamsModeStatic
+> = UpdateDocumentFileParamsModeStatic$inboundSchema;
 
 /** @internal */
-export type UpdateDocumentFileParams12$Outbound = {};
-
+export const UpdateDocumentFileParamsModeVideo$inboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFileParamsModeVideo
+> = z.nativeEnum(UpdateDocumentFileParamsModeVideo);
 /** @internal */
-export const UpdateDocumentFileParams12$outboundSchema: z.ZodType<
-  UpdateDocumentFileParams12$Outbound,
-  z.ZodTypeDef,
-  UpdateDocumentFileParams12
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParams12$ {
-  /** @deprecated use `UpdateDocumentFileParams12$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParams12$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParams12$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFileParams12$outboundSchema;
-  /** @deprecated use `UpdateDocumentFileParams12$Outbound` instead. */
-  export type Outbound = UpdateDocumentFileParams12$Outbound;
-}
-
-export function updateDocumentFileParams12ToJSON(
-  updateDocumentFileParams12: UpdateDocumentFileParams12,
-): string {
-  return JSON.stringify(
-    UpdateDocumentFileParams12$outboundSchema.parse(updateDocumentFileParams12),
-  );
-}
-
-export function updateDocumentFileParams12FromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateDocumentFileParams12, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateDocumentFileParams12$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateDocumentFileParams12' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateDocumentFileParams11$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFileParams11
-> = z.nativeEnum(UpdateDocumentFileParams11);
-
-/** @internal */
-export const UpdateDocumentFileParams11$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateDocumentFileParams11
-> = UpdateDocumentFileParams11$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParams11$ {
-  /** @deprecated use `UpdateDocumentFileParams11$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParams11$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParams11$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFileParams11$outboundSchema;
-}
+export const UpdateDocumentFileParamsModeVideo$outboundSchema: z.ZodNativeEnum<
+  typeof UpdateDocumentFileParamsModeVideo
+> = UpdateDocumentFileParamsModeVideo$inboundSchema;
 
 /** @internal */
 export const UpdateDocumentFileParamsMode1$inboundSchema: z.ZodType<
   UpdateDocumentFileParamsMode1,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  UpdateDocumentFileParams11$inboundSchema,
-  z.lazy(() => UpdateDocumentFileParams12$inboundSchema),
-]);
-
+> = z.object({
+  static: z.nullable(UpdateDocumentFileParamsModeStatic$inboundSchema)
+    .optional(),
+  audio: z.nullable(z.boolean()).optional(),
+  video: z.nullable(UpdateDocumentFileParamsModeVideo$inboundSchema).optional(),
+});
 /** @internal */
-export type UpdateDocumentFileParamsMode1$Outbound =
-  | string
-  | UpdateDocumentFileParams12$Outbound;
+export type UpdateDocumentFileParamsMode1$Outbound = {
+  static?: string | null | undefined;
+  audio?: boolean | null | undefined;
+  video?: string | null | undefined;
+};
 
 /** @internal */
 export const UpdateDocumentFileParamsMode1$outboundSchema: z.ZodType<
   UpdateDocumentFileParamsMode1$Outbound,
   z.ZodTypeDef,
   UpdateDocumentFileParamsMode1
-> = z.union([
-  UpdateDocumentFileParams11$outboundSchema,
-  z.lazy(() => UpdateDocumentFileParams12$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParamsMode1$ {
-  /** @deprecated use `UpdateDocumentFileParamsMode1$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParamsMode1$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsMode1$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFileParamsMode1$outboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsMode1$Outbound` instead. */
-  export type Outbound = UpdateDocumentFileParamsMode1$Outbound;
-}
+> = z.object({
+  static: z.nullable(UpdateDocumentFileParamsModeStatic$outboundSchema)
+    .optional(),
+  audio: z.nullable(z.boolean()).optional(),
+  video: z.nullable(UpdateDocumentFileParamsModeVideo$outboundSchema)
+    .optional(),
+});
 
 export function updateDocumentFileParamsMode1ToJSON(
   updateDocumentFileParamsMode1: UpdateDocumentFileParamsMode1,
@@ -295,7 +208,6 @@ export function updateDocumentFileParamsMode1ToJSON(
     ),
   );
 }
-
 export function updateDocumentFileParamsMode1FromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFileParamsMode1, SDKValidationError> {
@@ -312,18 +224,17 @@ export const UpdateDocumentFileParamsMode$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
+  z.lazy(() => UpdateDocumentFileParamsMode1$inboundSchema),
   z.union([
-    UpdateDocumentFileParams11$inboundSchema,
-    z.lazy(() => UpdateDocumentFileParams12$inboundSchema),
+    UpdateDocumentFileParams21$inboundSchema,
+    z.lazy(() => UpdateDocumentFileParams22$inboundSchema),
   ]),
-  z.lazy(() => Mode2$inboundSchema),
 ]);
-
 /** @internal */
 export type UpdateDocumentFileParamsMode$Outbound =
+  | UpdateDocumentFileParamsMode1$Outbound
   | string
-  | UpdateDocumentFileParams12$Outbound
-  | Mode2$Outbound;
+  | UpdateDocumentFileParams22$Outbound;
 
 /** @internal */
 export const UpdateDocumentFileParamsMode$outboundSchema: z.ZodType<
@@ -331,25 +242,12 @@ export const UpdateDocumentFileParamsMode$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateDocumentFileParamsMode
 > = z.union([
+  z.lazy(() => UpdateDocumentFileParamsMode1$outboundSchema),
   z.union([
-    UpdateDocumentFileParams11$outboundSchema,
-    z.lazy(() => UpdateDocumentFileParams12$outboundSchema),
+    UpdateDocumentFileParams21$outboundSchema,
+    z.lazy(() => UpdateDocumentFileParams22$outboundSchema),
   ]),
-  z.lazy(() => Mode2$outboundSchema),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParamsMode$ {
-  /** @deprecated use `UpdateDocumentFileParamsMode$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParamsMode$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsMode$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFileParamsMode$outboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsMode$Outbound` instead. */
-  export type Outbound = UpdateDocumentFileParamsMode$Outbound;
-}
 
 export function updateDocumentFileParamsModeToJSON(
   updateDocumentFileParamsMode: UpdateDocumentFileParamsMode,
@@ -360,7 +258,6 @@ export function updateDocumentFileParamsModeToJSON(
     ),
   );
 }
-
 export function updateDocumentFileParamsModeFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFileParamsMode, SDKValidationError> {
@@ -385,7 +282,6 @@ export const UpdateDocumentFileParamsFile$inboundSchema: z.ZodType<
     z.instanceof(Uint8Array),
   ]),
 });
-
 /** @internal */
 export type UpdateDocumentFileParamsFile$Outbound = {
   fileName: string;
@@ -407,19 +303,6 @@ export const UpdateDocumentFileParamsFile$outboundSchema: z.ZodType<
   ]),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParamsFile$ {
-  /** @deprecated use `UpdateDocumentFileParamsFile$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParamsFile$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsFile$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFileParamsFile$outboundSchema;
-  /** @deprecated use `UpdateDocumentFileParamsFile$Outbound` instead. */
-  export type Outbound = UpdateDocumentFileParamsFile$Outbound;
-}
-
 export function updateDocumentFileParamsFileToJSON(
   updateDocumentFileParamsFile: UpdateDocumentFileParamsFile,
 ): string {
@@ -429,7 +312,6 @@ export function updateDocumentFileParamsFileToJSON(
     ),
   );
 }
-
 export function updateDocumentFileParamsFileFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFileParamsFile, SDKValidationError> {
@@ -447,21 +329,20 @@ export const UpdateDocumentFileParams$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   mode: z.union([
+    z.lazy(() => UpdateDocumentFileParamsMode1$inboundSchema),
     z.union([
-      UpdateDocumentFileParams11$inboundSchema,
-      z.lazy(() => UpdateDocumentFileParams12$inboundSchema),
+      UpdateDocumentFileParams21$inboundSchema,
+      z.lazy(() => UpdateDocumentFileParams22$inboundSchema),
     ]),
-    z.lazy(() => Mode2$inboundSchema),
   ]).optional(),
   file: z.lazy(() => UpdateDocumentFileParamsFile$inboundSchema),
 });
-
 /** @internal */
 export type UpdateDocumentFileParams$Outbound = {
   mode?:
+    | UpdateDocumentFileParamsMode1$Outbound
     | string
-    | UpdateDocumentFileParams12$Outbound
-    | Mode2$Outbound
+    | UpdateDocumentFileParams22$Outbound
     | undefined;
   file: UpdateDocumentFileParamsFile$Outbound | Blob;
 };
@@ -473,29 +354,16 @@ export const UpdateDocumentFileParams$outboundSchema: z.ZodType<
   UpdateDocumentFileParams
 > = z.object({
   mode: z.union([
+    z.lazy(() => UpdateDocumentFileParamsMode1$outboundSchema),
     z.union([
-      UpdateDocumentFileParams11$outboundSchema,
-      z.lazy(() => UpdateDocumentFileParams12$outboundSchema),
+      UpdateDocumentFileParams21$outboundSchema,
+      z.lazy(() => UpdateDocumentFileParams22$outboundSchema),
     ]),
-    z.lazy(() => Mode2$outboundSchema),
   ]).optional(),
   file: z.lazy(() => UpdateDocumentFileParamsFile$outboundSchema).or(
     blobLikeSchema,
   ),
 });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileParams$ {
-  /** @deprecated use `UpdateDocumentFileParams$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileParams$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileParams$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFileParams$outboundSchema;
-  /** @deprecated use `UpdateDocumentFileParams$Outbound` instead. */
-  export type Outbound = UpdateDocumentFileParams$Outbound;
-}
 
 export function updateDocumentFileParamsToJSON(
   updateDocumentFileParams: UpdateDocumentFileParams,
@@ -504,7 +372,6 @@ export function updateDocumentFileParamsToJSON(
     UpdateDocumentFileParams$outboundSchema.parse(updateDocumentFileParams),
   );
 }
-
 export function updateDocumentFileParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFileParams, SDKValidationError> {

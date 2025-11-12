@@ -39,7 +39,6 @@ export const CreateGoogleAuthenticator$inboundSchema: z.ZodType<
     "project_number": "projectNumber",
   });
 });
-
 /** @internal */
 export type CreateGoogleAuthenticator$Outbound = {
   provider: "google";
@@ -70,19 +69,6 @@ export const CreateGoogleAuthenticator$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateGoogleAuthenticator$ {
-  /** @deprecated use `CreateGoogleAuthenticator$inboundSchema` instead. */
-  export const inboundSchema = CreateGoogleAuthenticator$inboundSchema;
-  /** @deprecated use `CreateGoogleAuthenticator$outboundSchema` instead. */
-  export const outboundSchema = CreateGoogleAuthenticator$outboundSchema;
-  /** @deprecated use `CreateGoogleAuthenticator$Outbound` instead. */
-  export type Outbound = CreateGoogleAuthenticator$Outbound;
-}
-
 export function createGoogleAuthenticatorToJSON(
   createGoogleAuthenticator: CreateGoogleAuthenticator,
 ): string {
@@ -90,7 +76,6 @@ export function createGoogleAuthenticatorToJSON(
     CreateGoogleAuthenticator$outboundSchema.parse(createGoogleAuthenticator),
   );
 }
-
 export function createGoogleAuthenticatorFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateGoogleAuthenticator, SDKValidationError> {

@@ -45,7 +45,6 @@ export const AuthenticatorSlackConnection$inboundSchema: z.ZodType<
     "user_email": "userEmail",
   });
 });
-
 /** @internal */
 export type AuthenticatorSlackConnection$Outbound = {
   provider: "slack";
@@ -70,19 +69,6 @@ export const AuthenticatorSlackConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorSlackConnection$ {
-  /** @deprecated use `AuthenticatorSlackConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorSlackConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorSlackConnection$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorSlackConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorSlackConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorSlackConnection$Outbound;
-}
-
 export function authenticatorSlackConnectionToJSON(
   authenticatorSlackConnection: AuthenticatorSlackConnection,
 ): string {
@@ -92,7 +78,6 @@ export function authenticatorSlackConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorSlackConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorSlackConnection, SDKValidationError> {

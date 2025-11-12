@@ -43,7 +43,6 @@ export const AuthenticatorNotionConnection$inboundSchema: z.ZodType<
     "user_email": "userEmail",
   });
 });
-
 /** @internal */
 export type AuthenticatorNotionConnection$Outbound = {
   provider: "notion";
@@ -72,19 +71,6 @@ export const AuthenticatorNotionConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorNotionConnection$ {
-  /** @deprecated use `AuthenticatorNotionConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorNotionConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorNotionConnection$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorNotionConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorNotionConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorNotionConnection$Outbound;
-}
-
 export function authenticatorNotionConnectionToJSON(
   authenticatorNotionConnection: AuthenticatorNotionConnection,
 ): string {
@@ -94,7 +80,6 @@ export function authenticatorNotionConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorNotionConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorNotionConnection, SDKValidationError> {

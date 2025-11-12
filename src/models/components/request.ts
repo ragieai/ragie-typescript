@@ -56,7 +56,6 @@ export const RequestT$inboundSchema: z.ZodType<
   reasoning: Reasoning$inboundSchema.optional(),
   stream: z.boolean().default(false),
 });
-
 /** @internal */
 export type RequestT$Outbound = {
   input: string;
@@ -81,23 +80,9 @@ export const RequestT$outboundSchema: z.ZodType<
   stream: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequestT$ {
-  /** @deprecated use `RequestT$inboundSchema` instead. */
-  export const inboundSchema = RequestT$inboundSchema;
-  /** @deprecated use `RequestT$outboundSchema` instead. */
-  export const outboundSchema = RequestT$outboundSchema;
-  /** @deprecated use `RequestT$Outbound` instead. */
-  export type Outbound = RequestT$Outbound;
-}
-
 export function requestToJSON(requestT: RequestT): string {
   return JSON.stringify(RequestT$outboundSchema.parse(requestT));
 }
-
 export function requestFromJSON(
   jsonString: string,
 ): SafeParseResult<RequestT, SDKValidationError> {

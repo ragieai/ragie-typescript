@@ -44,7 +44,6 @@ export const AnswerStep$inboundSchema: z.ZodType<
     "other_resolved_question_ids": "otherResolvedQuestionIds",
   });
 });
-
 /** @internal */
 export type AnswerStep$Outbound = {
   type: "answer";
@@ -74,23 +73,9 @@ export const AnswerStep$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AnswerStep$ {
-  /** @deprecated use `AnswerStep$inboundSchema` instead. */
-  export const inboundSchema = AnswerStep$inboundSchema;
-  /** @deprecated use `AnswerStep$outboundSchema` instead. */
-  export const outboundSchema = AnswerStep$outboundSchema;
-  /** @deprecated use `AnswerStep$Outbound` instead. */
-  export type Outbound = AnswerStep$Outbound;
-}
-
 export function answerStepToJSON(answerStep: AnswerStep): string {
   return JSON.stringify(AnswerStep$outboundSchema.parse(answerStep));
 }
-
 export function answerStepFromJSON(
   jsonString: string,
 ): SafeParseResult<AnswerStep, SDKValidationError> {

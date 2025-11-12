@@ -36,7 +36,6 @@ export const UpdateDocumentFileRequest$inboundSchema: z.ZodType<
     "UpdateDocumentFileParams": "updateDocumentFileParams",
   });
 });
-
 /** @internal */
 export type UpdateDocumentFileRequest$Outbound = {
   document_id: string;
@@ -60,19 +59,6 @@ export const UpdateDocumentFileRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDocumentFileRequest$ {
-  /** @deprecated use `UpdateDocumentFileRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateDocumentFileRequest$inboundSchema;
-  /** @deprecated use `UpdateDocumentFileRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateDocumentFileRequest$outboundSchema;
-  /** @deprecated use `UpdateDocumentFileRequest$Outbound` instead. */
-  export type Outbound = UpdateDocumentFileRequest$Outbound;
-}
-
 export function updateDocumentFileRequestToJSON(
   updateDocumentFileRequest: UpdateDocumentFileRequest,
 ): string {
@@ -80,7 +66,6 @@ export function updateDocumentFileRequestToJSON(
     UpdateDocumentFileRequest$outboundSchema.parse(updateDocumentFileRequest),
   );
 }
-
 export function updateDocumentFileRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateDocumentFileRequest, SDKValidationError> {

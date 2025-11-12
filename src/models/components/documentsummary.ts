@@ -26,7 +26,6 @@ export const DocumentSummary$inboundSchema: z.ZodType<
     "document_id": "documentId",
   });
 });
-
 /** @internal */
 export type DocumentSummary$Outbound = {
   document_id: string;
@@ -47,25 +46,11 @@ export const DocumentSummary$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentSummary$ {
-  /** @deprecated use `DocumentSummary$inboundSchema` instead. */
-  export const inboundSchema = DocumentSummary$inboundSchema;
-  /** @deprecated use `DocumentSummary$outboundSchema` instead. */
-  export const outboundSchema = DocumentSummary$outboundSchema;
-  /** @deprecated use `DocumentSummary$Outbound` instead. */
-  export type Outbound = DocumentSummary$Outbound;
-}
-
 export function documentSummaryToJSON(
   documentSummary: DocumentSummary,
 ): string {
   return JSON.stringify(DocumentSummary$outboundSchema.parse(documentSummary));
 }
-
 export function documentSummaryFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentSummary, SDKValidationError> {

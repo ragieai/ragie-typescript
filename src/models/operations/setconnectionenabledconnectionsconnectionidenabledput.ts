@@ -30,7 +30,6 @@ export const SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$inboun
       "SetConnectionEnabledPayload": "setConnectionEnabledPayload",
     });
   });
-
 /** @internal */
 export type SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$Outbound =
   {
@@ -56,22 +55,6 @@ export const SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$outbou
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$ {
-  /** @deprecated use `SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$inboundSchema;
-  /** @deprecated use `SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$outboundSchema;
-  /** @deprecated use `SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$Outbound` instead. */
-  export type Outbound =
-    SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest$Outbound;
-}
-
 export function setConnectionEnabledConnectionsConnectionIdEnabledPutRequestToJSON(
   setConnectionEnabledConnectionsConnectionIdEnabledPutRequest:
     SetConnectionEnabledConnectionsConnectionIdEnabledPutRequest,
@@ -81,7 +64,6 @@ export function setConnectionEnabledConnectionsConnectionIdEnabledPutRequestToJS
       .parse(setConnectionEnabledConnectionsConnectionIdEnabledPutRequest),
   );
 }
-
 export function setConnectionEnabledConnectionsConnectionIdEnabledPutRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

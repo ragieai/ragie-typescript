@@ -33,7 +33,6 @@ export const EntityList$inboundSchema: z.ZodType<
   pagination: Pagination$inboundSchema,
   entities: z.array(Entity$inboundSchema),
 });
-
 /** @internal */
 export type EntityList$Outbound = {
   pagination: Pagination$Outbound;
@@ -50,23 +49,9 @@ export const EntityList$outboundSchema: z.ZodType<
   entities: z.array(Entity$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EntityList$ {
-  /** @deprecated use `EntityList$inboundSchema` instead. */
-  export const inboundSchema = EntityList$inboundSchema;
-  /** @deprecated use `EntityList$outboundSchema` instead. */
-  export const outboundSchema = EntityList$outboundSchema;
-  /** @deprecated use `EntityList$Outbound` instead. */
-  export type Outbound = EntityList$Outbound;
-}
-
 export function entityListToJSON(entityList: EntityList): string {
   return JSON.stringify(EntityList$outboundSchema.parse(entityList));
 }
-
 export function entityListFromJSON(
   jsonString: string,
 ): SafeParseResult<EntityList, SDKValidationError> {

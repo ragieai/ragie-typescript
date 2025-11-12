@@ -33,7 +33,6 @@ export const ConnectionList$inboundSchema: z.ZodType<
   pagination: Pagination$inboundSchema,
   connections: z.array(Connection$inboundSchema),
 });
-
 /** @internal */
 export type ConnectionList$Outbound = {
   pagination: Pagination$Outbound;
@@ -50,23 +49,9 @@ export const ConnectionList$outboundSchema: z.ZodType<
   connections: z.array(Connection$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionList$ {
-  /** @deprecated use `ConnectionList$inboundSchema` instead. */
-  export const inboundSchema = ConnectionList$inboundSchema;
-  /** @deprecated use `ConnectionList$outboundSchema` instead. */
-  export const outboundSchema = ConnectionList$outboundSchema;
-  /** @deprecated use `ConnectionList$Outbound` instead. */
-  export type Outbound = ConnectionList$Outbound;
-}
-
 export function connectionListToJSON(connectionList: ConnectionList): string {
   return JSON.stringify(ConnectionList$outboundSchema.parse(connectionList));
 }
-
 export function connectionListFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionList, SDKValidationError> {

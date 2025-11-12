@@ -8,12 +8,12 @@ Partition strategy for the document. Different strategies exist for textual, aud
 ### `components.UpdateDocumentFileParamsMode1`
 
 ```typescript
-const value: components.UpdateDocumentFileParamsMode1 = "hi_res";
+const value: components.UpdateDocumentFileParamsMode1 = {};
 ```
 
 ### `components.Mode2`
 
 ```typescript
-const value: components.Mode2 = {};
+const value: components.Mode2 = "hi_res";
 ```
 

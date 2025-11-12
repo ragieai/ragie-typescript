@@ -40,7 +40,6 @@ export const DocumentMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type DocumentMetadata$Outbound =
   | string
@@ -62,19 +61,6 @@ export const DocumentMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentMetadata$ {
-  /** @deprecated use `DocumentMetadata$inboundSchema` instead. */
-  export const inboundSchema = DocumentMetadata$inboundSchema;
-  /** @deprecated use `DocumentMetadata$outboundSchema` instead. */
-  export const outboundSchema = DocumentMetadata$outboundSchema;
-  /** @deprecated use `DocumentMetadata$Outbound` instead. */
-  export type Outbound = DocumentMetadata$Outbound;
-}
-
 export function documentMetadataToJSON(
   documentMetadata: DocumentMetadata,
 ): string {
@@ -82,7 +68,6 @@ export function documentMetadataToJSON(
     DocumentMetadata$outboundSchema.parse(documentMetadata),
   );
 }
-
 export function documentMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentMetadata, SDKValidationError> {
@@ -126,7 +111,6 @@ export const Document$inboundSchema: z.ZodType<
     "page_count": "pageCount",
   });
 });
-
 /** @internal */
 export type Document$Outbound = {
   status: string;
@@ -175,23 +159,9 @@ export const Document$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Document$ {
-  /** @deprecated use `Document$inboundSchema` instead. */
-  export const inboundSchema = Document$inboundSchema;
-  /** @deprecated use `Document$outboundSchema` instead. */
-  export const outboundSchema = Document$outboundSchema;
-  /** @deprecated use `Document$Outbound` instead. */
-  export type Outbound = Document$Outbound;
-}
-
 export function documentToJSON(document: Document): string {
   return JSON.stringify(Document$outboundSchema.parse(document));
 }
-
 export function documentFromJSON(
   jsonString: string,
 ): SafeParseResult<Document, SDKValidationError> {

@@ -1,11 +1,11 @@
-# One1
+# Two1
 
 ## Example Usage
 
 ```typescript
-import { One1 } from "ragie/models/components";
+import { Two1 } from "ragie/models/components";
 
-let value: One1 = "hi_res";
+let value: Two1 = "hi_res";
 ```
 
 ## Values

@@ -33,7 +33,6 @@ export const DocumentChunkList$inboundSchema: z.ZodType<
   pagination: Pagination$inboundSchema,
   chunks: z.array(DocumentChunk$inboundSchema),
 });
-
 /** @internal */
 export type DocumentChunkList$Outbound = {
   pagination: Pagination$Outbound;
@@ -50,19 +49,6 @@ export const DocumentChunkList$outboundSchema: z.ZodType<
   chunks: z.array(DocumentChunk$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentChunkList$ {
-  /** @deprecated use `DocumentChunkList$inboundSchema` instead. */
-  export const inboundSchema = DocumentChunkList$inboundSchema;
-  /** @deprecated use `DocumentChunkList$outboundSchema` instead. */
-  export const outboundSchema = DocumentChunkList$outboundSchema;
-  /** @deprecated use `DocumentChunkList$Outbound` instead. */
-  export type Outbound = DocumentChunkList$Outbound;
-}
-
 export function documentChunkListToJSON(
   documentChunkList: DocumentChunkList,
 ): string {
@@ -70,7 +56,6 @@ export function documentChunkListToJSON(
     DocumentChunkList$outboundSchema.parse(documentChunkList),
   );
 }
-
 export function documentChunkListFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentChunkList, SDKValidationError> {

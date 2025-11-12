@@ -25,7 +25,6 @@ export const DeletePartitionPartitionsPartitionIdDeleteRequest$inboundSchema:
       "partition_id": "partitionId",
     });
   });
-
 /** @internal */
 export type DeletePartitionPartitionsPartitionIdDeleteRequest$Outbound = {
   partition_id: string;
@@ -45,22 +44,6 @@ export const DeletePartitionPartitionsPartitionIdDeleteRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeletePartitionPartitionsPartitionIdDeleteRequest$ {
-  /** @deprecated use `DeletePartitionPartitionsPartitionIdDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    DeletePartitionPartitionsPartitionIdDeleteRequest$inboundSchema;
-  /** @deprecated use `DeletePartitionPartitionsPartitionIdDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    DeletePartitionPartitionsPartitionIdDeleteRequest$outboundSchema;
-  /** @deprecated use `DeletePartitionPartitionsPartitionIdDeleteRequest$Outbound` instead. */
-  export type Outbound =
-    DeletePartitionPartitionsPartitionIdDeleteRequest$Outbound;
-}
-
 export function deletePartitionPartitionsPartitionIdDeleteRequestToJSON(
   deletePartitionPartitionsPartitionIdDeleteRequest:
     DeletePartitionPartitionsPartitionIdDeleteRequest,
@@ -71,7 +54,6 @@ export function deletePartitionPartitionsPartitionIdDeleteRequestToJSON(
     ),
   );
 }
-
 export function deletePartitionPartitionsPartitionIdDeleteRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -35,7 +35,6 @@ export const PublicIntercomConnection$inboundSchema: z.ZodType<
   data: IntercomData$inboundSchema,
   credentials: IntercomCredentials$inboundSchema,
 });
-
 /** @internal */
 export type PublicIntercomConnection$Outbound = {
   provider: "intercom";
@@ -54,19 +53,6 @@ export const PublicIntercomConnection$outboundSchema: z.ZodType<
   credentials: IntercomCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicIntercomConnection$ {
-  /** @deprecated use `PublicIntercomConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicIntercomConnection$inboundSchema;
-  /** @deprecated use `PublicIntercomConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicIntercomConnection$outboundSchema;
-  /** @deprecated use `PublicIntercomConnection$Outbound` instead. */
-  export type Outbound = PublicIntercomConnection$Outbound;
-}
-
 export function publicIntercomConnectionToJSON(
   publicIntercomConnection: PublicIntercomConnection,
 ): string {
@@ -74,7 +60,6 @@ export function publicIntercomConnectionToJSON(
     PublicIntercomConnection$outboundSchema.parse(publicIntercomConnection),
   );
 }
-
 export function publicIntercomConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicIntercomConnection, SDKValidationError> {

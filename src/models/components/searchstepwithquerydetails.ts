@@ -53,7 +53,6 @@ export const SearchStepWithQueryDetails$inboundSchema: z.ZodType<
     "search_log": "searchLog",
   });
 });
-
 /** @internal */
 export type SearchStepWithQueryDetails$Outbound = {
   type: "search";
@@ -86,19 +85,6 @@ export const SearchStepWithQueryDetails$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchStepWithQueryDetails$ {
-  /** @deprecated use `SearchStepWithQueryDetails$inboundSchema` instead. */
-  export const inboundSchema = SearchStepWithQueryDetails$inboundSchema;
-  /** @deprecated use `SearchStepWithQueryDetails$outboundSchema` instead. */
-  export const outboundSchema = SearchStepWithQueryDetails$outboundSchema;
-  /** @deprecated use `SearchStepWithQueryDetails$Outbound` instead. */
-  export type Outbound = SearchStepWithQueryDetails$Outbound;
-}
-
 export function searchStepWithQueryDetailsToJSON(
   searchStepWithQueryDetails: SearchStepWithQueryDetails,
 ): string {
@@ -106,7 +92,6 @@ export function searchStepWithQueryDetailsToJSON(
     SearchStepWithQueryDetails$outboundSchema.parse(searchStepWithQueryDetails),
   );
 }
-
 export function searchStepWithQueryDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<SearchStepWithQueryDetails, SDKValidationError> {

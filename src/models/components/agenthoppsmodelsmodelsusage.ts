@@ -25,7 +25,6 @@ export const AgentHoppsModelsModelsUsage$inboundSchema: z.ZodType<
 > = z.object({
   models: z.array(ModelUsage$inboundSchema).optional(),
 });
-
 /** @internal */
 export type AgentHoppsModelsModelsUsage$Outbound = {
   models?: Array<ModelUsage$Outbound> | undefined;
@@ -40,19 +39,6 @@ export const AgentHoppsModelsModelsUsage$outboundSchema: z.ZodType<
   models: z.array(ModelUsage$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AgentHoppsModelsModelsUsage$ {
-  /** @deprecated use `AgentHoppsModelsModelsUsage$inboundSchema` instead. */
-  export const inboundSchema = AgentHoppsModelsModelsUsage$inboundSchema;
-  /** @deprecated use `AgentHoppsModelsModelsUsage$outboundSchema` instead. */
-  export const outboundSchema = AgentHoppsModelsModelsUsage$outboundSchema;
-  /** @deprecated use `AgentHoppsModelsModelsUsage$Outbound` instead. */
-  export type Outbound = AgentHoppsModelsModelsUsage$Outbound;
-}
-
 export function agentHoppsModelsModelsUsageToJSON(
   agentHoppsModelsModelsUsage: AgentHoppsModelsModelsUsage,
 ): string {
@@ -62,7 +48,6 @@ export function agentHoppsModelsModelsUsageToJSON(
     ),
   );
 }
-
 export function agentHoppsModelsModelsUsageFromJSON(
   jsonString: string,
 ): SafeParseResult<AgentHoppsModelsModelsUsage, SDKValidationError> {

@@ -24,7 +24,6 @@ export const AccessTokenCredentials$inboundSchema: z.ZodType<
     "access_token": "accessToken",
   });
 });
-
 /** @internal */
 export type AccessTokenCredentials$Outbound = {
   access_token: string;
@@ -43,19 +42,6 @@ export const AccessTokenCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccessTokenCredentials$ {
-  /** @deprecated use `AccessTokenCredentials$inboundSchema` instead. */
-  export const inboundSchema = AccessTokenCredentials$inboundSchema;
-  /** @deprecated use `AccessTokenCredentials$outboundSchema` instead. */
-  export const outboundSchema = AccessTokenCredentials$outboundSchema;
-  /** @deprecated use `AccessTokenCredentials$Outbound` instead. */
-  export type Outbound = AccessTokenCredentials$Outbound;
-}
-
 export function accessTokenCredentialsToJSON(
   accessTokenCredentials: AccessTokenCredentials,
 ): string {
@@ -63,7 +49,6 @@ export function accessTokenCredentialsToJSON(
     AccessTokenCredentials$outboundSchema.parse(accessTokenCredentials),
   );
 }
-
 export function accessTokenCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<AccessTokenCredentials, SDKValidationError> {

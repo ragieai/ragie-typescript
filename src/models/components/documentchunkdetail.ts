@@ -59,7 +59,6 @@ export const ModalityData$inboundSchema: z.ZodType<
     z.object({ type: z.literal("video") }).transform((v) => ({ type: v.type })),
   ),
 ]);
-
 /** @internal */
 export type ModalityData$Outbound =
   | (AudioModalityData$Outbound & { type: "audio" })
@@ -79,23 +78,9 @@ export const ModalityData$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ModalityData$ {
-  /** @deprecated use `ModalityData$inboundSchema` instead. */
-  export const inboundSchema = ModalityData$inboundSchema;
-  /** @deprecated use `ModalityData$outboundSchema` instead. */
-  export const outboundSchema = ModalityData$outboundSchema;
-  /** @deprecated use `ModalityData$Outbound` instead. */
-  export type Outbound = ModalityData$Outbound;
-}
-
 export function modalityDataToJSON(modalityData: ModalityData): string {
   return JSON.stringify(ModalityData$outboundSchema.parse(modalityData));
 }
-
 export function modalityDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ModalityData, SDKValidationError> {
@@ -136,7 +121,6 @@ export const DocumentChunkDetail$inboundSchema: z.ZodType<
     "modality_data": "modalityData",
   });
 });
-
 /** @internal */
 export type DocumentChunkDetail$Outbound = {
   id: string;
@@ -182,19 +166,6 @@ export const DocumentChunkDetail$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentChunkDetail$ {
-  /** @deprecated use `DocumentChunkDetail$inboundSchema` instead. */
-  export const inboundSchema = DocumentChunkDetail$inboundSchema;
-  /** @deprecated use `DocumentChunkDetail$outboundSchema` instead. */
-  export const outboundSchema = DocumentChunkDetail$outboundSchema;
-  /** @deprecated use `DocumentChunkDetail$Outbound` instead. */
-  export type Outbound = DocumentChunkDetail$Outbound;
-}
-
 export function documentChunkDetailToJSON(
   documentChunkDetail: DocumentChunkDetail,
 ): string {
@@ -202,7 +173,6 @@ export function documentChunkDetailToJSON(
     DocumentChunkDetail$outboundSchema.parse(documentChunkDetail),
   );
 }
-
 export function documentChunkDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentChunkDetail, SDKValidationError> {

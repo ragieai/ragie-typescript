@@ -30,7 +30,6 @@ export const Retrieval$inboundSchema: z.ZodType<
     "scored_chunks": "scoredChunks",
   });
 });
-
 /** @internal */
 export type Retrieval$Outbound = {
   scored_chunks: Array<ScoredChunk$Outbound>;
@@ -49,23 +48,9 @@ export const Retrieval$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Retrieval$ {
-  /** @deprecated use `Retrieval$inboundSchema` instead. */
-  export const inboundSchema = Retrieval$inboundSchema;
-  /** @deprecated use `Retrieval$outboundSchema` instead. */
-  export const outboundSchema = Retrieval$outboundSchema;
-  /** @deprecated use `Retrieval$Outbound` instead. */
-  export type Outbound = Retrieval$Outbound;
-}
-
 export function retrievalToJSON(retrieval: Retrieval): string {
   return JSON.stringify(Retrieval$outboundSchema.parse(retrieval));
 }
-
 export function retrievalFromJSON(
   jsonString: string,
 ): SafeParseResult<Retrieval, SDKValidationError> {

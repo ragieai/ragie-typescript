@@ -27,7 +27,6 @@ export const ConnectionStats$inboundSchema: z.ZodType<
     "page_count": "pageCount",
   });
 });
-
 /** @internal */
 export type ConnectionStats$Outbound = {
   document_count: number;
@@ -49,25 +48,11 @@ export const ConnectionStats$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionStats$ {
-  /** @deprecated use `ConnectionStats$inboundSchema` instead. */
-  export const inboundSchema = ConnectionStats$inboundSchema;
-  /** @deprecated use `ConnectionStats$outboundSchema` instead. */
-  export const outboundSchema = ConnectionStats$outboundSchema;
-  /** @deprecated use `ConnectionStats$Outbound` instead. */
-  export type Outbound = ConnectionStats$Outbound;
-}
-
 export function connectionStatsToJSON(
   connectionStats: ConnectionStats,
 ): string {
   return JSON.stringify(ConnectionStats$outboundSchema.parse(connectionStats));
 }
-
 export function connectionStatsFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionStats, SDKValidationError> {

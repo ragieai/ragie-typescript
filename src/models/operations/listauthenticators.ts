@@ -37,7 +37,6 @@ export const ListAuthenticatorsRequest$inboundSchema: z.ZodType<
     "page_size": "pageSize",
   });
 });
-
 /** @internal */
 export type ListAuthenticatorsRequest$Outbound = {
   cursor?: string | null | undefined;
@@ -58,19 +57,6 @@ export const ListAuthenticatorsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAuthenticatorsRequest$ {
-  /** @deprecated use `ListAuthenticatorsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListAuthenticatorsRequest$inboundSchema;
-  /** @deprecated use `ListAuthenticatorsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListAuthenticatorsRequest$outboundSchema;
-  /** @deprecated use `ListAuthenticatorsRequest$Outbound` instead. */
-  export type Outbound = ListAuthenticatorsRequest$Outbound;
-}
-
 export function listAuthenticatorsRequestToJSON(
   listAuthenticatorsRequest: ListAuthenticatorsRequest,
 ): string {
@@ -78,7 +64,6 @@ export function listAuthenticatorsRequestToJSON(
     ListAuthenticatorsRequest$outboundSchema.parse(listAuthenticatorsRequest),
   );
 }
-
 export function listAuthenticatorsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAuthenticatorsRequest, SDKValidationError> {
@@ -101,7 +86,6 @@ export const ListAuthenticatorsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListAuthenticatorsResponse$Outbound = {
   Result: components.AuthenticatorList$Outbound;
@@ -120,19 +104,6 @@ export const ListAuthenticatorsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAuthenticatorsResponse$ {
-  /** @deprecated use `ListAuthenticatorsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListAuthenticatorsResponse$inboundSchema;
-  /** @deprecated use `ListAuthenticatorsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListAuthenticatorsResponse$outboundSchema;
-  /** @deprecated use `ListAuthenticatorsResponse$Outbound` instead. */
-  export type Outbound = ListAuthenticatorsResponse$Outbound;
-}
-
 export function listAuthenticatorsResponseToJSON(
   listAuthenticatorsResponse: ListAuthenticatorsResponse,
 ): string {
@@ -140,7 +111,6 @@ export function listAuthenticatorsResponseToJSON(
     ListAuthenticatorsResponse$outboundSchema.parse(listAuthenticatorsResponse),
   );
 }
-
 export function listAuthenticatorsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAuthenticatorsResponse, SDKValidationError> {

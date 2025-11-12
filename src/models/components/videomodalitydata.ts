@@ -32,7 +32,6 @@ export const VideoModalityData$inboundSchema: z.ZodType<
     "word_timestamps": "wordTimestamps",
   });
 });
-
 /** @internal */
 export type VideoModalityData$Outbound = {
   type: "video";
@@ -53,19 +52,6 @@ export const VideoModalityData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VideoModalityData$ {
-  /** @deprecated use `VideoModalityData$inboundSchema` instead. */
-  export const inboundSchema = VideoModalityData$inboundSchema;
-  /** @deprecated use `VideoModalityData$outboundSchema` instead. */
-  export const outboundSchema = VideoModalityData$outboundSchema;
-  /** @deprecated use `VideoModalityData$Outbound` instead. */
-  export type Outbound = VideoModalityData$Outbound;
-}
-
 export function videoModalityDataToJSON(
   videoModalityData: VideoModalityData,
 ): string {
@@ -73,7 +59,6 @@ export function videoModalityDataToJSON(
     VideoModalityData$outboundSchema.parse(videoModalityData),
   );
 }
-
 export function videoModalityDataFromJSON(
   jsonString: string,
 ): SafeParseResult<VideoModalityData, SDKValidationError> {

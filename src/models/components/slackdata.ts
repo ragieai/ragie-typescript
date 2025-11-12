@@ -27,7 +27,6 @@ export const SlackData$inboundSchema: z.ZodType<
     "channel_name": "channelName",
   });
 });
-
 /** @internal */
 export type SlackData$Outbound = {
   channel_id: string;
@@ -49,23 +48,9 @@ export const SlackData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SlackData$ {
-  /** @deprecated use `SlackData$inboundSchema` instead. */
-  export const inboundSchema = SlackData$inboundSchema;
-  /** @deprecated use `SlackData$outboundSchema` instead. */
-  export const outboundSchema = SlackData$outboundSchema;
-  /** @deprecated use `SlackData$Outbound` instead. */
-  export type Outbound = SlackData$Outbound;
-}
-
 export function slackDataToJSON(slackData: SlackData): string {
   return JSON.stringify(SlackData$outboundSchema.parse(slackData));
 }
-
 export function slackDataFromJSON(
   jsonString: string,
 ): SafeParseResult<SlackData, SDKValidationError> {

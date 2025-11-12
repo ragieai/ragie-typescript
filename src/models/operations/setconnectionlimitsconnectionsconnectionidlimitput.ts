@@ -29,7 +29,6 @@ export const SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$inboundSc
       "ConnectionLimitParams": "connectionLimitParams",
     });
   });
-
 /** @internal */
 export type SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$Outbound =
   {
@@ -53,22 +52,6 @@ export const SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$outboundS
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$ {
-  /** @deprecated use `SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$inboundSchema;
-  /** @deprecated use `SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$outboundSchema;
-  /** @deprecated use `SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$Outbound` instead. */
-  export type Outbound =
-    SetConnectionLimitsConnectionsConnectionIdLimitPutRequest$Outbound;
-}
-
 export function setConnectionLimitsConnectionsConnectionIdLimitPutRequestToJSON(
   setConnectionLimitsConnectionsConnectionIdLimitPutRequest:
     SetConnectionLimitsConnectionsConnectionIdLimitPutRequest,
@@ -78,7 +61,6 @@ export function setConnectionLimitsConnectionsConnectionIdLimitPutRequestToJSON(
       .parse(setConnectionLimitsConnectionsConnectionIdLimitPutRequest),
   );
 }
-
 export function setConnectionLimitsConnectionsConnectionIdLimitPutRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

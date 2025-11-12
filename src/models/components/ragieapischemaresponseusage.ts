@@ -48,7 +48,6 @@ export const RagieApiSchemaResponseUsage$inboundSchema: z.ZodType<
     "total_tokens": "totalTokens",
   });
 });
-
 /** @internal */
 export type RagieApiSchemaResponseUsage$Outbound = {
   input_tokens: number;
@@ -79,19 +78,6 @@ export const RagieApiSchemaResponseUsage$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RagieApiSchemaResponseUsage$ {
-  /** @deprecated use `RagieApiSchemaResponseUsage$inboundSchema` instead. */
-  export const inboundSchema = RagieApiSchemaResponseUsage$inboundSchema;
-  /** @deprecated use `RagieApiSchemaResponseUsage$outboundSchema` instead. */
-  export const outboundSchema = RagieApiSchemaResponseUsage$outboundSchema;
-  /** @deprecated use `RagieApiSchemaResponseUsage$Outbound` instead. */
-  export type Outbound = RagieApiSchemaResponseUsage$Outbound;
-}
-
 export function ragieApiSchemaResponseUsageToJSON(
   ragieApiSchemaResponseUsage: RagieApiSchemaResponseUsage,
 ): string {
@@ -101,7 +87,6 @@ export function ragieApiSchemaResponseUsageToJSON(
     ),
   );
 }
-
 export function ragieApiSchemaResponseUsageFromJSON(
   jsonString: string,
 ): SafeParseResult<RagieApiSchemaResponseUsage, SDKValidationError> {

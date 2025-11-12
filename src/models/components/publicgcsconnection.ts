@@ -29,7 +29,6 @@ export const PublicGCSConnection$inboundSchema: z.ZodType<
   data: BucketData$inboundSchema,
   credentials: z.record(z.any()),
 });
-
 /** @internal */
 export type PublicGCSConnection$Outbound = {
   provider: "gcs";
@@ -48,19 +47,6 @@ export const PublicGCSConnection$outboundSchema: z.ZodType<
   credentials: z.record(z.any()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicGCSConnection$ {
-  /** @deprecated use `PublicGCSConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicGCSConnection$inboundSchema;
-  /** @deprecated use `PublicGCSConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicGCSConnection$outboundSchema;
-  /** @deprecated use `PublicGCSConnection$Outbound` instead. */
-  export type Outbound = PublicGCSConnection$Outbound;
-}
-
 export function publicGCSConnectionToJSON(
   publicGCSConnection: PublicGCSConnection,
 ): string {
@@ -68,7 +54,6 @@ export function publicGCSConnectionToJSON(
     PublicGCSConnection$outboundSchema.parse(publicGCSConnection),
   );
 }
-
 export function publicGCSConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicGCSConnection, SDKValidationError> {

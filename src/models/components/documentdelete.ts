@@ -19,7 +19,6 @@ export const DocumentDelete$inboundSchema: z.ZodType<
 > = z.object({
   status: z.string(),
 });
-
 /** @internal */
 export type DocumentDelete$Outbound = {
   status: string;
@@ -34,23 +33,9 @@ export const DocumentDelete$outboundSchema: z.ZodType<
   status: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentDelete$ {
-  /** @deprecated use `DocumentDelete$inboundSchema` instead. */
-  export const inboundSchema = DocumentDelete$inboundSchema;
-  /** @deprecated use `DocumentDelete$outboundSchema` instead. */
-  export const outboundSchema = DocumentDelete$outboundSchema;
-  /** @deprecated use `DocumentDelete$Outbound` instead. */
-  export type Outbound = DocumentDelete$Outbound;
-}
-
 export function documentDeleteToJSON(documentDelete: DocumentDelete): string {
   return JSON.stringify(DocumentDelete$outboundSchema.parse(documentDelete));
 }
-
 export function documentDeleteFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentDelete, SDKValidationError> {

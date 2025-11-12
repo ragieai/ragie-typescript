@@ -21,7 +21,6 @@ export const SearchResultLink$inboundSchema: z.ZodType<
   href: z.string(),
   type: z.string(),
 });
-
 /** @internal */
 export type SearchResultLink$Outbound = {
   href: string;
@@ -38,19 +37,6 @@ export const SearchResultLink$outboundSchema: z.ZodType<
   type: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchResultLink$ {
-  /** @deprecated use `SearchResultLink$inboundSchema` instead. */
-  export const inboundSchema = SearchResultLink$inboundSchema;
-  /** @deprecated use `SearchResultLink$outboundSchema` instead. */
-  export const outboundSchema = SearchResultLink$outboundSchema;
-  /** @deprecated use `SearchResultLink$Outbound` instead. */
-  export type Outbound = SearchResultLink$Outbound;
-}
-
 export function searchResultLinkToJSON(
   searchResultLink: SearchResultLink,
 ): string {
@@ -58,7 +44,6 @@ export function searchResultLinkToJSON(
     SearchResultLink$outboundSchema.parse(searchResultLink),
   );
 }
-
 export function searchResultLinkFromJSON(
   jsonString: string,
 ): SafeParseResult<SearchResultLink, SDKValidationError> {

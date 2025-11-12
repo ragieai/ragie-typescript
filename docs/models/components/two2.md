@@ -1,11 +1,11 @@
-# UpdateDocumentFileParams12
+# Two2
 
 ## Example Usage
 
 ```typescript
-import { UpdateDocumentFileParams12 } from "ragie/models/components";
+import { Two2 } from "ragie/models/components";
 
-let value: UpdateDocumentFileParams12 = {};
+let value: Two2 = {};
 ```
 
 ## Fields

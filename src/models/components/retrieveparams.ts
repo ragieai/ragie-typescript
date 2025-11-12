@@ -56,7 +56,6 @@ export const RetrieveParams$inboundSchema: z.ZodType<
     "recency_bias": "recencyBias",
   });
 });
-
 /** @internal */
 export type RetrieveParams$Outbound = {
   query: string;
@@ -89,23 +88,9 @@ export const RetrieveParams$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveParams$ {
-  /** @deprecated use `RetrieveParams$inboundSchema` instead. */
-  export const inboundSchema = RetrieveParams$inboundSchema;
-  /** @deprecated use `RetrieveParams$outboundSchema` instead. */
-  export const outboundSchema = RetrieveParams$outboundSchema;
-  /** @deprecated use `RetrieveParams$Outbound` instead. */
-  export type Outbound = RetrieveParams$Outbound;
-}
-
 export function retrieveParamsToJSON(retrieveParams: RetrieveParams): string {
   return JSON.stringify(RetrieveParams$outboundSchema.parse(retrieveParams));
 }
-
 export function retrieveParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<RetrieveParams, SDKValidationError> {

@@ -94,7 +94,6 @@ export const CreatePartitionParamsMetadataSchema$inboundSchema: z.ZodType<
   z.array(z.string()),
   z.record(z.any()),
 ]);
-
 /** @internal */
 export type CreatePartitionParamsMetadataSchema$Outbound =
   | string
@@ -116,21 +115,6 @@ export const CreatePartitionParamsMetadataSchema$outboundSchema: z.ZodType<
   z.record(z.any()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePartitionParamsMetadataSchema$ {
-  /** @deprecated use `CreatePartitionParamsMetadataSchema$inboundSchema` instead. */
-  export const inboundSchema =
-    CreatePartitionParamsMetadataSchema$inboundSchema;
-  /** @deprecated use `CreatePartitionParamsMetadataSchema$outboundSchema` instead. */
-  export const outboundSchema =
-    CreatePartitionParamsMetadataSchema$outboundSchema;
-  /** @deprecated use `CreatePartitionParamsMetadataSchema$Outbound` instead. */
-  export type Outbound = CreatePartitionParamsMetadataSchema$Outbound;
-}
-
 export function createPartitionParamsMetadataSchemaToJSON(
   createPartitionParamsMetadataSchema: CreatePartitionParamsMetadataSchema,
 ): string {
@@ -140,7 +124,6 @@ export function createPartitionParamsMetadataSchemaToJSON(
     ),
   );
 }
-
 export function createPartitionParamsMetadataSchemaFromJSON(
   jsonString: string,
 ): SafeParseResult<CreatePartitionParamsMetadataSchema, SDKValidationError> {
@@ -200,7 +183,6 @@ export const CreatePartitionParams$inboundSchema: z.ZodType<
     "metadata_schema": "metadataSchema",
   });
 });
-
 /** @internal */
 export type CreatePartitionParams$Outbound = {
   name: string;
@@ -276,19 +258,6 @@ export const CreatePartitionParams$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePartitionParams$ {
-  /** @deprecated use `CreatePartitionParams$inboundSchema` instead. */
-  export const inboundSchema = CreatePartitionParams$inboundSchema;
-  /** @deprecated use `CreatePartitionParams$outboundSchema` instead. */
-  export const outboundSchema = CreatePartitionParams$outboundSchema;
-  /** @deprecated use `CreatePartitionParams$Outbound` instead. */
-  export type Outbound = CreatePartitionParams$Outbound;
-}
-
 export function createPartitionParamsToJSON(
   createPartitionParams: CreatePartitionParams,
 ): string {
@@ -296,7 +265,6 @@ export function createPartitionParamsToJSON(
     CreatePartitionParams$outboundSchema.parse(createPartitionParams),
   );
 }
-
 export function createPartitionParamsFromJSON(
   jsonString: string,
 ): SafeParseResult<CreatePartitionParams, SDKValidationError> {

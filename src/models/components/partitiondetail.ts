@@ -57,7 +57,6 @@ export const PartitionDetailMetadataSchema$inboundSchema: z.ZodType<
   z.array(z.string()),
   z.record(z.any()),
 ]);
-
 /** @internal */
 export type PartitionDetailMetadataSchema$Outbound =
   | string
@@ -79,19 +78,6 @@ export const PartitionDetailMetadataSchema$outboundSchema: z.ZodType<
   z.record(z.any()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PartitionDetailMetadataSchema$ {
-  /** @deprecated use `PartitionDetailMetadataSchema$inboundSchema` instead. */
-  export const inboundSchema = PartitionDetailMetadataSchema$inboundSchema;
-  /** @deprecated use `PartitionDetailMetadataSchema$outboundSchema` instead. */
-  export const outboundSchema = PartitionDetailMetadataSchema$outboundSchema;
-  /** @deprecated use `PartitionDetailMetadataSchema$Outbound` instead. */
-  export type Outbound = PartitionDetailMetadataSchema$Outbound;
-}
-
 export function partitionDetailMetadataSchemaToJSON(
   partitionDetailMetadataSchema: PartitionDetailMetadataSchema,
 ): string {
@@ -101,7 +87,6 @@ export function partitionDetailMetadataSchemaToJSON(
     ),
   );
 }
-
 export function partitionDetailMetadataSchemaFromJSON(
   jsonString: string,
 ): SafeParseResult<PartitionDetailMetadataSchema, SDKValidationError> {
@@ -146,7 +131,6 @@ export const PartitionDetail$inboundSchema: z.ZodType<
     "metadata_schema": "metadataSchema",
   });
 });
-
 /** @internal */
 export type PartitionDetail$Outbound = {
   name: string;
@@ -197,25 +181,11 @@ export const PartitionDetail$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PartitionDetail$ {
-  /** @deprecated use `PartitionDetail$inboundSchema` instead. */
-  export const inboundSchema = PartitionDetail$inboundSchema;
-  /** @deprecated use `PartitionDetail$outboundSchema` instead. */
-  export const outboundSchema = PartitionDetail$outboundSchema;
-  /** @deprecated use `PartitionDetail$Outbound` instead. */
-  export type Outbound = PartitionDetail$Outbound;
-}
-
 export function partitionDetailToJSON(
   partitionDetail: PartitionDetail,
 ): string {
   return JSON.stringify(PartitionDetail$outboundSchema.parse(partitionDetail));
 }
-
 export function partitionDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<PartitionDetail, SDKValidationError> {

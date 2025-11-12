@@ -27,7 +27,6 @@ export const AuthenticatorJiraConnection$inboundSchema: z.ZodType<
   provider: z.literal("jira").default("jira").optional(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,
 });
-
 /** @internal */
 export type AuthenticatorJiraConnection$Outbound = {
   provider: "jira";
@@ -44,19 +43,6 @@ export const AuthenticatorJiraConnection$outboundSchema: z.ZodType<
   credentials: OAuthRefreshTokenCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticatorJiraConnection$ {
-  /** @deprecated use `AuthenticatorJiraConnection$inboundSchema` instead. */
-  export const inboundSchema = AuthenticatorJiraConnection$inboundSchema;
-  /** @deprecated use `AuthenticatorJiraConnection$outboundSchema` instead. */
-  export const outboundSchema = AuthenticatorJiraConnection$outboundSchema;
-  /** @deprecated use `AuthenticatorJiraConnection$Outbound` instead. */
-  export type Outbound = AuthenticatorJiraConnection$Outbound;
-}
-
 export function authenticatorJiraConnectionToJSON(
   authenticatorJiraConnection: AuthenticatorJiraConnection,
 ): string {
@@ -66,7 +52,6 @@ export function authenticatorJiraConnectionToJSON(
     ),
   );
 }
-
 export function authenticatorJiraConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticatorJiraConnection, SDKValidationError> {

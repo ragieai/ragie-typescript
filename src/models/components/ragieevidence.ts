@@ -69,7 +69,6 @@ export const RagieEvidence$inboundSchema: z.ZodType<
     "document_metadata": "documentMetadata",
   });
 });
-
 /** @internal */
 export type RagieEvidence$Outbound = {
   type: "ragie";
@@ -106,23 +105,9 @@ export const RagieEvidence$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RagieEvidence$ {
-  /** @deprecated use `RagieEvidence$inboundSchema` instead. */
-  export const inboundSchema = RagieEvidence$inboundSchema;
-  /** @deprecated use `RagieEvidence$outboundSchema` instead. */
-  export const outboundSchema = RagieEvidence$outboundSchema;
-  /** @deprecated use `RagieEvidence$Outbound` instead. */
-  export type Outbound = RagieEvidence$Outbound;
-}
-
 export function ragieEvidenceToJSON(ragieEvidence: RagieEvidence): string {
   return JSON.stringify(RagieEvidence$outboundSchema.parse(ragieEvidence));
 }
-
 export function ragieEvidenceFromJSON(
   jsonString: string,
 ): SafeParseResult<RagieEvidence, SDKValidationError> {

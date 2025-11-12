@@ -1,17 +1,17 @@
 # Two
 
-## Example Usage
+
+## Supported Types
+
+### `components.Two1`
 
 ```typescript
-import { Two } from "ragie/models/components";
-
-let value: Two = {};
+const value: components.Two1 = "fast";
 ```
 
-## Fields
+### `components.Two2`
 
-| Field                                                          | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `static`                                                       | [components.ModeStatic](../../models/components/modestatic.md) | :heavy_minus_sign:                                             | N/A                                                            |
-| `audio`                                                        | *boolean*                                                      | :heavy_minus_sign:                                             | N/A                                                            |
-| `video`                                                        | [components.ModeVideo](../../models/components/modevideo.md)   | :heavy_minus_sign:                                             | N/A                                                            |
+```typescript
+const value: components.Two2 = {};
+```
+

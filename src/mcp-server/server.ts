@@ -70,7 +70,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.13.1",
+    version: "1.14.0",
   });
 
   const client = new RagieCore({

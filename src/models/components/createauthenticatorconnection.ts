@@ -137,7 +137,6 @@ export const CreateAuthenticatorConnectionMetadata$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.string()),
 ]);
-
 /** @internal */
 export type CreateAuthenticatorConnectionMetadata$Outbound =
   | string
@@ -159,21 +158,6 @@ export const CreateAuthenticatorConnectionMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAuthenticatorConnectionMetadata$ {
-  /** @deprecated use `CreateAuthenticatorConnectionMetadata$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateAuthenticatorConnectionMetadata$inboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnectionMetadata$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAuthenticatorConnectionMetadata$outboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnectionMetadata$Outbound` instead. */
-  export type Outbound = CreateAuthenticatorConnectionMetadata$Outbound;
-}
-
 export function createAuthenticatorConnectionMetadataToJSON(
   createAuthenticatorConnectionMetadata: CreateAuthenticatorConnectionMetadata,
 ): string {
@@ -183,7 +167,6 @@ export function createAuthenticatorConnectionMetadataToJSON(
     ),
   );
 }
-
 export function createAuthenticatorConnectionMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateAuthenticatorConnectionMetadata, SDKValidationError> {
@@ -257,7 +240,6 @@ export const CreateAuthenticatorConnectionConnection$inboundSchema: z.ZodType<
     })),
   ),
 ]);
-
 /** @internal */
 export type CreateAuthenticatorConnectionConnection$Outbound =
   | (AuthenticatorHubspotConnection$Outbound & { provider: "hubspot" })
@@ -335,21 +317,6 @@ export const CreateAuthenticatorConnectionConnection$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAuthenticatorConnectionConnection$ {
-  /** @deprecated use `CreateAuthenticatorConnectionConnection$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateAuthenticatorConnectionConnection$inboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnectionConnection$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAuthenticatorConnectionConnection$outboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnectionConnection$Outbound` instead. */
-  export type Outbound = CreateAuthenticatorConnectionConnection$Outbound;
-}
-
 export function createAuthenticatorConnectionConnectionToJSON(
   createAuthenticatorConnectionConnection:
     CreateAuthenticatorConnectionConnection,
@@ -360,7 +327,6 @@ export function createAuthenticatorConnectionConnectionToJSON(
     ),
   );
 }
-
 export function createAuthenticatorConnectionConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -459,7 +425,6 @@ export const CreateAuthenticatorConnection$inboundSchema: z.ZodType<
     "page_limit": "pageLimit",
   });
 });
-
 /** @internal */
 export type CreateAuthenticatorConnection$Outbound = {
   partition_strategy: MediaModeParam$Outbound;
@@ -568,19 +533,6 @@ export const CreateAuthenticatorConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAuthenticatorConnection$ {
-  /** @deprecated use `CreateAuthenticatorConnection$inboundSchema` instead. */
-  export const inboundSchema = CreateAuthenticatorConnection$inboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnection$outboundSchema` instead. */
-  export const outboundSchema = CreateAuthenticatorConnection$outboundSchema;
-  /** @deprecated use `CreateAuthenticatorConnection$Outbound` instead. */
-  export type Outbound = CreateAuthenticatorConnection$Outbound;
-}
-
 export function createAuthenticatorConnectionToJSON(
   createAuthenticatorConnection: CreateAuthenticatorConnection,
 ): string {
@@ -590,7 +542,6 @@ export function createAuthenticatorConnectionToJSON(
     ),
   );
 }
-
 export function createAuthenticatorConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateAuthenticatorConnection, SDKValidationError> {

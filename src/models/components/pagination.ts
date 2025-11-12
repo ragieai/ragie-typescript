@@ -27,7 +27,6 @@ export const Pagination$inboundSchema: z.ZodType<
     "total_count": "totalCount",
   });
 });
-
 /** @internal */
 export type Pagination$Outbound = {
   next_cursor?: string | null | undefined;
@@ -49,23 +48,9 @@ export const Pagination$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Pagination$ {
-  /** @deprecated use `Pagination$inboundSchema` instead. */
-  export const inboundSchema = Pagination$inboundSchema;
-  /** @deprecated use `Pagination$outboundSchema` instead. */
-  export const outboundSchema = Pagination$outboundSchema;
-  /** @deprecated use `Pagination$Outbound` instead. */
-  export type Outbound = Pagination$Outbound;
-}
-
 export function paginationToJSON(pagination: Pagination): string {
   return JSON.stringify(Pagination$outboundSchema.parse(pagination));
 }
-
 export function paginationFromJSON(
   jsonString: string,
 ): SafeParseResult<Pagination, SDKValidationError> {

@@ -51,22 +51,10 @@ export type CodeInterpreterOutput = {
 export const CodeInterpreterOutputStatus$inboundSchema: z.ZodNativeEnum<
   typeof CodeInterpreterOutputStatus
 > = z.nativeEnum(CodeInterpreterOutputStatus);
-
 /** @internal */
 export const CodeInterpreterOutputStatus$outboundSchema: z.ZodNativeEnum<
   typeof CodeInterpreterOutputStatus
 > = CodeInterpreterOutputStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CodeInterpreterOutputStatus$ {
-  /** @deprecated use `CodeInterpreterOutputStatus$inboundSchema` instead. */
-  export const inboundSchema = CodeInterpreterOutputStatus$inboundSchema;
-  /** @deprecated use `CodeInterpreterOutputStatus$outboundSchema` instead. */
-  export const outboundSchema = CodeInterpreterOutputStatus$outboundSchema;
-}
 
 /** @internal */
 export const CodeInterpreterOutput$inboundSchema: z.ZodType<
@@ -85,7 +73,6 @@ export const CodeInterpreterOutput$inboundSchema: z.ZodType<
     "container_id": "containerId",
   });
 });
-
 /** @internal */
 export type CodeInterpreterOutput$Outbound = {
   id: string;
@@ -116,19 +103,6 @@ export const CodeInterpreterOutput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CodeInterpreterOutput$ {
-  /** @deprecated use `CodeInterpreterOutput$inboundSchema` instead. */
-  export const inboundSchema = CodeInterpreterOutput$inboundSchema;
-  /** @deprecated use `CodeInterpreterOutput$outboundSchema` instead. */
-  export const outboundSchema = CodeInterpreterOutput$outboundSchema;
-  /** @deprecated use `CodeInterpreterOutput$Outbound` instead. */
-  export type Outbound = CodeInterpreterOutput$Outbound;
-}
-
 export function codeInterpreterOutputToJSON(
   codeInterpreterOutput: CodeInterpreterOutput,
 ): string {
@@ -136,7 +110,6 @@ export function codeInterpreterOutputToJSON(
     CodeInterpreterOutput$outboundSchema.parse(codeInterpreterOutput),
   );
 }
-
 export function codeInterpreterOutputFromJSON(
   jsonString: string,
 ): SafeParseResult<CodeInterpreterOutput, SDKValidationError> {

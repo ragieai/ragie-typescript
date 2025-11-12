@@ -45,7 +45,6 @@ export const PublicFreshdeskConnection$inboundSchema: z.ZodType<
     "user_email": "userEmail",
   });
 });
-
 /** @internal */
 export type PublicFreshdeskConnection$Outbound = {
   provider: "freshdesk";
@@ -70,19 +69,6 @@ export const PublicFreshdeskConnection$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PublicFreshdeskConnection$ {
-  /** @deprecated use `PublicFreshdeskConnection$inboundSchema` instead. */
-  export const inboundSchema = PublicFreshdeskConnection$inboundSchema;
-  /** @deprecated use `PublicFreshdeskConnection$outboundSchema` instead. */
-  export const outboundSchema = PublicFreshdeskConnection$outboundSchema;
-  /** @deprecated use `PublicFreshdeskConnection$Outbound` instead. */
-  export type Outbound = PublicFreshdeskConnection$Outbound;
-}
-
 export function publicFreshdeskConnectionToJSON(
   publicFreshdeskConnection: PublicFreshdeskConnection,
 ): string {
@@ -90,7 +76,6 @@ export function publicFreshdeskConnectionToJSON(
     PublicFreshdeskConnection$outboundSchema.parse(publicFreshdeskConnection),
   );
 }
-
 export function publicFreshdeskConnectionFromJSON(
   jsonString: string,
 ): SafeParseResult<PublicFreshdeskConnection, SDKValidationError> {

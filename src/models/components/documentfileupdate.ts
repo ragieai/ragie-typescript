@@ -19,7 +19,6 @@ export const DocumentFileUpdate$inboundSchema: z.ZodType<
 > = z.object({
   status: z.string(),
 });
-
 /** @internal */
 export type DocumentFileUpdate$Outbound = {
   status: string;
@@ -34,19 +33,6 @@ export const DocumentFileUpdate$outboundSchema: z.ZodType<
   status: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentFileUpdate$ {
-  /** @deprecated use `DocumentFileUpdate$inboundSchema` instead. */
-  export const inboundSchema = DocumentFileUpdate$inboundSchema;
-  /** @deprecated use `DocumentFileUpdate$outboundSchema` instead. */
-  export const outboundSchema = DocumentFileUpdate$outboundSchema;
-  /** @deprecated use `DocumentFileUpdate$Outbound` instead. */
-  export type Outbound = DocumentFileUpdate$Outbound;
-}
-
 export function documentFileUpdateToJSON(
   documentFileUpdate: DocumentFileUpdate,
 ): string {
@@ -54,7 +40,6 @@ export function documentFileUpdateToJSON(
     DocumentFileUpdate$outboundSchema.parse(documentFileUpdate),
   );
 }
-
 export function documentFileUpdateFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentFileUpdate, SDKValidationError> {

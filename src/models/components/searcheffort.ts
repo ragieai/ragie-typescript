@@ -15,18 +15,6 @@ export type SearchEffort = ClosedEnum<typeof SearchEffort>;
 /** @internal */
 export const SearchEffort$inboundSchema: z.ZodNativeEnum<typeof SearchEffort> =
   z.nativeEnum(SearchEffort);
-
 /** @internal */
 export const SearchEffort$outboundSchema: z.ZodNativeEnum<typeof SearchEffort> =
   SearchEffort$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchEffort$ {
-  /** @deprecated use `SearchEffort$inboundSchema` instead. */
-  export const inboundSchema = SearchEffort$inboundSchema;
-  /** @deprecated use `SearchEffort$outboundSchema` instead. */
-  export const outboundSchema = SearchEffort$outboundSchema;
-}
