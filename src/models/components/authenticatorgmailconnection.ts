@@ -20,7 +20,7 @@ import {
 } from "./oauthrefreshtokencredentials.js";
 
 export type AuthenticatorGmailConnection = {
-  provider?: "gmail" | undefined;
+  provider: "gmail";
   data: GmailData;
   /**
    * The email of the Google Drive account this is for
@@ -35,7 +35,7 @@ export const AuthenticatorGmailConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("gmail").default("gmail").optional(),
+  provider: z.literal("gmail"),
   data: GmailData$inboundSchema,
   email: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,

@@ -88,17 +88,17 @@ export type CreateAuthenticatorConnectionMetadata =
   | Array<string>;
 
 export type CreateAuthenticatorConnectionConnection =
-  | (AuthenticatorHubspotConnection & { provider: "hubspot" })
-  | (AuthenticatorNotionConnection & { provider: "notion" })
-  | (AuthenticatorDropboxConnection & { provider: "dropbox" })
-  | (AuthenticatorGmailConnection & { provider: "gmail" })
-  | (AuthenticatorGoogleDriveConnection & { provider: "google_drive" })
-  | (AuthenticatorOnedriveConnection & { provider: "onedrive" })
-  | (AuthenticatorSalesforceConnection & { provider: "salesforce" })
-  | (AuthenticatorSharepointConnection & { provider: "sharepoint" })
-  | (AuthenticatorSlackConnection & { provider: "slack" })
-  | (AuthenticatorConfluenceConnection & { provider: "confluence" })
-  | (AuthenticatorJiraConnection & { provider: "jira" });
+  | AuthenticatorConfluenceConnection
+  | AuthenticatorDropboxConnection
+  | AuthenticatorGmailConnection
+  | AuthenticatorGoogleDriveConnection
+  | AuthenticatorHubspotConnection
+  | AuthenticatorJiraConnection
+  | AuthenticatorNotionConnection
+  | AuthenticatorOnedriveConnection
+  | AuthenticatorSalesforceConnection
+  | AuthenticatorSharepointConnection
+  | AuthenticatorSlackConnection;
 
 export type CreateAuthenticatorConnection = {
   partitionStrategy: MediaModeParam;
@@ -106,23 +106,23 @@ export type CreateAuthenticatorConnection = {
   pageLimit?: number | null | undefined;
   config?: { [k: string]: any } | null | undefined;
   /**
-   * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
+   * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`, `chunk_content_type`.
    */
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   connection:
-    | (AuthenticatorHubspotConnection & { provider: "hubspot" })
-    | (AuthenticatorNotionConnection & { provider: "notion" })
-    | (AuthenticatorDropboxConnection & { provider: "dropbox" })
-    | (AuthenticatorGmailConnection & { provider: "gmail" })
-    | (AuthenticatorGoogleDriveConnection & { provider: "google_drive" })
-    | (AuthenticatorOnedriveConnection & { provider: "onedrive" })
-    | (AuthenticatorSalesforceConnection & { provider: "salesforce" })
-    | (AuthenticatorSharepointConnection & { provider: "sharepoint" })
-    | (AuthenticatorSlackConnection & { provider: "slack" })
-    | (AuthenticatorConfluenceConnection & { provider: "confluence" })
-    | (AuthenticatorJiraConnection & { provider: "jira" });
+    | AuthenticatorConfluenceConnection
+    | AuthenticatorDropboxConnection
+    | AuthenticatorGmailConnection
+    | AuthenticatorGoogleDriveConnection
+    | AuthenticatorHubspotConnection
+    | AuthenticatorJiraConnection
+    | AuthenticatorNotionConnection
+    | AuthenticatorOnedriveConnection
+    | AuthenticatorSalesforceConnection
+    | AuthenticatorSharepointConnection
+    | AuthenticatorSlackConnection;
 };
 
 /** @internal */
@@ -184,75 +184,31 @@ export const CreateAuthenticatorConnectionConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  AuthenticatorHubspotConnection$inboundSchema.and(
-    z.object({ provider: z.literal("hubspot") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorNotionConnection$inboundSchema.and(
-    z.object({ provider: z.literal("notion") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorDropboxConnection$inboundSchema.and(
-    z.object({ provider: z.literal("dropbox") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorGmailConnection$inboundSchema.and(
-    z.object({ provider: z.literal("gmail") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorGoogleDriveConnection$inboundSchema.and(
-    z.object({ provider: z.literal("google_drive") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorOnedriveConnection$inboundSchema.and(
-    z.object({ provider: z.literal("onedrive") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorSalesforceConnection$inboundSchema.and(
-    z.object({ provider: z.literal("salesforce") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorSharepointConnection$inboundSchema.and(
-    z.object({ provider: z.literal("sharepoint") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorSlackConnection$inboundSchema.and(
-    z.object({ provider: z.literal("slack") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorConfluenceConnection$inboundSchema.and(
-    z.object({ provider: z.literal("confluence") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorJiraConnection$inboundSchema.and(
-    z.object({ provider: z.literal("jira") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
+  AuthenticatorConfluenceConnection$inboundSchema,
+  AuthenticatorDropboxConnection$inboundSchema,
+  AuthenticatorGmailConnection$inboundSchema,
+  AuthenticatorGoogleDriveConnection$inboundSchema,
+  AuthenticatorHubspotConnection$inboundSchema,
+  AuthenticatorJiraConnection$inboundSchema,
+  AuthenticatorNotionConnection$inboundSchema,
+  AuthenticatorOnedriveConnection$inboundSchema,
+  AuthenticatorSalesforceConnection$inboundSchema,
+  AuthenticatorSharepointConnection$inboundSchema,
+  AuthenticatorSlackConnection$inboundSchema,
 ]);
 /** @internal */
 export type CreateAuthenticatorConnectionConnection$Outbound =
-  | (AuthenticatorHubspotConnection$Outbound & { provider: "hubspot" })
-  | (AuthenticatorNotionConnection$Outbound & { provider: "notion" })
-  | (AuthenticatorDropboxConnection$Outbound & { provider: "dropbox" })
-  | (AuthenticatorGmailConnection$Outbound & { provider: "gmail" })
-  | (AuthenticatorGoogleDriveConnection$Outbound & { provider: "google_drive" })
-  | (AuthenticatorOnedriveConnection$Outbound & { provider: "onedrive" })
-  | (AuthenticatorSalesforceConnection$Outbound & { provider: "salesforce" })
-  | (AuthenticatorSharepointConnection$Outbound & { provider: "sharepoint" })
-  | (AuthenticatorSlackConnection$Outbound & { provider: "slack" })
-  | (AuthenticatorConfluenceConnection$Outbound & { provider: "confluence" })
-  | (AuthenticatorJiraConnection$Outbound & { provider: "jira" });
+  | AuthenticatorConfluenceConnection$Outbound
+  | AuthenticatorDropboxConnection$Outbound
+  | AuthenticatorGmailConnection$Outbound
+  | AuthenticatorGoogleDriveConnection$Outbound
+  | AuthenticatorHubspotConnection$Outbound
+  | AuthenticatorJiraConnection$Outbound
+  | AuthenticatorNotionConnection$Outbound
+  | AuthenticatorOnedriveConnection$Outbound
+  | AuthenticatorSalesforceConnection$Outbound
+  | AuthenticatorSharepointConnection$Outbound
+  | AuthenticatorSlackConnection$Outbound;
 
 /** @internal */
 export const CreateAuthenticatorConnectionConnection$outboundSchema: z.ZodType<
@@ -260,61 +216,17 @@ export const CreateAuthenticatorConnectionConnection$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateAuthenticatorConnectionConnection
 > = z.union([
-  AuthenticatorHubspotConnection$outboundSchema.and(
-    z.object({ provider: z.literal("hubspot") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorNotionConnection$outboundSchema.and(
-    z.object({ provider: z.literal("notion") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorDropboxConnection$outboundSchema.and(
-    z.object({ provider: z.literal("dropbox") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorGmailConnection$outboundSchema.and(
-    z.object({ provider: z.literal("gmail") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorGoogleDriveConnection$outboundSchema.and(
-    z.object({ provider: z.literal("google_drive") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorOnedriveConnection$outboundSchema.and(
-    z.object({ provider: z.literal("onedrive") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorSalesforceConnection$outboundSchema.and(
-    z.object({ provider: z.literal("salesforce") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorSharepointConnection$outboundSchema.and(
-    z.object({ provider: z.literal("sharepoint") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorSlackConnection$outboundSchema.and(
-    z.object({ provider: z.literal("slack") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorConfluenceConnection$outboundSchema.and(
-    z.object({ provider: z.literal("confluence") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AuthenticatorJiraConnection$outboundSchema.and(
-    z.object({ provider: z.literal("jira") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
+  AuthenticatorConfluenceConnection$outboundSchema,
+  AuthenticatorDropboxConnection$outboundSchema,
+  AuthenticatorGmailConnection$outboundSchema,
+  AuthenticatorGoogleDriveConnection$outboundSchema,
+  AuthenticatorHubspotConnection$outboundSchema,
+  AuthenticatorJiraConnection$outboundSchema,
+  AuthenticatorNotionConnection$outboundSchema,
+  AuthenticatorOnedriveConnection$outboundSchema,
+  AuthenticatorSalesforceConnection$outboundSchema,
+  AuthenticatorSharepointConnection$outboundSchema,
+  AuthenticatorSlackConnection$outboundSchema,
 ]);
 
 export function createAuthenticatorConnectionConnectionToJSON(
@@ -363,61 +275,17 @@ export const CreateAuthenticatorConnection$inboundSchema: z.ZodType<
     ]),
   ).optional(),
   connection: z.union([
-    AuthenticatorHubspotConnection$inboundSchema.and(
-      z.object({ provider: z.literal("hubspot") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorNotionConnection$inboundSchema.and(
-      z.object({ provider: z.literal("notion") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorDropboxConnection$inboundSchema.and(
-      z.object({ provider: z.literal("dropbox") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorGmailConnection$inboundSchema.and(
-      z.object({ provider: z.literal("gmail") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorGoogleDriveConnection$inboundSchema.and(
-      z.object({ provider: z.literal("google_drive") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorOnedriveConnection$inboundSchema.and(
-      z.object({ provider: z.literal("onedrive") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorSalesforceConnection$inboundSchema.and(
-      z.object({ provider: z.literal("salesforce") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorSharepointConnection$inboundSchema.and(
-      z.object({ provider: z.literal("sharepoint") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorSlackConnection$inboundSchema.and(
-      z.object({ provider: z.literal("slack") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorConfluenceConnection$inboundSchema.and(
-      z.object({ provider: z.literal("confluence") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorJiraConnection$inboundSchema.and(
-      z.object({ provider: z.literal("jira") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
+    AuthenticatorConfluenceConnection$inboundSchema,
+    AuthenticatorDropboxConnection$inboundSchema,
+    AuthenticatorGmailConnection$inboundSchema,
+    AuthenticatorGoogleDriveConnection$inboundSchema,
+    AuthenticatorHubspotConnection$inboundSchema,
+    AuthenticatorJiraConnection$inboundSchema,
+    AuthenticatorNotionConnection$inboundSchema,
+    AuthenticatorOnedriveConnection$inboundSchema,
+    AuthenticatorSalesforceConnection$inboundSchema,
+    AuthenticatorSharepointConnection$inboundSchema,
+    AuthenticatorSlackConnection$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -435,19 +303,17 @@ export type CreateAuthenticatorConnection$Outbound = {
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   connection:
-    | (AuthenticatorHubspotConnection$Outbound & { provider: "hubspot" })
-    | (AuthenticatorNotionConnection$Outbound & { provider: "notion" })
-    | (AuthenticatorDropboxConnection$Outbound & { provider: "dropbox" })
-    | (AuthenticatorGmailConnection$Outbound & { provider: "gmail" })
-    | (AuthenticatorGoogleDriveConnection$Outbound & {
-      provider: "google_drive";
-    })
-    | (AuthenticatorOnedriveConnection$Outbound & { provider: "onedrive" })
-    | (AuthenticatorSalesforceConnection$Outbound & { provider: "salesforce" })
-    | (AuthenticatorSharepointConnection$Outbound & { provider: "sharepoint" })
-    | (AuthenticatorSlackConnection$Outbound & { provider: "slack" })
-    | (AuthenticatorConfluenceConnection$Outbound & { provider: "confluence" })
-    | (AuthenticatorJiraConnection$Outbound & { provider: "jira" });
+    | AuthenticatorConfluenceConnection$Outbound
+    | AuthenticatorDropboxConnection$Outbound
+    | AuthenticatorGmailConnection$Outbound
+    | AuthenticatorGoogleDriveConnection$Outbound
+    | AuthenticatorHubspotConnection$Outbound
+    | AuthenticatorJiraConnection$Outbound
+    | AuthenticatorNotionConnection$Outbound
+    | AuthenticatorOnedriveConnection$Outbound
+    | AuthenticatorSalesforceConnection$Outbound
+    | AuthenticatorSharepointConnection$Outbound
+    | AuthenticatorSlackConnection$Outbound;
 };
 
 /** @internal */
@@ -470,61 +336,17 @@ export const CreateAuthenticatorConnection$outboundSchema: z.ZodType<
     ]),
   ).optional(),
   connection: z.union([
-    AuthenticatorHubspotConnection$outboundSchema.and(
-      z.object({ provider: z.literal("hubspot") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorNotionConnection$outboundSchema.and(
-      z.object({ provider: z.literal("notion") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorDropboxConnection$outboundSchema.and(
-      z.object({ provider: z.literal("dropbox") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorGmailConnection$outboundSchema.and(
-      z.object({ provider: z.literal("gmail") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorGoogleDriveConnection$outboundSchema.and(
-      z.object({ provider: z.literal("google_drive") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorOnedriveConnection$outboundSchema.and(
-      z.object({ provider: z.literal("onedrive") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorSalesforceConnection$outboundSchema.and(
-      z.object({ provider: z.literal("salesforce") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorSharepointConnection$outboundSchema.and(
-      z.object({ provider: z.literal("sharepoint") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorSlackConnection$outboundSchema.and(
-      z.object({ provider: z.literal("slack") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorConfluenceConnection$outboundSchema.and(
-      z.object({ provider: z.literal("confluence") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    AuthenticatorJiraConnection$outboundSchema.and(
-      z.object({ provider: z.literal("jira") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
+    AuthenticatorConfluenceConnection$outboundSchema,
+    AuthenticatorDropboxConnection$outboundSchema,
+    AuthenticatorGmailConnection$outboundSchema,
+    AuthenticatorGoogleDriveConnection$outboundSchema,
+    AuthenticatorHubspotConnection$outboundSchema,
+    AuthenticatorJiraConnection$outboundSchema,
+    AuthenticatorNotionConnection$outboundSchema,
+    AuthenticatorOnedriveConnection$outboundSchema,
+    AuthenticatorSalesforceConnection$outboundSchema,
+    AuthenticatorSharepointConnection$outboundSchema,
+    AuthenticatorSlackConnection$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

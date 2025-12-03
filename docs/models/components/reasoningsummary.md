@@ -15,4 +15,4 @@ let value: ReasoningSummary = {
 | Field                         | Type                          | Required                      | Description                   |
 | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
 | `summary`                     | *string*                      | :heavy_check_mark:            | The summary of the reasoning. |
-| `type`                        | *string*                      | :heavy_minus_sign:            | N/A                           |
+| `type`                        | *"summary"*                   | :heavy_minus_sign:            | N/A                           |

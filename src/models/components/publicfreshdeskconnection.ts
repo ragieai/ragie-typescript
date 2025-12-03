@@ -21,7 +21,7 @@ import {
 } from "./freshdeskdata.js";
 
 export type PublicFreshdeskConnection = {
-  provider?: "freshdesk" | undefined;
+  provider: "freshdesk";
   data: FreshdeskData;
   /**
    * The email the API key is associated with
@@ -36,7 +36,7 @@ export const PublicFreshdeskConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("freshdesk").default("freshdesk").optional(),
+  provider: z.literal("freshdesk"),
   data: FreshdeskData$inboundSchema,
   user_email: z.string(),
   credentials: FreshdeskCredentials$inboundSchema,

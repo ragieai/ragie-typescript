@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.14.0
+  version: 1.15.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -42,7 +42,7 @@ typescript:
   author: Speakeasy
   baseErrorName: RagieError
   clientServerStatusCodesAsErrors: true
-  constFieldsAlwaysOptional: true
+  constFieldsAlwaysOptional: false
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
   enableMCPServer: true
@@ -51,6 +51,9 @@ typescript:
   exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: body-first
+  formStringArrayEncodeMode: encoded-string
+  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateExamples: true
   imports:
     option: openapi
@@ -60,14 +63,18 @@ typescript:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  inferUnionDiscriminators: true
   inputModelSuffix: input
   jsonpath: legacy
+  laxMode: strict
   maxMethodParams: 0
   methodArguments: infer-optional-args
   modelPropertyCasing: camel
   moduleFormat: commonjs
+  multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: ragie
+  preApplyUnionDiscriminators: true
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2

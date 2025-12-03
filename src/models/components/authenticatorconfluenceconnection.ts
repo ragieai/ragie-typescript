@@ -20,7 +20,7 @@ import {
 } from "./oauthrefreshtokencredentials.js";
 
 export type AuthenticatorConfluenceConnection = {
-  provider?: "confluence" | undefined;
+  provider: "confluence";
   data: Array<ConfluenceData>;
   credentials: OAuthRefreshTokenCredentials;
 };
@@ -31,7 +31,7 @@ export const AuthenticatorConfluenceConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("confluence").default("confluence").optional(),
+  provider: z.literal("confluence"),
   data: z.array(ConfluenceData$inboundSchema),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,
 });

@@ -20,7 +20,7 @@ import {
 } from "./zendeskdata.js";
 
 export type PublicZendeskConnection = {
-  provider?: "zendesk" | undefined;
+  provider: "zendesk";
   data: ZendeskData;
   credentials: ZendeskCredentials;
 };
@@ -31,7 +31,7 @@ export const PublicZendeskConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("zendesk").default("zendesk").optional(),
+  provider: z.literal("zendesk"),
   data: ZendeskData$inboundSchema,
   credentials: ZendeskCredentials$inboundSchema,
 });

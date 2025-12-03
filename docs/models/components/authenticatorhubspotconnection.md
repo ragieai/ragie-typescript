@@ -6,6 +6,7 @@
 import { AuthenticatorHubspotConnection } from "ragie/models/components";
 
 let value: AuthenticatorHubspotConnection = {
+  provider: "hubspot",
   data: {
     companies: true,
     contacts: false,
@@ -27,7 +28,7 @@ let value: AuthenticatorHubspotConnection = {
 
 | Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `provider`                                                                                         | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `provider`                                                                                         | *"hubspot"*                                                                                        | :heavy_check_mark:                                                                                 | N/A                                                                                                |
 | `data`                                                                                             | [components.HubspotData](../../models/components/hubspotdata.md)                                   | :heavy_check_mark:                                                                                 | N/A                                                                                                |
 | `hubId`                                                                                            | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
 | `hubDomain`                                                                                        | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |

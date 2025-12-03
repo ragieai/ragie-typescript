@@ -21,7 +21,7 @@ import {
 } from "./oauthrefreshtokencredentials.js";
 
 export type AuthenticatorHubspotConnection = {
-  provider?: "hubspot" | undefined;
+  provider: "hubspot";
   data: HubspotData;
   hubId: string;
   hubDomain: string;
@@ -34,7 +34,7 @@ export const AuthenticatorHubspotConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("hubspot").default("hubspot").optional(),
+  provider: z.literal("hubspot"),
   data: HubspotData$inboundSchema,
   hub_id: z.string(),
   hub_domain: z.string(),

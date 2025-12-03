@@ -73,6 +73,7 @@ const value: components.OAuthCredentials = {
 
 ```typescript
 const value: components.CreateGoogleAuthenticator = {
+  provider: "google",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",

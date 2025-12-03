@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: 5309ec13a9d589e71546f4fbcbe4f782
+  docChecksum: 35462b0b7087dab72223f260972e17de
   docVersion: 1.0.0
-  speakeasyVersion: 1.655.0
-  generationVersion: 2.751.0
-  releaseVersion: 1.14.0
-  configChecksum: 1e02d2655256e77bfadf422eaea2fdea
+  speakeasyVersion: 1.666.2
+  generationVersion: 2.768.1
+  releaseVersion: 1.15.0
+  configChecksum: 183181b733a3fa06504d8d0e3af0b5c6
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.5
+    core: 3.26.14
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -33,8 +33,8 @@ features:
     pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.3.0
-    unions: 2.86.0
+    sdkHooks: 0.4.0
+    unions: 2.86.3
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -633,6 +633,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/unrecognized.ts
   - tsconfig.json
 examples:
   CreateDocument:
@@ -1204,9 +1205,11 @@ examples:
       parameters:
         path:
           partition_id: "<id>"
+        query:
+          async: true
       responses:
         "200":
-          application/json: {"key": "<value>"}
+          application/json: {"message": "ok"}
         "422":
           application/json: {}
         "401":
@@ -1353,4 +1356,4 @@ examples:
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `ragie.documents.create()`: \n  *  `request.mode` **Changed** **Breaking** :warning:\n* `ragie.documents.updateFile()`: \n  *  `request.updateDocumentFileParams.mode` **Changed** **Breaking** :warning:\n"
+releaseNotes: "## Typescript SDK Changes:\n* `ragie.partitions.delete()`: \n  *  `request.async` **Added**\n  *  `response` **Changed** **Breaking** :warning:\n"

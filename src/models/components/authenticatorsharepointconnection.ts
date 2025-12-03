@@ -21,7 +21,7 @@ import {
 } from "./sharepointdata.js";
 
 export type AuthenticatorSharepointConnection = {
-  provider?: "sharepoint" | undefined;
+  provider: "sharepoint";
   data: SharepointData;
   /**
    * The email of the Sharepoint account this is for
@@ -36,7 +36,7 @@ export const AuthenticatorSharepointConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("sharepoint").default("sharepoint").optional(),
+  provider: z.literal("sharepoint"),
   data: SharepointData$inboundSchema,
   user_email: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,

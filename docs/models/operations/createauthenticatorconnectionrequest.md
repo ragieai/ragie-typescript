@@ -12,6 +12,7 @@ let value: CreateAuthenticatorConnectionRequest = {
     pageLimit: null,
     config: null,
     connection: {
+      provider: "hubspot",
       data: {
         companies: true,
         contacts: false,

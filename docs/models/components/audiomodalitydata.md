@@ -5,12 +5,14 @@
 ```typescript
 import { AudioModalityData } from "ragie/models/components";
 
-let value: AudioModalityData = {};
+let value: AudioModalityData = {
+  type: "audio",
+};
 ```
 
 ## Fields
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `type`                                                                 | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `type`                                                                 | *"audio"*                                                              | :heavy_check_mark:                                                     | N/A                                                                    |
 | `wordTimestamps`                                                       | [components.WordTimestamp](../../models/components/wordtimestamp.md)[] | :heavy_minus_sign:                                                     | N/A                                                                    |

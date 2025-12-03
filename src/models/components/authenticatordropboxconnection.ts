@@ -20,7 +20,7 @@ import {
 } from "./oauthrefreshtokencredentials.js";
 
 export type AuthenticatorDropboxConnection = {
-  provider?: "dropbox" | undefined;
+  provider: "dropbox";
   data: FolderData;
   /**
    * The email of the Dropbox account this is for
@@ -35,7 +35,7 @@ export const AuthenticatorDropboxConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("dropbox").default("dropbox").optional(),
+  provider: z.literal("dropbox"),
   data: FolderData$inboundSchema,
   email: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,

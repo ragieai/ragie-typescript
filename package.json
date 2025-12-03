@@ -1,6 +1,6 @@
 {
   "name": "ragie",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "author": "Speakeasy",
   "license": "MIT",
   "bin": {
@@ -19,14 +19,10 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0"
-  },
-  "peerDependenciesMeta": {
-    "@modelcontextprotocol/sdk": {"optional":true}
+    
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "@stricli/core": "^1.1.1",
     "@types/express": "^4.17.21",
     "bun": "1.2.17",
@@ -38,6 +34,7 @@
     "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "zod": "^3.25.0 || ^4.0.0"
   }
 }

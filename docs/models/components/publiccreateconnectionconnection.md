@@ -7,6 +7,7 @@
 
 ```typescript
 const value: components.PublicBackblazeConnection = {
+  provider: "backblaze",
   data: {
     bucket: "<value>",
   },
@@ -23,6 +24,7 @@ const value: components.PublicBackblazeConnection = {
 
 ```typescript
 const value: components.PublicFreshdeskConnection = {
+  provider: "freshdesk",
   data: {
     tickets: true,
     articles: false,
@@ -39,6 +41,7 @@ const value: components.PublicFreshdeskConnection = {
 
 ```typescript
 const value: components.PublicGCSConnection = {
+  provider: "gcs",
   data: {
     bucket: "<value>",
   },
@@ -54,6 +57,7 @@ const value: components.PublicGCSConnection = {
 
 ```typescript
 const value: components.PublicIntercomConnection = {
+  provider: "intercom",
   data: {},
   credentials: {
     accessToken: "<value>",
@@ -67,6 +71,7 @@ const value: components.PublicIntercomConnection = {
 
 ```typescript
 const value: components.PublicS3CompatibleConnection = {
+  provider: "s3",
   data: {
     bucket: "<value>",
   },
@@ -82,6 +87,7 @@ const value: components.PublicS3CompatibleConnection = {
 
 ```typescript
 const value: components.PublicZendeskConnection = {
+  provider: "zendesk",
   data: {
     articles: true,
   },

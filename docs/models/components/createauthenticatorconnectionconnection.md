@@ -7,6 +7,7 @@
 
 ```typescript
 const value: components.AuthenticatorConfluenceConnection = {
+  provider: "confluence",
   data: [
     {
       resourceId: "<id>",
@@ -25,6 +26,7 @@ const value: components.AuthenticatorConfluenceConnection = {
 
 ```typescript
 const value: components.AuthenticatorDropboxConnection = {
+  provider: "dropbox",
   data: {
     folderId: "<id>",
     folderName: "<value>",
@@ -40,6 +42,7 @@ const value: components.AuthenticatorDropboxConnection = {
 
 ```typescript
 const value: components.AuthenticatorGmailConnection = {
+  provider: "gmail",
   data: {},
   email: "Levi.Kris@gmail.com",
   credentials: {
@@ -52,6 +55,7 @@ const value: components.AuthenticatorGmailConnection = {
 
 ```typescript
 const value: components.AuthenticatorGoogleDriveConnection = {
+  provider: "google_drive",
   data: [],
   email: "Mallory43@hotmail.com",
   credentials: {
@@ -64,6 +68,7 @@ const value: components.AuthenticatorGoogleDriveConnection = {
 
 ```typescript
 const value: components.AuthenticatorHubspotConnection = {
+  provider: "hubspot",
   data: {
     companies: true,
     contacts: false,
@@ -85,6 +90,7 @@ const value: components.AuthenticatorHubspotConnection = {
 
 ```typescript
 const value: components.AuthenticatorJiraConnection = {
+  provider: "jira",
   credentials: {
     refreshToken: "<value>",
   },
@@ -95,6 +101,7 @@ const value: components.AuthenticatorJiraConnection = {
 
 ```typescript
 const value: components.AuthenticatorNotionConnection = {
+  provider: "notion",
   workspaceId: "<id>",
   workspaceName: "<value>",
   userEmail: "<value>",
@@ -108,6 +115,7 @@ const value: components.AuthenticatorNotionConnection = {
 
 ```typescript
 const value: components.AuthenticatorOnedriveConnection = {
+  provider: "onedrive",
   data: {
     driveId: "<id>",
     folderId: "<id>",
@@ -124,6 +132,7 @@ const value: components.AuthenticatorOnedriveConnection = {
 
 ```typescript
 const value: components.AuthenticatorSalesforceConnection = {
+  provider: "salesforce",
   userEmail: "<value>",
   url: "https://aged-gripper.biz",
   credentials: {
@@ -136,6 +145,7 @@ const value: components.AuthenticatorSalesforceConnection = {
 
 ```typescript
 const value: components.AuthenticatorSharepointConnection = {
+  provider: "sharepoint",
   data: {
     site: {
       id: "<id>",
@@ -158,6 +168,7 @@ const value: components.AuthenticatorSharepointConnection = {
 
 ```typescript
 const value: components.AuthenticatorSlackConnection = {
+  provider: "slack",
   data: {
     channelId: "<id>",
     channelName: "<value>",

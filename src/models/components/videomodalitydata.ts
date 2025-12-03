@@ -15,7 +15,7 @@ import {
 } from "./wordtimestamp.js";
 
 export type VideoModalityData = {
-  type?: "video" | undefined;
+  type: "video";
   wordTimestamps?: Array<WordTimestamp> | undefined;
 };
 
@@ -25,7 +25,7 @@ export const VideoModalityData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("video").default("video"),
+  type: z.literal("video"),
   word_timestamps: z.array(WordTimestamp$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -44,7 +44,7 @@ export const VideoModalityData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VideoModalityData
 > = z.object({
-  type: z.literal("video").default("video" as const),
+  type: z.literal("video"),
   wordTimestamps: z.array(WordTimestamp$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateGoogleAuthenticator = {
-  provider?: "google" | undefined;
+  provider: "google";
   /**
    * The unique name of your authenticator, used to identify it and distinguish it from others. This name must be unique. Attempting to reuse the same name will result in an error.
    */
@@ -26,7 +26,7 @@ export const CreateGoogleAuthenticator$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("google").default("google").optional(),
+  provider: z.literal("google"),
   name: z.string(),
   client_id: z.string(),
   client_secret: z.string(),

@@ -6,6 +6,7 @@
 import { AuthenticatorNotionConnection } from "ragie/models/components";
 
 let value: AuthenticatorNotionConnection = {
+  provider: "notion",
   workspaceId: "<id>",
   workspaceName: "<value>",
   userEmail: "<value>",
@@ -19,7 +20,7 @@ let value: AuthenticatorNotionConnection = {
 
 | Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `provider`                                                                             | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `provider`                                                                             | *"notion"*                                                                             | :heavy_check_mark:                                                                     | N/A                                                                                    |
 | `workspaceId`                                                                          | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
 | `workspaceName`                                                                        | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
 | `userEmail`                                                                            | *string*                                                                               | :heavy_check_mark:                                                                     | The email of the Notion account this is for                                            |

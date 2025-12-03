@@ -21,7 +21,7 @@ import {
 } from "./onedrivedata.js";
 
 export type AuthenticatorOnedriveConnection = {
-  provider?: "onedrive" | undefined;
+  provider: "onedrive";
   data: OnedriveData;
   /**
    * The email of the Onedrive account this is for
@@ -36,7 +36,7 @@ export const AuthenticatorOnedriveConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("onedrive").default("onedrive").optional(),
+  provider: z.literal("onedrive"),
   data: OnedriveData$inboundSchema,
   user_email: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,

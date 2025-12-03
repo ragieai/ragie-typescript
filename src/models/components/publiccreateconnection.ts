@@ -58,12 +58,12 @@ export type PublicCreateConnectionMetadata =
   | Array<string>;
 
 export type PublicCreateConnectionConnection =
-  | (PublicFreshdeskConnection & { provider: "freshdesk" })
-  | (PublicBackblazeConnection & { provider: "backblaze" })
-  | (PublicGCSConnection & { provider: "gcs" })
-  | (PublicIntercomConnection & { provider: "intercom" })
-  | (PublicS3CompatibleConnection & { provider: "s3" })
-  | (PublicZendeskConnection & { provider: "zendesk" });
+  | PublicBackblazeConnection
+  | PublicFreshdeskConnection
+  | PublicGCSConnection
+  | PublicIntercomConnection
+  | PublicS3CompatibleConnection
+  | PublicZendeskConnection;
 
 export type PublicCreateConnection = {
   partitionStrategy: MediaModeParam;
@@ -71,18 +71,18 @@ export type PublicCreateConnection = {
   pageLimit?: number | null | undefined;
   config?: { [k: string]: any } | null | undefined;
   /**
-   * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`.
+   * Metadata for the document. Keys must be strings. Values may be strings, numbers, booleans, or lists of strings. Numbers may be integers or floating point and will be converted to 64 bit floating point. 1000 total values are allowed. Each item in an array counts towards the total. The following keys are reserved for internal use: `document_id`, `document_type`, `document_source`, `document_name`, `document_uploaded_at`, `start_time`, `end_time`, `chunk_content_type`.
    */
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   connection:
-    | (PublicFreshdeskConnection & { provider: "freshdesk" })
-    | (PublicBackblazeConnection & { provider: "backblaze" })
-    | (PublicGCSConnection & { provider: "gcs" })
-    | (PublicIntercomConnection & { provider: "intercom" })
-    | (PublicS3CompatibleConnection & { provider: "s3" })
-    | (PublicZendeskConnection & { provider: "zendesk" });
+    | PublicBackblazeConnection
+    | PublicFreshdeskConnection
+    | PublicGCSConnection
+    | PublicIntercomConnection
+    | PublicS3CompatibleConnection
+    | PublicZendeskConnection;
 };
 
 /** @internal */
@@ -143,45 +143,21 @@ export const PublicCreateConnectionConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  PublicFreshdeskConnection$inboundSchema.and(
-    z.object({ provider: z.literal("freshdesk") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicBackblazeConnection$inboundSchema.and(
-    z.object({ provider: z.literal("backblaze") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicGCSConnection$inboundSchema.and(
-    z.object({ provider: z.literal("gcs") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicIntercomConnection$inboundSchema.and(
-    z.object({ provider: z.literal("intercom") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicS3CompatibleConnection$inboundSchema.and(
-    z.object({ provider: z.literal("s3") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicZendeskConnection$inboundSchema.and(
-    z.object({ provider: z.literal("zendesk") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
+  PublicBackblazeConnection$inboundSchema,
+  PublicFreshdeskConnection$inboundSchema,
+  PublicGCSConnection$inboundSchema,
+  PublicIntercomConnection$inboundSchema,
+  PublicS3CompatibleConnection$inboundSchema,
+  PublicZendeskConnection$inboundSchema,
 ]);
 /** @internal */
 export type PublicCreateConnectionConnection$Outbound =
-  | (PublicFreshdeskConnection$Outbound & { provider: "freshdesk" })
-  | (PublicBackblazeConnection$Outbound & { provider: "backblaze" })
-  | (PublicGCSConnection$Outbound & { provider: "gcs" })
-  | (PublicIntercomConnection$Outbound & { provider: "intercom" })
-  | (PublicS3CompatibleConnection$Outbound & { provider: "s3" })
-  | (PublicZendeskConnection$Outbound & { provider: "zendesk" });
+  | PublicBackblazeConnection$Outbound
+  | PublicFreshdeskConnection$Outbound
+  | PublicGCSConnection$Outbound
+  | PublicIntercomConnection$Outbound
+  | PublicS3CompatibleConnection$Outbound
+  | PublicZendeskConnection$Outbound;
 
 /** @internal */
 export const PublicCreateConnectionConnection$outboundSchema: z.ZodType<
@@ -189,36 +165,12 @@ export const PublicCreateConnectionConnection$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PublicCreateConnectionConnection
 > = z.union([
-  PublicFreshdeskConnection$outboundSchema.and(
-    z.object({ provider: z.literal("freshdesk") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicBackblazeConnection$outboundSchema.and(
-    z.object({ provider: z.literal("backblaze") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicGCSConnection$outboundSchema.and(
-    z.object({ provider: z.literal("gcs") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicIntercomConnection$outboundSchema.and(
-    z.object({ provider: z.literal("intercom") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicS3CompatibleConnection$outboundSchema.and(
-    z.object({ provider: z.literal("s3") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  PublicZendeskConnection$outboundSchema.and(
-    z.object({ provider: z.literal("zendesk") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
+  PublicBackblazeConnection$outboundSchema,
+  PublicFreshdeskConnection$outboundSchema,
+  PublicGCSConnection$outboundSchema,
+  PublicIntercomConnection$outboundSchema,
+  PublicS3CompatibleConnection$outboundSchema,
+  PublicZendeskConnection$outboundSchema,
 ]);
 
 export function publicCreateConnectionConnectionToJSON(
@@ -260,36 +212,12 @@ export const PublicCreateConnection$inboundSchema: z.ZodType<
     ]),
   ).optional(),
   connection: z.union([
-    PublicFreshdeskConnection$inboundSchema.and(
-      z.object({ provider: z.literal("freshdesk") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicBackblazeConnection$inboundSchema.and(
-      z.object({ provider: z.literal("backblaze") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicGCSConnection$inboundSchema.and(
-      z.object({ provider: z.literal("gcs") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicIntercomConnection$inboundSchema.and(
-      z.object({ provider: z.literal("intercom") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicS3CompatibleConnection$inboundSchema.and(
-      z.object({ provider: z.literal("s3") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicZendeskConnection$inboundSchema.and(
-      z.object({ provider: z.literal("zendesk") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
+    PublicBackblazeConnection$inboundSchema,
+    PublicFreshdeskConnection$inboundSchema,
+    PublicGCSConnection$inboundSchema,
+    PublicIntercomConnection$inboundSchema,
+    PublicS3CompatibleConnection$inboundSchema,
+    PublicZendeskConnection$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -307,12 +235,12 @@ export type PublicCreateConnection$Outbound = {
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
   connection:
-    | (PublicFreshdeskConnection$Outbound & { provider: "freshdesk" })
-    | (PublicBackblazeConnection$Outbound & { provider: "backblaze" })
-    | (PublicGCSConnection$Outbound & { provider: "gcs" })
-    | (PublicIntercomConnection$Outbound & { provider: "intercom" })
-    | (PublicS3CompatibleConnection$Outbound & { provider: "s3" })
-    | (PublicZendeskConnection$Outbound & { provider: "zendesk" });
+    | PublicBackblazeConnection$Outbound
+    | PublicFreshdeskConnection$Outbound
+    | PublicGCSConnection$Outbound
+    | PublicIntercomConnection$Outbound
+    | PublicS3CompatibleConnection$Outbound
+    | PublicZendeskConnection$Outbound;
 };
 
 /** @internal */
@@ -335,36 +263,12 @@ export const PublicCreateConnection$outboundSchema: z.ZodType<
     ]),
   ).optional(),
   connection: z.union([
-    PublicFreshdeskConnection$outboundSchema.and(
-      z.object({ provider: z.literal("freshdesk") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicBackblazeConnection$outboundSchema.and(
-      z.object({ provider: z.literal("backblaze") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicGCSConnection$outboundSchema.and(
-      z.object({ provider: z.literal("gcs") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicIntercomConnection$outboundSchema.and(
-      z.object({ provider: z.literal("intercom") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicS3CompatibleConnection$outboundSchema.and(
-      z.object({ provider: z.literal("s3") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
-    PublicZendeskConnection$outboundSchema.and(
-      z.object({ provider: z.literal("zendesk") }).transform((v) => ({
-        provider: v.provider,
-      })),
-    ),
+    PublicBackblazeConnection$outboundSchema,
+    PublicFreshdeskConnection$outboundSchema,
+    PublicGCSConnection$outboundSchema,
+    PublicIntercomConnection$outboundSchema,
+    PublicS3CompatibleConnection$outboundSchema,
+    PublicZendeskConnection$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
