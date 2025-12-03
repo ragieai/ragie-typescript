@@ -6,12 +6,16 @@
 ### `components.AudioModalityData`
 
 ```typescript
-const value: components.AudioModalityData = {};
+const value: components.AudioModalityData = {
+  type: "audio",
+};
 ```
 
 ### `components.VideoModalityData`
 
 ```typescript
-const value: components.VideoModalityData = {};
+const value: components.VideoModalityData = {
+  type: "video",
+};
 ```
 

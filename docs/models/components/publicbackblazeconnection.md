@@ -6,6 +6,7 @@
 import { PublicBackblazeConnection } from "ragie/models/components";
 
 let value: PublicBackblazeConnection = {
+  provider: "backblaze",
   data: {
     bucket: "<value>",
   },
@@ -22,6 +23,6 @@ let value: PublicBackblazeConnection = {
 
 | Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `provider`                                                                         | *string*                                                                           | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `provider`                                                                         | *"backblaze"*                                                                      | :heavy_check_mark:                                                                 | N/A                                                                                |
 | `data`                                                                             | [components.BucketData](../../models/components/bucketdata.md)                     | :heavy_check_mark:                                                                 | N/A                                                                                |
 | `credentials`                                                                      | [components.BackblazeCredentials](../../models/components/backblazecredentials.md) | :heavy_check_mark:                                                                 | N/A                                                                                |

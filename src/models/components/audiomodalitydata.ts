@@ -15,7 +15,7 @@ import {
 } from "./wordtimestamp.js";
 
 export type AudioModalityData = {
-  type?: "audio" | undefined;
+  type: "audio";
   wordTimestamps?: Array<WordTimestamp> | undefined;
 };
 
@@ -25,7 +25,7 @@ export const AudioModalityData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("audio").default("audio"),
+  type: z.literal("audio"),
   word_timestamps: z.array(WordTimestamp$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -44,7 +44,7 @@ export const AudioModalityData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AudioModalityData
 > = z.object({
-  type: z.literal("audio").default("audio" as const),
+  type: z.literal("audio"),
   wordTimestamps: z.array(WordTimestamp$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

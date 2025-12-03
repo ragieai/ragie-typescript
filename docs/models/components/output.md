@@ -52,6 +52,7 @@ const value: components.CodeInterpreterOutput = {
 const value: components.FileSearchOutput = {
   id: "<id>",
   queries: [],
+  type: "file_search_call",
   results: [],
 };
 ```

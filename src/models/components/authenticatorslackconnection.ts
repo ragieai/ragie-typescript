@@ -21,7 +21,7 @@ import {
 } from "./slackdata.js";
 
 export type AuthenticatorSlackConnection = {
-  provider?: "slack" | undefined;
+  provider: "slack";
   data: SlackData;
   /**
    * The email of the Slack account this is for
@@ -36,7 +36,7 @@ export const AuthenticatorSlackConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("slack").default("slack").optional(),
+  provider: z.literal("slack"),
   data: SlackData$inboundSchema,
   user_email: z.string(),
   credentials: AccessTokenCredentials$inboundSchema,

@@ -20,7 +20,7 @@ import {
 } from "./s3compatiblecredentials.js";
 
 export type PublicS3CompatibleConnection = {
-  provider?: "s3" | undefined;
+  provider: "s3";
   data: BucketData;
   credentials: S3CompatibleCredentials;
 };
@@ -31,7 +31,7 @@ export const PublicS3CompatibleConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("s3").default("s3").optional(),
+  provider: z.literal("s3"),
   data: BucketData$inboundSchema,
   credentials: S3CompatibleCredentials$inboundSchema,
 });

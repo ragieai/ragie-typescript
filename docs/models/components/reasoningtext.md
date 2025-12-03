@@ -15,4 +15,4 @@ let value: ReasoningText = {
 | Field                      | Type                       | Required                   | Description                |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
 | `text`                     | *string*                   | :heavy_check_mark:         | The text of the reasoning. |
-| `type`                     | *string*                   | :heavy_minus_sign:         | N/A                        |
+| `type`                     | *"reasoning_text"*         | :heavy_minus_sign:         | N/A                        |

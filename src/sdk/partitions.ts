@@ -97,7 +97,7 @@ export class Partitions extends ClientSDK {
   async delete(
     request: operations.DeletePartitionPartitionsPartitionIdDeleteRequest,
     options?: RequestOptions,
-  ): Promise<{ [k: string]: string }> {
+  ): Promise<components.ResponseOK> {
     return unwrapAsync(partitionsDelete(
       this,
       request,

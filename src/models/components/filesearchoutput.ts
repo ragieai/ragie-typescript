@@ -30,7 +30,7 @@ export type FileSearchOutput = {
    */
   queries: Array<string>;
   status?: FileSearchOutputStatus | undefined;
-  type?: "file_search_call" | undefined;
+  type: "file_search_call";
   /**
    * The results of the file search tool call.
    */
@@ -55,7 +55,7 @@ export const FileSearchOutput$inboundSchema: z.ZodType<
   id: z.string(),
   queries: z.array(z.string()),
   status: FileSearchOutputStatus$inboundSchema.default("searching"),
-  type: z.literal("file_search_call").default("file_search_call").optional(),
+  type: z.literal("file_search_call"),
   results: z.array(FileSearchResult$inboundSchema),
 });
 /** @internal */

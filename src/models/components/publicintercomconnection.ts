@@ -20,7 +20,7 @@ import {
 } from "./intercomdata.js";
 
 export type PublicIntercomConnection = {
-  provider?: "intercom" | undefined;
+  provider: "intercom";
   data: IntercomData;
   credentials: IntercomCredentials;
 };
@@ -31,7 +31,7 @@ export const PublicIntercomConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("intercom").default("intercom").optional(),
+  provider: z.literal("intercom"),
   data: IntercomData$inboundSchema,
   credentials: IntercomCredentials$inboundSchema,
 });

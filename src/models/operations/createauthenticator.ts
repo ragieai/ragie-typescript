@@ -15,7 +15,7 @@ export type CreateAuthenticatorPayload =
   | (components.OAuthCredentials & { provider: "salesforce" })
   | (components.OAuthCredentials & { provider: "slack" })
   | (components.OAuthCredentials & { provider: "hubspot" })
-  | (components.CreateGoogleAuthenticator & { provider: "google" });
+  | components.CreateGoogleAuthenticator;
 
 /** @internal */
 export const CreateAuthenticatorPayload$inboundSchema: z.ZodType<
@@ -24,40 +24,24 @@ export const CreateAuthenticatorPayload$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   components.OAuthCredentials$inboundSchema.and(
-    z.object({ provider: z.literal("atlassian") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("atlassian") }),
   ),
   components.OAuthCredentials$inboundSchema.and(
-    z.object({ provider: z.literal("dropbox") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("dropbox") }),
   ),
   components.OAuthCredentials$inboundSchema.and(
-    z.object({ provider: z.literal("microsoft") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("microsoft") }),
   ),
   components.OAuthCredentials$inboundSchema.and(
-    z.object({ provider: z.literal("salesforce") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("salesforce") }),
   ),
   components.OAuthCredentials$inboundSchema.and(
-    z.object({ provider: z.literal("slack") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("slack") }),
   ),
   components.OAuthCredentials$inboundSchema.and(
-    z.object({ provider: z.literal("hubspot") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("hubspot") }),
   ),
-  components.CreateGoogleAuthenticator$inboundSchema.and(
-    z.object({ provider: z.literal("google") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
+  components.CreateGoogleAuthenticator$inboundSchema,
 ]);
 /** @internal */
 export type CreateAuthenticatorPayload$Outbound =
@@ -67,7 +51,7 @@ export type CreateAuthenticatorPayload$Outbound =
   | (components.OAuthCredentials$Outbound & { provider: "salesforce" })
   | (components.OAuthCredentials$Outbound & { provider: "slack" })
   | (components.OAuthCredentials$Outbound & { provider: "hubspot" })
-  | (components.CreateGoogleAuthenticator$Outbound & { provider: "google" });
+  | components.CreateGoogleAuthenticator$Outbound;
 
 /** @internal */
 export const CreateAuthenticatorPayload$outboundSchema: z.ZodType<
@@ -76,40 +60,24 @@ export const CreateAuthenticatorPayload$outboundSchema: z.ZodType<
   CreateAuthenticatorPayload
 > = z.union([
   components.OAuthCredentials$outboundSchema.and(
-    z.object({ provider: z.literal("atlassian") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("atlassian") }),
   ),
   components.OAuthCredentials$outboundSchema.and(
-    z.object({ provider: z.literal("dropbox") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("dropbox") }),
   ),
   components.OAuthCredentials$outboundSchema.and(
-    z.object({ provider: z.literal("microsoft") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("microsoft") }),
   ),
   components.OAuthCredentials$outboundSchema.and(
-    z.object({ provider: z.literal("salesforce") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("salesforce") }),
   ),
   components.OAuthCredentials$outboundSchema.and(
-    z.object({ provider: z.literal("slack") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("slack") }),
   ),
   components.OAuthCredentials$outboundSchema.and(
-    z.object({ provider: z.literal("hubspot") }).transform((v) => ({
-      provider: v.provider,
-    })),
+    z.object({ provider: z.literal("hubspot") }),
   ),
-  components.CreateGoogleAuthenticator$outboundSchema.and(
-    z.object({ provider: z.literal("google") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
+  components.CreateGoogleAuthenticator$outboundSchema,
 ]);
 
 export function createAuthenticatorPayloadToJSON(

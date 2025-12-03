@@ -10,6 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeletePartitionPartitionsPartitionIdDeleteRequest = {
   partitionId: string;
+  /**
+   * If true, performs partition deletion asynchronously.
+   */
+  async?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -20,6 +24,7 @@ export const DeletePartitionPartitionsPartitionIdDeleteRequest$inboundSchema:
     unknown
   > = z.object({
     partition_id: z.string(),
+    async: z.nullable(z.boolean()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "partition_id": "partitionId",
@@ -28,6 +33,7 @@ export const DeletePartitionPartitionsPartitionIdDeleteRequest$inboundSchema:
 /** @internal */
 export type DeletePartitionPartitionsPartitionIdDeleteRequest$Outbound = {
   partition_id: string;
+  async?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -38,6 +44,7 @@ export const DeletePartitionPartitionsPartitionIdDeleteRequest$outboundSchema:
     DeletePartitionPartitionsPartitionIdDeleteRequest
   > = z.object({
     partitionId: z.string(),
+    async: z.nullable(z.boolean()).optional(),
   }).transform((v) => {
     return remap$(v, {
       partitionId: "partition_id",

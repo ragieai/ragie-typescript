@@ -6,6 +6,7 @@
 import { PublicIntercomConnection } from "ragie/models/components";
 
 let value: PublicIntercomConnection = {
+  provider: "intercom",
   data: {},
   credentials: {
     accessToken: "<value>",
@@ -19,6 +20,6 @@ let value: PublicIntercomConnection = {
 
 | Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `provider`                                                                       | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `provider`                                                                       | *"intercom"*                                                                     | :heavy_check_mark:                                                               | N/A                                                                              |
 | `data`                                                                           | [components.IntercomData](../../models/components/intercomdata.md)               | :heavy_check_mark:                                                               | N/A                                                                              |
 | `credentials`                                                                    | [components.IntercomCredentials](../../models/components/intercomcredentials.md) | :heavy_check_mark:                                                               | N/A                                                                              |

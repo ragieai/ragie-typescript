@@ -14,6 +14,6 @@ let value: ResponseContent = {
 
 | Field                   | Type                    | Required                | Description             |
 | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-| `type`                  | *string*                | :heavy_minus_sign:      | N/A                     |
+| `type`                  | *"text"*                | :heavy_minus_sign:      | N/A                     |
 | `text`                  | *string*                | :heavy_check_mark:      | N/A                     |
 | `annotations`           | Record<string, *any*>[] | :heavy_minus_sign:      | N/A                     |

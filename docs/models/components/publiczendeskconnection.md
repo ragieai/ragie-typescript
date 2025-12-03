@@ -6,6 +6,7 @@
 import { PublicZendeskConnection } from "ragie/models/components";
 
 let value: PublicZendeskConnection = {
+  provider: "zendesk",
   data: {
     articles: true,
   },
@@ -21,6 +22,6 @@ let value: PublicZendeskConnection = {
 
 | Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `provider`                                                                     | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            |
+| `provider`                                                                     | *"zendesk"*                                                                    | :heavy_check_mark:                                                             | N/A                                                                            |
 | `data`                                                                         | [components.ZendeskData](../../models/components/zendeskdata.md)               | :heavy_check_mark:                                                             | N/A                                                                            |
 | `credentials`                                                                  | [components.ZendeskCredentials](../../models/components/zendeskcredentials.md) | :heavy_check_mark:                                                             | N/A                                                                            |

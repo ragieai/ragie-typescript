@@ -8,14 +8,14 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Tool = {
-  type?: "retrieve" | undefined;
+  type: "retrieve";
   partitions: Array<string>;
 };
 
 /** @internal */
 export const Tool$inboundSchema: z.ZodType<Tool, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("retrieve").default("retrieve").optional(),
+    type: z.literal("retrieve"),
     partitions: z.array(z.string()),
   });
 /** @internal */

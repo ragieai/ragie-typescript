@@ -15,7 +15,7 @@ import {
 } from "./oauthrefreshtokencredentials.js";
 
 export type AuthenticatorSalesforceConnection = {
-  provider?: "salesforce" | undefined;
+  provider: "salesforce";
   /**
    * The email of the Salesforce account this is for
    */
@@ -33,7 +33,7 @@ export const AuthenticatorSalesforceConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("salesforce").default("salesforce").optional(),
+  provider: z.literal("salesforce"),
   user_email: z.string(),
   url: z.string(),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,

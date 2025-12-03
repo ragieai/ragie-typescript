@@ -26,9 +26,7 @@ import {
   VideoModalityData$outboundSchema,
 } from "./videomodalitydata.js";
 
-export type ModalityData =
-  | (AudioModalityData & { type: "audio" })
-  | (VideoModalityData & { type: "video" });
+export type ModalityData = AudioModalityData | VideoModalityData;
 
 export type DocumentChunkDetail = {
   id: string;
@@ -39,11 +37,7 @@ export type DocumentChunkDetail = {
   /**
    * Additional data specific to the modality of the chunk's source file, such as word level timestamps for chunks extracted from audio files.
    */
-  modalityData?:
-    | (AudioModalityData & { type: "audio" })
-    | (VideoModalityData & { type: "video" })
-    | null
-    | undefined;
+  modalityData?: AudioModalityData | VideoModalityData | null | undefined;
 };
 
 /** @internal */
@@ -51,18 +45,11 @@ export const ModalityData$inboundSchema: z.ZodType<
   ModalityData,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  AudioModalityData$inboundSchema.and(
-    z.object({ type: z.literal("audio") }).transform((v) => ({ type: v.type })),
-  ),
-  VideoModalityData$inboundSchema.and(
-    z.object({ type: z.literal("video") }).transform((v) => ({ type: v.type })),
-  ),
-]);
+> = z.union([AudioModalityData$inboundSchema, VideoModalityData$inboundSchema]);
 /** @internal */
 export type ModalityData$Outbound =
-  | (AudioModalityData$Outbound & { type: "audio" })
-  | (VideoModalityData$Outbound & { type: "video" });
+  | AudioModalityData$Outbound
+  | VideoModalityData$Outbound;
 
 /** @internal */
 export const ModalityData$outboundSchema: z.ZodType<
@@ -70,12 +57,8 @@ export const ModalityData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ModalityData
 > = z.union([
-  AudioModalityData$outboundSchema.and(
-    z.object({ type: z.literal("audio") }).transform((v) => ({ type: v.type })),
-  ),
-  VideoModalityData$outboundSchema.and(
-    z.object({ type: z.literal("video") }).transform((v) => ({ type: v.type })),
-  ),
+  AudioModalityData$outboundSchema,
+  VideoModalityData$outboundSchema,
 ]);
 
 export function modalityDataToJSON(modalityData: ModalityData): string {
@@ -103,18 +86,7 @@ export const DocumentChunkDetail$inboundSchema: z.ZodType<
   metadata: z.record(z.any()).optional(),
   links: z.record(Link$inboundSchema),
   modality_data: z.nullable(
-    z.union([
-      AudioModalityData$inboundSchema.and(
-        z.object({ type: z.literal("audio") }).transform((v) => ({
-          type: v.type,
-        })),
-      ),
-      VideoModalityData$inboundSchema.and(
-        z.object({ type: z.literal("video") }).transform((v) => ({
-          type: v.type,
-        })),
-      ),
-    ]),
+    z.union([AudioModalityData$inboundSchema, VideoModalityData$inboundSchema]),
   ).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -129,8 +101,8 @@ export type DocumentChunkDetail$Outbound = {
   metadata?: { [k: string]: any } | undefined;
   links: { [k: string]: Link$Outbound };
   modality_data?:
-    | (AudioModalityData$Outbound & { type: "audio" })
-    | (VideoModalityData$Outbound & { type: "video" })
+    | AudioModalityData$Outbound
+    | VideoModalityData$Outbound
     | null
     | undefined;
 };
@@ -148,16 +120,8 @@ export const DocumentChunkDetail$outboundSchema: z.ZodType<
   links: z.record(Link$outboundSchema),
   modalityData: z.nullable(
     z.union([
-      AudioModalityData$outboundSchema.and(
-        z.object({ type: z.literal("audio") }).transform((v) => ({
-          type: v.type,
-        })),
-      ),
-      VideoModalityData$outboundSchema.and(
-        z.object({ type: z.literal("video") }).transform((v) => ({
-          type: v.type,
-        })),
-      ),
+      AudioModalityData$outboundSchema,
+      VideoModalityData$outboundSchema,
     ]),
   ).optional(),
 }).transform((v) => {

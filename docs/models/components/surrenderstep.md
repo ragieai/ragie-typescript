@@ -18,7 +18,7 @@ let value: SurrenderStep = {
 
 | Field                                                  | Type                                                   | Required                                               | Description                                            |
 | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `type`                                                 | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
+| `type`                                                 | *"surrender"*                                          | :heavy_minus_sign:                                     | N/A                                                    |
 | `think`                                                | *string*                                               | :heavy_check_mark:                                     | N/A                                                    |
 | `currentQuestion`                                      | *string*                                               | :heavy_check_mark:                                     | N/A                                                    |
 | `errored`                                              | *boolean*                                              | :heavy_minus_sign:                                     | N/A                                                    |

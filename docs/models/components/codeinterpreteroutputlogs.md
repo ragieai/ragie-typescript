@@ -15,4 +15,4 @@ let value: CodeInterpreterOutputLogs = {
 | Field                                      | Type                                       | Required                                   | Description                                |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | `logs`                                     | *string*                                   | :heavy_check_mark:                         | The logs output from the code interpreter. |
-| `type`                                     | *string*                                   | :heavy_minus_sign:                         | N/A                                        |
+| `type`                                     | *"logs"*                                   | :heavy_minus_sign:                         | N/A                                        |

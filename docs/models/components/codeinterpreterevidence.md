@@ -17,7 +17,7 @@ let value: CodeInterpreterEvidence = {
 
 | Field                                         | Type                                          | Required                                      | Description                                   |
 | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `type`                                        | *string*                                      | :heavy_minus_sign:                            | N/A                                           |
+| `type`                                        | *"code_interpreter"*                          | :heavy_minus_sign:                            | N/A                                           |
 | `text`                                        | *string*                                      | :heavy_check_mark:                            | N/A                                           |
 | `code`                                        | *string*                                      | :heavy_check_mark:                            | The code that was executed.                   |
 | `codeIssue`                                   | *string*                                      | :heavy_check_mark:                            | The issue that the code was written to solve. |

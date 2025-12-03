@@ -14,7 +14,7 @@ import {
 } from "./oauthrefreshtokencredentials.js";
 
 export type AuthenticatorJiraConnection = {
-  provider?: "jira" | undefined;
+  provider: "jira";
   credentials: OAuthRefreshTokenCredentials;
 };
 
@@ -24,7 +24,7 @@ export const AuthenticatorJiraConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("jira").default("jira").optional(),
+  provider: z.literal("jira"),
   credentials: OAuthRefreshTokenCredentials$inboundSchema,
 });
 /** @internal */

@@ -15,7 +15,7 @@ import {
 } from "./accesstokencredentials.js";
 
 export type AuthenticatorNotionConnection = {
-  provider?: "notion" | undefined;
+  provider: "notion";
   workspaceId: string;
   workspaceName: string;
   /**
@@ -31,7 +31,7 @@ export const AuthenticatorNotionConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("notion").default("notion").optional(),
+  provider: z.literal("notion"),
   workspace_id: z.string(),
   workspace_name: z.string(),
   user_email: z.string(),

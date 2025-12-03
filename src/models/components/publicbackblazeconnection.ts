@@ -20,7 +20,7 @@ import {
 } from "./bucketdata.js";
 
 export type PublicBackblazeConnection = {
-  provider?: "backblaze" | undefined;
+  provider: "backblaze";
   data: BucketData;
   credentials: BackblazeCredentials;
 };
@@ -31,7 +31,7 @@ export const PublicBackblazeConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("backblaze").default("backblaze").optional(),
+  provider: z.literal("backblaze"),
   data: BucketData$inboundSchema,
   credentials: BackblazeCredentials$inboundSchema,
 });

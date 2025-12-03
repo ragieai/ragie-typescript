@@ -14,7 +14,7 @@ import {
 } from "./bucketdata.js";
 
 export type PublicGCSConnection = {
-  provider?: "gcs" | undefined;
+  provider: "gcs";
   data: BucketData;
   credentials: { [k: string]: any };
 };
@@ -25,7 +25,7 @@ export const PublicGCSConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: z.literal("gcs").default("gcs").optional(),
+  provider: z.literal("gcs"),
   data: BucketData$inboundSchema,
   credentials: z.record(z.any()),
 });

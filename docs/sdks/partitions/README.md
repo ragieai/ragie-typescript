@@ -359,6 +359,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.partitions.delete({
     partitionId: "<id>",
+    async: true,
   });
 
   console.log(result);
@@ -384,6 +385,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await partitionsDelete(ragie, {
     partitionId: "<id>",
+    async: true,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -407,7 +409,7 @@ run();
 
 ### Response
 
-**Promise\<[{ [k: string]: string }](../../models/.md)\>**
+**Promise\<[components.ResponseOK](../../models/components/responseok.md)\>**
 
 ### Errors
 

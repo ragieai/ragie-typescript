@@ -5,12 +5,14 @@
 ```typescript
 import { VideoModalityData } from "ragie/models/components";
 
-let value: VideoModalityData = {};
+let value: VideoModalityData = {
+  type: "video",
+};
 ```
 
 ## Fields
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `type`                                                                 | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `type`                                                                 | *"video"*                                                              | :heavy_check_mark:                                                     | N/A                                                                    |
 | `wordTimestamps`                                                       | [components.WordTimestamp](../../models/components/wordtimestamp.md)[] | :heavy_minus_sign:                                                     | N/A                                                                    |

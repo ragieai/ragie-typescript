@@ -6,6 +6,7 @@
 import { PublicS3CompatibleConnection } from "ragie/models/components";
 
 let value: PublicS3CompatibleConnection = {
+  provider: "s3",
   data: {
     bucket: "<value>",
   },
@@ -21,6 +22,6 @@ let value: PublicS3CompatibleConnection = {
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `provider`                                                                               | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `provider`                                                                               | *"s3"*                                                                                   | :heavy_check_mark:                                                                       | N/A                                                                                      |
 | `data`                                                                                   | [components.BucketData](../../models/components/bucketdata.md)                           | :heavy_check_mark:                                                                       | N/A                                                                                      |
 | `credentials`                                                                            | [components.S3CompatibleCredentials](../../models/components/s3compatiblecredentials.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
