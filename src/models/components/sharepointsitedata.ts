@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -10,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type SharepointSiteData = {
   id: string;
   name: string;
+  displayName: string;
 };
 
 /** @internal */
@@ -20,11 +22,17 @@ export const SharepointSiteData$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.string(),
+  display_name: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "display_name": "displayName",
+  });
 });
 /** @internal */
 export type SharepointSiteData$Outbound = {
   id: string;
   name: string;
+  display_name: string;
 };
 
 /** @internal */
@@ -35,6 +43,11 @@ export const SharepointSiteData$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.string(),
+  displayName: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    displayName: "display_name",
+  });
 });
 
 export function sharepointSiteDataToJSON(
