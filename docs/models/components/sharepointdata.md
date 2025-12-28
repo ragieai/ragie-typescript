@@ -9,6 +9,7 @@ let value: SharepointData = {
   site: {
     id: "<id>",
     name: "<value>",
+    displayName: "Boris78",
   },
   drive: {
     id: "<id>",
@@ -18,7 +19,8 @@ let value: SharepointData = {
     {
       id: "<id>",
       name: "<value>",
-      type: "folder",
+      path: "/System",
+      type: "file",
       driveId: "<id>",
     },
   ],
