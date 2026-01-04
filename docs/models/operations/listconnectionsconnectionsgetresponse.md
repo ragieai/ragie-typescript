@@ -13,8 +13,8 @@ let value: ListConnectionsConnectionsGetResponse = {
     connections: [
       {
         id: "fb791042-b3f3-4dfc-9309-281da8af8929",
-        createdAt: new Date("2023-03-29T00:56:47.996Z"),
-        updatedAt: new Date("2025-12-08T11:39:54.430Z"),
+        createdAt: new Date("2024-03-28T00:56:47.996Z"),
+        updatedAt: new Date("2026-12-08T11:39:54.430Z"),
         metadata: {},
         type: "<value>",
         name: "<value>",
