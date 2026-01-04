@@ -8,8 +8,8 @@ import { DocumentGet } from "ragie/models/components";
 let value: DocumentGet = {
   status: "<value>",
   id: "df1734b7-d561-4df2-b528-ed030bd85127",
-  createdAt: new Date("2023-10-09T13:06:45.255Z"),
-  updatedAt: new Date("2023-09-27T05:53:58.801Z"),
+  createdAt: new Date("2024-10-08T13:06:45.255Z"),
+  updatedAt: new Date("2024-09-26T05:53:58.801Z"),
   name: "<value>",
   metadata: {},
   partition: "<value>",
