@@ -10,6 +10,7 @@ import { Entities } from "./entities.js";
 import { Partitions } from "./partitions.js";
 import { Responses } from "./responses.js";
 import { Retrievals } from "./retrievals.js";
+import { WebhookEndpoints } from "./webhookendpoints.js";
 
 export class Ragie extends ClientSDK {
   private _documents?: Documents;
@@ -30,6 +31,11 @@ export class Ragie extends ClientSDK {
   private _connections?: Connections;
   get connections(): Connections {
     return (this._connections ??= new Connections(this._options));
+  }
+
+  private _webhookEndpoints?: WebhookEndpoints;
+  get webhookEndpoints(): WebhookEndpoints {
+    return (this._webhookEndpoints ??= new WebhookEndpoints(this._options));
   }
 
   private _partitions?: Partitions;

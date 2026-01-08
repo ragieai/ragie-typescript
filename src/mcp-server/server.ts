@@ -59,6 +59,11 @@ import { tool$partitionsUpdate } from "./tools/partitionsUpdate.js";
 import { tool$responsesCreate } from "./tools/responsesCreate.js";
 import { tool$responsesGet } from "./tools/responsesGet.js";
 import { tool$retrievalsRetrieve } from "./tools/retrievalsRetrieve.js";
+import { tool$webhookEndpointsCreate } from "./tools/webhookEndpointsCreate.js";
+import { tool$webhookEndpointsDelete } from "./tools/webhookEndpointsDelete.js";
+import { tool$webhookEndpointsGet } from "./tools/webhookEndpointsGet.js";
+import { tool$webhookEndpointsList } from "./tools/webhookEndpointsList.js";
+import { tool$webhookEndpointsUpdate } from "./tools/webhookEndpointsUpdate.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
@@ -70,7 +75,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.15.0",
+    version: "1.15.1",
   });
 
   const client = new RagieCore({
@@ -134,6 +139,11 @@ export function createMCPServer(deps: {
   tool(tool$connectionsSetLimits);
   tool(tool$connectionsDelete);
   tool(tool$connectionsSync);
+  tool(tool$webhookEndpointsList);
+  tool(tool$webhookEndpointsCreate);
+  tool(tool$webhookEndpointsGet);
+  tool(tool$webhookEndpointsUpdate);
+  tool(tool$webhookEndpointsDelete);
   tool(tool$partitionsList);
   tool(tool$partitionsCreate);
   tool(tool$partitionsGet);

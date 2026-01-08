@@ -1,6 +1,6 @@
 {
   "name": "ragie",
-  "version": "1.15.0",
+  "version": "1.15.1",
   "author": "Speakeasy",
   "license": "MIT",
   "bin": {
@@ -34,7 +34,7 @@
     "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
+    "@modelcontextprotocol/sdk": "^1.24.0",
     "zod": "^3.25.0 || ^4.0.0"
   }
 }
