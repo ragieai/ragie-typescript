@@ -286,14 +286,14 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [authenticators](docs/sdks/authenticators/README.md)
+### [Authenticators](docs/sdks/authenticators/README.md)
 
 * [create](docs/sdks/authenticators/README.md#create) - Create Authenticator
 * [list](docs/sdks/authenticators/README.md#list) - List Authenticators
 * [createAuthenticatorConnection](docs/sdks/authenticators/README.md#createauthenticatorconnection) - Create Authenticator Connection
 * [deleteAuthenticatorConnection](docs/sdks/authenticators/README.md#deleteauthenticatorconnection) - Delete Authenticator
 
-### [connections](docs/sdks/connections/README.md)
+### [Connections](docs/sdks/connections/README.md)
 
 * [createConnection](docs/sdks/connections/README.md#createconnection) - Create Connection
 * [list](docs/sdks/connections/README.md#list) - List Connections
@@ -307,7 +307,7 @@ run();
 * [delete](docs/sdks/connections/README.md#delete) - Delete Connection
 * [sync](docs/sdks/connections/README.md#sync) - Sync Connection
 
-### [documents](docs/sdks/documents/README.md)
+### [Documents](docs/sdks/documents/README.md)
 
 * [create](docs/sdks/documents/README.md#create) - Create Document
 * [list](docs/sdks/documents/README.md#list) - List Documents
@@ -326,7 +326,7 @@ run();
 * [getSource](docs/sdks/documents/README.md#getsource) - Get Document Source
 * [getSummary](docs/sdks/documents/README.md#getsummary) - Get Document Summary
 
-### [entities](docs/sdks/entities/README.md)
+### [Entities](docs/sdks/entities/README.md)
 
 * [listInstructions](docs/sdks/entities/README.md#listinstructions) - List Instructions
 * [createInstruction](docs/sdks/entities/README.md#createinstruction) - Create Instruction
@@ -335,7 +335,7 @@ run();
 * [listByInstruction](docs/sdks/entities/README.md#listbyinstruction) - Get Instruction Extracted Entities
 * [listByDocument](docs/sdks/entities/README.md#listbydocument) - Get Document Extracted Entities
 
-### [partitions](docs/sdks/partitions/README.md)
+### [Partitions](docs/sdks/partitions/README.md)
 
 * [list](docs/sdks/partitions/README.md#list) - List Partitions
 * [create](docs/sdks/partitions/README.md#create) - Create Partition
@@ -344,14 +344,22 @@ run();
 * [delete](docs/sdks/partitions/README.md#delete) - Delete Partition
 * [setLimits](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
 
-### [responses](docs/sdks/responses/README.md)
+### [Responses](docs/sdks/responses/README.md)
 
 * [create](docs/sdks/responses/README.md#create) - Create Response
 * [get](docs/sdks/responses/README.md#get) - Get Response
 
-### [retrievals](docs/sdks/retrievals/README.md)
+### [Retrievals](docs/sdks/retrievals/README.md)
 
 * [retrieve](docs/sdks/retrievals/README.md#retrieve) - Retrieve
+
+### [WebhookEndpoints](docs/sdks/webhookendpoints/README.md)
+
+* [list](docs/sdks/webhookendpoints/README.md#list) - List Webhook Endpoints
+* [create](docs/sdks/webhookendpoints/README.md#create) - Create Webhook Endpoint
+* [get](docs/sdks/webhookendpoints/README.md#get) - Get Webhook Endpoint
+* [update](docs/sdks/webhookendpoints/README.md#update) - Update Webhook Endpoint
+* [delete](docs/sdks/webhookendpoints/README.md#delete) - Delete Webhook Endpoint
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -777,6 +785,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`responsesCreate`](docs/sdks/responses/README.md#create) - Create Response
 - [`responsesGet`](docs/sdks/responses/README.md#get) - Get Response
 - [`retrievalsRetrieve`](docs/sdks/retrievals/README.md#retrieve) - Retrieve
+- [`webhookEndpointsCreate`](docs/sdks/webhookendpoints/README.md#create) - Create Webhook Endpoint
+- [`webhookEndpointsDelete`](docs/sdks/webhookendpoints/README.md#delete) - Delete Webhook Endpoint
+- [`webhookEndpointsGet`](docs/sdks/webhookendpoints/README.md#get) - Get Webhook Endpoint
+- [`webhookEndpointsList`](docs/sdks/webhookendpoints/README.md#list) - List Webhook Endpoints
+- [`webhookEndpointsUpdate`](docs/sdks/webhookendpoints/README.md#update) - Update Webhook Endpoint
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

@@ -7,8 +7,8 @@ import { Instruction } from "ragie/models/components";
 
 let value: Instruction = {
   id: "89994601-8cf9-4731-a349-de541af8dda2",
-  createdAt: new Date("2024-06-29T04:14:18.600Z"),
-  updatedAt: new Date("2023-10-20T20:22:48.983Z"),
+  createdAt: new Date("2025-06-29T04:14:18.600Z"),
+  updatedAt: new Date("2024-10-19T20:22:48.983Z"),
   name: "Find all pizzas",
   scope: "document",
   prompt: "Find all pizzas described in the text.",

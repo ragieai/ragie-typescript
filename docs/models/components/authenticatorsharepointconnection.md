@@ -11,6 +11,7 @@ let value: AuthenticatorSharepointConnection = {
     site: {
       id: "<id>",
       name: "<value>",
+      displayName: "Boris78",
     },
     drive: {
       id: "<id>",

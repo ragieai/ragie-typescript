@@ -18,6 +18,7 @@ export type Type = ClosedEnum<typeof Type>;
 export type SharepointFileData = {
   id: string;
   name: string;
+  path: string;
   type: Type;
   driveId: string | null;
 };
@@ -38,6 +39,7 @@ export const SharepointFileData$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.string(),
+  path: z.string(),
   type: Type$inboundSchema,
   drive_id: z.nullable(z.string()),
 }).transform((v) => {
@@ -49,6 +51,7 @@ export const SharepointFileData$inboundSchema: z.ZodType<
 export type SharepointFileData$Outbound = {
   id: string;
   name: string;
+  path: string;
   type: string;
   drive_id: string | null;
 };
@@ -61,6 +64,7 @@ export const SharepointFileData$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.string(),
+  path: z.string(),
   type: Type$outboundSchema,
   driveId: z.nullable(z.string()),
 }).transform((v) => {
