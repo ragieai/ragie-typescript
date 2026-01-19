@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 9c76d982-a275-4b45-a46b-dccb6e2cffe9
 management:
-  docChecksum: f05bcd48705337294b49295e00dbfefb
+  docChecksum: ac8beac6b224aa34a5b90ea03b4a5847
   docVersion: 1.0.0
-  speakeasyVersion: 1.682.0
-  generationVersion: 2.791.1
-  releaseVersion: 1.15.1
-  configChecksum: e5d42ba0ba3bafe8dbfc3a0fd49cc8e1
+  speakeasyVersion: 1.688.0
+  generationVersion: 2.796.4
+  releaseVersion: 1.15.2
+  configChecksum: 374d9bea1f70cfcfd6aaac9649c5d905
   repoURL: https://github.com/ragieai/ragie-typescript.git
   installationURL: https://github.com/ragieai/ragie-typescript
   published: true
 persistentEdits:
-  generation_id: 2c0bddb2-0eae-46bb-befd-34481ad66ee8
-  pristine_commit_hash: 6d93e1254cab1af197538daabadaf3baa4635f2a
-  pristine_tree_hash: dc56621cf033d11a48d0c6890f842ad253328b06
+  generation_id: 3bd3fb8e-0dc2-4358-b9f2-e80b484a76dc
+  pristine_commit_hash: 3e00d5ac3fc60e04c1336e5821afded149579fd6
+  pristine_tree_hash: 2b911d9c11af7e33d19a1968e822a902cbe9c3e1
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.17
+    core: 3.26.22
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -879,8 +879,8 @@ trackedFiles:
     pristine_git_object: d027579ba74e84b645bc6eb85e6752618576dcd5
   docs/models/components/webhookendpoint.md:
     id: 581572f762fc
-    last_write_checksum: sha1:118c8964464f3442023b49785e1831969d028b4c
-    pristine_git_object: 63e44b293d1ad3c01ea0ad1ac772cf813da97bb7
+    last_write_checksum: sha1:1ed085858592be71f68aa04b785968c42adb542d
+    pristine_git_object: af101c083cbdf98eb268b844daccc9b5dfbfc37d
   docs/models/components/webhookendpointlist.md:
     id: 1ed2237d9834
     last_write_checksum: sha1:025dde1d18ba2205367f9e7427c81735e748e763
@@ -1159,12 +1159,12 @@ trackedFiles:
     pristine_git_object: f847721f62537a7728cc2c54c6622f9d325163fd
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d8c52c9220a1b94306f0d5a6dc46f2145040155f
-    pristine_git_object: a6fd5c06f4fd3a410cb78b44b3d1c48bb1145d52
+    last_write_checksum: sha1:bebb82d3589b0ffed2523ccc53de52bfec1f93a2
+    pristine_git_object: ecaf2a304b31f05157b1a09014e8ff67f6e7c6b3
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:361dafe4f30333da7f5714acb0197c7f5cc28442
-    pristine_git_object: 8f61e9707f53afe3379b9becc1f389277d6d9cd8
+    last_write_checksum: sha1:cba0784619a7dcaf0504b4095f52a65f4fe03eb7
+    pristine_git_object: a74cd388d9b93fbabd6ad899b720f40c8193e4af
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:db26c3c85627f5ae8cddd30839eabeb02f8eacf6
@@ -1395,8 +1395,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:e9083bdd2db7db759152fecca93100d27f6c3806
-    pristine_git_object: 40246bec2c5c88a0a350f4cd98379b62d3988a87
+    last_write_checksum: sha1:6c8b0fa5d1467a31aa531842c8f34b0c2f21313b
+    pristine_git_object: c3b9c44c655e0f81ba3c856aa8df785809986d59
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -1439,8 +1439,8 @@ trackedFiles:
     pristine_git_object: 47edb9725c2482c667e2ddc8a56b1fec4285c492
   src/lib/sdks.ts:
     id: 8a6d91f1218d
-    last_write_checksum: sha1:c1bcc39504c98c350deaed75c72dd987fb37cfcc
-    pristine_git_object: fb7e9ac575afc4ecb1a4880d61a8b86451973c1c
+    last_write_checksum: sha1:50f918d1a3e82d6b58ba96cceab0c7a419fbf88b
+    pristine_git_object: 6d3f8525ef8d88a0babc04221e8a543d4d7e08f2
   src/lib/security.ts:
     id: 0502afa7922e
     last_write_checksum: sha1:a2f9197b67bec991f0802a45601fe9436b83cfe9
@@ -1475,8 +1475,8 @@ trackedFiles:
     pristine_git_object: 0955a573c2ce989d63c737410ab8cc28706d9f74
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:61d9f3fac178d9425c56f7ed58e29d4dd7893335
-    pristine_git_object: 560f3570101d3ec726e2ed64e15bc0f89c0ac29f
+    last_write_checksum: sha1:f96c312f04a3f03051e3920f04509d27322741e7
+    pristine_git_object: 5cce6b9b13548647b514256ef81f8ecbe6bc79cc
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:355d93145ec6b0050222592e229a9142fcdf914a
@@ -1491,8 +1491,8 @@ trackedFiles:
     pristine_git_object: c25696d4c4f70e081fa5d87ad6891874c509a577
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:d371b1c5ba8ed86dad75f67d9eb94abe59673a41
-    pristine_git_object: 49dc5b48a0fcc54f0261063494e6b85bc3ca8a27
+    last_write_checksum: sha1:007d36bc8a30cfe8f91b72467db9905de1d2dd0b
+    pristine_git_object: 8e3320869c02c81bb1bc0267110bdd91e847be17
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:56c73d4429691516e35541825e759a0285747a2b
@@ -2255,8 +2255,8 @@ trackedFiles:
     pristine_git_object: 7560ebfca4694a5028883a5bc362dbcf7c92060f
   src/models/components/webhookendpoint.ts:
     id: 166907918cf7
-    last_write_checksum: sha1:2aadb66d18394877220bd3d68eba51399690a871
-    pristine_git_object: 2875747a45d43deccc396ee79a71f7a1658a5c44
+    last_write_checksum: sha1:3399bb0b3434eb823286bc2c980745d85f4fe7b4
+    pristine_git_object: cad458931e088b8d51422a480355e0185b8c19c4
   src/models/components/webhookendpointlist.ts:
     id: 51571b360d85
     last_write_checksum: sha1:29f1e0d800528d865262c32ca9619190e6d01c74
@@ -3288,7 +3288,7 @@ examples:
         application/json: {"name": "<value>", "url": "https://crazy-birth.name"}
       responses:
         "201":
-          application/json: {"id": "eb083a2b-5791-4b88-96e1-b294238d3152", "created_at": "2026-08-26T05:46:20.116Z", "updated_at": "2024-04-28T21:10:08.943Z", "name": "<value>", "url": "https://big-tomatillo.name/", "partition_pattern": "<value>", "active": true}
+          application/json: {"id": "eb083a2b-5791-4b88-96e1-b294238d3152", "created_at": "2026-08-26T05:46:20.116Z", "updated_at": "2024-04-28T21:10:08.943Z", "name": "<value>", "url": "https://big-tomatillo.name/", "partition_pattern": "<value>", "active": true, "secret": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -3302,7 +3302,7 @@ examples:
           endpoint_id: "b2685048-407b-4461-ba68-ae1653b337f9"
       responses:
         "200":
-          application/json: {"id": "40a280c0-beda-4db7-b2d8-bbd7e7d59572", "created_at": "2026-04-26T14:41:48.179Z", "updated_at": "2024-01-10T00:29:05.466Z", "name": "<value>", "url": "https://lighthearted-reservation.org/", "partition_pattern": null, "active": true}
+          application/json: {"id": "40a280c0-beda-4db7-b2d8-bbd7e7d59572", "created_at": "2026-04-26T14:41:48.179Z", "updated_at": "2024-01-10T00:29:05.466Z", "name": "<value>", "url": "https://lighthearted-reservation.org/", "partition_pattern": null, "active": true, "secret": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -3318,7 +3318,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"id": "531bf800-3bcc-4f2b-94aa-a0f3d227100b", "created_at": "2024-01-07T09:31:05.674Z", "updated_at": "2024-03-19T13:51:42.032Z", "name": "<value>", "url": "https://sticky-plugin.name/", "partition_pattern": "<value>", "active": false}
+          application/json: {"id": "531bf800-3bcc-4f2b-94aa-a0f3d227100b", "created_at": "2024-01-07T09:31:05.674Z", "updated_at": "2024-03-19T13:51:42.032Z", "name": "<value>", "url": "https://sticky-plugin.name/", "partition_pattern": "<value>", "active": false, "secret": "<value>"}
         "422":
           application/json: {}
         "401":
@@ -3341,7 +3341,12 @@ examples:
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `ragie.authenticators.createAuthenticatorConnection()`: \n  *  `request.createAuthenticatorConnection.connection.[sharepoint].data` **Changed** **Breaking** :warning:\n* `ragie.webhookEndpoints.list()`: **Added**\n* `ragie.webhookEndpoints.create()`: **Added**\n* `ragie.webhookEndpoints.get()`: **Added**\n* `ragie.webhookEndpoints.update()`: **Added**\n* `ragie.webhookEndpoints.delete()`: **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `ragie.webhookEndpoints.list()`:  `response.webhook_endpoints.[].secret` **Added**
+  * `ragie.webhookEndpoints.create()`:  `response.secret` **Added**
+  * `ragie.webhookEndpoints.get()`:  `response.secret` **Added**
+  * `ragie.webhookEndpoints.update()`:  `response.secret` **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
