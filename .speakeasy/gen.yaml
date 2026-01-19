@@ -16,6 +16,7 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
@@ -30,7 +31,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.15.1
+  version: 1.15.2
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -77,6 +78,7 @@ typescript:
   outputModelSuffix: output
   packageName: ragie
   preApplyUnionDiscriminators: true
+  preserveModelFieldNames: false
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
