@@ -196,8 +196,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.connections.createConnection({
     partitionStrategy: {},
-    pageLimit: null,
-    config: null,
+    pageLimit: 100,
     connection: {
       provider: "gcs",
       data: {
@@ -256,8 +255,7 @@ async function run() {
     authenticatorId: "84b0792c-1330-4854-b4f2-5d9c7bf9a385",
     createAuthenticatorConnection: {
       partitionStrategy: {},
-      pageLimit: null,
-      config: null,
+      pageLimit: 100,
       connection: {
         provider: "dropbox",
         data: {

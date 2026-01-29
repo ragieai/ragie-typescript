@@ -33,8 +33,7 @@ const ragie = new Ragie({
 async function run() {
   const result = await ragie.connections.createConnection({
     partitionStrategy: {},
-    pageLimit: null,
-    config: null,
+    pageLimit: 100,
     connection: {
       provider: "gcs",
       data: {
@@ -71,8 +70,7 @@ const ragie = new RagieCore({
 async function run() {
   const res = await connectionsCreateConnection(ragie, {
     partitionStrategy: {},
-    pageLimit: null,
-    config: null,
+    pageLimit: 100,
     connection: {
       provider: "gcs",
       data: {
