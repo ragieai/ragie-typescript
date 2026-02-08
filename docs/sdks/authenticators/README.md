@@ -187,7 +187,6 @@ async function run() {
     createAuthenticatorConnection: {
       partitionStrategy: {},
       pageLimit: null,
-      config: null,
       connection: {
         provider: "dropbox",
         data: {
@@ -228,7 +227,6 @@ async function run() {
     createAuthenticatorConnection: {
       partitionStrategy: {},
       pageLimit: null,
-      config: null,
       connection: {
         provider: "dropbox",
         data: {
