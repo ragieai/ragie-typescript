@@ -8,7 +8,7 @@ import { ListEntitiesByInstructionResponse } from "ragie/models/operations";
 let value: ListEntitiesByInstructionResponse = {
   result: {
     pagination: {
-      totalCount: 878808,
+      totalCount: 18197,
     },
     entities: [],
   },
