@@ -44,6 +44,12 @@ import {
   PublicS3CompatibleConnection$outboundSchema,
 } from "./publics3compatibleconnection.js";
 import {
+  PublicWebcrawlerConnection,
+  PublicWebcrawlerConnection$inboundSchema,
+  PublicWebcrawlerConnection$Outbound,
+  PublicWebcrawlerConnection$outboundSchema,
+} from "./publicwebcrawlerconnection.js";
+import {
   PublicZendeskConnection,
   PublicZendeskConnection$inboundSchema,
   PublicZendeskConnection$Outbound,
@@ -63,6 +69,7 @@ export type PublicCreateConnectionConnection =
   | PublicGCSConnection
   | PublicIntercomConnection
   | PublicS3CompatibleConnection
+  | PublicWebcrawlerConnection
   | PublicZendeskConnection;
 
 export type PublicCreateConnection = {
@@ -82,6 +89,7 @@ export type PublicCreateConnection = {
     | PublicGCSConnection
     | PublicIntercomConnection
     | PublicS3CompatibleConnection
+    | PublicWebcrawlerConnection
     | PublicZendeskConnection;
 };
 
@@ -148,6 +156,7 @@ export const PublicCreateConnectionConnection$inboundSchema: z.ZodType<
   PublicGCSConnection$inboundSchema,
   PublicIntercomConnection$inboundSchema,
   PublicS3CompatibleConnection$inboundSchema,
+  PublicWebcrawlerConnection$inboundSchema,
   PublicZendeskConnection$inboundSchema,
 ]);
 /** @internal */
@@ -157,6 +166,7 @@ export type PublicCreateConnectionConnection$Outbound =
   | PublicGCSConnection$Outbound
   | PublicIntercomConnection$Outbound
   | PublicS3CompatibleConnection$Outbound
+  | PublicWebcrawlerConnection$Outbound
   | PublicZendeskConnection$Outbound;
 
 /** @internal */
@@ -170,6 +180,7 @@ export const PublicCreateConnectionConnection$outboundSchema: z.ZodType<
   PublicGCSConnection$outboundSchema,
   PublicIntercomConnection$outboundSchema,
   PublicS3CompatibleConnection$outboundSchema,
+  PublicWebcrawlerConnection$outboundSchema,
   PublicZendeskConnection$outboundSchema,
 ]);
 
@@ -217,6 +228,7 @@ export const PublicCreateConnection$inboundSchema: z.ZodType<
     PublicGCSConnection$inboundSchema,
     PublicIntercomConnection$inboundSchema,
     PublicS3CompatibleConnection$inboundSchema,
+    PublicWebcrawlerConnection$inboundSchema,
     PublicZendeskConnection$inboundSchema,
   ]),
 }).transform((v) => {
@@ -240,6 +252,7 @@ export type PublicCreateConnection$Outbound = {
     | PublicGCSConnection$Outbound
     | PublicIntercomConnection$Outbound
     | PublicS3CompatibleConnection$Outbound
+    | PublicWebcrawlerConnection$Outbound
     | PublicZendeskConnection$Outbound;
 };
 
@@ -268,6 +281,7 @@ export const PublicCreateConnection$outboundSchema: z.ZodType<
     PublicGCSConnection$outboundSchema,
     PublicIntercomConnection$outboundSchema,
     PublicS3CompatibleConnection$outboundSchema,
+    PublicWebcrawlerConnection$outboundSchema,
     PublicZendeskConnection$outboundSchema,
   ]),
 }).transform((v) => {

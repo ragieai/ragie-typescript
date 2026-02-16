@@ -197,7 +197,6 @@ async function run() {
   const result = await ragie.connections.createConnection({
     partitionStrategy: {},
     pageLimit: null,
-    config: null,
     connection: {
       provider: "gcs",
       data: {
@@ -257,7 +256,6 @@ async function run() {
     createAuthenticatorConnection: {
       partitionStrategy: {},
       pageLimit: null,
-      config: null,
       connection: {
         provider: "dropbox",
         data: {
@@ -288,8 +286,8 @@ run();
 
 ### [Authenticators](docs/sdks/authenticators/README.md)
 
-* [create](docs/sdks/authenticators/README.md#create) - Create Authenticator
 * [list](docs/sdks/authenticators/README.md#list) - List Authenticators
+* [create](docs/sdks/authenticators/README.md#create) - Create Authenticator
 * [createAuthenticatorConnection](docs/sdks/authenticators/README.md#createauthenticatorconnection) - Create Authenticator Connection
 * [deleteAuthenticatorConnection](docs/sdks/authenticators/README.md#deleteauthenticatorconnection) - Delete Authenticator
 
@@ -300,8 +298,8 @@ run();
 * [createOAuthRedirectUrl](docs/sdks/connections/README.md#createoauthredirecturl) - Create Oauth Redirect Url
 * [listConnectionSourceTypes](docs/sdks/connections/README.md#listconnectionsourcetypes) - List Connection Source Types
 * [setEnabled](docs/sdks/connections/README.md#setenabled) - Set Connection Enabled
-* [update](docs/sdks/connections/README.md#update) - Update Connection
 * [get](docs/sdks/connections/README.md#get) - Get Connection
+* [update](docs/sdks/connections/README.md#update) - Update Connection
 * [getStats](docs/sdks/connections/README.md#getstats) - Get Connection Stats
 * [setLimits](docs/sdks/connections/README.md#setlimits) - Set Connection Limits
 * [delete](docs/sdks/connections/README.md#delete) - Delete Connection
@@ -309,8 +307,8 @@ run();
 
 ### [Documents](docs/sdks/documents/README.md)
 
-* [create](docs/sdks/documents/README.md#create) - Create Document
 * [list](docs/sdks/documents/README.md#list) - List Documents
+* [create](docs/sdks/documents/README.md#create) - Create Document
 * [createRaw](docs/sdks/documents/README.md#createraw) - Create Document Raw
 * [createDocumentFromUrl](docs/sdks/documents/README.md#createdocumentfromurl) - Create Document From Url
 * [get](docs/sdks/documents/README.md#get) - Get Document
@@ -340,8 +338,8 @@ run();
 * [list](docs/sdks/partitions/README.md#list) - List Partitions
 * [create](docs/sdks/partitions/README.md#create) - Create Partition
 * [get](docs/sdks/partitions/README.md#get) - Get Partition
-* [update](docs/sdks/partitions/README.md#update) - Update Partition
 * [delete](docs/sdks/partitions/README.md#delete) - Delete Partition
+* [update](docs/sdks/partitions/README.md#update) - Update Partition
 * [setLimits](docs/sdks/partitions/README.md#setlimits) - Set Partition Limits
 
 ### [Responses](docs/sdks/responses/README.md)
@@ -358,8 +356,8 @@ run();
 * [list](docs/sdks/webhookendpoints/README.md#list) - List Webhook Endpoints
 * [create](docs/sdks/webhookendpoints/README.md#create) - Create Webhook Endpoint
 * [get](docs/sdks/webhookendpoints/README.md#get) - Get Webhook Endpoint
-* [update](docs/sdks/webhookendpoints/README.md#update) - Update Webhook Endpoint
 * [delete](docs/sdks/webhookendpoints/README.md#delete) - Delete Webhook Endpoint
+* [update](docs/sdks/webhookendpoints/README.md#update) - Update Webhook Endpoint
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -415,7 +413,6 @@ run();
 
 ### Example
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 import * as errors from "ragie/models/errors";
 
@@ -425,11 +422,14 @@ const ragie = new Ragie({
 
 async function run() {
   try {
-    const result = await ragie.documents.create({
-      file: await openAsBlob("example.file"),
+    const result = await ragie.documents.list({
+      filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+      partition: "acme_customer_id",
     });
 
-    console.log(result);
+    for await (const page of result) {
+      console.log(page);
+    }
   } catch (error) {
     // The base class for HTTP error responses
     if (error instanceof errors.RagieError) {
@@ -483,7 +483,6 @@ run();
 
 The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -492,11 +491,14 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -517,19 +519,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { Ragie } from "ragie";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "ragie/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {
@@ -566,7 +572,6 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `auth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -574,11 +579,14 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -593,7 +601,6 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -601,8 +608,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   }, {
     retries: {
       strategy: "backoff",
@@ -616,7 +624,9 @@ async function run() {
     },
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -625,7 +635,6 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -643,11 +652,14 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -662,7 +674,6 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -670,8 +681,9 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   }, {
     retries: {
       strategy: "backoff",
@@ -685,7 +697,9 @@ async function run() {
     },
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -694,7 +708,6 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { openAsBlob } from "node:fs";
 import { Ragie } from "ragie";
 
 const ragie = new Ragie({
@@ -712,11 +725,14 @@ const ragie = new Ragie({
 });
 
 async function run() {
-  const result = await ragie.documents.create({
-    file: await openAsBlob("example.file"),
+  const result = await ragie.documents.list({
+    filter: "{\"department\":{\"$in\":[\"sales\",\"marketing\"]}}",
+    partition: "acme_customer_id",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();

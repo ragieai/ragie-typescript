@@ -44,7 +44,11 @@ export type One = {
  */
 export type Mode = One | Two1 | Two2;
 
-export type Metadata = string | number | boolean | Array<string>;
+export type CreateDocumentParamsMetadata =
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 export type FileT = {
   fileName: string;
@@ -218,31 +222,41 @@ export function modeFromJSON(
 }
 
 /** @internal */
-export const Metadata$inboundSchema: z.ZodType<
-  Metadata,
+export const CreateDocumentParamsMetadata$inboundSchema: z.ZodType<
+  CreateDocumentParamsMetadata,
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]);
 /** @internal */
-export type Metadata$Outbound = string | number | boolean | Array<string>;
+export type CreateDocumentParamsMetadata$Outbound =
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 /** @internal */
-export const Metadata$outboundSchema: z.ZodType<
-  Metadata$Outbound,
+export const CreateDocumentParamsMetadata$outboundSchema: z.ZodType<
+  CreateDocumentParamsMetadata$Outbound,
   z.ZodTypeDef,
-  Metadata
+  CreateDocumentParamsMetadata
 > = z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]);
 
-export function metadataToJSON(metadata: Metadata): string {
-  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+export function createDocumentParamsMetadataToJSON(
+  createDocumentParamsMetadata: CreateDocumentParamsMetadata,
+): string {
+  return JSON.stringify(
+    CreateDocumentParamsMetadata$outboundSchema.parse(
+      createDocumentParamsMetadata,
+    ),
+  );
 }
-export function metadataFromJSON(
+export function createDocumentParamsMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<Metadata, SDKValidationError> {
+): SafeParseResult<CreateDocumentParamsMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Metadata' from JSON`,
+    (x) => CreateDocumentParamsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateDocumentParamsMetadata' from JSON`,
   );
 }
 
