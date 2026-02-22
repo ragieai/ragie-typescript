@@ -1,4 +1,4 @@
-speakeasyVersion: 1.682.0
+speakeasyVersion: 1.723.0
 sources:
     local:
         sourceNamespace: local
@@ -9,20 +9,20 @@ sources:
             - 1.0.0
     ragie.ai_spec:
         sourceNamespace: ragie-ai-spec
-        sourceRevisionDigest: sha256:bbff923159484b6f5a7027ee8c16c13a60ce2d9e9f523603fcba9243d1b38da7
-        sourceBlobDigest: sha256:e781f18c8b4e50249a130e038774b0f9e647fa416eb773f6d638506da7b70f14
+        sourceRevisionDigest: sha256:15d95ecea8e17274d185a92f406e3c65d7f63a1e9912d3a51887c1389313d3f8
+        sourceBlobDigest: sha256:8d042c08dae13d303c8df0c5706c0f712bf1269178de07dd4814483e03cce954
         tags:
             - latest
-            - speakeasy-sdk-regen-1765153541
+            - speakeasy-sdk-regen-1767918394
             - 1.0.0
 targets:
     ragie:
         source: ragie.ai_spec
         sourceNamespace: ragie-ai-spec
-        sourceRevisionDigest: sha256:bbff923159484b6f5a7027ee8c16c13a60ce2d9e9f523603fcba9243d1b38da7
-        sourceBlobDigest: sha256:e781f18c8b4e50249a130e038774b0f9e647fa416eb773f6d638506da7b70f14
+        sourceRevisionDigest: sha256:15d95ecea8e17274d185a92f406e3c65d7f63a1e9912d3a51887c1389313d3f8
+        sourceBlobDigest: sha256:8d042c08dae13d303c8df0c5706c0f712bf1269178de07dd4814483e03cce954
         codeSamplesNamespace: ragie-ai-spec-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:4baaaba14d7e7a568b8f79033ced7317fcc2efc7b671519737cdb23006420451
+        codeSamplesRevisionDigest: sha256:f2d78e611e6c0f418c022511b2ccd72e93d9baf4afa8761574f33308debbc19d
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

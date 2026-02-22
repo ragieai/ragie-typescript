@@ -13,6 +13,7 @@ let value: WebhookEndpoint = {
   url: "https://soggy-corporation.com",
   partitionPattern: null,
   active: true,
+  secret: "<value>",
 };
 ```
 
@@ -27,3 +28,4 @@ let value: WebhookEndpoint = {
 | `url`                                                                                         | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `partitionPattern`                                                                            | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `active`                                                                                      | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `secret`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |

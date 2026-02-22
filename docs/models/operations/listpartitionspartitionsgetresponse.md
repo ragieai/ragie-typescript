@@ -8,7 +8,7 @@ import { ListPartitionsPartitionsGetResponse } from "ragie/models/operations";
 let value: ListPartitionsPartitionsGetResponse = {
   result: {
     pagination: {
-      totalCount: 878808,
+      totalCount: 18197,
     },
     partitions: [
       {

@@ -6,7 +6,7 @@
 import { OAuthCredentials } from "ragie/models/components";
 
 let value: OAuthCredentials = {
-  provider: "hubspot",
+  provider: "dropbox",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",
