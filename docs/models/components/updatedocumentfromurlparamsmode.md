@@ -8,7 +8,7 @@ Partition strategy for the document. Different strategies exist for textual, aud
 ### `components.UpdateDocumentFromUrlParamsMode1`
 
 ```typescript
-const value: components.UpdateDocumentFromUrlParamsMode1 = "fast";
+const value: components.UpdateDocumentFromUrlParamsMode1 = "agentic_ocr";
 ```
 
 ### `components.MediaModeParam`

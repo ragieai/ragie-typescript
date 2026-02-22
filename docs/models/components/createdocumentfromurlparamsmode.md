@@ -8,7 +8,7 @@ Partition strategy for the document. Different strategies exist for textual, aud
 ### `components.Mode1`
 
 ```typescript
-const value: components.Mode1 = "hi_res";
+const value: components.Mode1 = "fast";
 ```
 
 ### `components.MediaModeParam`

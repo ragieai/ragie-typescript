@@ -26,23 +26,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Documents extends ClientSDK {
   /**
-   * Create Document
-   *
-   * @remarks
-   * On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
-   */
-  async create(
-    request: components.CreateDocumentParams,
-    options?: RequestOptions,
-  ): Promise<components.Document> {
-    return unwrapAsync(documentsCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * List Documents
    *
    * @remarks
@@ -55,6 +38,23 @@ export class Documents extends ClientSDK {
     PageIterator<operations.ListDocumentsResponse, { cursor: string }>
   > {
     return unwrapResultIterator(documentsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Document
+   *
+   * @remarks
+   * On ingest, the document goes through a series of steps before it is ready for retrieval. Each step is reflected in the status of the document which can be one of [`pending`, `partitioning`, `partitioned`, `refined`, `chunked`, `indexed`, `summary_indexed`, `keyword_indexed`, `ready`, `failed`]. The document is available for retrieval once it is in ready state. The summary index step can take a few seconds. You can optionally use the document for retrieval once it is in `indexed` state. However the summary will only be available once the state has changed to `summary_indexed` or `ready`.
+   */
+  async create(
+    request: components.CreateDocumentParams,
+    options?: RequestOptions,
+  ): Promise<components.Document> {
+    return unwrapAsync(documentsCreate(
       this,
       request,
       options,

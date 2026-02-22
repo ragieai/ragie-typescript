@@ -7,21 +7,27 @@ import { ConnectionList } from "ragie/models/components";
 
 let value: ConnectionList = {
   pagination: {
-    totalCount: 878808,
+    totalCount: 18197,
   },
   connections: [
     {
-      id: "fb791042-b3f3-4dfc-9309-281da8af8929",
-      createdAt: new Date("2024-03-28T00:56:47.996Z"),
-      updatedAt: new Date("2026-12-08T11:39:54.430Z"),
-      metadata: {},
+      id: "0da65304-8062-4f5f-bd38-89810c29b7bb",
+      createdAt: new Date("2026-10-07T02:32:19.524Z"),
+      updatedAt: new Date("2026-10-17T19:42:48.819Z"),
+      metadata: {
+        "key": true,
+      },
       type: "<value>",
       name: "<value>",
-      source: {},
-      enabled: false,
+      source: [
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+      ],
+      enabled: true,
       disabledBySystemReason: "connection_over_total_page_limit",
-      pageLimit: 243128,
-      disabledBySystem: true,
+      pageLimit: 783524,
+      disabledBySystem: false,
     },
   ],
 };

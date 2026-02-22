@@ -9,18 +9,17 @@ let value: CreateAuthenticatorConnectionRequest = {
   authenticatorId: "542d0fbe-28cf-4bc8-ab12-c387eaab8efc",
   createAuthenticatorConnection: {
     partitionStrategy: {},
-    pageLimit: null,
-    config: null,
+    pageLimit: 100,
     connection: {
       provider: "hubspot",
       data: {
-        companies: true,
+        companies: false,
         contacts: false,
         contactNotes: true,
-        deals: true,
-        dealNotes: false,
+        deals: false,
+        dealNotes: true,
         emails: true,
-        tasks: true,
+        tasks: false,
       },
       hubId: "<id>",
       hubDomain: "<value>",

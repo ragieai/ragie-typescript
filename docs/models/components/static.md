@@ -11,5 +11,5 @@ let value: Static = "hi_res";
 ## Values
 
 ```typescript
-"hi_res" | "fast"
+"hi_res" | "fast" | "agentic_ocr"
 ```

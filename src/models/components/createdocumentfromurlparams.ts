@@ -25,6 +25,7 @@ export type CreateDocumentFromUrlParamsMetadata =
 export const Mode1 = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type Mode1 = ClosedEnum<typeof Mode1>;
 

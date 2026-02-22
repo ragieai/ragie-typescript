@@ -14,23 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Authenticators extends ClientSDK {
   /**
-   * Create Authenticator
-   *
-   * @remarks
-   * Create White labeled connector credentials
-   */
-  async create(
-    request: operations.CreateAuthenticatorPayload,
-    options?: RequestOptions,
-  ): Promise<components.BaseGetAuthenticator> {
-    return unwrapAsync(authenticatorsCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * List Authenticators
    *
    * @remarks
@@ -43,6 +26,23 @@ export class Authenticators extends ClientSDK {
     PageIterator<operations.ListAuthenticatorsResponse, { cursor: string }>
   > {
     return unwrapResultIterator(authenticatorsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Authenticator
+   *
+   * @remarks
+   * Create White labeled connector credentials
+   */
+  async create(
+    request: operations.CreateAuthenticatorPayload,
+    options?: RequestOptions,
+  ): Promise<components.BaseGetAuthenticator> {
+    return unwrapAsync(authenticatorsCreate(
       this,
       request,
       options,

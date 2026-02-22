@@ -17,6 +17,7 @@ import {
 export const UpdateDocumentFromUrlParamsMode1 = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type UpdateDocumentFromUrlParamsMode1 = ClosedEnum<
   typeof UpdateDocumentFromUrlParamsMode1
