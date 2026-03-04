@@ -83,6 +83,17 @@ const value: components.PublicS3CompatibleConnection = {
 };
 ```
 
+### `components.PublicWebcrawlerConnection`
+
+```typescript
+const value: components.PublicWebcrawlerConnection = {
+  provider: "webcrawler",
+  data: {
+    url: "https://total-statue.org",
+  },
+};
+```
+
 ### `components.PublicZendeskConnection`
 
 ```typescript

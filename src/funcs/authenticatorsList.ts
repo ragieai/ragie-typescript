@@ -229,7 +229,7 @@ async function $do(
       authenticatorsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,

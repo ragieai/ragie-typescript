@@ -11,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const Static = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type Static = ClosedEnum<typeof Static>;
 
