@@ -100,6 +100,7 @@ async function run() {
     name: "Find all pizzas",
     scope: "document",
     prompt: "Find all pizzas described in the text.",
+    contextTemplate: "Document: {{document.name}} {{document.metadata.key_foo}}",
     entitySchema: {
       "key": "<value>",
       "key1": "<value>",
@@ -140,6 +141,7 @@ async function run() {
     name: "Find all pizzas",
     scope: "document",
     prompt: "Find all pizzas described in the text.",
+    contextTemplate: "Document: {{document.name}} {{document.metadata.key_foo}}",
     entitySchema: {
       "key": "<value>",
       "key1": "<value>",
