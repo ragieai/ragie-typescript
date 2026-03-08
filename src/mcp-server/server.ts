@@ -44,6 +44,8 @@ import { tool$documentsPatchMetadata } from "./tools/documentsPatchMetadata.js";
 import { tool$documentsUpdateDocumentFromUrl } from "./tools/documentsUpdateDocumentFromUrl.js";
 import { tool$documentsUpdateFile } from "./tools/documentsUpdateFile.js";
 import { tool$documentsUpdateRaw } from "./tools/documentsUpdateRaw.js";
+import { tool$elementsGet } from "./tools/elementsGet.js";
+import { tool$elementsList } from "./tools/elementsList.js";
 import { tool$entitiesCreateInstruction } from "./tools/entitiesCreateInstruction.js";
 import { tool$entitiesDelete } from "./tools/entitiesDelete.js";
 import { tool$entitiesListByDocument } from "./tools/entitiesListByDocument.js";
@@ -75,7 +77,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Ragie",
-    version: "1.15.1",
+    version: "1.16.0",
   });
 
   const client = new RagieCore({
@@ -105,8 +107,8 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
-  tool(tool$documentsCreate);
   tool(tool$documentsList);
+  tool(tool$documentsCreate);
   tool(tool$documentsCreateRaw);
   tool(tool$documentsCreateDocumentFromUrl);
   tool(tool$documentsGet);
@@ -133,8 +135,8 @@ export function createMCPServer(deps: {
   tool(tool$connectionsCreateOAuthRedirectUrl);
   tool(tool$connectionsListConnectionSourceTypes);
   tool(tool$connectionsSetEnabled);
-  tool(tool$connectionsUpdate);
   tool(tool$connectionsGet);
+  tool(tool$connectionsUpdate);
   tool(tool$connectionsGetStats);
   tool(tool$connectionsSetLimits);
   tool(tool$connectionsDelete);
@@ -142,20 +144,22 @@ export function createMCPServer(deps: {
   tool(tool$webhookEndpointsList);
   tool(tool$webhookEndpointsCreate);
   tool(tool$webhookEndpointsGet);
-  tool(tool$webhookEndpointsUpdate);
   tool(tool$webhookEndpointsDelete);
+  tool(tool$webhookEndpointsUpdate);
   tool(tool$partitionsList);
   tool(tool$partitionsCreate);
   tool(tool$partitionsGet);
-  tool(tool$partitionsUpdate);
   tool(tool$partitionsDelete);
+  tool(tool$partitionsUpdate);
   tool(tool$partitionsSetLimits);
-  tool(tool$authenticatorsCreate);
   tool(tool$authenticatorsList);
+  tool(tool$authenticatorsCreate);
   tool(tool$authenticatorsCreateAuthenticatorConnection);
   tool(tool$authenticatorsDeleteAuthenticatorConnection);
   tool(tool$responsesCreate);
   tool(tool$responsesGet);
+  tool(tool$elementsList);
+  tool(tool$elementsGet);
 
   return server;
 }

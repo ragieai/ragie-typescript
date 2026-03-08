@@ -228,7 +228,7 @@ async function $do(
       partitionsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,

@@ -9,8 +9,8 @@
 * [createOAuthRedirectUrl](#createoauthredirecturl) - Create Oauth Redirect Url
 * [listConnectionSourceTypes](#listconnectionsourcetypes) - List Connection Source Types
 * [setEnabled](#setenabled) - Set Connection Enabled
-* [update](#update) - Update Connection
 * [get](#get) - Get Connection
+* [update](#update) - Update Connection
 * [getStats](#getstats) - Get Connection Stats
 * [setLimits](#setlimits) - Set Connection Limits
 * [delete](#delete) - Delete Connection
@@ -34,7 +34,6 @@ async function run() {
   const result = await ragie.connections.createConnection({
     partitionStrategy: {},
     pageLimit: null,
-    config: null,
     connection: {
       provider: "gcs",
       data: {
@@ -72,7 +71,6 @@ async function run() {
   const res = await connectionsCreateConnection(ragie, {
     partitionStrategy: {},
     pageLimit: null,
-    config: null,
     connection: {
       provider: "gcs",
       data: {
@@ -430,6 +428,82 @@ run();
 | errors.ErrorMessage        | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
+## get
+
+Get a connection.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_connection_connections__connection_id__get" method="get" path="/connections/{connection_id}" -->
+```typescript
+import { Ragie } from "ragie";
+
+const ragie = new Ragie({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await ragie.connections.get({
+    connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { RagieCore } from "ragie/core.js";
+import { connectionsGet } from "ragie/funcs/connectionsGet.js";
+
+// Use `RagieCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const ragie = new RagieCore({
+  auth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await connectionsGet(ragie, {
+    connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("connectionsGet failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetConnectionConnectionsConnectionIdGetRequest](../../models/operations/getconnectionconnectionsconnectionidgetrequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.Connection](../../models/components/connection.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.ErrorMessage        | 401, 402, 429              | application/json           |
+| errors.ErrorMessage        | 500                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
 ## update
 
 Updates a connections metadata or mode. These changes will be seen after the next sync.
@@ -497,82 +571,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [operations.UpdateConnectionConnectionsConnectionIdPutRequest](../../models/operations/updateconnectionconnectionsconnectionidputrequest.md)                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[components.Connection](../../models/components/connection.md)\>**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPValidationError | 422                        | application/json           |
-| errors.ErrorMessage        | 401, 402, 429              | application/json           |
-| errors.ErrorMessage        | 500                        | application/json           |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
-
-## get
-
-Get a connection.
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="get_connection_connections__connection_id__get" method="get" path="/connections/{connection_id}" -->
-```typescript
-import { Ragie } from "ragie";
-
-const ragie = new Ragie({
-  auth: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const result = await ragie.connections.get({
-    connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { RagieCore } from "ragie/core.js";
-import { connectionsGet } from "ragie/funcs/connectionsGet.js";
-
-// Use `RagieCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const ragie = new RagieCore({
-  auth: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const res = await connectionsGet(ragie, {
-    connectionId: "af154d9d-a1af-4619-964d-b1589f2ec4f8",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("connectionsGet failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetConnectionConnectionsConnectionIdGetRequest](../../models/operations/getconnectionconnectionsconnectionidgetrequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

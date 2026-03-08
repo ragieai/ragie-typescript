@@ -110,6 +110,20 @@ async function $do(
       blob,
       payload.UpdateDocumentFileParams.file.fileName,
     );
+  } else if (
+    payload.UpdateDocumentFileParams.file.content instanceof Uint8Array
+  ) {
+    const contentType =
+      getContentTypeFromFileName(payload.UpdateDocumentFileParams.file.fileName)
+      || "application/octet-stream";
+    appendForm(
+      body,
+      "file",
+      new Blob([
+        new Uint8Array(payload.UpdateDocumentFileParams.file.content).buffer,
+      ], { type: contentType }),
+      payload.UpdateDocumentFileParams.file.fileName,
+    );
   } else {
     const contentType =
       getContentTypeFromFileName(payload.UpdateDocumentFileParams.file.fileName)

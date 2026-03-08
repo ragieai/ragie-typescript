@@ -41,6 +41,10 @@ export type Instruction = {
    * A natural language instruction which will be applied to documents as they are created and updated. The results of the `instruction_prompt` will be stored as an `entity` in the schema defined by the `entity_schema` parameter.
    */
   prompt: string;
+  /**
+   * An optional mustache style template used to prepend document context to the content sent for entity extraction. Available variables include `document.name`, `document.type`, `document.source`, and nested values under `document.metadata`.
+   */
+  contextTemplate?: string | undefined;
   entitySchema: { [k: string]: any };
   /**
    * An optional metadata filter that is matched against document metadata during update and creation. The instruction will only be applied to documents with metadata matching the filter.  The following filter operators are supported: $eq - Equal to (number, string, boolean), $ne - Not equal to (number, string, boolean), $gt - Greater than (number), $gte - Greater than or equal to (number), $lt - Less than (number), $lte - Less than or equal to (number), $in - In array (string or number), $nin - Not in array (string or number). The operators can be combined with AND and OR. Read [Metadata & Filters guide](https://docs.ragie.ai/docs/metadata-filters) for more details and examples.
@@ -73,6 +77,7 @@ export const Instruction$inboundSchema: z.ZodType<
   active: z.boolean().default(true),
   scope: Scope$inboundSchema.default("chunk"),
   prompt: z.string(),
+  context_template: z.string().optional(),
   entity_schema: z.record(z.any()),
   filter: z.record(z.any()).optional(),
   partition: z.string().optional(),
@@ -80,6 +85,7 @@ export const Instruction$inboundSchema: z.ZodType<
   return remap$(v, {
     "created_at": "createdAt",
     "updated_at": "updatedAt",
+    "context_template": "contextTemplate",
     "entity_schema": "entitySchema",
   });
 });
@@ -92,6 +98,7 @@ export type Instruction$Outbound = {
   active: boolean;
   scope: string;
   prompt: string;
+  context_template?: string | undefined;
   entity_schema: { [k: string]: any };
   filter?: { [k: string]: any } | undefined;
   partition?: string | undefined;
@@ -110,6 +117,7 @@ export const Instruction$outboundSchema: z.ZodType<
   active: z.boolean().default(true),
   scope: Scope$outboundSchema.default("chunk"),
   prompt: z.string(),
+  contextTemplate: z.string().optional(),
   entitySchema: z.record(z.any()),
   filter: z.record(z.any()).optional(),
   partition: z.string().optional(),
@@ -117,6 +125,7 @@ export const Instruction$outboundSchema: z.ZodType<
   return remap$(v, {
     createdAt: "created_at",
     updatedAt: "updated_at",
+    contextTemplate: "context_template",
     entitySchema: "entity_schema",
   });
 });
