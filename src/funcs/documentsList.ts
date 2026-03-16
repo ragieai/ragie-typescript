@@ -232,7 +232,7 @@ async function $do(
       documentsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,
