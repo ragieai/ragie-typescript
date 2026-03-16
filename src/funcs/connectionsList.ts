@@ -235,7 +235,7 @@ async function $do(
       connectionsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,

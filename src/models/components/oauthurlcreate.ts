@@ -30,6 +30,7 @@ export type OAuthUrlCreateMetadata =
 export const OAuthUrlCreateMode1 = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type OAuthUrlCreateMode1 = ClosedEnum<typeof OAuthUrlCreateMode1>;
 

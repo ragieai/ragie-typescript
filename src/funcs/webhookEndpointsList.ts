@@ -229,7 +229,7 @@ async function $do(
       webhookEndpointsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,
