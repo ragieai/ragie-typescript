@@ -74,6 +74,11 @@ import {
   AuthenticatorSlackConnection$outboundSchema,
 } from "./authenticatorslackconnection.js";
 import {
+  DocumentWorkflow,
+  DocumentWorkflow$inboundSchema,
+  DocumentWorkflow$outboundSchema,
+} from "./documentworkflow.js";
+import {
   MediaModeParam,
   MediaModeParam$inboundSchema,
   MediaModeParam$Outbound,
@@ -111,6 +116,7 @@ export type CreateAuthenticatorConnection = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: DocumentWorkflow | null | undefined;
   connection:
     | AuthenticatorConfluenceConnection
     | AuthenticatorDropboxConnection
@@ -274,6 +280,7 @@ export const CreateAuthenticatorConnection$inboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$inboundSchema).optional(),
   connection: z.union([
     AuthenticatorConfluenceConnection$inboundSchema,
     AuthenticatorDropboxConnection$inboundSchema,
@@ -302,6 +309,7 @@ export type CreateAuthenticatorConnection$Outbound = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: string | null | undefined;
   connection:
     | AuthenticatorConfluenceConnection$Outbound
     | AuthenticatorDropboxConnection$Outbound
@@ -335,6 +343,7 @@ export const CreateAuthenticatorConnection$outboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$outboundSchema).optional(),
   connection: z.union([
     AuthenticatorConfluenceConnection$outboundSchema,
     AuthenticatorDropboxConnection$outboundSchema,

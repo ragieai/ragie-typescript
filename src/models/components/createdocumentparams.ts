@@ -40,20 +40,140 @@ export type One = {
 };
 
 /**
- * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  To process all media types at the highest quality, use `'all'`.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }  Highest quality processing for all media types     "all"
+ * Partition strategy for the document.
+ *
+ * @remarks
+ * Different strategies exist for textual, audio and video file types and you can set the strategy you want for
+ * each file type, or just for textual types.
+ *
+ * For textual documents the options are `'hi_res'` or `'fast'`.
+ * When set to `'hi_res'`, images and tables will be extracted from the document.
+ * `'fast'` will only extract text.
+ * `'fast'` may be up to 20x faster than `'hi_res'`.
+ * `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints.
+ * Images will always be processed in `hi_res`.
+ * If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
+ *
+ * For audio files, the options are true or false. True if you want to process audio, false otherwise.
+ *
+ * For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`.
+ * `'audio_only'` will extract just the audio part of the video.
+ * `'video_only'` will similarly just extract the video part, ignoring audio.
+ * `'audio_video'` will extract both audio and video.
+ *
+ * To process all media types at the highest quality, use `'all'`.
+ *
+ * When you specify audio or video stategies, the format must be a JSON object. In this case,
+ * textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.
+ * See examples below.
+ *
+ * Examples
+ *
+ * Textual documents only
+ *     "fast"
+ *
+ * Video documents only
+ * {
+ *     "video": "audio_video"
+ * }
+ *
+ * Specify multiple document types
+ * {
+ *     "static": "hi_res",
+ *     "audio": true,
+ *     "video": "video_only"
+ * }
+ *
+ * Specify only textual or audio document types
+ * {
+ *     "static": "fast",
+ *     "audio": true
+ * }
+ *
+ * Highest quality processing for all media types
+ *     "all"
+ *
+ * Agentic OCR
+ *     "agentic_ocr"
+ *     Agentic OCR is in early access. `agentic_ocr` mode extracts content using vision models which can be more accurate, especially across more visually complex documents. If you are interested in accessing this feature, please contact us at support@ragie.ai.
  */
 export type Mode = One | Two1 | Two2;
 
-export type Metadata = string | number | boolean | Array<string>;
+export type CreateDocumentParamsMetadata =
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 export type FileT = {
   fileName: string;
   content: ReadableStream<Uint8Array> | Blob | ArrayBuffer | Uint8Array;
 };
 
+export const Workflow = {
+  Parse: "parse",
+  Index: "index",
+} as const;
+export type Workflow = ClosedEnum<typeof Workflow>;
+
 export type CreateDocumentParams = {
   /**
-   * Partition strategy for the document. Different strategies exist for textual, audio and video file types and you can set the strategy you want for  each file type, or just for textual types.  For textual documents the options are `'hi_res'` or `'fast'`. When set to `'hi_res'`, images and tables will be extracted from the document. `'fast'` will only extract text. `'fast'` may be up to 20x faster than `'hi_res'`. `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints. Images will always be processed in `hi_res`. If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.  For audio files, the options are true or false. True if you want to process audio, false otherwise.          For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`. `'audio_only'` will extract just the audio part of the video. `'video_only'` will similarly just extract the video part, ignoring audio. `'audio_video'` will extract both audio and video.  To process all media types at the highest quality, use `'all'`.  When you specify audio or video stategies, the format must be a JSON object. In this case, textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.  See examples below.  Examples  Textual documents only     "fast"  Video documents only {     "video": "audio_video" }  Specify multiple document types {     "static": "hi_res",     "audio": true,     "video": "video_only" }  Specify only textual or audio document types {     "static": "fast",     "audio": true }  Highest quality processing for all media types     "all"
+   * Partition strategy for the document.
+   *
+   * @remarks
+   * Different strategies exist for textual, audio and video file types and you can set the strategy you want for
+   * each file type, or just for textual types.
+   *
+   * For textual documents the options are `'hi_res'` or `'fast'`.
+   * When set to `'hi_res'`, images and tables will be extracted from the document.
+   * `'fast'` will only extract text.
+   * `'fast'` may be up to 20x faster than `'hi_res'`.
+   * `hi_res` is only applicable for Word documents, PDFs, Images, and PowerPoints.
+   * Images will always be processed in `hi_res`.
+   * If `hi_res` is set for an unsupported document type, it will be processed and billed in `fast` mode.
+   *
+   * For audio files, the options are true or false. True if you want to process audio, false otherwise.
+   *
+   * For video files, the options are `'audio_only'`, `'video_only'`, `'audio_video'`.
+   * `'audio_only'` will extract just the audio part of the video.
+   * `'video_only'` will similarly just extract the video part, ignoring audio.
+   * `'audio_video'` will extract both audio and video.
+   *
+   * To process all media types at the highest quality, use `'all'`.
+   *
+   * When you specify audio or video stategies, the format must be a JSON object. In this case,
+   * textual documents are denoted by the key "static". If you omit a key, that document type won't be processd.
+   * See examples below.
+   *
+   * Examples
+   *
+   * Textual documents only
+   *     "fast"
+   *
+   * Video documents only
+   * {
+   *     "video": "audio_video"
+   * }
+   *
+   * Specify multiple document types
+   * {
+   *     "static": "hi_res",
+   *     "audio": true,
+   *     "video": "video_only"
+   * }
+   *
+   * Specify only textual or audio document types
+   * {
+   *     "static": "fast",
+   *     "audio": true
+   * }
+   *
+   * Highest quality processing for all media types
+   *     "all"
+   *
+   * Agentic OCR
+   *     "agentic_ocr"
+   *     Agentic OCR is in early access. `agentic_ocr` mode extracts content using vision models which can be more accurate, especially across more visually complex documents. If you are interested in accessing this feature, please contact us at support@ragie.ai.
    */
   mode?: One | Two1 | Two2 | undefined;
   /**
@@ -82,6 +202,7 @@ export type CreateDocumentParams = {
    * An optional partition identifier. Documents can be scoped to a partition. Partitions must be lowercase alphanumeric and may only include the special characters `_` and `-`.  A partition is created any time a document is created.
    */
   partition?: string | undefined;
+  workflow?: Workflow | null | undefined;
 };
 
 /** @internal */
@@ -218,31 +339,41 @@ export function modeFromJSON(
 }
 
 /** @internal */
-export const Metadata$inboundSchema: z.ZodType<
-  Metadata,
+export const CreateDocumentParamsMetadata$inboundSchema: z.ZodType<
+  CreateDocumentParamsMetadata,
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]);
 /** @internal */
-export type Metadata$Outbound = string | number | boolean | Array<string>;
+export type CreateDocumentParamsMetadata$Outbound =
+  | string
+  | number
+  | boolean
+  | Array<string>;
 
 /** @internal */
-export const Metadata$outboundSchema: z.ZodType<
-  Metadata$Outbound,
+export const CreateDocumentParamsMetadata$outboundSchema: z.ZodType<
+  CreateDocumentParamsMetadata$Outbound,
   z.ZodTypeDef,
-  Metadata
+  CreateDocumentParamsMetadata
 > = z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]);
 
-export function metadataToJSON(metadata: Metadata): string {
-  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+export function createDocumentParamsMetadataToJSON(
+  createDocumentParamsMetadata: CreateDocumentParamsMetadata,
+): string {
+  return JSON.stringify(
+    CreateDocumentParamsMetadata$outboundSchema.parse(
+      createDocumentParamsMetadata,
+    ),
+  );
 }
-export function metadataFromJSON(
+export function createDocumentParamsMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<Metadata, SDKValidationError> {
+): SafeParseResult<CreateDocumentParamsMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Metadata' from JSON`,
+    (x) => CreateDocumentParamsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateDocumentParamsMetadata' from JSON`,
   );
 }
 
@@ -292,6 +423,13 @@ export function fileFromJSON(
 }
 
 /** @internal */
+export const Workflow$inboundSchema: z.ZodNativeEnum<typeof Workflow> = z
+  .nativeEnum(Workflow);
+/** @internal */
+export const Workflow$outboundSchema: z.ZodNativeEnum<typeof Workflow> =
+  Workflow$inboundSchema;
+
+/** @internal */
 export const CreateDocumentParams$inboundSchema: z.ZodType<
   CreateDocumentParams,
   z.ZodTypeDef,
@@ -308,6 +446,7 @@ export const CreateDocumentParams$inboundSchema: z.ZodType<
   external_id: z.string().optional(),
   name: z.string().optional(),
   partition: z.string().optional(),
+  workflow: z.nullable(Workflow$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "external_id": "externalId",
@@ -323,6 +462,7 @@ export type CreateDocumentParams$Outbound = {
   external_id?: string | undefined;
   name?: string | undefined;
   partition?: string | undefined;
+  workflow?: string | null | undefined;
 };
 
 /** @internal */
@@ -342,6 +482,7 @@ export const CreateDocumentParams$outboundSchema: z.ZodType<
   externalId: z.string().optional(),
   name: z.string().optional(),
   partition: z.string().optional(),
+  workflow: z.nullable(Workflow$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     externalId: "external_id",
