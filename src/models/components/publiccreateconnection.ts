@@ -8,6 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  DocumentWorkflow,
+  DocumentWorkflow$inboundSchema,
+  DocumentWorkflow$outboundSchema,
+} from "./documentworkflow.js";
+import {
   MediaModeParam,
   MediaModeParam$inboundSchema,
   MediaModeParam$Outbound,
@@ -44,6 +49,12 @@ import {
   PublicS3CompatibleConnection$outboundSchema,
 } from "./publics3compatibleconnection.js";
 import {
+  PublicWebcrawlerConnection,
+  PublicWebcrawlerConnection$inboundSchema,
+  PublicWebcrawlerConnection$Outbound,
+  PublicWebcrawlerConnection$outboundSchema,
+} from "./publicwebcrawlerconnection.js";
+import {
   PublicZendeskConnection,
   PublicZendeskConnection$inboundSchema,
   PublicZendeskConnection$Outbound,
@@ -63,6 +74,7 @@ export type PublicCreateConnectionConnection =
   | PublicGCSConnection
   | PublicIntercomConnection
   | PublicS3CompatibleConnection
+  | PublicWebcrawlerConnection
   | PublicZendeskConnection;
 
 export type PublicCreateConnection = {
@@ -76,12 +88,14 @@ export type PublicCreateConnection = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: DocumentWorkflow | null | undefined;
   connection:
     | PublicBackblazeConnection
     | PublicFreshdeskConnection
     | PublicGCSConnection
     | PublicIntercomConnection
     | PublicS3CompatibleConnection
+    | PublicWebcrawlerConnection
     | PublicZendeskConnection;
 };
 
@@ -148,6 +162,7 @@ export const PublicCreateConnectionConnection$inboundSchema: z.ZodType<
   PublicGCSConnection$inboundSchema,
   PublicIntercomConnection$inboundSchema,
   PublicS3CompatibleConnection$inboundSchema,
+  PublicWebcrawlerConnection$inboundSchema,
   PublicZendeskConnection$inboundSchema,
 ]);
 /** @internal */
@@ -157,6 +172,7 @@ export type PublicCreateConnectionConnection$Outbound =
   | PublicGCSConnection$Outbound
   | PublicIntercomConnection$Outbound
   | PublicS3CompatibleConnection$Outbound
+  | PublicWebcrawlerConnection$Outbound
   | PublicZendeskConnection$Outbound;
 
 /** @internal */
@@ -170,6 +186,7 @@ export const PublicCreateConnectionConnection$outboundSchema: z.ZodType<
   PublicGCSConnection$outboundSchema,
   PublicIntercomConnection$outboundSchema,
   PublicS3CompatibleConnection$outboundSchema,
+  PublicWebcrawlerConnection$outboundSchema,
   PublicZendeskConnection$outboundSchema,
 ]);
 
@@ -211,12 +228,14 @@ export const PublicCreateConnection$inboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$inboundSchema).optional(),
   connection: z.union([
     PublicBackblazeConnection$inboundSchema,
     PublicFreshdeskConnection$inboundSchema,
     PublicGCSConnection$inboundSchema,
     PublicIntercomConnection$inboundSchema,
     PublicS3CompatibleConnection$inboundSchema,
+    PublicWebcrawlerConnection$inboundSchema,
     PublicZendeskConnection$inboundSchema,
   ]),
 }).transform((v) => {
@@ -234,12 +253,14 @@ export type PublicCreateConnection$Outbound = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: string | null | undefined;
   connection:
     | PublicBackblazeConnection$Outbound
     | PublicFreshdeskConnection$Outbound
     | PublicGCSConnection$Outbound
     | PublicIntercomConnection$Outbound
     | PublicS3CompatibleConnection$Outbound
+    | PublicWebcrawlerConnection$Outbound
     | PublicZendeskConnection$Outbound;
 };
 
@@ -262,12 +283,14 @@ export const PublicCreateConnection$outboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$outboundSchema).optional(),
   connection: z.union([
     PublicBackblazeConnection$outboundSchema,
     PublicFreshdeskConnection$outboundSchema,
     PublicGCSConnection$outboundSchema,
     PublicIntercomConnection$outboundSchema,
     PublicS3CompatibleConnection$outboundSchema,
+    PublicWebcrawlerConnection$outboundSchema,
     PublicZendeskConnection$outboundSchema,
   ]),
 }).transform((v) => {

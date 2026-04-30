@@ -57,13 +57,13 @@ import {
   Tool$outboundSchema,
 } from "./tool.js";
 
-export const Status = {
+export const ResponseStatus = {
   Completed: "completed",
   Failed: "failed",
   InProgress: "in_progress",
   Cancelled: "cancelled",
 } as const;
-export type Status = ClosedEnum<typeof Status>;
+export type ResponseStatus = ClosedEnum<typeof ResponseStatus>;
 
 export type Output =
   | ReasoningOutput
@@ -75,7 +75,7 @@ export type ResponseT = {
   id: string;
   object?: "response" | undefined;
   createdAt: number;
-  status: Status;
+  status: ResponseStatus;
   error?: string | null | undefined;
   incompleteDetails?: any | null | undefined;
   instructions?: string | null | undefined;
@@ -103,11 +103,13 @@ export type ResponseT = {
 };
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const ResponseStatus$inboundSchema: z.ZodNativeEnum<
+  typeof ResponseStatus
+> = z.nativeEnum(ResponseStatus);
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
+export const ResponseStatus$outboundSchema: z.ZodNativeEnum<
+  typeof ResponseStatus
+> = ResponseStatus$inboundSchema;
 
 /** @internal */
 export const Output$inboundSchema: z.ZodType<Output, z.ZodTypeDef, unknown> = z
@@ -158,7 +160,7 @@ export const ResponseT$inboundSchema: z.ZodType<
   id: z.string(),
   object: z.literal("response").default("response"),
   created_at: z.number().int(),
-  status: Status$inboundSchema,
+  status: ResponseStatus$inboundSchema,
   error: z.nullable(z.string()).optional(),
   incomplete_details: z.nullable(z.any()).optional(),
   instructions: z.nullable(z.string()).optional(),
@@ -238,7 +240,7 @@ export const ResponseT$outboundSchema: z.ZodType<
   id: z.string(),
   object: z.literal("response").default("response" as const),
   createdAt: z.number().int(),
-  status: Status$outboundSchema,
+  status: ResponseStatus$outboundSchema,
   error: z.nullable(z.string()).optional(),
   incompleteDetails: z.nullable(z.any()).optional(),
   instructions: z.nullable(z.string()).optional(),

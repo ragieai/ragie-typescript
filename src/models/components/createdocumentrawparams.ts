@@ -7,6 +7,11 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  DocumentWorkflow,
+  DocumentWorkflow$inboundSchema,
+  DocumentWorkflow$outboundSchema,
+} from "./documentworkflow.js";
 
 export type CreateDocumentRawParamsMetadata =
   | string
@@ -39,6 +44,7 @@ export type CreateDocumentRawParams = {
    * An optional partition identifier. Documents can be scoped to a partition. Partitions must be lowercase alphanumeric and may only include the special characters `_` and `-`.  A partition is created any time a document is created.
    */
   partition?: string | undefined;
+  workflow?: DocumentWorkflow | undefined;
   /**
    * Document data in a text or JSON format.
    */
@@ -138,6 +144,7 @@ export const CreateDocumentRawParams$inboundSchema: z.ZodType<
   ).optional(),
   external_id: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
+  workflow: DocumentWorkflow$inboundSchema.optional(),
   data: z.union([z.string(), z.record(z.any())]),
 }).transform((v) => {
   return remap$(v, {
@@ -152,6 +159,7 @@ export type CreateDocumentRawParams$Outbound = {
     | undefined;
   external_id?: string | null | undefined;
   partition?: string | undefined;
+  workflow?: string | undefined;
   data: string | { [k: string]: any };
 };
 
@@ -173,6 +181,7 @@ export const CreateDocumentRawParams$outboundSchema: z.ZodType<
   ).optional(),
   externalId: z.nullable(z.string()).optional(),
   partition: z.string().optional(),
+  workflow: DocumentWorkflow$outboundSchema.optional(),
   data: z.union([z.string(), z.record(z.any())]),
 }).transform((v) => {
   return remap$(v, {

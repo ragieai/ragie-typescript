@@ -21,7 +21,6 @@ import {
   isConnectionError,
   isTimeoutError,
   matchContentType,
-  matchStatusCode,
 } from "./http.js";
 import { Logger } from "./logger.js";
 import { retry, RetryConfig } from "./retries.js";
@@ -123,13 +122,15 @@ export class ClientSDK {
     if (!base) {
       return ERR(new InvalidRequestError("No base URL provided for operation"));
     }
-    const reqURL = new URL(base);
-    const inputURL = new URL(path, reqURL);
-
+    const baseURL = new URL(base);
+    let reqURL: URL;
     if (path) {
-      reqURL.pathname += reqURL.pathname.endsWith("/") ? "" : "/";
-      reqURL.pathname += inputURL.pathname.replace(/^\/+/, "");
+      baseURL.pathname = baseURL.pathname.replace(/\/+$/, "") + "/";
+      reqURL = new URL(path, baseURL);
+    } else {
+      reqURL = baseURL;
     }
+    reqURL.hash = "";
 
     let finalQuery = query || "";
 
@@ -227,7 +228,7 @@ export class ClientSDK {
     request: Request,
     options: {
       context: HookContext;
-      errorCodes: number | string | (number | string)[];
+      isErrorStatusCode: (statusCode: number) => boolean;
       retryConfig: RetryConfig;
       retryCodes: string[];
     },
@@ -240,7 +241,7 @@ export class ClientSDK {
       | UnexpectedClientError
     >
   > {
-    const { context, errorCodes } = options;
+    const { context, isErrorStatusCode } = options;
 
     return retry(
       async () => {
@@ -252,7 +253,7 @@ export class ClientSDK {
         let response = await this.#httpClient.request(req);
 
         try {
-          if (matchStatusCode(response, errorCodes)) {
+          if (isErrorStatusCode(response.status)) {
             const result = await this.#hooks.afterError(
               context,
               response,
@@ -303,9 +304,9 @@ export class ClientSDK {
   }
 }
 
-const jsonLikeContentTypeRE = /(application|text)\/.*?\+*json.*/;
+const jsonLikeContentTypeRE = /^(application|text)\/([^+]+\+)*json.*/;
 const jsonlLikeContentTypeRE =
-  /(application|text)\/(.*?\+*\bjsonl\b.*|.*?\+*\bx-ndjson\b.*)/;
+  /^(application|text)\/([^+]+\+)*(jsonl|x-ndjson)\b.*/;
 async function logRequest(logger: Logger | undefined, req: Request) {
   if (!logger) {
     return;
@@ -376,8 +377,6 @@ async function logResponse(
       break;
     case matchContentType(res, "application/jsonl")
       || jsonlLikeContentTypeRE.test(ct):
-      logger.log(await res.clone().text());
-      break;
     case matchContentType(res, "text/event-stream"):
       logger.log(`<${contentType}>`);
       break;

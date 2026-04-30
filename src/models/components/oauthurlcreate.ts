@@ -14,6 +14,11 @@ import {
   ConnectorSource$outboundSchema,
 } from "./connectorsource.js";
 import {
+  DocumentWorkflow,
+  DocumentWorkflow$inboundSchema,
+  DocumentWorkflow$outboundSchema,
+} from "./documentworkflow.js";
+import {
   MediaModeParam,
   MediaModeParam$inboundSchema,
   MediaModeParam$Outbound,
@@ -30,6 +35,7 @@ export type OAuthUrlCreateMetadata =
 export const OAuthUrlCreateMode1 = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type OAuthUrlCreateMode1 = ClosedEnum<typeof OAuthUrlCreateMode1>;
 
@@ -66,6 +72,7 @@ export type OAuthUrlCreate = {
    */
   config?: { [k: string]: any } | undefined;
   authenticatorId?: string | null | undefined;
+  workflow?: DocumentWorkflow | null | undefined;
 };
 
 /** @internal */
@@ -196,6 +203,7 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   page_limit: z.nullable(z.number().int()).optional(),
   config: z.record(z.any()).optional(),
   authenticator_id: z.nullable(z.string()).optional(),
+  workflow: z.nullable(DocumentWorkflow$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "redirect_uri": "redirectUri",
@@ -217,6 +225,7 @@ export type OAuthUrlCreate$Outbound = {
   page_limit?: number | null | undefined;
   config?: { [k: string]: any } | undefined;
   authenticator_id?: string | null | undefined;
+  workflow?: string | null | undefined;
 };
 
 /** @internal */
@@ -247,6 +256,7 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   pageLimit: z.nullable(z.number().int()).optional(),
   config: z.record(z.any()).optional(),
   authenticatorId: z.nullable(z.string()).optional(),
+  workflow: z.nullable(DocumentWorkflow$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     redirectUri: "redirect_uri",

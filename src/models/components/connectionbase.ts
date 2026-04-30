@@ -18,6 +18,7 @@ import {
 export const PartitionStrategy1 = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type PartitionStrategy1 = ClosedEnum<typeof PartitionStrategy1>;
 
