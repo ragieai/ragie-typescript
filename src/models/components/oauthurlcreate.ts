@@ -14,11 +14,22 @@ import {
   ConnectorSource$outboundSchema,
 } from "./connectorsource.js";
 import {
+  DocumentWorkflow,
+  DocumentWorkflow$inboundSchema,
+  DocumentWorkflow$outboundSchema,
+} from "./documentworkflow.js";
+import {
   MediaModeParam,
   MediaModeParam$inboundSchema,
   MediaModeParam$Outbound,
   MediaModeParam$outboundSchema,
 } from "./mediamodeparam.js";
+import {
+  SyncFilter,
+  SyncFilter$inboundSchema,
+  SyncFilter$Outbound,
+  SyncFilter$outboundSchema,
+} from "./syncfilter.js";
 
 export type OAuthUrlCreateMetadata =
   | string
@@ -30,6 +41,7 @@ export type OAuthUrlCreateMetadata =
 export const OAuthUrlCreateMode1 = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type OAuthUrlCreateMode1 = ClosedEnum<typeof OAuthUrlCreateMode1>;
 
@@ -66,6 +78,8 @@ export type OAuthUrlCreate = {
    */
   config?: { [k: string]: any } | undefined;
   authenticatorId?: string | null | undefined;
+  workflow?: DocumentWorkflow | null | undefined;
+  syncFilter?: { [k: string]: SyncFilter } | undefined;
 };
 
 /** @internal */
@@ -196,12 +210,15 @@ export const OAuthUrlCreate$inboundSchema: z.ZodType<
   page_limit: z.nullable(z.number().int()).optional(),
   config: z.record(z.any()).optional(),
   authenticator_id: z.nullable(z.string()).optional(),
+  workflow: z.nullable(DocumentWorkflow$inboundSchema).optional(),
+  sync_filter: z.record(SyncFilter$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "redirect_uri": "redirectUri",
     "source_type": "sourceType",
     "page_limit": "pageLimit",
     "authenticator_id": "authenticatorId",
+    "sync_filter": "syncFilter",
   });
 });
 /** @internal */
@@ -217,6 +234,8 @@ export type OAuthUrlCreate$Outbound = {
   page_limit?: number | null | undefined;
   config?: { [k: string]: any } | undefined;
   authenticator_id?: string | null | undefined;
+  workflow?: string | null | undefined;
+  sync_filter?: { [k: string]: SyncFilter$Outbound } | undefined;
 };
 
 /** @internal */
@@ -247,12 +266,15 @@ export const OAuthUrlCreate$outboundSchema: z.ZodType<
   pageLimit: z.nullable(z.number().int()).optional(),
   config: z.record(z.any()).optional(),
   authenticatorId: z.nullable(z.string()).optional(),
+  workflow: z.nullable(DocumentWorkflow$outboundSchema).optional(),
+  syncFilter: z.record(SyncFilter$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     redirectUri: "redirect_uri",
     sourceType: "source_type",
     pageLimit: "page_limit",
     authenticatorId: "authenticator_id",
+    syncFilter: "sync_filter",
   });
 });
 

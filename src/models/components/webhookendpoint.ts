@@ -16,6 +16,7 @@ export type WebhookEndpoint = {
   url: string;
   partitionPattern: string | null;
   active: boolean;
+  secret: string;
 };
 
 /** @internal */
@@ -31,6 +32,7 @@ export const WebhookEndpoint$inboundSchema: z.ZodType<
   url: z.string(),
   partition_pattern: z.nullable(z.string()),
   active: z.boolean(),
+  secret: z.string(),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",
@@ -47,6 +49,7 @@ export type WebhookEndpoint$Outbound = {
   url: string;
   partition_pattern: string | null;
   active: boolean;
+  secret: string;
 };
 
 /** @internal */
@@ -62,6 +65,7 @@ export const WebhookEndpoint$outboundSchema: z.ZodType<
   url: z.string(),
   partitionPattern: z.nullable(z.string()),
   active: z.boolean(),
+  secret: z.string(),
 }).transform((v) => {
   return remap$(v, {
     createdAt: "created_at",

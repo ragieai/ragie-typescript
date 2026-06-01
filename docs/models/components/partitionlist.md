@@ -7,7 +7,7 @@ import { PartitionList } from "ragie/models/components";
 
 let value: PartitionList = {
   pagination: {
-    totalCount: 878808,
+    totalCount: 18197,
   },
   partitions: [],
 };

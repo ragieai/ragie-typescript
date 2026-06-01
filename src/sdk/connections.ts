@@ -110,23 +110,6 @@ export class Connections extends ClientSDK {
   }
 
   /**
-   * Update Connection
-   *
-   * @remarks
-   * Updates a connections metadata or mode. These changes will be seen after the next sync.
-   */
-  async update(
-    request: operations.UpdateConnectionConnectionsConnectionIdPutRequest,
-    options?: RequestOptions,
-  ): Promise<components.Connection> {
-    return unwrapAsync(connectionsUpdate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get Connection
    *
    * @remarks
@@ -137,6 +120,23 @@ export class Connections extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.Connection> {
     return unwrapAsync(connectionsGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update Connection
+   *
+   * @remarks
+   * Updates a connections metadata or mode. These changes will be seen after the next sync.
+   */
+  async update(
+    request: operations.UpdateConnectionConnectionsConnectionIdPutRequest,
+    options?: RequestOptions,
+  ): Promise<components.Connection> {
+    return unwrapAsync(connectionsUpdate(
       this,
       request,
       options,

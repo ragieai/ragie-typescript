@@ -7,7 +7,7 @@ import { AuthenticatorList } from "ragie/models/components";
 
 let value: AuthenticatorList = {
   pagination: {
-    totalCount: 878808,
+    totalCount: 18197,
   },
   authenticators: [],
 };
