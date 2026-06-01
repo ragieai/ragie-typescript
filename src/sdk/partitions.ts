@@ -72,23 +72,6 @@ export class Partitions extends ClientSDK {
   }
 
   /**
-   * Update Partition
-   *
-   * @remarks
-   * Updates a partition. This includes the partition's description and metadata schema.
-   */
-  async update(
-    request: operations.UpdatePartitionPartitionsPartitionIdPatchRequest,
-    options?: RequestOptions,
-  ): Promise<components.PartitionDetail> {
-    return unwrapAsync(partitionsUpdate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Delete Partition
    *
    * @remarks
@@ -99,6 +82,23 @@ export class Partitions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.ResponseOK> {
     return unwrapAsync(partitionsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update Partition
+   *
+   * @remarks
+   * Updates a partition. This includes the partition's description and metadata schema.
+   */
+  async update(
+    request: operations.UpdatePartitionPartitionsPartitionIdPatchRequest,
+    options?: RequestOptions,
+  ): Promise<components.PartitionDetail> {
+    return unwrapAsync(partitionsUpdate(
       this,
       request,
       options,

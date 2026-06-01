@@ -8,12 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type DocumentMetadata =
-  | string
-  | number
-  | number
-  | boolean
-  | Array<string>;
+export type Metadata = string | number | number | boolean | Array<string>;
 
 export type Document = {
   status: string;
@@ -29,8 +24,8 @@ export type Document = {
 };
 
 /** @internal */
-export const DocumentMetadata$inboundSchema: z.ZodType<
-  DocumentMetadata,
+export const Metadata$inboundSchema: z.ZodType<
+  Metadata,
   z.ZodTypeDef,
   unknown
 > = z.union([
@@ -41,7 +36,7 @@ export const DocumentMetadata$inboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 /** @internal */
-export type DocumentMetadata$Outbound =
+export type Metadata$Outbound =
   | string
   | number
   | number
@@ -49,10 +44,10 @@ export type DocumentMetadata$Outbound =
   | Array<string>;
 
 /** @internal */
-export const DocumentMetadata$outboundSchema: z.ZodType<
-  DocumentMetadata$Outbound,
+export const Metadata$outboundSchema: z.ZodType<
+  Metadata$Outbound,
   z.ZodTypeDef,
-  DocumentMetadata
+  Metadata
 > = z.union([
   z.string(),
   z.number().int(),
@@ -61,20 +56,16 @@ export const DocumentMetadata$outboundSchema: z.ZodType<
   z.array(z.string()),
 ]);
 
-export function documentMetadataToJSON(
-  documentMetadata: DocumentMetadata,
-): string {
-  return JSON.stringify(
-    DocumentMetadata$outboundSchema.parse(documentMetadata),
-  );
+export function metadataToJSON(metadata: Metadata): string {
+  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
 }
-export function documentMetadataFromJSON(
+export function metadataFromJSON(
   jsonString: string,
-): SafeParseResult<DocumentMetadata, SDKValidationError> {
+): SafeParseResult<Metadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DocumentMetadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DocumentMetadata' from JSON`,
+    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadata' from JSON`,
   );
 }
 

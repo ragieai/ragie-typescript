@@ -16,6 +16,7 @@ let value: Connection = {
   enabled: false,
   disabledBySystemReason: "connection_over_total_page_limit",
   pageLimit: 270380,
+  syncFilter: {},
   disabledBySystem: true,
 };
 ```
@@ -37,4 +38,5 @@ let value: Connection = {
 | `syncing`                                                                                     | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `partition`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `pageLimit`                                                                                   | *number*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `syncFilter`                                                                                  | Record<string, *components.SyncFilter*>                                                       | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `disabledBySystem`                                                                            | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |

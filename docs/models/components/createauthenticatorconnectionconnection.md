@@ -70,13 +70,13 @@ const value: components.AuthenticatorGoogleDriveConnection = {
 const value: components.AuthenticatorHubspotConnection = {
   provider: "hubspot",
   data: {
-    companies: true,
+    companies: false,
     contacts: false,
     contactNotes: true,
-    deals: true,
-    dealNotes: false,
+    deals: false,
+    dealNotes: true,
     emails: true,
-    tasks: true,
+    tasks: false,
   },
   hubId: "<id>",
   hubDomain: "<value>",

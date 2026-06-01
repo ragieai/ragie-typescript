@@ -4,6 +4,7 @@
 
 import { RagieCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -27,11 +28,11 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update Instruction
+ * Patch Instruction
  */
 export function entitiesUpdateInstruction(
   client: RagieCore,
-  request: operations.UpdateInstructionRequest,
+  request: operations.PatchInstructionRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -57,7 +58,7 @@ export function entitiesUpdateInstruction(
 
 async function $do(
   client: RagieCore,
-  request: operations.UpdateInstructionRequest,
+  request: operations.PatchInstructionRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -79,14 +80,14 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.UpdateInstructionRequest$outboundSchema.parse(value),
+    (value) => operations.PatchInstructionRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.UpdateInstructionParams, {
+  const body = encodeJSON("body", payload.PatchInstructionParams, {
     explode: true,
   });
 
@@ -96,7 +97,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/instructions/{instruction_id}")(pathParams);
 
   const headers = new Headers(compactMap({
@@ -111,7 +111,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "UpdateInstruction",
+    operationID: "PatchInstruction",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -125,7 +125,7 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "PUT",
+    method: "PATCH",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -140,7 +140,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "402", "422", "429", "4XX", "500", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

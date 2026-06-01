@@ -7,12 +7,12 @@ import * as operations from "../../models/operations/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  request: operations.UpdateInstructionRequest$inboundSchema,
+  request: operations.PatchInstructionRequest$inboundSchema,
 };
 
 export const tool$entitiesUpdateInstruction: ToolDefinition<typeof args> = {
   name: "entities-update-instruction",
-  description: `Update Instruction`,
+  description: `Patch Instruction`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await entitiesUpdateInstruction(

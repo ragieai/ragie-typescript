@@ -22,6 +22,14 @@ export type Entity = {
   documentId: string;
   chunkId?: string | null | undefined;
   data: { [k: string]: any };
+  /**
+   * Instruction entity schema version used to generate this entity.
+   */
+  instructionSchemaVersion?: number | null | undefined;
+  /**
+   * Shape-only fingerprint of the instruction entity schema used to generate this entity.
+   */
+  instructionSchemaShapeFingerprint?: string | null | undefined;
 };
 
 /** @internal */
@@ -38,6 +46,8 @@ export const Entity$inboundSchema: z.ZodType<Entity, z.ZodTypeDef, unknown> = z
     document_id: z.string(),
     chunk_id: z.nullable(z.string()).optional(),
     data: z.record(z.any()),
+    instruction_schema_version: z.nullable(z.number().int()).optional(),
+    instruction_schema_shape_fingerprint: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "created_at": "createdAt",
@@ -45,6 +55,9 @@ export const Entity$inboundSchema: z.ZodType<Entity, z.ZodTypeDef, unknown> = z
       "instruction_id": "instructionId",
       "document_id": "documentId",
       "chunk_id": "chunkId",
+      "instruction_schema_version": "instructionSchemaVersion",
+      "instruction_schema_shape_fingerprint":
+        "instructionSchemaShapeFingerprint",
     });
   });
 /** @internal */
@@ -56,6 +69,8 @@ export type Entity$Outbound = {
   document_id: string;
   chunk_id?: string | null | undefined;
   data: { [k: string]: any };
+  instruction_schema_version?: number | null | undefined;
+  instruction_schema_shape_fingerprint?: string | null | undefined;
 };
 
 /** @internal */
@@ -71,6 +86,8 @@ export const Entity$outboundSchema: z.ZodType<
   documentId: z.string(),
   chunkId: z.nullable(z.string()).optional(),
   data: z.record(z.any()),
+  instructionSchemaVersion: z.nullable(z.number().int()).optional(),
+  instructionSchemaShapeFingerprint: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     createdAt: "created_at",
@@ -78,6 +95,8 @@ export const Entity$outboundSchema: z.ZodType<
     instructionId: "instruction_id",
     documentId: "document_id",
     chunkId: "chunk_id",
+    instructionSchemaVersion: "instruction_schema_version",
+    instructionSchemaShapeFingerprint: "instruction_schema_shape_fingerprint",
   });
 });
 

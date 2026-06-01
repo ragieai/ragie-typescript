@@ -3,11 +3,18 @@
  */
 
 import { RagieCore } from "../core.js";
-import { appendForm, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import {
+  appendForm,
+  encodeJSON,
+  encodeSimple,
+  normalizeBlob,
+} from "../lib/encodings.js";
+import {
+  bytesToBlob,
   getContentTypeFromFileName,
   readableStreamToArrayBuffer,
 } from "../lib/files.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -95,7 +102,10 @@ async function $do(
   const body = new FormData();
 
   if (isBlobLike(payload.UpdateDocumentFileParams.file)) {
-    appendForm(body, "file", payload.UpdateDocumentFileParams.file);
+    const file = payload.UpdateDocumentFileParams.file;
+    const blob = await normalizeBlob(file);
+    const name = "name" in file ? (file.name as string) : undefined;
+    appendForm(body, "file", blob, name);
   } else if (isReadableStream(payload.UpdateDocumentFileParams.file.content)) {
     const buffer = await readableStreamToArrayBuffer(
       payload.UpdateDocumentFileParams.file.content,
@@ -103,11 +113,10 @@ async function $do(
     const contentType =
       getContentTypeFromFileName(payload.UpdateDocumentFileParams.file.fileName)
       || "application/octet-stream";
-    const blob = new Blob([buffer], { type: contentType });
     appendForm(
       body,
       "file",
-      blob,
+      bytesToBlob(buffer, contentType),
       payload.UpdateDocumentFileParams.file.fileName,
     );
   } else {
@@ -117,9 +126,7 @@ async function $do(
     appendForm(
       body,
       "file",
-      new Blob([payload.UpdateDocumentFileParams.file.content], {
-        type: contentType,
-      }),
+      bytesToBlob(payload.UpdateDocumentFileParams.file.content, contentType),
       payload.UpdateDocumentFileParams.file.fileName,
     );
   }
@@ -143,7 +150,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/documents/{document_id}/file")(pathParams);
 
   const headers = new Headers(compactMap({
@@ -190,7 +196,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "402", "404", "422", "429", "4XX", "500", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

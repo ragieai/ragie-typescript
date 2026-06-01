@@ -8,7 +8,7 @@ import { ListAuthenticatorsResponse } from "ragie/models/operations";
 let value: ListAuthenticatorsResponse = {
   result: {
     pagination: {
-      totalCount: 878808,
+      totalCount: 18197,
     },
     authenticators: [],
   },
