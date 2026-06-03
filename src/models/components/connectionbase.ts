@@ -14,10 +14,17 @@ import {
   MediaModeParam$Outbound,
   MediaModeParam$outboundSchema,
 } from "./mediamodeparam.js";
+import {
+  SyncFilter,
+  SyncFilter$inboundSchema,
+  SyncFilter$Outbound,
+  SyncFilter$outboundSchema,
+} from "./syncfilter.js";
 
 export const PartitionStrategy1 = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type PartitionStrategy1 = ClosedEnum<typeof PartitionStrategy1>;
 
@@ -38,6 +45,7 @@ export type ConnectionBase = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  syncFilter?: { [k: string]: SyncFilter } | undefined;
   /**
    * The maximum number of pages a connection will sync. The connection will be disabled after this limit is reached. Some in process documents may continue processing. Remove the limit by setting to `null`.
    */
@@ -155,10 +163,12 @@ export const ConnectionBase$inboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  sync_filter: z.record(SyncFilter$inboundSchema).optional(),
   page_limit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "partition_strategy": "partitionStrategy",
+    "sync_filter": "syncFilter",
     "page_limit": "pageLimit",
   });
 });
@@ -168,6 +178,7 @@ export type ConnectionBase$Outbound = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  sync_filter?: { [k: string]: SyncFilter$Outbound } | undefined;
   page_limit?: number | null | undefined;
 };
 
@@ -190,10 +201,12 @@ export const ConnectionBase$outboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  syncFilter: z.record(SyncFilter$outboundSchema).optional(),
   pageLimit: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     partitionStrategy: "partition_strategy",
+    syncFilter: "sync_filter",
     pageLimit: "page_limit",
   });
 });

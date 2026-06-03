@@ -8,6 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  SyncFilter,
+  SyncFilter$inboundSchema,
+  SyncFilter$Outbound,
+  SyncFilter$outboundSchema,
+} from "./syncfilter.js";
 
 export type ConnectionMetadata =
   | string
@@ -21,6 +27,7 @@ export type Source = string | Array<string> | { [k: string]: any };
 export const DisabledBySystemReason = {
   ConnectionOverTotalPageLimit: "connection_over_total_page_limit",
   AuthenticationFailed: "authentication_failed",
+  TenantAccountDisabled: "tenant_account_disabled",
 } as const;
 export type DisabledBySystemReason = ClosedEnum<typeof DisabledBySystemReason>;
 
@@ -38,6 +45,7 @@ export type Connection = {
   syncing?: boolean | null | undefined;
   partition?: string | null | undefined;
   pageLimit: number | null;
+  syncFilter: { [k: string]: SyncFilter };
   disabledBySystem: boolean;
 };
 
@@ -157,6 +165,7 @@ export const Connection$inboundSchema: z.ZodType<
   syncing: z.nullable(z.boolean()).optional(),
   partition: z.nullable(z.string()).optional(),
   page_limit: z.nullable(z.number().int()),
+  sync_filter: z.record(SyncFilter$inboundSchema),
   disabled_by_system: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
@@ -165,6 +174,7 @@ export const Connection$inboundSchema: z.ZodType<
     "disabled_by_system_reason": "disabledBySystemReason",
     "last_synced_at": "lastSyncedAt",
     "page_limit": "pageLimit",
+    "sync_filter": "syncFilter",
     "disabled_by_system": "disabledBySystem",
   });
 });
@@ -183,6 +193,7 @@ export type Connection$Outbound = {
   syncing?: boolean | null | undefined;
   partition?: string | null | undefined;
   page_limit: number | null;
+  sync_filter: { [k: string]: SyncFilter$Outbound };
   disabled_by_system: boolean;
 };
 
@@ -215,6 +226,7 @@ export const Connection$outboundSchema: z.ZodType<
   syncing: z.nullable(z.boolean()).optional(),
   partition: z.nullable(z.string()).optional(),
   pageLimit: z.nullable(z.number().int()),
+  syncFilter: z.record(SyncFilter$outboundSchema),
   disabledBySystem: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
@@ -223,6 +235,7 @@ export const Connection$outboundSchema: z.ZodType<
     disabledBySystemReason: "disabled_by_system_reason",
     lastSyncedAt: "last_synced_at",
     pageLimit: "page_limit",
+    syncFilter: "sync_filter",
     disabledBySystem: "disabled_by_system",
   });
 });

@@ -11,5 +11,5 @@ let value: OAuthUrlCreateMode1 = "fast";
 ## Values
 
 ```typescript
-"hi_res" | "fast"
+"hi_res" | "fast" | "agentic_ocr"
 ```

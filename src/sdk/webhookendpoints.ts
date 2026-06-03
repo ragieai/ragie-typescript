@@ -68,23 +68,6 @@ export class WebhookEndpoints extends ClientSDK {
   }
 
   /**
-   * Update Webhook Endpoint
-   *
-   * @remarks
-   * Update a webhook endpoint's name, URL, or active status. Use this to rotate endpoints or temporarily disable delivery without deleting the endpoint.
-   */
-  async update(
-    request: operations.UpdateWebhookEndpointRequest,
-    options?: RequestOptions,
-  ): Promise<components.WebhookEndpoint> {
-    return unwrapAsync(webhookEndpointsUpdate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Delete Webhook Endpoint
    *
    * @remarks
@@ -95,6 +78,23 @@ export class WebhookEndpoints extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.ResponseOK> {
     return unwrapAsync(webhookEndpointsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update Webhook Endpoint
+   *
+   * @remarks
+   * Update a webhook endpoint's name, URL, or active status. Use this to rotate endpoints or temporarily disable delivery without deleting the endpoint.
+   */
+  async update(
+    request: operations.UpdateWebhookEndpointRequest,
+    options?: RequestOptions,
+  ): Promise<components.WebhookEndpoint> {
+    return unwrapAsync(webhookEndpointsUpdate(
       this,
       request,
       options,

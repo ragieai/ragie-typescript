@@ -7,7 +7,7 @@
 
 ```typescript
 const value: components.OAuthCredentials = {
-  provider: "hubspot",
+  provider: "dropbox",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",
@@ -18,7 +18,7 @@ const value: components.OAuthCredentials = {
 
 ```typescript
 const value: components.OAuthCredentials = {
-  provider: "hubspot",
+  provider: "dropbox",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",
@@ -29,7 +29,7 @@ const value: components.OAuthCredentials = {
 
 ```typescript
 const value: components.OAuthCredentials = {
-  provider: "hubspot",
+  provider: "dropbox",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",
@@ -40,7 +40,7 @@ const value: components.OAuthCredentials = {
 
 ```typescript
 const value: components.OAuthCredentials = {
-  provider: "hubspot",
+  provider: "dropbox",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",
@@ -51,7 +51,7 @@ const value: components.OAuthCredentials = {
 
 ```typescript
 const value: components.OAuthCredentials = {
-  provider: "hubspot",
+  provider: "dropbox",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",
@@ -62,7 +62,7 @@ const value: components.OAuthCredentials = {
 
 ```typescript
 const value: components.OAuthCredentials = {
-  provider: "hubspot",
+  provider: "dropbox",
   name: "<value>",
   clientId: "<id>",
   clientSecret: "<value>",

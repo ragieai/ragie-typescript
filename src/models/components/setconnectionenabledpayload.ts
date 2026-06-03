@@ -11,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const Reason = {
   ConnectionOverTotalPageLimit: "connection_over_total_page_limit",
   AuthenticationFailed: "authentication_failed",
+  TenantAccountDisabled: "tenant_account_disabled",
 } as const;
 export type Reason = ClosedEnum<typeof Reason>;
 
