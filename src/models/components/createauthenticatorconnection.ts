@@ -74,11 +74,22 @@ import {
   AuthenticatorSlackConnection$outboundSchema,
 } from "./authenticatorslackconnection.js";
 import {
+  DocumentWorkflow,
+  DocumentWorkflow$inboundSchema,
+  DocumentWorkflow$outboundSchema,
+} from "./documentworkflow.js";
+import {
   MediaModeParam,
   MediaModeParam$inboundSchema,
   MediaModeParam$Outbound,
   MediaModeParam$outboundSchema,
 } from "./mediamodeparam.js";
+import {
+  SyncFilter,
+  SyncFilter$inboundSchema,
+  SyncFilter$Outbound,
+  SyncFilter$outboundSchema,
+} from "./syncfilter.js";
 
 export type CreateAuthenticatorConnectionMetadata =
   | string
@@ -111,6 +122,8 @@ export type CreateAuthenticatorConnection = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: DocumentWorkflow | null | undefined;
+  syncFilter?: { [k: string]: SyncFilter } | undefined;
   connection:
     | AuthenticatorConfluenceConnection
     | AuthenticatorDropboxConnection
@@ -274,6 +287,8 @@ export const CreateAuthenticatorConnection$inboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$inboundSchema).optional(),
+  sync_filter: z.record(SyncFilter$inboundSchema).optional(),
   connection: z.union([
     AuthenticatorConfluenceConnection$inboundSchema,
     AuthenticatorDropboxConnection$inboundSchema,
@@ -291,6 +306,7 @@ export const CreateAuthenticatorConnection$inboundSchema: z.ZodType<
   return remap$(v, {
     "partition_strategy": "partitionStrategy",
     "page_limit": "pageLimit",
+    "sync_filter": "syncFilter",
   });
 });
 /** @internal */
@@ -302,6 +318,8 @@ export type CreateAuthenticatorConnection$Outbound = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: string | null | undefined;
+  sync_filter?: { [k: string]: SyncFilter$Outbound } | undefined;
   connection:
     | AuthenticatorConfluenceConnection$Outbound
     | AuthenticatorDropboxConnection$Outbound
@@ -335,6 +353,8 @@ export const CreateAuthenticatorConnection$outboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$outboundSchema).optional(),
+  syncFilter: z.record(SyncFilter$outboundSchema).optional(),
   connection: z.union([
     AuthenticatorConfluenceConnection$outboundSchema,
     AuthenticatorDropboxConnection$outboundSchema,
@@ -352,6 +372,7 @@ export const CreateAuthenticatorConnection$outboundSchema: z.ZodType<
   return remap$(v, {
     partitionStrategy: "partition_strategy",
     pageLimit: "page_limit",
+    syncFilter: "sync_filter",
   });
 });
 

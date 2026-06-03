@@ -8,7 +8,7 @@ import { ListWebhookEndpointsResponse } from "ragie/models/operations";
 let value: ListWebhookEndpointsResponse = {
   result: {
     pagination: {
-      totalCount: 878808,
+      totalCount: 18197,
     },
     webhookEndpoints: [],
   },

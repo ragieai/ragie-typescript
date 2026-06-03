@@ -8,6 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  DocumentWorkflow,
+  DocumentWorkflow$inboundSchema,
+  DocumentWorkflow$outboundSchema,
+} from "./documentworkflow.js";
+import {
   MediaModeParam,
   MediaModeParam$inboundSchema,
   MediaModeParam$Outbound,
@@ -44,11 +49,23 @@ import {
   PublicS3CompatibleConnection$outboundSchema,
 } from "./publics3compatibleconnection.js";
 import {
+  PublicWebcrawlerConnection,
+  PublicWebcrawlerConnection$inboundSchema,
+  PublicWebcrawlerConnection$Outbound,
+  PublicWebcrawlerConnection$outboundSchema,
+} from "./publicwebcrawlerconnection.js";
+import {
   PublicZendeskConnection,
   PublicZendeskConnection$inboundSchema,
   PublicZendeskConnection$Outbound,
   PublicZendeskConnection$outboundSchema,
 } from "./publiczendeskconnection.js";
+import {
+  SyncFilter,
+  SyncFilter$inboundSchema,
+  SyncFilter$Outbound,
+  SyncFilter$outboundSchema,
+} from "./syncfilter.js";
 
 export type PublicCreateConnectionMetadata =
   | string
@@ -63,6 +80,7 @@ export type PublicCreateConnectionConnection =
   | PublicGCSConnection
   | PublicIntercomConnection
   | PublicS3CompatibleConnection
+  | PublicWebcrawlerConnection
   | PublicZendeskConnection;
 
 export type PublicCreateConnection = {
@@ -76,12 +94,15 @@ export type PublicCreateConnection = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: DocumentWorkflow | null | undefined;
+  syncFilter?: { [k: string]: SyncFilter } | undefined;
   connection:
     | PublicBackblazeConnection
     | PublicFreshdeskConnection
     | PublicGCSConnection
     | PublicIntercomConnection
     | PublicS3CompatibleConnection
+    | PublicWebcrawlerConnection
     | PublicZendeskConnection;
 };
 
@@ -148,6 +169,7 @@ export const PublicCreateConnectionConnection$inboundSchema: z.ZodType<
   PublicGCSConnection$inboundSchema,
   PublicIntercomConnection$inboundSchema,
   PublicS3CompatibleConnection$inboundSchema,
+  PublicWebcrawlerConnection$inboundSchema,
   PublicZendeskConnection$inboundSchema,
 ]);
 /** @internal */
@@ -157,6 +179,7 @@ export type PublicCreateConnectionConnection$Outbound =
   | PublicGCSConnection$Outbound
   | PublicIntercomConnection$Outbound
   | PublicS3CompatibleConnection$Outbound
+  | PublicWebcrawlerConnection$Outbound
   | PublicZendeskConnection$Outbound;
 
 /** @internal */
@@ -170,6 +193,7 @@ export const PublicCreateConnectionConnection$outboundSchema: z.ZodType<
   PublicGCSConnection$outboundSchema,
   PublicIntercomConnection$outboundSchema,
   PublicS3CompatibleConnection$outboundSchema,
+  PublicWebcrawlerConnection$outboundSchema,
   PublicZendeskConnection$outboundSchema,
 ]);
 
@@ -211,18 +235,22 @@ export const PublicCreateConnection$inboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$inboundSchema).optional(),
+  sync_filter: z.record(SyncFilter$inboundSchema).optional(),
   connection: z.union([
     PublicBackblazeConnection$inboundSchema,
     PublicFreshdeskConnection$inboundSchema,
     PublicGCSConnection$inboundSchema,
     PublicIntercomConnection$inboundSchema,
     PublicS3CompatibleConnection$inboundSchema,
+    PublicWebcrawlerConnection$inboundSchema,
     PublicZendeskConnection$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
     "partition_strategy": "partitionStrategy",
     "page_limit": "pageLimit",
+    "sync_filter": "syncFilter",
   });
 });
 /** @internal */
@@ -234,12 +262,15 @@ export type PublicCreateConnection$Outbound = {
   metadata?:
     | { [k: string]: string | number | number | boolean | Array<string> }
     | undefined;
+  workflow?: string | null | undefined;
+  sync_filter?: { [k: string]: SyncFilter$Outbound } | undefined;
   connection:
     | PublicBackblazeConnection$Outbound
     | PublicFreshdeskConnection$Outbound
     | PublicGCSConnection$Outbound
     | PublicIntercomConnection$Outbound
     | PublicS3CompatibleConnection$Outbound
+    | PublicWebcrawlerConnection$Outbound
     | PublicZendeskConnection$Outbound;
 };
 
@@ -262,18 +293,22 @@ export const PublicCreateConnection$outboundSchema: z.ZodType<
       z.array(z.string()),
     ]),
   ).optional(),
+  workflow: z.nullable(DocumentWorkflow$outboundSchema).optional(),
+  syncFilter: z.record(SyncFilter$outboundSchema).optional(),
   connection: z.union([
     PublicBackblazeConnection$outboundSchema,
     PublicFreshdeskConnection$outboundSchema,
     PublicGCSConnection$outboundSchema,
     PublicIntercomConnection$outboundSchema,
     PublicS3CompatibleConnection$outboundSchema,
+    PublicWebcrawlerConnection$outboundSchema,
     PublicZendeskConnection$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
     partitionStrategy: "partition_strategy",
     pageLimit: "page_limit",
+    syncFilter: "sync_filter",
   });
 });
 

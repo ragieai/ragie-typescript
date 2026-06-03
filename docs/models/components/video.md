@@ -5,11 +5,14 @@
 ```typescript
 import { Video } from "ragie/models/components";
 
-let value: Video = "video_only";
+let value: Video = {
+  content: "<value>",
+};
 ```
 
-## Values
+## Fields
 
-```typescript
-"audio_only" | "video_only" | "audio_video"
-```
+| Field                                  | Type                                   | Required                               | Description                            |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| `type`                                 | *"Video"*                              | :heavy_minus_sign:                     | N/A                                    |
+| `content`                              | *string*                               | :heavy_check_mark:                     | A description of what the video shows. |

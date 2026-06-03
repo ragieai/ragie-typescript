@@ -11,20 +11,21 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const Static = {
   HiRes: "hi_res",
   Fast: "fast",
+  AgenticOcr: "agentic_ocr",
 } as const;
 export type Static = ClosedEnum<typeof Static>;
 
-export const Video = {
+export const MediaModeParamVideo = {
   AudioOnly: "audio_only",
   VideoOnly: "video_only",
   AudioVideo: "audio_video",
 } as const;
-export type Video = ClosedEnum<typeof Video>;
+export type MediaModeParamVideo = ClosedEnum<typeof MediaModeParamVideo>;
 
 export type MediaModeParam = {
   static?: Static | null | undefined;
   audio?: boolean | null | undefined;
-  video?: Video | null | undefined;
+  video?: MediaModeParamVideo | null | undefined;
 };
 
 /** @internal */
@@ -35,12 +36,13 @@ export const Static$outboundSchema: z.ZodNativeEnum<typeof Static> =
   Static$inboundSchema;
 
 /** @internal */
-export const Video$inboundSchema: z.ZodNativeEnum<typeof Video> = z.nativeEnum(
-  Video,
-);
+export const MediaModeParamVideo$inboundSchema: z.ZodNativeEnum<
+  typeof MediaModeParamVideo
+> = z.nativeEnum(MediaModeParamVideo);
 /** @internal */
-export const Video$outboundSchema: z.ZodNativeEnum<typeof Video> =
-  Video$inboundSchema;
+export const MediaModeParamVideo$outboundSchema: z.ZodNativeEnum<
+  typeof MediaModeParamVideo
+> = MediaModeParamVideo$inboundSchema;
 
 /** @internal */
 export const MediaModeParam$inboundSchema: z.ZodType<
@@ -50,7 +52,7 @@ export const MediaModeParam$inboundSchema: z.ZodType<
 > = z.object({
   static: z.nullable(Static$inboundSchema).optional(),
   audio: z.nullable(z.boolean()).optional(),
-  video: z.nullable(Video$inboundSchema).optional(),
+  video: z.nullable(MediaModeParamVideo$inboundSchema).optional(),
 });
 /** @internal */
 export type MediaModeParam$Outbound = {
@@ -67,7 +69,7 @@ export const MediaModeParam$outboundSchema: z.ZodType<
 > = z.object({
   static: z.nullable(Static$outboundSchema).optional(),
   audio: z.nullable(z.boolean()).optional(),
-  video: z.nullable(Video$outboundSchema).optional(),
+  video: z.nullable(MediaModeParamVideo$outboundSchema).optional(),
 });
 
 export function mediaModeParamToJSON(mediaModeParam: MediaModeParam): string {

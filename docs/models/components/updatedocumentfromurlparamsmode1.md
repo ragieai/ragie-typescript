@@ -5,11 +5,11 @@
 ```typescript
 import { UpdateDocumentFromUrlParamsMode1 } from "ragie/models/components";
 
-let value: UpdateDocumentFromUrlParamsMode1 = "hi_res";
+let value: UpdateDocumentFromUrlParamsMode1 = "fast";
 ```
 
 ## Values
 
 ```typescript
-"hi_res" | "fast"
+"hi_res" | "fast" | "agentic_ocr"
 ```

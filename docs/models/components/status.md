@@ -1,15 +1,17 @@
 # Status
 
+Extraction status for this attempt.
+
 ## Example Usage
 
 ```typescript
 import { Status } from "ragie/models/components";
 
-let value: Status = "in_progress";
+let value: Status = "not_found";
 ```
 
 ## Values
 
 ```typescript
-"completed" | "failed" | "in_progress" | "cancelled"
+"extracted" | "not_found" | "error"
 ```

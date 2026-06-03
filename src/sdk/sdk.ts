@@ -6,6 +6,7 @@ import { ClientSDK } from "../lib/sdks.js";
 import { Authenticators } from "./authenticators.js";
 import { Connections } from "./connections.js";
 import { Documents } from "./documents.js";
+import { Elements } from "./elements.js";
 import { Entities } from "./entities.js";
 import { Partitions } from "./partitions.js";
 import { Responses } from "./responses.js";
@@ -51,5 +52,10 @@ export class Ragie extends ClientSDK {
   private _responses?: Responses;
   get responses(): Responses {
     return (this._responses ??= new Responses(this._options));
+  }
+
+  private _elements?: Elements;
+  get elements(): Elements {
+    return (this._elements ??= new Elements(this._options));
   }
 }
